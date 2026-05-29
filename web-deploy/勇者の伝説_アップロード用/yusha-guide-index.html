@@ -420,6 +420,86 @@
   ::-webkit-scrollbar-track { background: var(--bg-deep); }
   ::-webkit-scrollbar-thumb { background: var(--gold-dark); border-radius: 3px; }
 
+  /* ── お知らせ欄 ── */
+  .news-section {
+    background: linear-gradient(135deg, #0e0a14 0%, #160d1c 100%);
+    border: 1px solid rgba(240,192,64,0.5);
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin-bottom: 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .news-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #f0c040, #ff69b4, #5dade2, #f0c040);
+    background-size: 200% auto;
+    animation: shimmer 3s linear infinite;
+  }
+  .news-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  .news-header-icon { font-size: 28px; }
+  .news-header-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--gold);
+    letter-spacing: 2px;
+  }
+  .news-header-sub {
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 3px;
+    margin-left: auto;
+  }
+  .news-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(240,192,64,0.1);
+    animation: fadeInUp 0.4s ease both;
+  }
+  .news-item:last-child { border-bottom: none; }
+  .news-date {
+    font-size: 11px;
+    color: var(--text-dim);
+    white-space: nowrap;
+    padding-top: 2px;
+    min-width: 80px;
+    font-family: monospace;
+    letter-spacing: 1px;
+  }
+  .news-tag {
+    font-size: 10px;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 20px;
+    white-space: nowrap;
+    letter-spacing: 1px;
+    min-width: 48px;
+    text-align: center;
+  }
+  .news-tag.new    { background: rgba(39,174,96,0.25);  color: #58d68d; border: 1px solid rgba(39,174,96,0.5); }
+  .news-tag.fix    { background: rgba(231,76,60,0.2);   color: #e74c3c; border: 1px solid rgba(231,76,60,0.4); }
+  .news-tag.update { background: rgba(52,152,219,0.2);  color: #5dade2; border: 1px solid rgba(52,152,219,0.4); }
+  .news-tag.event  { background: rgba(240,192,64,0.15); color: var(--gold); border: 1px solid rgba(240,192,64,0.4); }
+  .news-body {
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.7;
+    flex: 1;
+  }
+  .news-body strong { color: var(--gold); }
+  .news-body .sub   { font-size: 11px; color: var(--text-dim); margin-top: 3px; display: block; }
+
   @media (max-width: 600px) {
     .grid-2, .grid-3 { grid-template-columns: 1fr; }
     nav a { padding: 14px 12px; font-size: 11px; }
@@ -443,6 +523,7 @@
 
 <nav>
   <ul>
+    <li><a href="#news" style="color:var(--gold)">🔔 お知らせ</a></li>
     <li><a href="#basics">基本システム</a></li>
     <li><a href="#story">ストーリー攻略</a></li>
     <li><a href="#companions">仲間一覧</a></li>
@@ -463,6 +544,93 @@
 </nav>
 
 <main>
+
+  <!-- ── お知らせ・更新情報 ── -->
+  <section id="news" style="padding-top:0">
+    <div class="news-section">
+      <div class="news-header">
+        <div class="news-header-icon">🔔</div>
+        <div>
+          <div class="news-header-title">最新アップデート情報</div>
+          <div style="font-size:11px;color:var(--text-dim);letter-spacing:2px">UPDATE NEWS</div>
+        </div>
+        <div class="news-header-sub">Ver 3.0 系列</div>
+      </div>
+
+      <div class="news-item">
+        <div class="news-date">2026-05-30</div>
+        <div class="news-tag new">NEW</div>
+        <div class="news-body">
+          <strong>エリア限定ガチャ4種を追加！</strong>
+          <span class="sub">雪山・砂漠・海底・魔王城の各エリアに専用ガチャが登場。仲間専用装備・高レアアイテムが入手可能。天井は最短30連！</span>
+        </div>
+      </div>
+
+      <div class="news-item">
+        <div class="news-date">2026-05-30</div>
+        <div class="news-tag new">NEW</div>
+        <div class="news-body">
+          <strong>隠しクエスト5件を追加！</strong>
+          <span class="sub">クエスト掲示板に「🔍 隠しクエスト」欄が出現。Lv50到達・魔物200体討伐・全仲間絆Lv5など達成条件を満たすと解放。</span>
+        </div>
+      </div>
+
+      <div class="news-item">
+        <div class="news-date">2026-05-30</div>
+        <div class="news-tag new">NEW</div>
+        <div class="news-body">
+          <strong>隠し宝箱・隠し部屋を各地に設置！</strong>
+          <span class="sub">「🔍 周囲を調べる」ボタンで発見できる宝箱を6か所追加。砂漠では隠し番人「砂の魔人」との戦闘も！</span>
+        </div>
+      </div>
+
+      <div class="news-item">
+        <div class="news-date">2026-05-30</div>
+        <div class="news-tag new">NEW</div>
+        <div class="news-body">
+          <strong>クリア後：隠しボス2体を追加！</strong>
+          <span class="sub">古の魔神「バアル」（砂漠の秘密遺跡）・虚無の番人「ヴォイド」（虚無の地）が登場。ヴォイドは全属性魔法無効の超強敵！</span>
+        </div>
+      </div>
+
+      <div class="news-item">
+        <div class="news-date">2026-05-30</div>
+        <div class="news-tag fix">FIX</div>
+        <div class="news-body">
+          <strong>ファラオ戦で攻撃できなくなるバグを修正</strong>
+          <span class="sub">特定の条件下でボタンが反応しなくなる進行不能バグを修正しました。</span>
+        </div>
+      </div>
+
+      <div class="news-item">
+        <div class="news-date">2026-05-30</div>
+        <div class="news-tag update">UPD</div>
+        <div class="news-body">
+          <strong>戦闘ログが自動スクロールに！</strong>
+          <span class="sub">戦闘中のログが常に最新行を自動で表示するようになりました。手動スクロール不要。</span>
+        </div>
+      </div>
+
+      <div class="news-item">
+        <div class="news-date">2026-05-30</div>
+        <div class="news-tag update">UPD</div>
+        <div class="news-body">
+          <strong>仲間パネルを収納できるように！</strong>
+          <span class="sub">右側の仲間ステータス欄を「◀ 閉じる」ボタンで非表示にできます。ゲーム画面をフルサイズで楽しめる！</span>
+        </div>
+      </div>
+
+      <div class="news-item">
+        <div class="news-date">以前</div>
+        <div class="news-tag event">EVENT</div>
+        <div class="news-body">
+          <strong>Ver 3.0 大型アップデート</strong>
+          <span class="sub">神々の塔（全10F）・無限の試練・天空の浮遊島・乗り物システム・絆システム・町の発展システムなど多数追加。</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
 
   <!-- 基本システム -->
   <section id="basics">

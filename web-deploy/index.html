@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>勇者の伝説</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ========== タイトル画面 ========== -->
+<div id="title-screen">
+  <div id="title-content">
+    <div id="title-deco">✦ ✦ ✦</div>
+    <h1 id="title-main">⚔️ 勇者の伝説 ⚔️</h1>
+    <div id="title-sub">〜 魔王討伐の旅 〜</div>
+    <div id="title-deco">✦ ✦ ✦</div>
+    <div id="title-art">
+      <div class="title-art-row">🏰🌑🌑🌑🌑🌑🏰</div>
+      <div class="title-art-row">🗡️　　　　　　🗡️</div>
+      <div class="title-art-row">　　　　🌟　　　</div>
+      <div class="title-art-row">　🌲　　　　🌲　</div>
+      <div class="title-art-row">🌲🌲🏘️🌲🌲🌲🌲</div>
+    </div>
+    <div id="title-buttons">
+      <button id="btn-new-game" onclick="startNewGame()">🗡️ 冒険を始める</button>
+      <button id="btn-load-game" onclick="loadGame()" style="display:none">📖 冒険を続ける</button>
+    </div>
+    <div id="title-footer">Electron RPG Adventure</div>
+  </div>
+</div>
+
+<!-- ========== メインゲーム画面 ========== -->
+<div id="game-screen" class="hidden">
+
+  <!-- ヘッダー -->
+  <div id="game-header">
+    <span id="header-title">⚔️ 勇者の伝説</span>
+    <div id="header-actions">
+      <button class="header-btn" onclick="saveGame()" title="セーブ">💾 セーブ</button>
+      <button class="header-btn" onclick="showTitleScreen()" title="タイトルへ">🏠 タイトル</button>
+      <div id="sound-controls">
+        <button id="sound-toggle-btn" class="header-btn sound-btn" onclick="soundToggleMute()" title="サウンドON/OFF">🔊</button>
+        <input id="sound-volume" type="range" min="0" max="1" step="0.05" value="0.6"
+               oninput="soundSetVolume(this.value)" title="音量">
+      </div>
+    </div>
+  </div>
+
+  <!-- メインエリア -->
+  <div id="main-area">
+
+    <!-- 左：ストーリー＆バトルエリア -->
+    <div id="story-panel">
+
+      <!-- シーン画像エリア -->
+      <div id="scene-header">
+        <div id="scene-emoji-display">🌄</div>
+        <div id="scene-title-display">序章</div>
+        <div id="season-display" style="margin-left:auto" onclick="openSeasonInfo()">🌸 春</div>
+      </div>
+
+      <!-- ストーリーテキスト -->
+      <div id="story-text-area">
+        <p id="story-text">読み込み中...</p>
+      </div>
+
+      <!-- 選択肢エリア（通常時） -->
+      <div id="choices-area"></div>
+
+      <!-- ワープエリア -->
+      <div id="warp-area" class="hidden">
+        <div id="warp-header">
+          <div id="warp-title">🔮 ワープ魔法</div>
+          <div id="aria-warp-comment"></div>
+        </div>
+        <div id="warp-list"></div>
+        <button class="choice-btn back-btn" onclick="closeWarpScreen()">↩️ 閉じる</button>
+      </div>
+
+      <!-- 装備変更エリア -->
+      <div id="equip-change-area" class="hidden">
+        <div id="equip-change-list"></div>
+        <button class="choice-btn back-btn" id="equip-back-btn" onclick="closeEquipScreen()">↩️ 戻る</button>
+      </div>
+
+      <!-- ショップエリア -->
+      <div id="shop-area" class="hidden">
+        <div id="shop-items-list"></div>
+        <button class="choice-btn back-btn" id="shop-back-btn">↩️ 店を出る</button>
+      </div>
+
+      <!-- 鍛冶屋エリア -->
+      <div id="smith-area" class="hidden">
+        <div id="smith-header">
+          <div id="smith-title">⚒️ 装備強化</div>
+          <div id="smith-desc" style="font-size:12px;color:#aaa;margin-top:4px">装備中のアイテムを強化できます（最大+10）</div>
+        </div>
+        <div id="smith-items-list"></div>
+        <div id="smith-enchant-section">
+          <div id="smith-enchant-header">✨ 特殊強化（素材使用）</div>
+          <div id="smith-enchant-desc">モンスター素材を使って装備に特殊効果を付与します</div>
+          <div id="smith-enchant-list"></div>
+        </div>
+        <button class="choice-btn back-btn" id="smith-back-btn">↩️ 鍛冶屋を出る</button>
+      </div>
+
+      <!-- クエスト掲示板エリア -->
+      <div id="quest-board-area" class="hidden">
+        <div class="inner-panel-header">
+          <div class="inner-panel-title">📋 クエスト掲示板</div>
+          <div class="inner-panel-sub">依頼を達成して報酬を受け取ろう！</div>
+        </div>
+        <div id="quest-board-list"></div>
+        <button class="choice-btn back-btn" onclick="closeQuestBoard()">↩️ 閉じる</button>
+      </div>
+
+      <!-- モンスター図鑑エリア -->
+      <div id="monster-book-area" class="hidden">
+        <div class="inner-panel-header">
+          <div class="inner-panel-title">📖 モンスター図鑑</div>
+          <div class="inner-panel-sub">出会った魔物の記録</div>
+        </div>
+        <div id="monster-book-list"></div>
+        <button class="choice-btn back-btn" onclick="closeMonsterBook()">↩️ 閉じる</button>
+      </div>
+
+      <!-- 仲間との絆エリア -->
+      <div id="bond-area" class="hidden">
+        <div class="inner-panel-header">
+          <div class="inner-panel-title">💞 仲間との絆</div>
+          <div class="inner-panel-sub">共に戦うほど絆は深まる</div>
+        </div>
+        <div id="bond-list"></div>
+        <button class="choice-btn back-btn" onclick="closeBondScreen()">↩️ 閉じる</button>
+      </div>
+
+      <!-- 陣形システムエリア -->
+      <div id="formation-area" class="hidden">
+        <div class="inner-panel-header">
+          <div class="inner-panel-title">⚔️ 陣形システム</div>
+          <div class="inner-panel-sub">仲間との戦略を選ぼう</div>
+        </div>
+        <div id="formation-list"></div>
+        <button class="choice-btn back-btn" onclick="closeFormationScreen()">↩️ 閉じる</button>
+      </div>
+
+      <!-- 称号リストエリア -->
+      <div id="title-list-area" class="hidden">
+        <div class="inner-panel-header">
+          <div class="inner-panel-title">🏆 称号一覧</div>
+          <div class="inner-panel-sub">条件を達成して称号とボーナスを獲得しよう</div>
+        </div>
+        <div id="title-list-content"></div>
+        <button class="choice-btn back-btn" onclick="closeTitleList()">↩️ 閉じる</button>
+      </div>
+
+      <!-- 錬金術エリア -->
+      <div id="alchemy-area" class="hidden">
+        <div class="inner-panel-header">
+          <div class="inner-panel-title">🧪 錬金術工房</div>
+          <div class="inner-panel-sub">アイテムを組み合わせて新しいものを作ろう</div>
+        </div>
+        <div id="alchemy-list"></div>
+        <button id="alchemy-back-btn" class="choice-btn back-btn">↩️ 工房を出る</button>
+      </div>
+
+      <!-- バトルエリア -->
+      <div id="battle-area" class="hidden">
+        <div id="battle-scene">
+          <div id="enemy-display">
+            <div id="battle-anim-overlay"></div>
+            <div id="damage-popup-area"></div>
+            <div id="enemy-emoji-large"></div>
+            <div id="enemy-name-display"></div>
+            <div id="enemy-hp-section">
+              <span id="enemy-hp-label">HP</span>
+              <div id="enemy-hp-bar-wrap">
+                <div id="enemy-hp-bar"></div>
+              </div>
+              <span id="enemy-hp-nums"></span>
+            </div>
+            <div id="enemy-status-display" style="font-size:14px;font-weight:bold;text-align:center;min-height:20px;color:#f0a050"></div>
+          </div>
+
+          <div id="battle-log-wrap">
+            <div id="battle-log"></div>
+          </div>
+
+          <!-- 仲間のバトル中ステータス（全員） -->
+          <div id="companions-battle-status"></div>
+
+          <div id="battle-controls">
+            <div id="battle-buttons" class="battle-btn-grid">
+              <button id="btn-attack" class="battle-btn attack-btn" onclick="battleAction('attack')">⚔️<br>攻撃</button>
+              <button id="btn-magic"  class="battle-btn magic-btn"  onclick="battleAction('magic')">🔮<br>スキル</button>
+              <button id="btn-item"   class="battle-btn item-btn"   onclick="battleAction('item')">🎒<br>アイテム</button>
+              <button id="btn-equip"  class="battle-btn equip-btn"  onclick="battleAction('equip')">🗡️<br>装備</button>
+              <button id="btn-run"    class="battle-btn run-btn"    onclick="battleAction('run')">💨<br>逃げる</button>
+            </div>
+            <!-- スキル選択 -->
+            <div id="skill-select" class="hidden">
+              <div id="skill-select-list"></div>
+              <button class="choice-btn" onclick="cancelSkillSelect()" style="margin-top:6px">キャンセル</button>
+            </div>
+            <!-- アイテム選択 -->
+            <div id="item-select" class="hidden">
+              <div id="item-select-list"></div>
+              <button class="choice-btn" onclick="cancelItemSelect()" style="margin-top:6px">キャンセル</button>
+            </div>
+            <!-- 戦闘中装備選択 -->
+            <div id="battle-equip-select" class="hidden">
+              <div id="battle-equip-list"></div>
+              <button class="choice-btn" onclick="cancelBattleEquip()" style="margin-top:6px">キャンセル</button>
+            </div>
+            <!-- コンボ必殺技ボタン -->
+            <div id="combo-btn-wrap">
+              <button id="btn-combo" class="battle-btn combo-btn" onclick="openComboMenu()">⚡<br>コンボ</button>
+            </div>
+            <!-- コンボ選択 -->
+            <div id="combo-select" class="hidden">
+              <div id="combo-select-title">⚡ コンボ必殺技</div>
+              <div id="combo-select-list"></div>
+              <button class="choice-btn" onclick="closeComboMenu()" style="margin-top:6px">キャンセル</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /story-panel -->
+
+    <!-- 右：ステータスパネル -->
+    <div id="status-panel">
+
+      <!-- プレイヤー情報 -->
+      <div class="status-box" id="player-box">
+        <div class="status-box-title">👤 プレイヤー</div>
+        <div id="player-name-display">勇者アレク</div>
+        <div id="player-level-display">Lv. 1</div>
+
+        <div class="bar-row">
+          <span class="bar-label hp-label">HP</span>
+          <div class="bar-track"><div id="hp-bar" class="bar hp-bar-fill"></div></div>
+          <span id="hp-text" class="bar-nums">100/100</span>
+        </div>
+        <div id="player-status-display" style="display:none;font-size:12px;font-weight:bold;text-align:center;padding:2px 6px;margin:2px 0;border-radius:4px;background:#3a2010;color:#f0a050"></div>
+        <div class="bar-row">
+          <span class="bar-label mp-label">MP</span>
+          <div class="bar-track"><div id="mp-bar" class="bar mp-bar-fill"></div></div>
+          <span id="mp-text" class="bar-nums">30/30</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label exp-label">EXP</span>
+          <div class="bar-track"><div id="exp-bar" class="bar exp-bar-fill"></div></div>
+          <span id="exp-text" class="bar-nums">0/50</span>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-cell">⚔️ <span id="stat-atk">15</span></div>
+          <div class="stat-cell">🛡️ <span id="stat-def">5</span></div>
+          <div class="stat-cell">✨ <span id="stat-matk">20</span></div>
+          <div class="stat-cell">💰 <span id="stat-gold">100</span>G</div>
+        </div>
+      </div>
+
+      <!-- アリア -->
+      <div class="status-box" id="aria-box" style="display:none">
+        <div class="status-box-title">👱‍♀️ アリア</div>
+        <div id="aria-name-display" style="font-weight:bold;font-size:14px;color:#a0d0ff">アリア</div>
+        <div id="aria-level-display" style="font-size:12px;color:#888;margin-bottom:4px">Lv. 1</div>
+        <div class="bar-row">
+          <span class="bar-label hp-label">HP</span>
+          <div class="bar-track"><div id="aria-hp-bar" class="bar hp-bar-fill"></div></div>
+          <span id="aria-hp-text" class="bar-nums">80/80</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label mp-label">MP</span>
+          <div class="bar-track"><div id="aria-mp-bar" class="bar mp-bar-fill"></div></div>
+          <span id="aria-mp-text" class="bar-nums">25/25</span>
+        </div>
+        <div class="stats-grid" style="margin-top:4px">
+          <div class="stat-cell">⚔️ <span id="aria-stat-atk">18</span></div>
+          <div class="stat-cell">🛡️ <span id="aria-stat-def">4</span></div>
+          <div class="stat-cell">✨ <span id="aria-stat-matk">8</span></div>
+          <div class="stat-cell" id="aria-equip-display" style="font-size:11px;color:#888">装備なし</div>
+        </div>
+      </div>
+
+      <!-- ガイアス -->
+      <div class="status-box companion-box" id="gaius-box" style="display:none">
+        <div class="status-box-title">🛡️ ガイアス</div>
+        <div id="gaius-level-display" style="font-size:12px;color:#888;margin-bottom:4px">Lv. 1</div>
+        <div class="bar-row">
+          <span class="bar-label hp-label">HP</span>
+          <div class="bar-track"><div id="gaius-hp-bar" class="bar hp-bar-fill"></div></div>
+          <span id="gaius-hp-text" class="bar-nums">180/180</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label mp-label">MP</span>
+          <div class="bar-track"><div id="gaius-mp-bar" class="bar mp-bar-fill"></div></div>
+          <span id="gaius-mp-text" class="bar-nums">20/20</span>
+        </div>
+      </div>
+
+      <!-- ルナ -->
+      <div class="status-box companion-box" id="luna-box" style="display:none">
+        <div class="status-box-title">🌙 ルナ</div>
+        <div id="luna-level-display" style="font-size:12px;color:#888;margin-bottom:4px">Lv. 1</div>
+        <div class="bar-row">
+          <span class="bar-label hp-label">HP</span>
+          <div class="bar-track"><div id="luna-hp-bar" class="bar hp-bar-fill"></div></div>
+          <span id="luna-hp-text" class="bar-nums">60/60</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label mp-label">MP</span>
+          <div class="bar-track"><div id="luna-mp-bar" class="bar mp-bar-fill"></div></div>
+          <span id="luna-mp-text" class="bar-nums">55/55</span>
+        </div>
+      </div>
+
+      <!-- ソラ -->
+      <div class="status-box companion-box" id="sola-box" style="display:none">
+        <div class="status-box-title">⭐ ソラ</div>
+        <div id="sola-level-display" style="font-size:12px;color:#888;margin-bottom:4px">Lv. 1</div>
+        <div class="bar-row">
+          <span class="bar-label hp-label">HP</span>
+          <div class="bar-track"><div id="sola-hp-bar" class="bar hp-bar-fill"></div></div>
+          <span id="sola-hp-text" class="bar-nums">55/55</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label mp-label">MP</span>
+          <div class="bar-track"><div id="sola-mp-bar" class="bar mp-bar-fill"></div></div>
+          <span id="sola-mp-text" class="bar-nums">55/55</span>
+        </div>
+      </div>
+
+      <!-- セラフィナ -->
+      <div class="status-box companion-box" id="serafina-box" style="display:none">
+        <div class="status-box-title">✨ セラフィナ</div>
+        <div id="serafina-level-display" style="font-size:12px;color:#888;margin-bottom:4px">Lv. 1</div>
+        <div class="bar-row">
+          <span class="bar-label hp-label">HP</span>
+          <div class="bar-track"><div id="serafina-hp-bar" class="bar hp-bar-fill"></div></div>
+          <span id="serafina-hp-text" class="bar-nums">65/65</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label mp-label">MP</span>
+          <div class="bar-track"><div id="serafina-mp-bar" class="bar mp-bar-fill"></div></div>
+          <span id="serafina-mp-text" class="bar-nums">65/65</span>
+        </div>
+      </div>
+
+      <!-- ゼフィロス -->
+      <div class="status-box companion-box" id="zephiros-box" style="display:none">
+        <div class="status-box-title">🔮 ゼフィロス</div>
+        <div id="zephiros-level-display" style="font-size:12px;color:#888;margin-bottom:4px">Lv. 1</div>
+        <div class="bar-row">
+          <span class="bar-label hp-label">HP</span>
+          <div class="bar-track"><div id="zephiros-hp-bar" class="bar hp-bar-fill"></div></div>
+          <span id="zephiros-hp-text" class="bar-nums">45/45</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label mp-label">MP</span>
+          <div class="bar-track"><div id="zephiros-mp-bar" class="bar mp-bar-fill"></div></div>
+          <span id="zephiros-mp-text" class="bar-nums">75/75</span>
+        </div>
+      </div>
+
+      <!-- 現在地 -->
+      <div class="status-box" id="location-box">
+        <div class="status-box-title">📍 現在地</div>
+        <div id="location-display">出発の村</div>
+      </div>
+
+      <!-- 装備 -->
+      <div class="status-box" id="equip-box">
+        <div class="status-box-title">🗡️ 装備</div>
+        <div id="equip-weapon">武器: 鉄の剣</div>
+        <div id="equip-head">頭: なし</div>
+        <div id="equip-body">体: 布の服</div>
+        <div id="equip-acc">アクセ: なし / なし</div>
+      </div>
+
+      <!-- インベントリ -->
+      <div class="status-box" id="inventory-box">
+        <div class="status-box-title">🎒 所持アイテム</div>
+        <div id="inventory-list"></div>
+      </div>
+
+    </div><!-- /status-panel -->
+
+  </div><!-- /main-area -->
+
+</div><!-- /game-screen -->
+
+<!-- ========== レベルアップ通知 ========== -->
+<div id="levelup-overlay" class="hidden">
+  <div id="levelup-box">
+    <div id="levelup-title">🎉 LEVEL UP! 🎉</div>
+    <div id="levelup-details"></div>
+    <div id="levelup-choices"></div>
+    <button id="levelup-continue-btn" onclick="closeLevelUp()" style="display:none">続ける →</button>
+  </div>
+</div>
+
+<!-- ========== ゲームオーバー ========== -->
+<div id="gameover-overlay" class="hidden">
+  <div id="gameover-box">
+    <div id="gameover-title">💀 力尽きてしまった... 💀</div>
+    <div id="gameover-text">意識が遠のいていく...</div>
+    <button onclick="continueFromVillage()">🏘️ 村から再出発する（HP全回復）</button>
+    <button onclick="restartGame()" style="margin-top:8px; background:#333">🔄 最初からプレイする</button>
+  </div>
+</div>
+
+<!-- ========== 隠し宝箱・隠し部屋 ポップアップ ========== -->
+<div id="hidden-treasure-overlay" class="hidden">
+  <div id="hidden-treasure-box">
+    <div id="hidden-treasure-emoji">📦</div>
+    <div id="hidden-treasure-title">発見！</div>
+    <div id="hidden-treasure-text"></div>
+    <div id="hidden-treasure-buttons"></div>
+  </div>
+</div>
+
+<!-- ========== 称号取得通知 ========== -->
+<div id="title-notif-overlay" class="hidden">
+  <div id="title-notif-box">
+    <div id="title-notif-header">🏆 称号を獲得！</div>
+    <div id="title-notif-emoji">🏆</div>
+    <div id="title-notif-name"></div>
+    <div id="title-notif-desc"></div>
+    <div id="title-notif-bonus"></div>
+    <button onclick="closeTitleNotif()">✨ 素晴らしい！</button>
+  </div>
+</div>
+
+<!-- ========== ガチャ画面 ========== -->
+<div id="gacha-overlay" class="hidden">
+  <div id="gacha-box">
+    <div id="gacha-header-row">
+      <div id="gacha-title">🎰 幻想ガチャ</div>
+      <div id="gacha-gold-display">💰 <span id="gacha-gold-num">0</span>G</div>
+    </div>
+    <div id="gacha-pity-bar">
+      ✨ ★5保証まであと <span id="gacha-pity-left">50</span>回
+      ／ 通算 <span id="gacha-total-pulls">0</span>回
+      <div id="gacha-pity-track"><div id="gacha-pity-fill"></div></div>
+    </div>
+    <div id="gacha-buttons">
+      <button id="gacha-btn-single" onclick="doGachaPull(1)">
+        🎲 1回引く<br><span class="gacha-cost">500G</span>
+      </button>
+      <button id="gacha-btn-ten" onclick="doGachaPull(10)">
+        🎰 10連ガチャ<br><span class="gacha-cost">5000G</span>
+      </button>
+    </div>
+    <div id="gacha-rate-btn" onclick="toggleGachaRates()">📊 排出率を確認</div>
+    <div id="gacha-rates-panel" class="hidden">
+      <div>★★★★★ (★5): 2.0%　（50回で必ず確定）</div>
+      <div>★★★★☆ (★4): 8.0%</div>
+      <div>★★★☆☆ (★3): 20.0%</div>
+      <div>★★☆☆☆ (★2): 30.0%</div>
+      <div>★☆☆☆☆ (★1): 40.0%</div>
+    </div>
+    <div id="gacha-history-section">
+      <div id="gacha-history-label">📜 最近のガチャ履歴</div>
+      <div id="gacha-history-list"></div>
+    </div>
+    <button class="choice-btn back-btn" onclick="closeGachaScreen()">↩️ 閉じる</button>
+  </div>
+</div>
+
+<!-- ========== ガチャ結果 ========== -->
+<div id="gacha-result-overlay" class="hidden">
+  <div id="gacha-result-box">
+    <div id="gacha-result-title">🎲 ガチャ結果！</div>
+    <div id="gacha-result-grid"></div>
+    <button class="choice-btn" onclick="closeGachaResult()" style="margin-top:16px;width:100%">✨ 受け取る</button>
+  </div>
+</div>
+
+<!-- ========== メッセージトースト ========== -->
+<div id="toast" class="hidden"></div>
+
+<script src="sound.js"></script>
+<script src="renderer.js"></script>
+</body>
+</html>

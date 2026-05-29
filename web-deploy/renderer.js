@@ -140,6 +140,46 @@ const ITEM_DATA = {
   excalibur:      { name: '伝説の神剣「エクスカリバー」', emoji: '🌈', desc: 'ATK+300・MATK+100・HP+500 [神話武器]', type: 'equipment', slot: 'weapon', atk: 300, matk: 100, hp: 500, price: 0 },
   godArmorMythic: { name: '神々の霊鎧「イージス」', emoji: '🏆', desc: 'DEF+250・HP+1000・戦闘後HP20%回復 [神話体防具]', type: 'equipment', slot: 'body', def: 250, hp: 1000, healAfterBattle: 0.20, price: 0 },
   eternalCrystal: { name: '永遠の結晶【宇宙の欠片】', emoji: '💠', desc: '全ステータス+200・HP+2000 [神話アクセサリー]', type: 'equipment', slot: 'accessory', atk: 200, def: 200, matk: 200, hp: 2000, mp: 200, price: 0 },
+
+  // ── エリア限定ガチャ専用アイテム ──
+  // 雪山ガチャ
+  blizzardBlade:   { name: '猛吹雪の剣',         emoji: '❄️', desc: 'ATK+80・❄️氷属性+30% [雪山限定武器]',    type: 'equipment', slot: 'weapon',    atk: 80, elemBonus: { ice: 0.30 }, price: 0 },
+  polarArmor:      { name: '極地の鎧',            emoji: '🧊', desc: 'DEF+70・HP+150・氷耐性 [雪山限定体防具]', type: 'equipment', slot: 'body',      def: 70, hp: 150, elemResist: { ice: 0.5 }, price: 0 },
+  frostRing:       { name: '霜の指輪',            emoji: '💍', desc: '全ステ+25・❄️氷属性+20% [雪山限定]',     type: 'equipment', slot: 'accessory', atk: 25, def: 25, matk: 25, elemBonus: { ice: 0.20 }, price: 0 },
+  ariaCrystalBow:  { name: 'アリアの氷晶弓',      emoji: '🏹', desc: 'ATK+70・MATK+30 [アリア専用・雪山限定]', type: 'equipment', slot: 'weapon',    atk: 70, matk: 30, price: 0, forAria: true },
+  lunaIceCrown:    { name: 'ルナの氷冠',          emoji: '❄️', desc: 'MATK+50・MP+30 [ルナ専用・雪山限定]',    type: 'equipment', slot: 'head',      matk: 50, mp: 30, price: 0, forCompanion: 'luna' },
+  // 砂漠ガチャ
+  desertSandSword: { name: '砂嵐の覇剣',          emoji: '🌪️', desc: 'ATK+90・スピード+10 [砂漠限定武器]',    type: 'equipment', slot: 'weapon',    atk: 90, speed: 10, price: 0 },
+  pharaohAmulet:   { name: 'ファラオの護符',       emoji: '🏺', desc: '全ステ+30・状態異常耐性 [砂漠限定]',     type: 'equipment', slot: 'accessory', atk: 30, def: 30, matk: 30, hp: 80, mp: 30, price: 0 },
+  mirageCloak:     { name: '蜃気楼のマント',       emoji: '🌅', desc: 'DEF+60・回避UP・砂漠の加護 [砂漠限定]',  type: 'equipment', slot: 'body',      def: 60, hp: 100, price: 0 },
+  gaiusDesertShield:{ name: 'ガイアスの砂漠盾',   emoji: '🛡️', desc: 'DEF+60・HP+100 [ガイアス専用・砂漠限定]', type: 'equipment', slot: 'accessory', def: 60, hp: 100, price: 0, forCompanion: 'gaius' },
+  solaSandOrb:     { name: 'ソラの砂の宝珠',      emoji: '⭐', desc: 'MATK+60・MP+40 [ソラ専用・砂漠限定]',    type: 'equipment', slot: 'weapon',    matk: 60, mp: 40, price: 0, forCompanion: 'sola' },
+  // 海ガチャ
+  tidalSword:      { name: '潮流の剣',            emoji: '🌊', desc: 'ATK+85・MATK+40 [海限定武器]',           type: 'equipment', slot: 'weapon',    atk: 85, matk: 40, price: 0 },
+  coralArmor:      { name: '珊瑚の鎧',            emoji: '🪸', desc: 'DEF+65・HP+120・MP+40 [海限定体防具]',   type: 'equipment', slot: 'body',      def: 65, hp: 120, mp: 40, price: 0 },
+  deepSeaOrb:      { name: '深海の宝珠',          emoji: '🔵', desc: '全ステ+35・MATK+20 [海限定アクセサリー]', type: 'equipment', slot: 'accessory', atk: 35, def: 35, matk: 55, hp: 50, mp: 50, price: 0 },
+  serafinaSeaStaff:{ name: 'セラフィナの海杖',    emoji: '🌊', desc: 'MATK+60・MP+30・HP回復強化 [セラフィナ専用・海限定]', type: 'equipment', slot: 'weapon', matk: 60, mp: 30, price: 0, forCompanion: 'serafina' },
+  zephirosCoralRobe:{ name: 'ゼフィロスの珊瑚衣', emoji: '🪸', desc: 'MATK+40・MP+40・DEF+30 [ゼフィロス専用・海限定]',    type: 'equipment', slot: 'body',   matk: 40, mp: 40, def: 30, price: 0, forCompanion: 'zephiros' },
+  // 魔王城ガチャ
+  demonSword:      { name: '魔王城の呪剣',        emoji: '👿', desc: 'ATK+140・全属性+15% [魔王城限定武器]',   type: 'equipment', slot: 'weapon',    atk: 140, allElemBonus: 0.15, price: 0 },
+  demonArmor:      { name: '魔将の漆黒鎧',        emoji: '🔱', desc: 'DEF+110・HP+300・ダメ30%軽減 [魔王城限定]', type: 'equipment', slot: 'body', def: 110, hp: 300, dmgReduce: 0.30, price: 0 },
+  cursedRing:      { name: '呪われた覇者の指輪',  emoji: '💀', desc: '全ステ+80・HP+200 [魔王城限定]',          type: 'equipment', slot: 'accessory', atk: 80, def: 80, matk: 80, hp: 200, mp: 80, price: 0 },
+  ariaDarkBlade:   { name: 'アリアの闇刃剣',      emoji: '🌑', desc: 'ATK+100・MATK+50 [アリア専用・魔王城限定]', type: 'equipment', slot: 'weapon', atk: 100, matk: 50, price: 0, forAria: true },
+  lunaRuinWand:    { name: 'ルナの崩壊の杖',      emoji: '💫', desc: 'MATK+80・MP+40 [ルナ専用・魔王城限定]',   type: 'equipment', slot: 'weapon',  matk: 80, mp: 40, price: 0, forCompanion: 'luna' },
+  // 村ガチャ新アイテム
+  adventurerBadge: { name: '冒険者の証',          emoji: '🏅', desc: 'ATK+20・DEF+20・EXP×1.3 [村限定]',       type: 'equipment', slot: 'accessory', atk: 20, def: 20, expBonus: 1.3, price: 0 },
+  heroicSword:     { name: '英雄の剣',            emoji: '⚔️', desc: 'ATK+60・会心率UP [村限定武器]',           type: 'equipment', slot: 'weapon',    atk: 60, price: 0 },
+
+  // ── 隠しクエスト報酬アイテム ──
+  excaliburShard:  { name: 'エクスカリバーの欠片', emoji: '🌟', desc: 'ATK+150・MATK+80 [隠しクエスト報酬・武器]', type: 'equipment', slot: 'weapon', atk: 150, matk: 80, price: 0 },
+  eternalAmulet:   { name: '永遠の守護符',         emoji: '🔮', desc: '全ステ+50・戦闘後HP10%回復 [隠しクエスト報酬]', type: 'equipment', slot: 'accessory', atk: 50, def: 50, matk: 50, hp: 100, mp: 50, healAfterBattle: 0.10, price: 0 },
+
+  // ── 隠し宝箱専用アイテム ──
+  shadowKey:       { name: '影の鍵',              emoji: '🗝️', desc: '謎めいた黒い鍵。何かを開けられそうだ…',               type: 'key',       price: 0 },
+  hiddenGem:       { name: '隠された宝玉',         emoji: '💎', desc: '全ステ+40・HP+150・MP+80 [隠し宝箱報酬]',             type: 'equipment', slot: 'accessory', atk: 40, def: 40, matk: 40, hp: 150, mp: 80, price: 0 },
+  forgottenBlade:  { name: '忘れられた刃',         emoji: '⚔️', desc: 'ATK+110・MATK+50・スピード+15 [隠し宝箱報酬]',       type: 'equipment', slot: 'weapon',    atk: 110, matk: 50, speed: 15, price: 0 },
+  crystalTear:     { name: '精霊の涙',             emoji: '💧', desc: 'HP完全回復＋仲間全員にHP50%回復 [消耗品・隠し宝箱]',  type: 'consumable', effect: 'party_heal', value: 0.5, price: 0 },
+  ancientTablet:   { name: '古代の石板',           emoji: '📜', desc: '古代文字が刻まれた石板。全ステ+15の恒久強化',          type: 'consumable', effect: 'stat_boost', value: 15, price: 0 },
 };
 
 const SHOP_INVENTORY = {
@@ -836,6 +876,158 @@ const GACHA_TABLE = {
   },
 };
 
+// ============================================================
+//  エリア限定ガチャテーブル
+// ============================================================
+const AREA_GACHA_TABLES = {
+  snow: {
+    name: '❄️ 雪山の氷晶ガチャ',
+    desc: '雪山・氷の城エリア限定！氷属性&アリア/ルナ専用装備が出やすい',
+    cost1: 600, cost10: 5400,
+    rates: { 5: 0.030, 4: 0.100, 3: 0.220, 2: 0.280 },
+    pityLimit: 40,
+    pool: {
+      5: [
+        { id: 'blizzardBlade',  name: '猛吹雪の剣',       emoji: '❄️' },
+        { id: 'polarArmor',     name: '極地の鎧',          emoji: '🧊' },
+        { id: 'ariaCrystalBow', name: 'アリアの氷晶弓',   emoji: '🏹' },
+        { id: 'lunaIceCrown',   name: 'ルナの氷冠',        emoji: '❄️' },
+      ],
+      4: [
+        { id: 'frostRing',      name: '霜の指輪',          emoji: '💍' },
+        { id: 'iceNecklace',    name: '氷の首飾り',        emoji: '❄️' },
+        { id: 'heroCirclet',    name: '勇者の冠',          emoji: '👑' },
+        { id: 'elixir',         name: 'エリクサー',        emoji: '⭐' },
+      ],
+      3: [
+        { id: 'chainmail',      name: '鎖帷子',            emoji: '🧥' },
+        { id: 'highHerb',       name: '上薬草×3',          emoji: '🍃', qty: 3 },
+        { id: 'highMpPotion',   name: '上MPの薬×2',        emoji: '💦', qty: 2 },
+        { id: 'magicNecklace',  name: '魔力の首飾り',      emoji: '📿' },
+      ],
+      2: [
+        { id: 'herb',           name: '薬草×4',            emoji: '🌿', qty: 4 },
+        { id: 'mpPotion',       name: 'MPの薬×3',          emoji: '💧', qty: 3 },
+        { id: 'antidote',       name: '解毒薬×3',          emoji: '🧪', qty: 3 },
+      ],
+      1: [
+        { id: 'herb',           name: '薬草×3',            emoji: '🌿', qty: 3 },
+        { id: 'mpPotion',       name: 'MPの薬',            emoji: '💧' },
+      ],
+    },
+  },
+  desert: {
+    name: '🏺 砂漠の秘宝ガチャ',
+    desc: '砂漠エリア限定！火・砂漠系&ガイアス/ソラ専用装備が出やすい',
+    cost1: 700, cost10: 6300,
+    rates: { 5: 0.030, 4: 0.100, 3: 0.220, 2: 0.280 },
+    pityLimit: 40,
+    pool: {
+      5: [
+        { id: 'desertSandSword', name: '砂嵐の覇剣',       emoji: '🌪️' },
+        { id: 'mirageCloak',     name: '蜃気楼のマント',    emoji: '🌅' },
+        { id: 'gaiusDesertShield',name:'ガイアスの砂漠盾', emoji: '🛡️' },
+        { id: 'solaSandOrb',     name: 'ソラの砂の宝珠',   emoji: '⭐' },
+      ],
+      4: [
+        { id: 'pharaohAmulet',   name: 'ファラオの護符',    emoji: '🏺' },
+        { id: 'mageRobe',        name: '魔道士のローブ',    emoji: '🧣' },
+        { id: 'heroArmor',       name: '勇者の鎧',          emoji: '🛡️' },
+        { id: 'elixir',          name: 'エリクサー',        emoji: '⭐' },
+      ],
+      3: [
+        { id: 'powerRing',       name: '力の指輪',          emoji: '💍' },
+        { id: 'highHerb',        name: '上薬草×3',          emoji: '🍃', qty: 3 },
+        { id: 'highMpPotion',    name: '上MPの薬×2',        emoji: '💦', qty: 2 },
+        { id: 'expCharm',        name: '経験値のお守り',    emoji: '🍀' },
+      ],
+      2: [
+        { id: 'herb',            name: '薬草×4',            emoji: '🌿', qty: 4 },
+        { id: 'mpPotion',        name: 'MPの薬×3',          emoji: '💧', qty: 3 },
+        { id: 'antidote',        name: '解毒薬×3',          emoji: '🧪', qty: 3 },
+      ],
+      1: [
+        { id: 'herb',            name: '薬草×3',            emoji: '🌿', qty: 3 },
+        { id: 'mpPotion',        name: 'MPの薬',            emoji: '💧' },
+      ],
+    },
+  },
+  sea: {
+    name: '🌊 海底神殿の宝ガチャ',
+    desc: '海・港エリア限定！水・全属性&セラフィナ/ゼフィロス専用装備が出やすい',
+    cost1: 800, cost10: 7200,
+    rates: { 5: 0.035, 4: 0.100, 3: 0.210, 2: 0.270 },
+    pityLimit: 40,
+    pool: {
+      5: [
+        { id: 'tidalSword',       name: '潮流の剣',          emoji: '🌊' },
+        { id: 'coralArmor',       name: '珊瑚の鎧',          emoji: '🪸' },
+        { id: 'serafinaSeaStaff', name: 'セラフィナの海杖', emoji: '🌊' },
+        { id: 'zephirosCoralRobe',name: 'ゼフィロスの珊瑚衣',emoji: '🪸' },
+      ],
+      4: [
+        { id: 'deepSeaOrb',       name: '深海の宝珠',        emoji: '🔵' },
+        { id: 'heroShield',       name: '勇者の盾',          emoji: '🛡️' },
+        { id: 'lightSeal',        name: '光の聖印',          emoji: '☀️' },
+        { id: 'elixir',           name: 'エリクサー×2',      emoji: '⭐', qty: 2 },
+      ],
+      3: [
+        { id: 'magicNecklace',    name: '魔力の首飾り',      emoji: '📿' },
+        { id: 'ironCharm',        name: '守護の護符',        emoji: '🏅' },
+        { id: 'highHerb',         name: '上薬草×3',          emoji: '🍃', qty: 3 },
+        { id: 'highMpPotion',     name: '上MPの薬×3',        emoji: '💦', qty: 3 },
+      ],
+      2: [
+        { id: 'herb',             name: '薬草×4',            emoji: '🌿', qty: 4 },
+        { id: 'mpPotion',         name: 'MPの薬×3',          emoji: '💧', qty: 3 },
+        { id: 'antidote',         name: '解毒薬×3',          emoji: '🧪', qty: 3 },
+      ],
+      1: [
+        { id: 'herb',             name: '薬草×3',            emoji: '🌿', qty: 3 },
+        { id: 'mpPotion',         name: 'MPの薬',            emoji: '💧' },
+      ],
+    },
+  },
+  demon: {
+    name: '💀 魔王城の禁断ガチャ',
+    desc: '魔王城エリア限定！最強クラスの装備&全仲間専用アイテムが出る！',
+    cost1: 1000, cost10: 9000,
+    rates: { 5: 0.040, 4: 0.110, 3: 0.200, 2: 0.260 },
+    pityLimit: 30,
+    pool: {
+      5: [
+        { id: 'demonSword',      name: '魔王城の呪剣',      emoji: '👿' },
+        { id: 'demonArmor',      name: '魔将の漆黒鎧',      emoji: '🔱' },
+        { id: 'cursedRing',      name: '呪われた覇者の指輪', emoji: '💀' },
+        { id: 'ariaDarkBlade',   name: 'アリアの闇刃剣',    emoji: '🌑' },
+        { id: 'lunaRuinWand',    name: 'ルナの崩壊の杖',    emoji: '💫' },
+      ],
+      4: [
+        { id: 'heroSword',       name: '勇者の剣',          emoji: '⚔️' },
+        { id: 'heroArmor',       name: '勇者の鎧',          emoji: '🛡️' },
+        { id: 'darkEmblem',      name: '闇の紋章',          emoji: '🌑' },
+        { id: 'elixir',          name: 'エリクサー×2',      emoji: '⭐', qty: 2 },
+        { id: 'phoenixFeather',  name: 'フェニックスの羽',  emoji: '🪶' },
+      ],
+      3: [
+        { id: 'powerRing',       name: '力の指輪',          emoji: '💍' },
+        { id: 'magicNecklace',   name: '魔力の首飾り',      emoji: '📿' },
+        { id: 'highHerb',        name: '上薬草×3',          emoji: '🍃', qty: 3 },
+        { id: 'highMpPotion',    name: '上MPの薬×3',        emoji: '💦', qty: 3 },
+      ],
+      2: [
+        { id: 'herb',            name: '薬草×5',            emoji: '🌿', qty: 5 },
+        { id: 'mpPotion',        name: 'MPの薬×4',          emoji: '💧', qty: 4 },
+        { id: 'elixir',          name: 'エリクサー',        emoji: '⭐' },
+      ],
+      1: [
+        { id: 'herb',            name: '薬草×3',            emoji: '🌿', qty: 3 },
+        { id: 'mpPotion',        name: 'MPの薬',            emoji: '💧' },
+      ],
+    },
+  },
+};
+
 const LEVELING_SPOTS = {
   deep_forest: {
     name: '森の奥地', emoji: '🌲', sceneId: 'deep_forest_spot',
@@ -1001,6 +1193,12 @@ const QUEST_DATA = [
   { id: 'q_kills50',    name: '百戦錬磨',       emoji: '🗡️',  desc: '魔物を合計50体倒す',                     type: 'kill_any',  count: 50, reward: { gold: 3000, items: ['heroShield'] } },
   { id: 'q_lv30',       name: '一流冒険者',     emoji: '👑',  desc: 'レベル30に到達する',                     type: 'reach_level', level: 30,                  reward: { gold: 2000, items: ['elixir','elixir','expCharm'] } },
   { id: 'q_castle',     name: '魔王城侵入',     emoji: '🏰',  desc: '魔王城の城門に到達する',                 type: 'visit',     scene: 'demon_castle_gate',   reward: { gold: 1000, items: ['elixir','elixir'] } },
+  // ── 隠しクエスト ──
+  { id: 'q_secret_gacha',   name: '【隠】ガチャの魔力',     emoji: '🎰', desc: '【隠しクエスト】合計100回ガチャを引く',                    type: 'gacha_total', count: 100, reward: { gold: 10000, items: ['gachaLimitedRing'] }, hidden: true },
+  { id: 'q_secret_kills200',name: '【隠】魔物ハンター',     emoji: '☠️', desc: '【隠しクエスト】魔物を合計200体倒す',                      type: 'kill_any',    count: 200, reward: { gold: 8000,  items: ['heroSword','heroArmor'] }, hidden: true },
+  { id: 'q_secret_lv50',    name: '【隠】伝説の勇者',       emoji: '🌟', desc: '【隠しクエスト】レベル50に到達する',                       type: 'reach_level', level: 50,  reward: { gold: 15000, items: ['excaliburShard'] }, hidden: true },
+  { id: 'q_secret_allbond', name: '【隠】絆の証明',         emoji: '💞', desc: '【隠しクエスト】全仲間の絆レベルを5以上にする',             type: 'bond_all',    level: 5,   reward: { gold: 20000, items: ['miracleDrug','eternalAmulet'] }, hidden: true },
+  { id: 'q_secret_gacha5star',name:'【隠】星を掴む者',      emoji: '💫', desc: '【隠しクエスト】ガチャで★5以上を10回引く',                  type: 'gacha_rare',  count: 10,  reward: { gold: 12000, items: ['godDragonSword'] }, hidden: true },
 ];
 
 // ============================================================
@@ -1569,6 +1767,7 @@ const SCENES = {
       { text: '🗡️ スキル鍛錬所へ', next: 'snow_skill_forge_scene', needFlag: 'townDevSnow3' },
       { text: '🔮 召喚師のテントへ', next: 'snow_summon_tent_scene', needFlag: 'townDevSnow4' },
       { text: '🧊 氷の秘密ダンジョンへ', next: 'snow_ice_dungeon', needFlag: 'townDevSnow5' },
+      { text: '❄️ 氷晶ガチャ屋台', action: 'open_gacha_snow', needFlag: 'ariaJoined' },
       { text: '🏗️ 集落に投資する', next: 'town_invest_snow' },
       { text: '↩️ 雪山の麓に戻る', next: 'snow_entrance' },
     ]
@@ -1719,6 +1918,7 @@ const SCENES = {
       { text: '🪨 素材専門店へ', next: 'desert_material_shop_scene', needFlag: 'townDevDesert3' },
       { text: '📚 魔法書店へ', next: 'desert_magic_shop_scene', needFlag: 'townDevDesert4' },
       { text: '🏺 砂漠の秘密ダンジョンへ', next: 'desert_secret_dungeon', needFlag: 'townDevDesert5' },
+      { text: '🏺 砂漠の秘宝ガチャ', action: 'open_gacha_desert' },
       { text: '🏗️ オアシスに投資する', next: 'town_invest_desert' },
       { text: '↩️ 砂漠の入口へ戻る', next: 'desert_entrance' },
     ]
@@ -1795,6 +1995,7 @@ const SCENES = {
       { text: '🧪 錬金術師の隠し工房へ', next: 'sea_alchemist' },
       { text: '🏨 港の宿屋で休む（300G）', action: 'inn_rest_sea' },
       { text: '🏝️ 南海の孤島へ向かう', next: 'south_island_spot', needFlag: 'vehicleShip' },
+      { text: '🌊 海底の宝ガチャ', action: 'open_gacha_sea' },
       { text: '↩️ 引き返す', next: 'demon_road' },
     ]
   },
@@ -1898,6 +2099,7 @@ const SCENES = {
       { text: '→ 右の廊下（図書室）', next: 'demon_castle_right' },
       { text: '🔽 隠し扉（地下牢への階段）', next: 'demon_castle_dungeon' },
       { text: '🚪 正面の扉（玉座の間へ）', next: 'demon_throne_approach' },
+      { text: '💀 魔王城の禁断ガチャ', action: 'open_gacha_demon', needFlag: 'castleKeyUsed' },
     ]
   },
 
@@ -2583,6 +2785,7 @@ function createInitialState() {
     season: 'spring',
     seasonBattleCount: 0,
     gacha: { pityCount: 0, totalPulls: 0, history: [] },
+    areaGacha: {},
   };
 }
 
@@ -3164,6 +3367,19 @@ function executeAction(action, choice = {}) {
       openGachaScreen();
       break;
 
+    case 'open_gacha_snow':
+      openAreaGacha('snow');
+      break;
+    case 'open_gacha_desert':
+      openAreaGacha('desert');
+      break;
+    case 'open_gacha_sea':
+      openAreaGacha('sea');
+      break;
+    case 'open_gacha_demon':
+      openAreaGacha('demon');
+      break;
+
     case 'inn_free_village':
       gs.player.hp = gs.player.maxHp;
       gs.player.mp = gs.player.maxMp;
@@ -3644,6 +3860,7 @@ function startBattle(enemy) {
   document.getElementById('battle-area').classList.remove('hidden');
 
   document.getElementById('battle-log').innerHTML = '';
+  document.getElementById('skill-select').classList.add('hidden');
   document.getElementById('item-select').classList.add('hidden');
   document.getElementById('battle-equip-select').classList.add('hidden');
   document.getElementById('combo-select').classList.add('hidden');
@@ -3691,12 +3908,14 @@ function setBattleButtons(enabled) {
 }
 
 function addBattleLog(msg, cls = '') {
-  const log = document.getElementById('battle-log');
+  const log  = document.getElementById('battle-log');
+  const wrap = document.getElementById('battle-log-wrap');
   const line = document.createElement('p');
   line.textContent = msg;
   if (cls) line.className = cls;
   log.appendChild(line);
-  log.scrollTop = log.scrollHeight;
+  // スクロール可能な外枠（battle-log-wrap）を一番下へ
+  if (wrap) wrap.scrollTop = wrap.scrollHeight;
 }
 
 function calcDamage(atk, def) {
@@ -4642,8 +4861,9 @@ function checkDemonKingPhase2() {
     e.name   = p2.name;
     e.emoji  = p2.emoji;
     e.attack += p2.attackBonus;
-    addBattleLog(`🔴 魔王が変身した！！【第二形態】になった！！`, 'log-system');
-    addBattleLog(`⚡ 攻撃力が大幅に上昇！ 魔法を使え！！`, 'log-system');
+    const isFinal = e._id === 'demonKing';
+    addBattleLog(`🔴 ${e.name}に変身した！！【第二形態】解放！！`, 'log-system');
+    addBattleLog(isFinal ? `⚡ 攻撃力が大幅に上昇！ 魔法を使え！！` : `⚡ ${e.name}の力が覚醒した！攻撃力+${p2.attackBonus}！`, 'log-system');
     updateBattleDisplay();
   }
 }
@@ -5450,7 +5670,7 @@ function afterPlayerTurn(delay = 700) {
 
 function getAllAliveCompanions() {
   const result = [];
-  if (gs.companion && gs.companion.hp > 0) result.push('aria');
+  if (gs.companion && gs.companion.joined && gs.companion.hp > 0) result.push('aria');
   ['gaius', 'luna', 'sola', 'serafina', 'zephiros'].forEach(id => {
     const c = gs.companions?.[id];
     if (c && c.joined && c.hp > 0) result.push(id);
@@ -5459,7 +5679,8 @@ function getAllAliveCompanions() {
 }
 
 function runNextCompanionTurn() {
-  if (!gs.inBattle || !gs.enemy || gs.enemy.hp <= 0) return;
+  if (!gs.inBattle) { setBattleButtons(true); return; }
+  if (!gs.enemy || gs.enemy.hp <= 0) return; // enemy already dead → endBattle handles it
   if (gs.companionTurnIdx >= gs.companionTurnQueue.length) { enemyTurn(); return; }
   const id = gs.companionTurnQueue[gs.companionTurnIdx++];
   if (id === 'aria')     ariaAutoTurn();
@@ -6637,6 +6858,7 @@ function loadGame() {
     if (gs.seasonBattleCount === undefined) gs.seasonBattleCount = 0;
     if (!gs.gacha) gs.gacha = { pityCount: 0, totalPulls: 0, history: [] };
     if (!gs.gacha.history) gs.gacha.history = [];
+    if (!gs.areaGacha) gs.areaGacha = {};
     // 既クリアデータにワープ先フラグが欠けている場合の補完
     if (gs.flags.demonKingDefeated) {
       gs.flags.vis_gods_tower    = true;
@@ -6759,7 +6981,17 @@ function openGachaScreen() {
 }
 
 function closeGachaScreen() {
-  document.getElementById('gacha-overlay').classList.add('hidden');
+  const overlay = document.getElementById('gacha-overlay');
+  const areaKey = overlay.dataset?.areaKey;
+  overlay.classList.add('hidden');
+  if (areaKey) {
+    overlay.removeAttribute('data-area-key');
+    document.getElementById('gacha-title').textContent = '🎰 幻想ガチャ';
+    document.getElementById('gacha-btn-single').textContent = '1回引く（500G）';
+    document.getElementById('gacha-btn-ten').textContent    = '10連（5,000G）✨';
+    document.getElementById('gacha-btn-single').onclick = () => doGachaPull(1);
+    document.getElementById('gacha-btn-ten').onclick    = () => doGachaPull(10);
+  }
 }
 
 function _updateGachaUI() {
@@ -6795,6 +7027,11 @@ function doGachaPull(count) {
 
   const results = [];
   for (let i = 0; i < count; i++) results.push(_rollGacha());
+
+  // 隠しクエスト進行チェック
+  updateQuestProgress('gacha_total', {});
+  const rareCount = results.filter(r => r.rarity >= 5).length;
+  if (rareCount > 0) updateQuestProgress('gacha_rare', { count: rareCount });
 
   saveGame();
   _updateGachaUI();
@@ -6842,6 +7079,108 @@ function _showGachaResults(results) {
 
 function closeGachaResult() {
   document.getElementById('gacha-result-overlay').classList.add('hidden');
+}
+
+// ============================================================
+//  エリア限定ガチャ
+// ============================================================
+function openAreaGacha(areaKey) {
+  const table = AREA_GACHA_TABLES[areaKey];
+  if (!table) return;
+  if (!gs.areaGacha) gs.areaGacha = {};
+  if (!gs.areaGacha[areaKey]) gs.areaGacha[areaKey] = { pityCount: 0, totalPulls: 0, history: [] };
+
+  const g = gs.areaGacha[areaKey];
+  const overlay = document.getElementById('gacha-overlay');
+  document.getElementById('gacha-title').textContent = table.name;
+  document.getElementById('gacha-pity-left').textContent = table.pityLimit - (g.pityCount || 0);
+  document.getElementById('gacha-total-pulls').textContent = g.totalPulls || 0;
+  const fillPct = ((g.pityCount || 0) / table.pityLimit * 100);
+  document.getElementById('gacha-pity-fill').style.width = fillPct + '%';
+  document.getElementById('gacha-gold-num').textContent = gs.player.gold;
+  document.getElementById('gacha-btn-single').textContent = `1回引く（${table.cost1}G）`;
+  document.getElementById('gacha-btn-ten').textContent    = `10連（${table.cost10}G）✨`;
+  document.getElementById('gacha-btn-single').onclick = () => doAreaGachaPull(areaKey, 1);
+  document.getElementById('gacha-btn-ten').onclick    = () => doAreaGachaPull(areaKey, 10);
+  document.getElementById('gacha-btn-single').disabled = gs.player.gold < table.cost1;
+  document.getElementById('gacha-btn-ten').disabled    = gs.player.gold < table.cost10;
+
+  // 説明文
+  const descEl = document.getElementById('gacha-subtitle');
+  if (descEl) descEl.textContent = table.desc;
+
+  // 履歴
+  const histEl = document.getElementById('gacha-history-list');
+  histEl.innerHTML = '';
+  (g.history || []).slice(0, 20).forEach(h => {
+    const el = document.createElement('span');
+    el.className = `gacha-hist-item gh-r${h.rarity}`;
+    el.textContent = `${h.emoji} ${h.name}`;
+    histEl.appendChild(el);
+  });
+  overlay.classList.remove('hidden');
+  // 閉じる時に通常ガチャのボタンを復元するためフラグ保存
+  overlay.dataset.areaKey = areaKey;
+}
+
+function _rollAreaGacha(areaKey) {
+  const table = AREA_GACHA_TABLES[areaKey];
+  if (!gs.areaGacha) gs.areaGacha = {};
+  if (!gs.areaGacha[areaKey]) gs.areaGacha[areaKey] = { pityCount: 0, totalPulls: 0, history: [] };
+  const g = gs.areaGacha[areaKey];
+  g.pityCount  = (g.pityCount  || 0) + 1;
+  g.totalPulls = (g.totalPulls || 0) + 1;
+
+  let rarity;
+  if (g.pityCount >= table.pityLimit) {
+    rarity = 5; g.pityCount = 0;
+  } else {
+    const r = Math.random();
+    const { rates } = table;
+    const cum5 = rates[5] || 0;
+    const cum4 = cum5 + (rates[4] || 0);
+    const cum3 = cum4 + (rates[3] || 0);
+    const cum2 = cum3 + (rates[2] || 0);
+    if      (r < cum5) { rarity = 5; g.pityCount = 0; }
+    else if (r < cum4)   rarity = 4;
+    else if (r < cum3)   rarity = 3;
+    else if (r < cum2)   rarity = 2;
+    else                 rarity = 1;
+  }
+
+  const pool = table.pool[rarity] || table.pool[1];
+  const template = pool[Math.floor(Math.random() * pool.length)];
+  const item = { ...template, rarity, qty: template.qty || 1 };
+  addItem(item.id, item.qty);
+  g.history.unshift({ rarity: item.rarity, name: item.name, emoji: item.emoji });
+  if (g.history.length > 30) g.history.pop();
+  return item;
+}
+
+function doAreaGachaPull(areaKey, count) {
+  const table = AREA_GACHA_TABLES[areaKey];
+  if (!table) return;
+  const cost = count === 1 ? table.cost1 : table.cost10;
+  if (gs.player.gold < cost) { showToast('💰 ゴールドが足りません！'); return; }
+  gs.player.gold -= cost;
+  updateStatus();
+  const results = [];
+  for (let i = 0; i < count; i++) results.push(_rollAreaGacha(areaKey));
+  saveGame();
+  openAreaGacha(areaKey); // UIを再描画
+  _showGachaResults(results);
+}
+
+function closeAreaGacha() {
+  const overlay = document.getElementById('gacha-overlay');
+  overlay.classList.add('hidden');
+  overlay.removeAttribute('data-area-key');
+  // ボタンを通常ガチャに戻す
+  document.getElementById('gacha-title').textContent = '🎰 幻想ガチャ';
+  document.getElementById('gacha-btn-single').textContent = '1回引く（500G）';
+  document.getElementById('gacha-btn-ten').textContent    = '10連（5,000G）✨';
+  document.getElementById('gacha-btn-single').onclick = () => doGachaPull(1);
+  document.getElementById('gacha-btn-ten').onclick    = () => doGachaPull(10);
 }
 
 function toggleGachaRates() {
@@ -7052,10 +7391,27 @@ function updateQuestProgress(type, data) {
       state.progress = data.level; complete = true;
     } else if (type === 'flag' && q.type === 'flag' && data.flag === q.flag) {
       state.progress = 1; complete = true;
+    } else if (type === 'gacha_total' && q.type === 'gacha_total') {
+      const totalPulls = (gs.gacha?.totalPulls || 0) +
+        Object.values(gs.areaGacha || {}).reduce((s, g) => s + (g.totalPulls || 0), 0);
+      state.progress = totalPulls;
+      if (totalPulls >= q.count) complete = true;
+    } else if (type === 'gacha_rare' && q.type === 'gacha_rare') {
+      state.progress = (state.progress || 0) + (data.count || 0);
+      if (state.progress >= q.count) complete = true;
+    } else if (type === 'bond_all' && q.type === 'bond_all') {
+      const comps = ['aria','gaius','luna','sola','serafina','zephiros'];
+      const joined = comps.filter(id => {
+        if (id === 'aria') return gs.companion?.joined;
+        return gs.companions?.[id]?.joined;
+      });
+      const allHigh = joined.length > 0 && joined.every(id => getBondLevel(id) >= q.level);
+      if (allHigh) { state.progress = 1; complete = true; }
     }
     if (complete) {
       state.status = 'complete';
-      showToast(`📋 クエスト達成！「${q.name}」→ 掲示板で報酬を受け取ろう`);
+      const tag = q.hidden ? '【隠しクエスト】' : '';
+      showToast(`📋 ${tag}クエスト達成！「${q.name}」→ 掲示板で受け取ろう`);
     }
   });
 }
@@ -7093,11 +7449,12 @@ function closeQuestBoard() {
 function renderQuestBoard() {
   const listEl = document.getElementById('quest-board-list');
   listEl.innerHTML = '';
-  const active = [], complete = [], claimed = [];
+  const active = [], complete = [], claimed = [], hiddenActive = [];
   QUEST_DATA.forEach(q => {
     const state = gs.quests[q.id] || { status: 'active', progress: 0 };
     if (state.status === 'claimed') claimed.push({ q, state });
     else if (state.status === 'complete') complete.push({ q, state });
+    else if (q.hidden) hiddenActive.push({ q, state });
     else active.push({ q, state });
   });
 
@@ -7141,6 +7498,7 @@ function renderQuestBoard() {
 
   addSection('📬 達成済み（受取可能）', complete);
   addSection('📋 受注中', active);
+  addSection('🔍 隠しクエスト（進行中）', hiddenActive);
   addSection('✅ 受取済み', claimed);
 }
 

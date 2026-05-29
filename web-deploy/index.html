@@ -229,8 +229,12 @@
 
     </div><!-- /story-panel -->
 
+    <!-- ステータスパネル復元タブ（収納時のみ表示） -->
+    <div id="status-panel-tab" onclick="toggleStatusPanel()" title="ステータスを表示">📊</div>
+
     <!-- 右：ステータスパネル -->
     <div id="status-panel">
+      <button id="status-panel-toggle-btn" onclick="toggleStatusPanel()" title="ステータスを隠す">◀ 閉じる</button>
 
       <!-- プレイヤー情報 -->
       <div class="status-box" id="player-box">

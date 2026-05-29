@@ -6579,6 +6579,9 @@ function loadGame() {
       if (!('acc1' in t.equipment)) t.equipment.acc1 = null;
       if (!('acc2' in t.equipment)) t.equipment.acc2 = null;
     });
+    // アリアの joined / skillCooldowns 移行（旧セーブデータ対応）
+    if (gs.companion && !gs.companion.joined) gs.companion.joined = true;
+    if (gs.companion && !gs.companion.skillCooldowns) gs.companion.skillCooldowns = {};
     if (!gs.player.enhancements) gs.player.enhancements = {};
     if (gs.playerGuard === undefined)       gs.playerGuard = false;
     if (gs.ironWallTurns === undefined)     gs.ironWallTurns = 0;
@@ -7606,11 +7609,29 @@ function hideAllPanels() {
 //  初期化
 // ============================================================
 
+// ステータスパネル 収納/展開
+function toggleStatusPanel() {
+  const panel = document.getElementById('status-panel');
+  const tab   = document.getElementById('status-panel-tab');
+  const isCollapsed = panel.classList.toggle('collapsed');
+  if (tab) tab.classList.toggle('visible', isCollapsed);
+  try { localStorage.setItem('statusPanelCollapsed', isCollapsed ? '1' : '0'); } catch {}
+}
+
 window.addEventListener('DOMContentLoaded', () => {
   updateTitleButtons();
   updateStatus();
   updateSeasonDisplay();
   _adminInit();
+  // ステータスパネルの折りたたみ状態を復元
+  try {
+    if (localStorage.getItem('statusPanelCollapsed') === '1') {
+      const panel = document.getElementById('status-panel');
+      const tab   = document.getElementById('status-panel-tab');
+      if (panel) panel.classList.add('collapsed');
+      if (tab)   tab.classList.add('visible');
+    }
+  } catch {}
 
   // サウンドUI の初期化（localStorage から設定を復元）
   if (typeof SoundEngine !== 'undefined') {

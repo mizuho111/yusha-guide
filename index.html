@@ -607,6 +607,7 @@
           ✨ 聖なる加護：全体HP回復<br>
           💥 渾身の一撃：大ダメージ
         </div>
+        <div class="tip" style="font-size:0.78em;margin-top:6px">⚔️装備変更・好感度・HP/MP回復が正常に動作するようになりました！</div>
       </div>
 
       <div class="char-card">
@@ -725,15 +726,24 @@
       <div class="boss-name" style="color:var(--gold)">👑 魔王 ダークロス（最終ボス）</div>
       <div class="boss-location">📍 魔王城 最深部</div>
       <p>弱点：<span class="tag tag-light">☀️光（第二形態は3倍！）</span>　吸収：<span class="tag tag-absorb">🌑闇</span></p>
-      <p style="margin-top:10px; margin-bottom:10px">HP半分で第二形態に変身！全ステータスが大幅アップする。</p>
+      <div class="table-wrap" style="margin:10px 0">
+        <table>
+          <tr><th>ステータス</th><th>第一形態</th><th>第二形態（HP2500以下）</th></tr>
+          <tr><td>HP</td><td>5000</td><td>（継続）</td></tr>
+          <tr><td>ATK</td><td>140</td><td><strong style="color:var(--gold)">+50アップ</strong></td></tr>
+          <tr><td>DEF</td><td>70</td><td>変化なし</td></tr>
+          <tr><td>必殺スキル確率</td><td>35%</td><td>35%</td></tr>
+        </table>
+      </div>
       <p><strong style="color:var(--gold)">推奨戦法：</strong><br>
       1. ルナで「星の加護」→全体攻撃力1.5倍<br>
       2. ソラで「弱体の烙印」→魔王を弱体化<br>
       3. ゼフィロスの魔力解放→アルテマで大ダメージ<br>
       4. セラフィナで回復を継続<br>
-      5. 第二形態突入後はアルテマが3倍ダメージ！</p>
+      5. HP2500以下で第二形態突入→アルテマが3倍ダメージ！<br>
+      6. アリアの回復スキルもフル活用しよう</p>
       <div class="warning">闇属性魔法は魔王のHPを回復させてしまう！絶対に使わないこと。</div>
-      <div class="tip">全員絆Lv8以上なら「勇者パーティ究極奥義」を使おう！一発逆転も狙える。</div>
+      <div class="tip">全員絆Lv8以上なら「勇者パーティ究極奥義」を使おう！一発逆転も狙える。ガチャの★6〜★7装備があれば圧勝できる！</div>
     </div>
   </section>
 
@@ -1265,10 +1275,11 @@
 
       <div class="card">
         <div class="card-title">🛡️ 天井システム</div>
-        <p>50連に1回は必ず★5が出る天井システムあり！</p>
+        <p>50連に1回は必ず★5以上が出る天井システムあり！</p>
         <p>・現在の連数はガチャ画面で確認できる<br>
         ・天井カウントはリセットされない<br>
-        ・ガチャ履歴・排出率もゲーム内で確認可能</p>
+        ・ガチャ履歴・排出率もゲーム内で確認可能<br>
+        ・★6限定・★7神話は天井とは別枠で抽選</p>
         <div class="warning">ガチャで入手した装備はインベントリに直接追加される。すぐに装備変更可能！</div>
       </div>
     </div>
@@ -1279,32 +1290,94 @@
         <table>
           <tr><th>レアリティ</th><th>確率</th><th>内容例</th></tr>
           <tr>
+            <td style="background:linear-gradient(90deg,#ff0080,#ff8c00,#ffe600,#00ff80,#00cfff,#cc00ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:bold">🌈 ★7 神話</td>
+            <td style="color:#ff69b4;font-weight:bold">0.0000001%</td>
+            <td>伝説の神剣「エクスカリバー」・神々の霊鎧「イージス」・永遠の結晶【宇宙の欠片】</td>
+          </tr>
+          <tr>
+            <td style="color:#ff69b4;font-weight:bold">🌸 ★6 限定</td>
+            <td style="color:#ff69b4;font-weight:bold">0.5%</td>
+            <td>封印の聖剣「ソウルブレイカー」・月光の守護鎧・星神の指輪・神々の秘薬</td>
+          </tr>
+          <tr>
             <td style="color:var(--gold)">★5</td>
-            <td style="color:var(--gold)">3%</td>
+            <td style="color:var(--gold)">2%</td>
             <td>神龍の剣・神聖の鎧・神器の指輪・超レアアイテム</td>
           </tr>
           <tr>
             <td style="color:#bb8fce">★4</td>
-            <td>12%</td>
+            <td>8%</td>
             <td>勇者の剣・魔道士のローブ・エリクサー・レアアイテム</td>
           </tr>
           <tr>
             <td style="color:#5dade2">★3</td>
-            <td>25%</td>
+            <td>20%</td>
             <td>鎖帷子・魔力の首飾り・MPの薬・中級装備</td>
           </tr>
           <tr>
             <td style="color:#58d68d">★2</td>
-            <td>40%</td>
+            <td>30%</td>
             <td>鉄の兜・力の指輪・上薬草・普通の装備</td>
           </tr>
           <tr>
             <td>★1</td>
-            <td>20%</td>
+            <td>約39.5%</td>
             <td>薬草・基本アイテム</td>
           </tr>
         </table>
       </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🌸 限定・神話アイテム詳細</div>
+      <div class="table-wrap">
+        <table>
+          <tr><th>アイコン</th><th>レア</th><th>アイテム名</th><th>効果</th></tr>
+          <tr>
+            <td>🌈</td>
+            <td style="background:linear-gradient(90deg,#ff0080,#ff8c00,#ffe600,#00ff80,#00cfff,#cc00ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:bold">★7</td>
+            <td style="font-weight:bold">伝説の神剣「エクスカリバー」</td>
+            <td>ATK+200 全属性+20 伝説の一振り</td>
+          </tr>
+          <tr>
+            <td>🏆</td>
+            <td style="background:linear-gradient(90deg,#ff0080,#ff8c00,#ffe600,#00ff80,#00cfff,#cc00ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:bold">★7</td>
+            <td style="font-weight:bold">神々の霊鎧「イージス」</td>
+            <td>DEF+180 全属性耐性+30 神の加護</td>
+          </tr>
+          <tr>
+            <td>💠</td>
+            <td style="background:linear-gradient(90deg,#ff0080,#ff8c00,#ffe600,#00ff80,#00cfff,#cc00ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:bold">★7</td>
+            <td style="font-weight:bold">永遠の結晶【宇宙の欠片】</td>
+            <td>全ステータス+50 宇宙のエネルギーを宿す</td>
+          </tr>
+          <tr>
+            <td>🌸</td>
+            <td style="color:#ff69b4;font-weight:bold">★6</td>
+            <td>封印の聖剣「ソウルブレイカー」</td>
+            <td>ATK+160 封印された魂の力を解放</td>
+          </tr>
+          <tr>
+            <td>🌙</td>
+            <td style="color:#ff69b4;font-weight:bold">★6</td>
+            <td>月光の守護鎧</td>
+            <td>DEF+140 月の加護で被ダメージ軽減</td>
+          </tr>
+          <tr>
+            <td>✨</td>
+            <td style="color:#ff69b4;font-weight:bold">★6</td>
+            <td>星神の指輪</td>
+            <td>全ステータス+30 星の神秘が宿る</td>
+          </tr>
+          <tr>
+            <td>💎</td>
+            <td style="color:#ff69b4;font-weight:bold">★6</td>
+            <td>神々の秘薬</td>
+            <td>HP/MP完全回復 戦闘中1回のみ使用可</td>
+          </tr>
+        </table>
+      </div>
+      <div class="tip">★7「神話」アイテムの確率は0.0000001%！引けたら本当に奇跡。神々の塔の最深部でも大活躍！</div>
     </div>
 
     <div class="card">
@@ -1323,7 +1396,8 @@
           <p>・天井（50連）が近づいたら積極的に回す<br>
           ・ストーリーの節目でゴールドを消費<br>
           ・10連まとめて引く方がお得（10%割引）<br>
-          ・★5装備は神々の塔クリアにも役立つ</p>
+          ・★6以上の装備は神々の塔最深部で大活躍！<br>
+          ・★7神話は0.0000001%…引けたら神引き！🌈</p>
         </div>
       </div>
     </div>

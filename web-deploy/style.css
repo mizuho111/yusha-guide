@@ -489,8 +489,11 @@ body {
 .equip-btn:hover  { background: #2a1808; border-color: #c07820; box-shadow: 0 0 10px #c0782080; }
 .battle-btn:disabled { opacity: 0.35; cursor: not-allowed; transform: none !important; box-shadow: none !important; }
 
+#skill-select { background: #0a0a18; border: 1px solid var(--border); border-radius: 4px; padding: 8px; }
+#skill-select-list { display: flex; flex-direction: column; gap: 6px; max-height: 220px; overflow-y: auto; -webkit-overflow-scrolling: touch; touch-action: pan-y; }
+
 #item-select { background: #0a0a18; border: 1px solid var(--border); border-radius: 4px; padding: 8px; }
-#item-select-list { display: flex; flex-direction: column; gap: 6px; }
+#item-select-list { display: flex; flex-direction: column; gap: 6px; max-height: 220px; overflow-y: auto; -webkit-overflow-scrolling: touch; touch-action: pan-y; }
 .item-use-btn {
   font-family: inherit; font-size: 13px;
   padding: 7px 12px; text-align: left;
@@ -1700,3 +1703,4 @@ body {
   scrollbar-width: thin;
 }
 .adm-ta:focus { border-color: #5a5a9a; }
+

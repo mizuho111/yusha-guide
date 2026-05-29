@@ -290,6 +290,27 @@ body {
   from { opacity: 0; transform: scale(0.4) rotateY(80deg); }
   to   { opacity: 1; transform: scale(1) rotateY(0deg); }
 }
+/* 神話超レア (rarity 7) */
+.gc-r7 {
+  background: linear-gradient(145deg, #000020, #0a0040, #200060);
+  border-color: transparent;
+  border-image: linear-gradient(135deg, #ff0080, #ff8000, #ffff00, #00ff80, #00ffff, #8000ff, #ff0080) 1;
+  box-shadow: 0 0 30px rgba(255,100,255,0.9), 0 0 60px rgba(100,100,255,0.5), inset 0 0 20px rgba(255,255,255,0.15);
+  animation: cardReveal 0.45s ease-out backwards, rainbowGlow 2s linear infinite;
+}
+@keyframes rainbowGlow {
+  0%   { box-shadow: 0 0 30px #ff0080, 0 0 60px #ff008055; }
+  25%  { box-shadow: 0 0 30px #ffff00, 0 0 60px #ffff0055; }
+  50%  { box-shadow: 0 0 30px #00ff80, 0 0 60px #00ff8055; }
+  75%  { box-shadow: 0 0 30px #00ffff, 0 0 60px #00ffff55; }
+  100% { box-shadow: 0 0 30px #ff0080, 0 0 60px #ff008055; }
+}
+/* 限定 (rarity 6) */
+.gc-r6 {
+  background: linear-gradient(145deg, #300830, #501060, #301050);
+  border-color: #ff88ff;
+  box-shadow: 0 0 24px rgba(255,100,255,0.75), inset 0 0 14px rgba(255,150,255,0.15);
+}
 .gc-r5 {
   background: linear-gradient(145deg, #280850, #401080);
   border-color: #ffd700;
@@ -505,7 +526,7 @@ body {
 
 /* 戦闘中装備選択 */
 #battle-equip-select { background: #0a0a18; border: 1px solid var(--border); border-radius: 4px; padding: 8px; }
-#battle-equip-list { display: flex; flex-direction: column; gap: 6px; }
+#battle-equip-list { display: flex; flex-direction: column; gap: 6px; max-height: 200px; overflow-y: auto; -webkit-overflow-scrolling: touch; touch-action: pan-y; }
 
 /* 装備変更画面（ストーリー） */
 #equip-change-area {
@@ -938,7 +959,7 @@ body {
 }
 
 /* ========== WARP SCREEN ========== */
-#warp-area { padding: 8px 0; }
+#warp-area { flex: 1; padding: 8px 0; overflow-y: auto; -webkit-overflow-scrolling: touch; touch-action: pan-y; }
 #warp-header {
   display: flex; align-items: center; gap: 10px;
   margin-bottom: 10px; padding-bottom: 8px;
@@ -985,7 +1006,8 @@ body {
 
 /* ── 鍛冶屋 ─────────────────────────────── */
 #smith-area {
-  display: flex; flex-direction: column; gap: 6px;
+  flex: 1; display: flex; flex-direction: column; gap: 6px;
+  overflow-y: auto; -webkit-overflow-scrolling: touch; touch-action: pan-y;
 }
 #smith-header {
   padding: 6px 0 4px;
@@ -1074,6 +1096,9 @@ body {
 #companions-battle-status {
   display: flex; flex-direction: column; gap: 3px;
   margin: 4px 0;
+  flex-shrink: 0;
+  max-height: 110px; overflow-y: auto;
+  -webkit-overflow-scrolling: touch; touch-action: pan-y;
 }
 
 .companion-battle-row {
@@ -1139,8 +1164,9 @@ body {
 }
 
 /* ========== クエスト掲示板 ========== */
+#quest-board-area { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; touch-action: pan-y; }
 #quest-board-list {
-  max-height: 340px; overflow-y: auto;
+  max-height: none; overflow-y: visible;
   margin-bottom: 8px;
 }
 .quest-section-hdr {
@@ -1188,8 +1214,9 @@ body {
 }
 
 /* ========== モンスター図鑑 ========== */
+#monster-book-area { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; touch-action: pan-y; }
 #monster-book-list {
-  max-height: 360px; overflow-y: auto;
+  max-height: none; overflow-y: visible;
   margin-bottom: 8px;
 }
 .book-summary {
@@ -1220,7 +1247,8 @@ body {
 .mc-elem-absorb { color: #a060ff; background: #180028; padding: 1px 5px; border-radius: 3px; }
 
 /* ========== 仲間との絆 ========== */
-#bond-list { max-height: 380px; overflow-y: auto; margin-bottom: 8px; }
+#bond-area { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; touch-action: pan-y; }
+#bond-list { max-height: none; overflow-y: visible; margin-bottom: 8px; }
 .bond-card {
   padding: 10px 12px; margin: 5px 0;
   background: #180810; border: 1px solid #3a1428; border-radius: 5px;
@@ -1244,7 +1272,8 @@ body {
 .bond-bonus-txt { font-size: 11px; color: #e0a0c0; }
 
 /* ========== 陣形システム ========== */
-#formation-list { max-height: 360px; overflow-y: auto; margin-bottom: 8px; }
+#formation-area { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; touch-action: pan-y; }
+#formation-list { max-height: none; overflow-y: visible; margin-bottom: 8px; }
 .formation-row {
   padding: 10px 12px; margin: 4px 0;
   background: #100818; border: 1px solid #281040; border-radius: 5px;
@@ -1322,7 +1351,8 @@ body {
 }
 
 /* 称号リスト */
-#title-list-content { max-height: 380px; overflow-y: auto; margin-bottom: 8px; }
+#title-list-area { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; touch-action: pan-y; }
+#title-list-content { max-height: none; overflow-y: visible; margin-bottom: 8px; }
 .title-summary {
   font-size: 12px; color: var(--gold); text-align: right;
   padding: 4px 4px 8px; border-bottom: 1px solid #2e1220; margin-bottom: 8px;
@@ -1442,8 +1472,8 @@ body {
 .se-btn:disabled { color: #555; background: #0a0a0a; border-color: #2a2a2a; cursor: not-allowed; }
 
 /* 錬金術エリア */
-#alchemy-area { padding-bottom: 8px; }
-#alchemy-list { max-height: 360px; overflow-y: auto; margin-bottom: 8px; }
+#alchemy-area { flex: 1; padding-bottom: 8px; overflow-y: auto; -webkit-overflow-scrolling: touch; touch-action: pan-y; }
+#alchemy-list { max-height: none; overflow-y: visible; margin-bottom: 8px; }
 
 .alchemy-row {
   padding: 10px 12px; margin: 6px 0;
@@ -1703,4 +1733,3 @@ body {
   scrollbar-width: thin;
 }
 .adm-ta:focus { border-color: #5a5a9a; }
-

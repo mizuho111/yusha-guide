@@ -129,6 +129,17 @@ const ITEM_DATA = {
 
   // ── 雪山Lv4 召喚師のテント ──
   summonGem: { name: '召喚の宝玉', emoji: '🔮', desc: '全ステータス+30 [アクセサリー]', type: 'equipment', slot: 'accessory', atk: 30, def: 30, matk: 30, hp: 30, mp: 30, price: 80000 },
+
+  // ── ガチャ限定アイテム ──
+  gachaLimitedBlade:  { name: '封印の聖剣「ソウルブレイカー」', emoji: '🌸', desc: 'ATK+120・MATK+60・HP+100 [限定武器]', type: 'equipment', slot: 'weapon', atk: 120, matk: 60, hp: 100, price: 0 },
+  gachaLimitedArmor:  { name: '月光の守護鎧', emoji: '🌙', desc: 'DEF+80・HP+200・MP+50 [限定体防具]', type: 'equipment', slot: 'body', def: 80, hp: 200, mp: 50, price: 0 },
+  gachaLimitedRing:   { name: '星神の指輪', emoji: '✨', desc: '全ステータス+60・戦闘後HP回復 [限定アクセサリー]', type: 'equipment', slot: 'accessory', atk: 60, def: 60, matk: 60, hp: 60, mp: 60, healAfterBattle: 0.10, price: 0 },
+  gachaLimitedElixir: { name: '神々の秘薬', emoji: '💎', desc: 'HP・MPを完全回復＆全ステ一時UP', type: 'consumable', healHp: 99999, healMp: 99999, price: 0 },
+
+  // ── ガチャ超神話レアアイテム（0.0000001%） ──
+  excalibur:      { name: '伝説の神剣「エクスカリバー」', emoji: '🌈', desc: 'ATK+300・MATK+100・HP+500 [神話武器]', type: 'equipment', slot: 'weapon', atk: 300, matk: 100, hp: 500, price: 0 },
+  godArmorMythic: { name: '神々の霊鎧「イージス」', emoji: '🏆', desc: 'DEF+250・HP+1000・戦闘後HP20%回復 [神話体防具]', type: 'equipment', slot: 'body', def: 250, hp: 1000, healAfterBattle: 0.20, price: 0 },
+  eternalCrystal: { name: '永遠の結晶【宇宙の欠片】', emoji: '💠', desc: '全ステータス+200・HP+2000 [神話アクセサリー]', type: 'equipment', slot: 'accessory', atk: 200, def: 200, matk: 200, hp: 2000, mp: 200, price: 0 },
 };
 
 const SHOP_INVENTORY = {
@@ -498,11 +509,11 @@ const ENEMY_DATA = {
   demonKing: {
     name: '魔王ダークロス', emoji: '👿',
     level: 100,
-    hp: 8000, maxHp: 8000, attack: 200, defense: 90,
+    hp: 5000, maxHp: 5000, attack: 140, defense: 70,
     exp: 80000, gold: 9999, isBoss: true,
-    skill: { name: '暗黒の炎【業火】', chance: 0.45, damage: 320, msg: '絶対零度の漆黒の炎が炸裂した！！' },
-    phase2Threshold: 4000,
-    phase2: { name: '魔王ダークロス 【真の魔王形態】', emoji: '🔴', attackBonus: 80 },
+    skill: { name: '暗黒の炎【業火】', chance: 0.35, damage: 200, msg: '絶対零度の漆黒の炎が炸裂した！！' },
+    phase2Threshold: 2500,
+    phase2: { name: '魔王ダークロス 【真の魔王形態】', emoji: '🔴', attackBonus: 50 },
     weak: ['light'], resist: ['fire', 'ice', 'thunder', 'wind'], absorb: ['dark'],
   },
 
@@ -773,9 +784,21 @@ const SEASON_CYCLE_BATTLES = 25;
 //  ガチャシステム定義
 // ============================================================
 const GACHA_TABLE = {
-  rates: { 5: 0.020, 4: 0.080, 3: 0.200, 2: 0.300 },
+  // 7=神話超レア(0.0000001%), 6=限定(0.5%), 5=最高レア(2%), 4=高レア(8%), 3=レア(20%), 2=並(30%), 1=普通
+  rates: { 7: 0.000000001, 6: 0.005, 5: 0.020, 4: 0.080, 3: 0.200, 2: 0.300 },
   pityLimit: 50,
   pool: {
+    7: [
+      { id: 'excalibur',      name: '伝説の神剣「エクスカリバー」', emoji: '🌈' },
+      { id: 'godArmorMythic', name: '神々の霊鎧「イージス」',       emoji: '🏆' },
+      { id: 'eternalCrystal', name: '永遠の結晶【宇宙の欠片】',     emoji: '💠' },
+    ],
+    6: [
+      { id: 'gachaLimitedBlade',  name: '封印の聖剣「ソウルブレイカー」', emoji: '🌸' },
+      { id: 'gachaLimitedArmor',  name: '月光の守護鎧',                   emoji: '🌙' },
+      { id: 'gachaLimitedRing',   name: '星神の指輪',                     emoji: '✨' },
+      { id: 'gachaLimitedElixir', name: '神々の秘薬',                     emoji: '💎' },
+    ],
     5: [
       { id: 'ancientBlade',   name: '古代の聖剣',      emoji: '🌟' },
       { id: 'heroArmor',      name: '勇者の鎧',        emoji: '🛡️' },
@@ -3251,6 +3274,7 @@ function smithyCost(id, currentLevel) {
 }
 
 function renderSmith(scene) {
+  document.getElementById('story-text-area').classList.add('hidden');
   document.getElementById('choices-area').classList.add('hidden');
   document.getElementById('smith-area').classList.remove('hidden');
 
@@ -5269,6 +5293,8 @@ function endBattle(victory, escaped = false) {
 function createAriaCompanion(playerLevel) {
   const lv = Math.max(1, playerLevel);
   return {
+    id: 'aria',
+    joined: true,
     name: 'アリア',
     emoji: '👱‍♀️',
     hp:     80 + (lv - 1) * 12,
@@ -5280,6 +5306,7 @@ function createAriaCompanion(playerLevel) {
     baseDef:  4  + (lv - 1) * 2,
     baseMatk: 8  + (lv - 1) * 3,
     equipment: { weapon: null, head: null, body: null, acc1: null, acc2: null },
+    skillCooldowns: {},
     shinkenCooldown: 0,
   };
 }
@@ -6160,6 +6187,7 @@ function closeHiddenTreasurePopup() {
 function openWarpScreen() {
   if (gs.inBattle) return;
 
+  document.getElementById('story-text-area').classList.add('hidden');
   document.getElementById('choices-area').classList.add('hidden');
   document.getElementById('equip-change-area').classList.add('hidden');
   document.getElementById('shop-area').classList.add('hidden');
@@ -6652,6 +6680,9 @@ function continueFromVillage() {
   document.getElementById('gameover-overlay').classList.add('hidden');
   gs.player.hp = gs.player.maxHp;
   gs.player.mp = gs.player.maxMp;
+  // 仲間も全回復
+  if (gs.companion) { gs.companion.hp = gs.companion.maxHp; gs.companion.mp = gs.companion.maxMp; }
+  Object.values(gs.companions || {}).forEach(c => { if (c) { c.hp = c.maxHp; c.mp = c.maxMp; } });
   gs.inBattle = false;
   gs.enemy = null;
   gs.postBattleScene = null;
@@ -6663,6 +6694,7 @@ function continueFromVillage() {
   document.getElementById('choices-area').classList.remove('hidden');
   gotoScene('village');
   updateStatus();
+  updateAllCompanionsStatus();
 }
 
 function showTitleScreen() {
@@ -6689,10 +6721,15 @@ function _rollGacha() {
   } else {
     const r = Math.random();
     const { rates } = GACHA_TABLE;
-    const cum4 = rates[5] + rates[4];
+    const cum7 = rates[7];
+    const cum6 = cum7 + rates[6];
+    const cum5 = cum6 + rates[5];
+    const cum4 = cum5 + rates[4];
     const cum3 = cum4 + rates[3];
     const cum2 = cum3 + rates[2];
-    if      (r < rates[5]) { rarity = 5; g.pityCount = 0; }
+    if      (r < cum7)     { rarity = 7; g.pityCount = 0; }
+    else if (r < cum6)     { rarity = 6; }
+    else if (r < cum5)     { rarity = 5; g.pityCount = 0; }
     else if (r < cum4)     rarity = 4;
     else if (r < cum3)     rarity = 3;
     else if (r < cum2)     rarity = 2;
@@ -6764,7 +6801,11 @@ function doGachaPull(count) {
 function _showGachaResults(results) {
   const grid = document.getElementById('gacha-result-grid');
   grid.innerHTML = '';
-  const starsMap = { 5: '★★★★★', 4: '★★★★☆', 3: '★★★☆☆', 2: '★★☆☆☆', 1: '★☆☆☆☆' };
+  const starsMap = {
+    7: '🌈 神話超レア 0.0000001%',
+    6: '💎 限定★★★★★★',
+    5: '★★★★★', 4: '★★★★☆', 3: '★★★☆☆', 2: '★★☆☆☆', 1: '★☆☆☆☆'
+  };
 
   results.forEach((item, i) => {
     const card = document.createElement('div');
@@ -6773,21 +6814,24 @@ function _showGachaResults(results) {
     card.innerHTML =
       `<div class="gc-emoji">${item.emoji}</div>` +
       `<div class="gc-name">${item.name}</div>` +
-      `<div class="gc-stars gc-stars-${item.rarity}">${starsMap[item.rarity]}</div>`;
+      `<div class="gc-stars gc-stars-${item.rarity}">${starsMap[item.rarity] || ''}</div>`;
     grid.appendChild(card);
   });
 
   const maxRarity = Math.max(...results.map(r => r.rarity));
   const titleEl = document.getElementById('gacha-result-title');
-  if (maxRarity === 5)      titleEl.textContent = '🌟 伝説の輝き！！';
-  else if (maxRarity >= 4)  titleEl.textContent = '✨ 素晴らしい！';
-  else if (maxRarity >= 3)  titleEl.textContent = '🎲 ガチャ結果！';
-  else                      titleEl.textContent = '🎲 ガチャ結果';
+  if      (maxRarity >= 7) titleEl.textContent = '🌈🌈 神話超レア！！！宇宙規模の奇跡！！🌈🌈';
+  else if (maxRarity >= 6) titleEl.textContent = '💎💎 限定アイテム獲得！！！💎💎';
+  else if (maxRarity >= 5) titleEl.textContent = '🌟 伝説の輝き！！';
+  else if (maxRarity >= 4) titleEl.textContent = '✨ 素晴らしい！';
+  else if (maxRarity >= 3) titleEl.textContent = '🎲 ガチャ結果！';
+  else                     titleEl.textContent = '🎲 ガチャ結果';
 
   document.getElementById('gacha-result-overlay').classList.remove('hidden');
 
   if (typeof SoundEngine !== 'undefined') {
-    if (maxRarity === 5)     SoundEngine.playSFX('titleGet');
+    if (maxRarity >= 6)      SoundEngine.playSFX('titleGet');
+    else if (maxRarity >= 5) SoundEngine.playSFX('titleGet');
     else if (maxRarity >= 4) SoundEngine.playSFX('levelUp');
     else                     SoundEngine.playSFX('itemGet');
   }

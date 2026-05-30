@@ -540,6 +540,10 @@
     <li><a href="#season">季節</a></li>
     <li><a href="#bgm">BGM・演出</a></li>
     <li><a href="#gacha">ガチャ</a></li>
+    <li><a href="#travel">旅イベント</a></li>
+    <li><a href="#minigame">ミニゲーム</a></li>
+    <li><a href="#npc">NPCストーリー</a></li>
+    <li><a href="#rare">レアモンスター</a></li>
   </ul>
 </nav>
 
@@ -554,7 +558,52 @@
           <div class="news-header-title">最新アップデート情報</div>
           <div style="font-size:11px;color:var(--text-dim);letter-spacing:2px">UPDATE NEWS</div>
         </div>
-        <div class="news-header-sub">Ver 3.0 系列</div>
+        <div class="news-header-sub">Ver 3.1 系列</div>
+      </div>
+
+      <div class="news-item">
+        <div class="news-date">2026-05-30</div>
+        <div class="news-tag new">NEW</div>
+        <div class="news-body">
+          <strong>旅のランダムイベント15種を追加！</strong>
+          <span class="sub">移動中に20%の確率でイベントが発生。倒れた旅人・怪しい行商人・流れ星・海賊船など選択肢によって結果が変わる！</span>
+        </div>
+      </div>
+
+      <div class="news-item">
+        <div class="news-date">2026-05-30</div>
+        <div class="news-tag new">NEW</div>
+        <div class="news-body">
+          <strong>仲間会話イベントを大幅強化！（29件）</strong>
+          <span class="sub">各エリアで仲間が話しかけてくる。絆Lv3・Lv5で特別な会話が解放され、返答次第でHP/MPやアイテムがもらえる。</span>
+        </div>
+      </div>
+
+      <div class="news-item">
+        <div class="news-date">2026-05-30</div>
+        <div class="news-tag new">NEW</div>
+        <div class="news-body">
+          <strong>レアモンスター変異種（28種）追加！</strong>
+          <span class="sub">通常の敵が8%の確率で強化版に変身！経験値・ゴールドが3〜6倍になり、レアアイテムが確定ドロップする。</span>
+        </div>
+      </div>
+
+      <div class="news-item">
+        <div class="news-date">2026-05-30</div>
+        <div class="news-tag new">NEW</div>
+        <div class="news-body">
+          <strong>ミニゲーム3種を追加！</strong>
+          <span class="sub">🎣釣り（港町）・🏜️砂漠レース（砂漠）・🏆闘技場トーナメント（闘技場）。それぞれ豪華な報酬あり！</span>
+        </div>
+      </div>
+
+      <div class="news-item">
+        <div class="news-date">2026-05-30</div>
+        <div class="news-tag new">NEW</div>
+        <div class="news-body">
+          <strong>NPCサブストーリー5人追加！</strong>
+          <span class="sub">ガルム・トマ・ラーナ・ポセイ・ベルクの5人と計17話のストーリーが楽しめる。ボス討伐に連動して話が変わる！</span>
+        </div>
       </div>
 
       <div class="news-item">
@@ -562,7 +611,7 @@
         <div class="news-tag new">NEW</div>
         <div class="news-body">
           <strong>エリア限定ガチャ4種を追加！</strong>
-          <span class="sub">雪山・砂漠・海底・魔王城の各エリアに専用ガチャが登場。仲間専用装備・高レアアイテムが入手可能。天井は最短30連！</span>
+          <span class="sub">雪山・砂漠・海底・魔王城の各エリアに専用ガチャが登場。仲間専用装備・高レアアイテムが入手可能。</span>
         </div>
       </div>
 
@@ -1652,6 +1701,243 @@
         </table>
       </div>
       <div class="warning">⚠️ 仲間専用アイテムは取得後にパーティ加入中の仲間へ自動で反映される</div>
+    </div>
+  </section>
+
+  <!-- 旅のランダムイベント -->
+  <section id="travel">
+    <div class="section-header">
+      <div class="section-icon">🎲</div>
+      <div>
+        <div class="section-title">旅のランダムイベント</div>
+        <div class="section-title-jp">TRAVEL RANDOM EVENTS</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">🎲 イベントの仕組み</div>
+      <p>エンカウントのある移動選択肢を選んだとき、バトルが発生しなかった場合に <strong style="color:var(--gold)">20%の確率</strong>でランダムイベントが発生する。</p>
+      <p style="margin-top:8px">選択肢によって結果が変わり、アイテム・ゴールド・HP/MP回復・絆UPなどが得られる。重複防止機能付きで同じイベントは連続しにくい。</p>
+      <div class="tip">エンカウントが発生した場合はイベントは起きない。馬・飛行船でエンカウント率を下げると発生しやすくなる！</div>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">🗺️ 全エリア共通イベント（7種）</div>
+        <div class="table-wrap">
+          <table>
+            <tr><th>イベント</th><th>おすすめ選択肢</th><th>報酬</th></tr>
+            <tr><td>🧍 倒れた旅人</td><td>薬草を使って助ける</td><td>経験値+80・絆UP</td></tr>
+            <tr><td>🎪 怪しい行商人</td><td>500Gで買う</td><td>ランダムレアアイテム</td></tr>
+            <tr><td>👝 落ちている財布</td><td>持ち主を探す</td><td>経験値+150</td></tr>
+            <tr><td>🏺 不思議な壺</td><td>開ける（運次第）</td><td>回復薬or金orトラップ</td></tr>
+            <tr><td>👴 旅の老人</td><td>話を聞く</td><td>レアアイテム1個</td></tr>
+            <tr><td>🌟 流れ星</td><td>願いを唱える</td><td>HP+100 or MP全回復</td></tr>
+            <tr><td>🎭 旅芸人の一座</td><td>見物する</td><td>HP+40・MP+60回復</td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">🗺️ エリア限定イベント（8種）</div>
+        <div class="table-wrap">
+          <table>
+            <tr><th>エリア</th><th>イベント</th><th>報酬</th></tr>
+            <tr><td>🌲 森</td><td>🧚 精霊の呼び声</td><td>経験値+200・アイテム2個</td></tr>
+            <tr><td>🌲 森</td><td>👦 迷子の子供</td><td>絆+2 or 経験値+60</td></tr>
+            <tr><td>❄️ 雪山</td><td>🌨️ 吹雪</td><td>突破 or 待機を選択</td></tr>
+            <tr><td>❄️ 雪山</td><td>🔥 焚き火</td><td>HP+100・MP+50</td></tr>
+            <tr><td>🏜️ 砂漠</td><td>💧 神秘のオアシス</td><td>HP・MP全回復 or エリクサー</td></tr>
+            <tr><td>🏜️ 砂漠</td><td>🌪️ 砂嵐</td><td>突破 or 待機を選択</td></tr>
+            <tr><td>🌊 海</td><td>🌊 漂流物</td><td>レアアイテム</td></tr>
+            <tr><td>🌊 海</td><td>🏴‍☠️ 海賊船</td><td>戦闘 or 300G払う</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ミニゲーム -->
+  <section id="minigame">
+    <div class="section-header">
+      <div class="section-icon">🎮</div>
+      <div>
+        <div class="section-title">ミニゲーム</div>
+        <div class="section-title-jp">MINI GAMES</div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">🎣 釣りミニゲーム（港町）</div>
+        <p>港町の「🎣 釣りをする」ボタンで挑戦！<br>竿を投げた後、「<strong style="color:var(--gold)">食いついた！</strong>」が出たら素早くボタンを押して魚を釣り上げよう！</p>
+        <div class="table-wrap">
+          <table>
+            <tr><th>魚</th><th>レア度</th><th>報酬</th></tr>
+            <tr><td>🐟 小魚〜🐡 ふぐ</td><td>普通</td><td>80〜200G</td></tr>
+            <tr><td>🦈 サメ・🐙 タコ・🦑 イカ</td><td>珍しい</td><td>300〜400G＋アイテム</td></tr>
+            <tr><td>🐬 イルカ・🪸 珊瑚の精霊</td><td style="color:var(--gold)">レア</td><td>800〜1000G＋エリクサー</td></tr>
+            <tr><td style="color:#ff69b4">🌟 金の魚</td><td style="color:#ff69b4">伝説</td><td>3000G＋経験値のお守り</td></tr>
+          </table>
+        </div>
+        <div class="tip">タイミングが遅すぎると逃げられる！1.8秒以内に押そう！</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">🏜️ 砂漠レース（砂漠オアシス）</div>
+        <p>「🏜️ 砂漠レースに挑む」で挑戦！<br>3コーナーで左・中央・右から岩を避けながらゴールを目指す！</p>
+        <div class="table-wrap">
+          <table>
+            <tr><th>回避数</th><th>報酬</th></tr>
+            <tr><td>0回</td><td>200G</td></tr>
+            <tr><td>1回</td><td>400G＋薬草</td></tr>
+            <tr><td>2回</td><td>800G＋上薬草</td></tr>
+            <tr><td style="color:var(--gold)">3回（全回避）</td><td style="color:var(--gold)">1500G＋エリクサー</td></tr>
+          </table>
+        </div>
+        <div class="tip">岩の位置はランダム！何度でも挑戦できる。</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🏆 闘技場トーナメント（闘技場）</div>
+      <p>闘技場の「🏆 トーナメントに挑む」で挑戦！通常の5連戦とは別の特別大会。<strong style="color:var(--gold)">3体の猛者を連続撃破</strong>すれば豪華報酬！</p>
+      <p style="margin-top:8px">・各勝利後にHP30%自動回復<br>・敵はプレイヤーのレベルに合わせてスケール<br>・途中で棄権してもOK（報酬なし）</p>
+      <div class="table-wrap">
+        <table>
+          <tr><th>クリア数</th><th>報酬</th></tr>
+          <tr><td>1体撃破</td><td>1000G＋エリクサー</td></tr>
+          <tr><td>2体撃破</td><td>2000G＋エリクサー＋勇者の冠</td></tr>
+          <tr><td style="color:var(--gold)">3体全撃破</td><td style="color:var(--gold)">3000G＋エリクサー＋勇者の盾＋経験値のお守り</td></tr>
+        </table>
+      </div>
+      <div class="warning">通常の闘技場と違いHPは引き継がれる！HP管理が重要。アイテムは事前に準備しておこう。</div>
+    </div>
+  </section>
+
+  <!-- NPCサブストーリー -->
+  <section id="npc">
+    <div class="section-header">
+      <div class="section-icon">📜</div>
+      <div>
+        <div class="section-title">NPCサブストーリー</div>
+        <div class="section-title-jp">NPC SUB STORIES</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">📜 サブストーリーの仕組み</div>
+      <p>各地に配置された特別なNPCに話しかけるとストーリーが始まる。<strong style="color:var(--gold)">ボス討伐などゲームの進行に連動して</strong>新しい話が解放される。全ての話を聞くと特別な報酬がもらえる！</p>
+      <div class="tip">NPCのボタンはシーンの選択肢の中にある。見落とさないように！</div>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">🔨 老鍛冶師 ガルム（村）全4話</div>
+        <div class="table-wrap">
+          <table>
+            <tr><th>話数</th><th>解放条件</th><th>報酬</th></tr>
+            <tr><td>第1話</td><td>最初から</td><td>薬草×2</td></tr>
+            <tr><td>第2話</td><td>石の番人撃破後</td><td>力の指輪</td></tr>
+            <tr><td>第3話</td><td>ファラオ撃破後</td><td>エリクサー×2</td></tr>
+            <tr><td style="color:var(--gold)">第4話（最終）</td><td>魔王撃破後</td><td style="color:var(--gold)">勇者の剣×2＋2000G</td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">🔮 占い師 ラーナ（砂漠）全4話</div>
+        <div class="table-wrap">
+          <table>
+            <tr><th>話数</th><th>解放条件</th><th>報酬</th></tr>
+            <tr><td>第1話</td><td>最初から</td><td>なし（予言）</td></tr>
+            <tr><td>第2話</td><td>氷の女王撃破後</td><td>エリクサー</td></tr>
+            <tr><td>第3話</td><td>ファラオ撃破後</td><td>上MPの薬×3</td></tr>
+            <tr><td style="color:var(--gold)">第4話（最終）</td><td>魔王撃破後</td><td style="color:var(--gold)">奇跡の薬＋経験値のお守り</td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">⚓ 老船乗り ポセイ（港町）全3話</div>
+        <div class="table-wrap">
+          <table>
+            <tr><th>話数</th><th>解放条件</th><th>報酬</th></tr>
+            <tr><td>第1話</td><td>最初から</td><td>なし</td></tr>
+            <tr><td>第2話</td><td>大海蛇撃破後</td><td>エリクサー×2</td></tr>
+            <tr><td style="color:var(--gold)">第3話（最終）</td><td>魔王撃破後</td><td style="color:var(--gold)">エリクサー×3＋3000G</td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">🏔️ 隠者 ベルク（雪山）全3話</div>
+        <div class="table-wrap">
+          <table>
+            <tr><th>話数</th><th>解放条件</th><th>報酬</th></tr>
+            <tr><td>第1話</td><td>最初から</td><td>なし</td></tr>
+            <tr><td>第2話</td><td>氷の女王撃破後</td><td>霜の指輪</td></tr>
+            <tr><td style="color:var(--gold)">第3話（最終）</td><td>魔王撃破後</td><td style="color:var(--gold)">極地の鎧＋エリクサー×2＋1500G</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">👦 子供 トマ（村）全3話　＆　仲間会話イベント</div>
+      <p>トマは村で話しかけるごとに成長していく子供NPC。魔王撃破後の第3話が感動的！<br>最終報酬：<strong style="color:var(--gold)">経験値のお守り</strong></p>
+      <p style="margin-top:12px"><strong style="color:var(--gold)">仲間会話イベント：</strong>各エリア移動時に15%でポップアップ。絆Lv3・5で特別な告白イベントが解放される！返答次第でHP/MPやアイテムを獲得できる。</p>
+    </div>
+  </section>
+
+  <!-- レアモンスター -->
+  <section id="rare">
+    <div class="section-header">
+      <div class="section-icon">👾</div>
+      <div>
+        <div class="section-title">レアモンスター（変異種）</div>
+        <div class="section-title-jp">RARE MONSTER VARIANTS</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">👾 変異種の仕組み</div>
+      <p>ランダムエンカウントで通常の敵が <strong style="color:#ff69b4">8%の確率</strong> でレアな変異種に変身！バトル開始時に特別なメッセージと通知が表示される。</p>
+      <div class="table-wrap">
+        <table>
+          <tr><th>ステータス</th><th>倍率</th></tr>
+          <tr><td>HP</td><td>×1.8〜3.0</td></tr>
+          <tr><td>攻撃力</td><td>×1.5〜2.0</td></tr>
+          <tr><td>経験値</td><td style="color:var(--gold)">×3〜5倍</td></tr>
+          <tr><td>ゴールド</td><td style="color:var(--gold)">×4〜6倍</td></tr>
+          <tr><td>アイテム</td><td style="color:#ff69b4">確定ドロップ</td></tr>
+        </table>
+      </div>
+      <div class="warning">変異種は通常より大幅に強い！HP・アイテムを整えてから挑もう。</div>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">🌟 主なレアモンスター一覧</div>
+        <div class="table-wrap">
+          <table>
+            <tr><th>変異種名</th><th>エリア</th><th>確定ドロップ</th></tr>
+            <tr><td>💛 黄金スライム</td><td>森</td><td>経験値のお守り</td></tr>
+            <tr><td>👑 ゴブリン王</td><td>森</td><td>力の指輪</td></tr>
+            <tr><td>⭐ 白銀の狼</td><td>森</td><td>速さの靴</td></tr>
+            <tr><td>⬛ 黒鉄スケルトン</td><td>洞窟</td><td>守りの指輪</td></tr>
+            <tr><td>🔩 鋼鉄トロル</td><td>洞窟</td><td>勇者の冠</td></tr>
+            <tr><td>🏆 黄金サソリ</td><td>砂漠</td><td>経験値のお守り</td></tr>
+            <tr><td>👑 黒帝ミイラ</td><td>砂漠</td><td>ファラオの護符</td></tr>
+            <tr><td>🏔️ 雪山の覇王ヤティ</td><td>雪山</td><td>エリクサー</td></tr>
+            <tr><td>🌊 深淵の古龍</td><td>海</td><td>深海の宝珠</td></tr>
+            <tr><td>🌸 深海の女王</td><td>海</td><td>光の聖印</td></tr>
+            <tr><td>💀 大魔将デーモン</td><td>魔王城</td><td>呪われた覇者の指輪</td></tr>
+            <tr><td style="color:var(--gold)">⚔️ 魔王親衛隊長</td><td>魔王城</td><td style="color:var(--gold)">勇者の鎧</td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">💡 効率よく変異種を狩るコツ</div>
+        <p><strong style="color:var(--gold)">エンカウント率を上げる方法：</strong></p>
+        <p>・乗り物を使わず徒歩で移動<br>
+        ・エンカウント率の高いルートを選ぶ<br>
+        ・秋の季節（ゴールド・EXP1.25倍）と重なると最高効率！</p>
+        <p style="margin-top:12px"><strong style="color:var(--gold)">おすすめ狩り場：</strong></p>
+        <p>・🏟️ 闘技場（レベル30〜）：EXP2倍でレア出現もある<br>
+        ・🌊 海エリア：深淵の古龍・深海の女王が美味しい<br>
+        ・🏰 魔王城：魔王親衛隊長から勇者の鎧を狙え！</p>
+        <div class="tip">変異種が現れたらアイテムを惜しまず使って確実に倒そう！逃げると報酬なしになる。</div>
+      </div>
     </div>
   </section>
 

@@ -780,6 +780,46 @@ const AREA_ENEMIES = {
 };
 
 // ============================================================
+//  レアモンスター（変異種）定義
+// ============================================================
+const RARE_VARIANTS = {
+  // 森
+  slime:         { name: '✨ 黄金スライム',     emoji: '💛', hpMult: 2.0, atkMult: 1.5, expMult: 4, goldMult: 6, drop: 'expCharm',    msg: '黄金に輝くスライムが現れた！レアな素材を持っているぞ！' },
+  goblin:        { name: '👑 ゴブリン王',        emoji: '👑', hpMult: 2.2, atkMult: 1.8, expMult: 4, goldMult: 5, drop: 'powerRing',   msg: '王冠を被った特大ゴブリンが現れた！強力だが、報酬も格別だ！' },
+  forestWolf:    { name: '⭐ 白銀の狼',          emoji: '🌟', hpMult: 1.8, atkMult: 1.6, expMult: 3, goldMult: 4, drop: 'speedBoots',  msg: '神秘的な白銀色の狼が現れた！伝説の存在だ！' },
+  poisonFrog:    { name: '💜 古代毒蛙',          emoji: '🔮', hpMult: 1.8, atkMult: 1.5, expMult: 3, goldMult: 4, drop: 'highMpPotion',msg: '紫に輝く古代の毒蛙が現れた！' },
+  // 洞窟
+  bat:           { name: '🔴 魔界コウモリ',      emoji: '❤️', hpMult: 1.8, atkMult: 1.5, expMult: 3, goldMult: 4, drop: 'highMpPotion',msg: '血赤の翼を持つ魔界のコウモリが現れた！' },
+  skeleton:      { name: '⬛ 黒鉄スケルトン',    emoji: '🖤', hpMult: 2.0, atkMult: 1.7, expMult: 4, goldMult: 5, drop: 'guardRing',   msg: '漆黒の鎧を纏ったスケルトンが現れた！硬い！' },
+  troll:         { name: '🔩 鋼鉄トロル',        emoji: '⚙️', hpMult: 2.5, atkMult: 1.8, expMult: 5, goldMult: 6, drop: 'heroCirclet', msg: '鋼鉄のような皮膚を持つ巨大トロルが現れた！' },
+  poisonSlime:   { name: '☠️ 死毒スライム',      emoji: '💀', hpMult: 2.0, atkMult: 1.6, expMult: 4, goldMult: 4, drop: 'antidote',    msg: '真っ黒な死毒スライムが現れた！毒が非常に強い！' },
+  // 雪山
+  snowWolf:      { name: '❄️ 白金雪狼',          emoji: '💙', hpMult: 1.8, atkMult: 1.6, expMult: 3, goldMult: 4, drop: 'frostRing',   msg: '白金色に輝く伝説の雪狼が現れた！' },
+  iceGolem:      { name: '💎 結晶の巨人',         emoji: '💠', hpMult: 2.5, atkMult: 1.7, expMult: 4, goldMult: 5, drop: 'elixir',      msg: '水晶でできたような巨大ゴーレムが現れた！鉄壁だ！' },
+  yeti:          { name: '🏔️ 雪山の覇王ヤティ',  emoji: '🏔️', hpMult: 2.5, atkMult: 2.0, expMult: 5, goldMult: 6, drop: 'elixir',      msg: '雪山を支配する覇王ヤティが現れた！全力で挑め！' },
+  snowFairy:     { name: '🌸 氷晶の女王',         emoji: '💎', hpMult: 2.0, atkMult: 1.6, expMult: 4, goldMult: 5, drop: 'highMpPotion',msg: '水晶のような翅を持つ女王妖精が現れた！' },
+  // 砂漠
+  sandScorpion:  { name: '🏆 黄金サソリ',         emoji: '🌟', hpMult: 2.0, atkMult: 1.7, expMult: 4, goldMult: 6, drop: 'expCharm',    msg: '黄金に輝く古代のサソリが現れた！伝説の存在だ！' },
+  mummy:         { name: '👑 黒帝ミイラ',          emoji: '🖤', hpMult: 2.0, atkMult: 1.7, expMult: 4, goldMult: 5, drop: 'pharaohAmulet',msg: 'ファラオの護衛だった最強のミイラが現れた！' },
+  desertBandit:  { name: '💀 砂漠の死王',          emoji: '💀', hpMult: 2.2, atkMult: 1.8, expMult: 4, goldMult: 6, drop: 'heroArmor',   msg: '砂漠を支配した最強の盗賊王が現れた！' },
+  fireElemental: { name: '🌋 溶岩の精霊王',        emoji: '🌋', hpMult: 2.5, atkMult: 2.0, expMult: 5, goldMult: 5, drop: 'elixir',      msg: '大地から噴出した溶岩の精霊王が現れた！' },
+  // 海
+  seaSerpent:    { name: '🌊 深淵の古龍',          emoji: '💚', hpMult: 2.5, atkMult: 1.8, expMult: 5, goldMult: 6, drop: 'deepSeaOrb',  msg: '深海に眠っていた古代の龍が現れた！海底最強！' },
+  deepAngler:    { name: '💫 深海の王',             emoji: '🔵', hpMult: 2.0, atkMult: 1.7, expMult: 4, goldMult: 5, drop: 'heroShield',  msg: '巨大な光るアンコウの王が現れた！' },
+  krakenArm:     { name: '👑 覇王クラーケン',       emoji: '🟣', hpMult: 3.0, atkMult: 2.0, expMult: 5, goldMult: 6, drop: 'coralArmor',  msg: '伝説のクラーケン本体の腕が現れた！これは危険だ！' },
+  darkMermaid:   { name: '🌸 深海の女王',           emoji: '💜', hpMult: 2.0, atkMult: 1.6, expMult: 4, goldMult: 5, drop: 'lightSeal',   msg: '深海を統べる伝説の人魚女王が現れた！' },
+  // 魔王城
+  demon:         { name: '💀 大魔将デーモン',       emoji: '💀', hpMult: 2.5, atkMult: 2.0, expMult: 5, goldMult: 6, drop: 'cursedRing',  msg: '魔王軍の将軍クラスの大魔将が現れた！全力で戦え！' },
+  nightmare:     { name: '🌑 漆黒の悪夢',           emoji: '🌑', hpMult: 2.0, atkMult: 1.8, expMult: 4, goldMult: 5, drop: 'elixir',      msg: '漆黒のオーラを纏う悪夢の化身が現れた！' },
+  darkKnight:    { name: '⚔️ 魔王親衛隊長',         emoji: '🗡️', hpMult: 2.5, atkMult: 2.0, expMult: 5, goldMult: 6, drop: 'heroArmor',   msg: '魔王直属の最精鋭、親衛隊長が現れた！倒せるか！？' },
+  cursedSoul:    { name: '👻 怨霊の王',              emoji: '👻', hpMult: 2.0, atkMult: 1.8, expMult: 4, goldMult: 5, drop: 'elixir',      msg: '無数の魂が集まった怨霊の王が現れた！' },
+  // 草原
+  grasslandBoar: { name: '💪 鋼の大猪',             emoji: '🔥', hpMult: 2.0, atkMult: 1.7, expMult: 4, goldMult: 5, drop: 'powerRing',   msg: '鋼鉄の毛皮を持つ伝説の大猪が現れた！' },
+  windWolf:      { name: '🌪️ 嵐を呼ぶ狼',           emoji: '💨', hpMult: 2.0, atkMult: 1.7, expMult: 4, goldMult: 5, drop: 'speedBoots',  msg: '嵐を呼ぶ伝説の狼が現れた！すばやい！' },
+  gryphonJr:     { name: '🦅 黄金グリフォン',        emoji: '🌟', hpMult: 2.5, atkMult: 1.9, expMult: 5, goldMult: 6, drop: 'heroCirclet', msg: '黄金に輝く伝説のグリフォンが現れた！' },
+};
+
+// ============================================================
 //  季節システム定義
 // ============================================================
 
@@ -1117,6 +1157,1325 @@ const GODS_TOWER_FLOORS = [
   { floor: 9,  name: '9F 頂上への扉',  emoji: '⛅', enemy: 'towerAncient',   recoveryGold: 2000 },
   { floor: 10, name: '10F 神龍の間',   emoji: '🌟', enemy: 'godDragon',      isBossFloor: true },
 ];
+
+// ============================================================
+//  仲間会話イベント定義
+// ============================================================
+const COMPANION_TALK_EVENTS = [
+  // ── アリア ──
+  { id: 'aria_forest',   companion: 'aria', name: 'アリア', emoji: '👱‍♀️',
+    scenes: ['forest_entrance','forest_start'], minBond: 0,
+    text: 'この森……なんか落ち着く。\n木の香りって、好きなんだよね。\n\n……ゆっくり歩こ？',
+    choices: [
+      { text: '「いいね、ゆっくり歩こう」', bond: 1, reply: 'えへ……ありがと。\nそういうとこ、好きだよ。' },
+      { text: '「先を急がないと」', bond: 0, reply: 'そうだよね、ごめん。行こ！' },
+    ],
+  },
+  { id: 'aria_cave',     companion: 'aria', name: 'アリア', emoji: '👱‍♀️',
+    scenes: ['cave_approach','cave_entrance'], minBond: 0,
+    text: '暗いところ、少し苦手……\n\nでも！ 怖くないから！\nそ、そこにいてくれると助かるかも……',
+    choices: [
+      { text: '「そばにいるよ」', bond: 2, reply: '…………っ。\nありがと。大丈夫、進める！', reward: { hp: 30 } },
+      { text: '「頼りにしてるよ」', bond: 1, reply: 'うん！ 任せて！' },
+    ],
+  },
+  { id: 'aria_snow',     companion: 'aria', name: 'アリア', emoji: '👱‍♀️',
+    scenes: ['snow_village','snow_entrance'], minBond: 1,
+    text: '雪！ 好きなんだよね〜！\n子供のころ、雪だるまよく作ってた。\n\nあとで一緒に作る？なんて……冗談だよ！',
+    choices: [
+      { text: '「作ろうよ！」', bond: 2, reply: 'え……本当に！？\nやった！ 絶対作ろうね！！', reward: { mp: 30 } },
+      { text: '「戦いが終わったらね」', bond: 1, reply: 'うん、約束だよ。絶対だからね！' },
+    ],
+  },
+  { id: 'aria_desert',   companion: 'aria', name: 'アリア', emoji: '👱‍♀️',
+    scenes: ['desert_start','desert_entrance'], minBond: 1,
+    text: '砂漠か……暑い！\nあと、砂が靴の中に入ってくる……\n\n水の管理は徹底しなきゃ。隙を見せちゃダメだね。',
+    choices: [
+      { text: '「しっかりしてるね」', bond: 1, reply: '当然！ サポートは得意なんだから！' },
+      { text: '「喉、渇いてる？」', bond: 2, reply: 'ちょっとだけ……気にしてくれてたの？\nありがと……嬉しい。', reward: { hp: 50 } },
+    ],
+  },
+  { id: 'aria_sea',      companion: 'aria', name: 'アリア', emoji: '👱‍♀️',
+    scenes: ['sea_harbor','sea_entrance'], minBond: 2,
+    text: '海！ 初めて見た！\n\nすごい……こんなに広いんだ。\n……なんか、自分が小さく見えてくる。',
+    choices: [
+      { text: '「でも君は頼もしいよ」', bond: 2, reply: '……もう、急に何言ってるの。\nでも……ありがとう。嬉しいな。', reward: { mp: 50 } },
+      { text: '「綺麗だね」', bond: 1, reply: 'うん……本当に綺麗！' },
+    ],
+  },
+  { id: 'aria_bond3',    companion: 'aria', name: 'アリア', emoji: '👱‍♀️',
+    scenes: null, minBond: 3, maxBond: 4, once: true,
+    text: 'ねえ……少し聞いてもいい？\n\nどうしてこんな危ない旅を続けてるの？\n怖くないの……？',
+    choices: [
+      { text: '「怖いけど、守りたいものがある」', bond: 2, reply: '……そっか。\nじゃあ私も、あなたを守る。それだけ。', reward: { gold: 0, items: ['highHerb','highHerb'] } },
+      { text: '「一緒にいてくれるから怖くない」', bond: 3, reply: '…………っ。\nもう、そういうこと言わないでよ。\n…………でも、ありがと。', reward: { items: ['elixir'] } },
+    ],
+  },
+  { id: 'aria_bond5',    companion: 'aria', name: 'アリア', emoji: '👱‍♀️',
+    scenes: null, minBond: 5, maxBond: 7, once: true,
+    text: 'あなたのそばにいると……\n不思議と安心する。\n\n変かな……こんなこと言うの。',
+    choices: [
+      { text: '「変じゃないよ」', bond: 2, reply: 'よかった……。\nずっと一緒に旅しよ。ね？', reward: { items: ['expCharm'] } },
+      { text: '「俺もそう思ってる」', bond: 3, reply: '……っ！\n……バカ。でも……嬉しい。', reward: { items: ['miracleDrug'] } },
+    ],
+  },
+  { id: 'aria_castle',   companion: 'aria', name: 'アリア', emoji: '👱‍♀️',
+    scenes: ['demon_castle_gate','demon_castle_hall'], minBond: 2,
+    text: 'いよいよ、か。\n\n怖い……正直に言えば。\nでも、あなたがいるなら——負けない。\n\n絶対に。',
+    choices: [
+      { text: '「一緒に行こう」', bond: 2, reply: 'うん……！ 行こう！！', reward: { hp: 100, mp: 50 } },
+    ],
+  },
+
+  // ── ガイアス ──
+  { id: 'gaius_village', companion: 'gaius', name: 'ガイアス', emoji: '⚔️',
+    scenes: ['village','village_inn'], minBond: 0,
+    text: '……ここの飯は旨そうだ。\n腹が減ってた。\n\nお前は？ 食えるうちに食っておけ。\n戦場では後悔するぞ。',
+    choices: [
+      { text: '「一緒に食べよう」', bond: 1, reply: '……ああ。そうするか。', reward: { hp: 60 } },
+      { text: '「先に行くよ」', bond: 0, reply: '……そうか。まあ待ってる。' },
+    ],
+  },
+  { id: 'gaius_cave',    companion: 'gaius', name: 'ガイアス', emoji: '⚔️',
+    scenes: ['cave_deep','cave_right'], minBond: 1,
+    text: '……こういう場所は囲まれると厄介だ。\n死角が多い。\n\n俺が前に出る。お前は後ろを頼む。',
+    choices: [
+      { text: '「頼りになるな」', bond: 1, reply: '……当たり前だ。俺の役目だ。' },
+      { text: '「一緒に前に出よう」', bond: 2, reply: '……はん。そういうやつだな、お前は。\n……嫌いじゃない。', reward: { hp: 50 } },
+    ],
+  },
+  { id: 'gaius_snow',    companion: 'gaius', name: 'ガイアス', emoji: '⚔️',
+    scenes: ['snow_pass','snow_village'], minBond: 1,
+    text: 'こういう寒さには慣れてる。\n昔の訓練で、真冬に山を越えたことがある。\n\nあの頃より、今の方が……\nずっとましだ。',
+    choices: [
+      { text: '「昔のこと、聞かせてくれ」', bond: 2, reply: '……長い話になるが、いいか。\nまあ……今度じっくり話してやる。', reward: { mp: 40 } },
+      { text: '「強いんだな」', bond: 1, reply: '……当然だ。' },
+    ],
+  },
+  { id: 'gaius_bond3',   companion: 'gaius', name: 'ガイアス', emoji: '⚔️',
+    scenes: null, minBond: 3, maxBond: 5, once: true,
+    text: '……なぜ俺についてくるんだ。\n\n俺は面倒なやつだ。\n自覚はある。\nそれでも……お前は離れない。',
+    choices: [
+      { text: '「信頼してるから」', bond: 2, reply: '……っ。\n……そうか。\n……なら、答えてやる義理がある。\n俺もお前を……信頼している。', reward: { items: ['heroShield'] } },
+      { text: '「仲間だから当然だ」', bond: 2, reply: '……はん。\n仲間、か。\n……悪くない言葉だ。', reward: { items: ['highMpPotion','highMpPotion'] } },
+    ],
+  },
+  { id: 'gaius_bond5',   companion: 'gaius', name: 'ガイアス', emoji: '⚔️',
+    scenes: null, minBond: 5, maxBond: 7, once: true,
+    text: 'こんなに誰かのために戦ったのは……\n初めてだ。\n\nお前のことは守る。\n……それだけだ。',
+    choices: [
+      { text: '「ありがとう、ガイアス」', bond: 2, reply: '……礼には及ばん。\n俺がそうしたいから、そうするだけだ。', reward: { items: ['heroArmor'] } },
+    ],
+  },
+
+  // ── ルナ ──
+  { id: 'luna_forest',   companion: 'luna', name: 'ルナ', emoji: '🎵',
+    scenes: ['forest_deep','forest_entrance'], minBond: 0,
+    text: 'この森……詩にしたい！\n木漏れ日が踊って、鳥の声が楽器みたい♪\n\n歩きながら作詞してもいい？',
+    choices: [
+      { text: '「どうぞ！ 聴かせてよ」', bond: 2, reply: '♪〜やさしい光が導く道〜♪\n\nどう？ いい感じでしょ！', reward: { mp: 40 } },
+      { text: '「うるさくしないでね」', bond: 0, reply: 'もう……わかったわよ。鼻歌だけにする。' },
+    ],
+  },
+  { id: 'luna_sea',      companion: 'luna', name: 'ルナ', emoji: '🎵',
+    scenes: ['sea_harbor','sea_village'], minBond: 1,
+    text: '海！ 波の音が音楽みたい！\n\nここで歌ったら気持ちよさそう……\n♪ 歌っていい？',
+    choices: [
+      { text: '「ぜひ！」', bond: 2, reply: '♪〜潮風よ、運べ——願いを遠くへ〜♪\n\nえへへ、ありがとう！', reward: { hp: 60, mp: 30 } },
+      { text: '「あとでね」', bond: 1, reply: 'うーん……わかった！ でも絶対あとでね！' },
+    ],
+  },
+  { id: 'luna_bond3',    companion: 'luna', name: 'ルナ', emoji: '🎵',
+    scenes: null, minBond: 3, maxBond: 5, once: true,
+    text: '私の歌……好き？\n\n正直に教えてほしいな。\nお世辞はいらないから。',
+    choices: [
+      { text: '「大好きだよ」', bond: 3, reply: '……本当に？\nよかった……嬉しい！！\n絶対もっとうまくなるね！', reward: { items: ['highMpPotion','highMpPotion','highMpPotion'] } },
+      { text: '「みんなを元気にしてくれる」', bond: 2, reply: 'そっか……。それが一番嬉しいな。\n歌い続けるね！', reward: { items: ['highMpPotion','highMpPotion'] } },
+    ],
+  },
+  { id: 'luna_bond5',    companion: 'luna', name: 'ルナ', emoji: '🎵',
+    scenes: null, minBond: 5, maxBond: 7, once: true,
+    text: 'この冒険の全部を……\n歌にして、永遠に残したい。\n\nあなたの物語を。\n世界中の人に聴いてもらうの。',
+    choices: [
+      { text: '「楽しみにしてる」', bond: 2, reply: 'うん！ 絶対素敵な歌にするよ！\n……一緒に最後まで旅しようね。', reward: { items: ['expCharm'] } },
+    ],
+  },
+
+  // ── ソラ ──
+  { id: 'sora_ruins',    companion: 'sora', name: 'ソラ', emoji: '🌙',
+    scenes: ['desert_ruins','sea_temple'], minBond: 0,
+    text: 'この魔法陣……古代文明のものね！\n解析してみると……\nすごい！ 空間制御の術式が組まれてる！\n\n興奮する！！',
+    choices: [
+      { text: '「詳しいんだね」', bond: 1, reply: '当然よ！ 魔法なら任せて！\nこの陣の核はここで——', reward: { mp: 50 } },
+      { text: '「気をつけて調べてよ」', bond: 1, reply: 'わかってる！ でも気になって止まれない！' },
+    ],
+  },
+  { id: 'sora_cave',     companion: 'sora', name: 'ソラ', emoji: '🌙',
+    scenes: ['cave_approach','cave_deep'], minBond: 1,
+    text: '洞窟の地質から、魔力の流れが読めるわ。\n\nここは地下水脈と交差してて……\n魔物が集まりやすい地形ね。気をつけて。',
+    choices: [
+      { text: '「助かる情報だね」', bond: 2, reply: 'ふふ、役に立てて嬉しい。\nルナはいつも褒めてくれないから……', reward: { mp: 40 } },
+      { text: '「すごいな」', bond: 1, reply: '当然よ。私を誰だと思ってるの。' },
+    ],
+  },
+  { id: 'sora_bond3',    companion: 'sora', name: 'ソラ', emoji: '🌙',
+    scenes: null, minBond: 3, maxBond: 5, once: true,
+    text: 'ルナとはずっと一緒で……\nあなたも大切な人になってきた。\n\n不思議ね。こんな感覚、初めて。',
+    choices: [
+      { text: '「俺もそう思ってる」', bond: 2, reply: '……そう。\nじゃあ……もっと一緒に研究しましょ。', reward: { items: ['highMpPotion','highMpPotion','highMpPotion'] } },
+      { text: '「ソラも大切な仲間だよ」', bond: 2, reply: '……仲間。うん。それでいい。\n……でも、特別な仲間。', reward: { items: ['magicNecklace'] } },
+    ],
+  },
+  { id: 'sora_bond5',    companion: 'sora', name: 'ソラ', emoji: '🌙',
+    scenes: null, minBond: 5, maxBond: 7, once: true,
+    text: '魔法の才能があるなら、教えてあげる。\n\n私が見込んだ人間には、全部教えるわ。\n……あなたは、その一人。',
+    choices: [
+      { text: '「ぜひ教えてくれ」', bond: 2, reply: '決まり！ 特訓するわよ！\nついてこられるかしら……楽しみ。', reward: { items: ['elixir','elixir'] } },
+    ],
+  },
+
+  // ── セラフィナ ──
+  { id: 'sera_village',  companion: 'serafina', name: 'セラフィナ', emoji: '✨',
+    scenes: ['village','village_inn'], minBond: 0,
+    text: 'この村の人たち、みんな笑顔ね。\n\n……守らなきゃって思う。\nそのために、私はここにいる。',
+    choices: [
+      { text: '「一緒に守ろう」', bond: 2, reply: 'うん……ありがとう。\nあなたと一緒なら、きっと大丈夫ね。', reward: { hp: 50 } },
+      { text: '「頼もしいね」', bond: 1, reply: 'ふふ……そうでしょう。' },
+    ],
+  },
+  { id: 'sera_snow',     companion: 'serafina', name: 'セラフィナ', emoji: '✨',
+    scenes: ['snow_village','snow_entrance'], minBond: 1,
+    text: '寒い地域の人って、心が温かい人が多いのよ。\n\n厳しい環境が、人を助け合わせるのかしら。\n……素敵ね。',
+    choices: [
+      { text: '「セラフィナも温かいよ」', bond: 2, reply: '……もう、急に何言うの。\nでも……嬉しいわ。ありがとう。', reward: { mp: 50 } },
+      { text: '「そうだね」', bond: 1, reply: 'ふふ。こういう場所、好きよ。' },
+    ],
+  },
+  { id: 'sera_bond3',    companion: 'serafina', name: 'セラフィナ', emoji: '✨',
+    scenes: null, minBond: 3, maxBond: 5, once: true,
+    text: '神様は……きっとあなたを導いている。\n\n私もそう信じてる。\nだからこそ、そばで支えたいの。',
+    choices: [
+      { text: '「君がいると心強い」', bond: 2, reply: '……神様の御心のままに。\nそして……私自身の意志でも、ここにいる。', reward: { items: ['elixir','highMpPotion'] } },
+    ],
+  },
+  { id: 'sera_bond5',    companion: 'serafina', name: 'セラフィナ', emoji: '✨',
+    scenes: null, minBond: 5, maxBond: 7, once: true,
+    text: 'あなたを癒すことが……\n今の私の一番の使命。\n\n神様への奉仕と同じくらい、大切なことよ。\nずっとそばにいる。約束する。',
+    choices: [
+      { text: '「ありがとう、セラフィナ」', bond: 2, reply: 'ふふ……どういたしまして。\n行きましょう、一緒に。', reward: { items: ['miracleDrug'] } },
+    ],
+  },
+
+  // ── ゼフィロス ──
+  { id: 'zeph_ruins',    companion: 'zephiros', name: 'ゼフィロス', emoji: '🔮',
+    scenes: ['desert_ruins','sea_temple'], minBond: 0,
+    text: 'この遺跡……3000年前の文明の痕跡だ。\n\n学術的に非常に価値が高い。\nここで研究できるなら、数年かけてもいい。',
+    choices: [
+      { text: '「旅が終わったら研究しよう」', bond: 2, reply: '……約束するか？\nなら、いいだろう。それまで生き残る。', reward: { mp: 60 } },
+      { text: '「今は急がないと」', bond: 1, reply: 'わかっている。……惜しいが。' },
+    ],
+  },
+  { id: 'zeph_cave',     companion: 'zephiros', name: 'ゼフィロス', emoji: '🔮',
+    scenes: ['cave_deep','cave_approach'], minBond: 1,
+    text: '洞窟の生態系は独特だ。\n\n魔物も……光を嫌い、独自の進化を遂げている。\n観察する価値がある。',
+    choices: [
+      { text: '「戦いながら観察するの？」', bond: 2, reply: 'もちろん。戦闘と研究は両立できる。\n……君も同時にこなしているだろう？', reward: { mp: 50 } },
+      { text: '「すごい集中力だね」', bond: 1, reply: '賢者として当然のことだ。' },
+    ],
+  },
+  { id: 'zeph_bond3',    companion: 'zephiros', name: 'ゼフィロス', emoji: '🔮',
+    scenes: null, minBond: 3, maxBond: 5, once: true,
+    text: '……君は面白い存在だ。\n\n観察する価値がある——\nこれは褒め言葉だ。\n悪く取るな。',
+    choices: [
+      { text: '「光栄だよ」', bond: 2, reply: 'そうか。では引き続き……\n期待に応えてくれ。', reward: { items: ['magicNecklace','elixir'] } },
+      { text: '「観察されてたの？」', bond: 1, reply: 'ずっとな。\n……嫌か？\nなら、やめる。', reward: { items: ['highMpPotion','highMpPotion'] } },
+    ],
+  },
+  { id: 'zeph_bond5',    companion: 'zephiros', name: 'ゼフィロス', emoji: '🔮',
+    scenes: null, minBond: 5, maxBond: 7, once: true,
+    text: '長い研究生活で……\n弟子を持ったことはなかった。\n\n君が……初めてかもしれない。\n正式に、師弟の契りを結ぶか？',
+    choices: [
+      { text: '「ぜひ！ よろしく頼む」', bond: 2, reply: '……ならば教えよう。\n全ての知識を。', reward: { items: ['elixir','elixir','expCharm'] } },
+    ],
+  },
+];
+
+// ============================================================
+//  旅のランダムイベント定義
+// ============================================================
+const TRAVEL_EVENTS = [
+  // ── 全エリア共通 ──
+  {
+    id: 'traveler_collapsed', area: null,
+    emoji: '🧍', title: '倒れた旅人',
+    text: '道の脇に旅人が倒れている……\n息はあるようだが、かなり衰弱しているようだ。\n\nどうする？',
+    choices: [
+      { text: '💊 薬草を使って助ける', effect: (next) => {
+          if (hasItem('herb')) {
+            removeItem('herb', 1);
+            gs.flags.helpedTraveler = (gs.flags.helpedTraveler || 0) + 1;
+            openTravelResult('🌟', '旅人を助けた！',
+              '旅人は意識を取り戻し、お礼に情報をくれた。\n\n「先の道に宝箱があるぞ……」\n\n【経験値 +80・絆が少し上がった】',
+              next, () => { gs.player.exp += 80; gainBondAll(1); updateStatus(); });
+          } else {
+            openTravelResult('😓', '薬草がない……',
+              '薬草を持っていなかった。\nせめて安全な場所へ運んでおいた。\n\n【経験値 +20】', next, () => { gs.player.exp += 20; });
+          }
+      }},
+      { text: '🚶 急いでいるので通り過ぎる', effect: (next) => {
+          openTravelResult('😶', '通り過ぎた',
+            'なんとなく後ろめたい気持ちが残る……\n\n先を急いだ。', next, null);
+      }},
+    ],
+  },
+  {
+    id: 'mysterious_merchant', area: null,
+    emoji: '🎪', title: '怪しい行商人',
+    text: '道端に風変わりな荷車を引いた行商人が立っている。\n\n「よっ、旅人。いいものを売ってるぞ？\n　ちょっと訳アリだが……」\n\nどうする？',
+    choices: [
+      { text: '💰 500Gで買う', effect: (next) => {
+          if (gs.player.gold >= 500) {
+            gs.player.gold -= 500;
+            const prizes = ['elixir','highHerb','highMpPotion','guardRing','powerRing','expCharm'];
+            const got = prizes[Math.floor(Math.random() * prizes.length)];
+            addItem(got);
+            openTravelResult('🎁', '購入した！',
+              `行商人から${ITEM_DATA[got]?.name || got}を受け取った！\n\n【${ITEM_DATA[got]?.name || got}を入手・-500G】`, next, () => updateStatus());
+          } else {
+            openTravelResult('💸', 'ゴールドが足りない……',
+              'お金が足りなかった。\n行商人は肩をすくめて去っていった。', next, null);
+          }
+      }},
+      { text: '🤔 断って立ち去る', effect: (next) => {
+          openTravelResult('👋', '断った',
+            '「そうかい、残念だね」\n行商人は去っていった。', next, null);
+      }},
+    ],
+  },
+  {
+    id: 'old_wallet', area: null,
+    emoji: '👝', title: '落ちている財布',
+    text: '道に古びた財布が落ちている。\n中を見ると金貨が入っているようだ。\n\nどうする？',
+    choices: [
+      { text: '💰 拾って使う', effect: (next) => {
+          const gold = Math.floor(Math.random() * 300) + 100;
+          gs.player.gold += gold;
+          openTravelResult('💰', '財布を拾った！',
+            `中に金貨が入っていた！\n\n【+${gold}G 獲得！】`, next, () => updateStatus());
+      }},
+      { text: '🔍 持ち主を探す', effect: (next) => {
+          gs.player.exp += 150;
+          openTravelResult('✨', '良いことをした！',
+            '近くの村で持ち主を見つけた！\n\n「ありがとう！これでよかったら……」\n\n【経験値 +150・善行を積んだ】', next, () => updateStatus());
+      }},
+    ],
+  },
+  {
+    id: 'mysterious_pot', area: null,
+    emoji: '🏺', title: '不思議な壺',
+    text: '道端に古い壺が置かれている。\n何かが入っているようだが……\n封印の紐がかかっている。\n\nどうする？',
+    choices: [
+      { text: '🔓 壺を開ける', effect: (next) => {
+          const roll = Math.random();
+          if (roll < 0.5) {
+            addItem('highHerb'); addItem('highHerb');
+            openTravelResult('🌿', '回復薬が入っていた！',
+              '壺の中から上薬草が2つ出てきた！\n\n【上薬草×2を入手！】', next, () => updateStatus());
+          } else if (roll < 0.8) {
+            const gold = Math.floor(Math.random() * 500) + 200;
+            gs.player.gold += gold;
+            openTravelResult('💰', 'お金が入っていた！',
+              `壺の中から金貨が出てきた！\n\n【+${gold}G 獲得！】`, next, () => updateStatus());
+          } else {
+            const dmg = Math.floor(Math.random() * 30) + 20;
+            gs.player.hp = Math.max(1, gs.player.hp - dmg);
+            openTravelResult('💥', 'トラップだった！',
+              `壺の中から毒ガスが噴き出した！\n\n【HP -${dmg}（罠ダメージ）】`, next, () => updateStatus());
+          }
+      }},
+      { text: '🚶 放置して進む', effect: (next) => {
+          openTravelResult('🤷', 'そのまま進んだ',
+            '壺には触れずに先へ進んだ。', next, null);
+      }},
+    ],
+  },
+  {
+    id: 'old_man_traveler', area: null,
+    emoji: '👴', title: '旅の老人',
+    text: '杖をついた老人が木陰で休んでいる。\n\n「ふむ、若い旅人よ。\n　少し話しかけてはくれないか？」\n\nどうする？',
+    choices: [
+      { text: '🗣️ 話を聞く', effect: (next) => {
+          const gifts = ['elixir','expCharm','highMpPotion','miracleDrug'];
+          const got = gifts[Math.floor(Math.random() * gifts.length)];
+          addItem(got);
+          openTravelResult('🎁', '老人から贈り物！',
+            `老人は長い旅の話を聞かせてくれた。\n最後に「これを持っていきなさい」と言って\nアイテムをくれた。\n\n【${ITEM_DATA[got]?.name || got}を入手！】`, next, () => updateStatus());
+      }},
+      { text: '⏩ 急いでいるので断る', effect: (next) => {
+          openTravelResult('🚶', '先を急いだ',
+            '老人は寂しそうに微笑んだ……\n\n後ろめたい気持ちが残る。', next, null);
+      }},
+    ],
+  },
+  {
+    id: 'shooting_star', area: null,
+    emoji: '🌟', title: '流れ星',
+    text: '空を見上げると、大きな流れ星が流れた！\n\nかつて聞いた言葉を思い出す——\n「流れ星に願えば、夢が叶う」\n\nどうする？',
+    choices: [
+      { text: '✨ 願いを唱える', effect: (next) => {
+          if (Math.random() < 0.6) {
+            gs.player.mp = gs.player.maxMp;
+            openTravelResult('💫', '願いが叶った！',
+              '温かい光に包まれた……\n\n【MPが全回復した！】', next, () => updateStatus());
+          } else {
+            gs.player.hp = Math.min(gs.player.maxHp, gs.player.hp + 100);
+            openTravelResult('🌟', '星の加護を受けた！',
+              '淡い光が体を癒してくれた……\n\n【HP +100回復！】', next, () => updateStatus());
+          }
+      }},
+      { text: '🙄 気にせず進む', effect: (next) => {
+          openTravelResult('💭', '通り過ぎた',
+            '…綺麗だったな、と思いながら進んだ。', next, null);
+      }},
+    ],
+  },
+  {
+    id: 'performers', area: null,
+    emoji: '🎭', title: '旅芸人の一座',
+    text: '陽気な音楽が聞こえてくる……\n旅芸人の一座が広場で演奏していた！\n\n「どうぞどうぞ、見ていってください！」\n\nどうする？',
+    choices: [
+      { text: '🎵 しばらく見物する', effect: (next) => {
+          gs.player.mp = Math.min(gs.player.maxMp, gs.player.mp + 60);
+          gs.player.hp = Math.min(gs.player.maxHp, gs.player.hp + 40);
+          openTravelResult('🎶', '気分が晴れた！',
+            '楽しい演奏に心が軽くなった！\n\n【HP+40・MP+60 回復！】', next, () => updateStatus());
+      }},
+      { text: '⏩ 先を急ぐ', effect: (next) => {
+          openTravelResult('🎵', '遠くから聴こえた',
+            '遠ざかりながら音楽を聴いた。\n少し心が和んだ気がする。', next, null);
+      }},
+    ],
+  },
+  // ── 森エリア ──
+  {
+    id: 'forest_spirit_call', area: 'forest',
+    emoji: '🧚', title: '精霊の呼び声',
+    text: '木々の間から不思議な光が揺らめいている。\n\n「……こちらへ……」\n\n精霊の声が聞こえる気がした。\n\nどうする？',
+    choices: [
+      { text: '✨ 光に従って進む', effect: (next) => {
+          gs.player.exp += 200;
+          addItem('highHerb'); addItem('highMpPotion');
+          openTravelResult('🧚', '精霊の祝福！',
+            '光の先に小さな泉があった。\n精霊が微笑みかけてくれた……\n\n【経験値+200・上薬草・上MPの薬を入手！】', next, () => updateStatus());
+      }},
+      { text: '🚶 無視して進む', effect: (next) => {
+          openTravelResult('🌲', 'そのまま進んだ',
+            '気になったが、先を急いだ。\n光はやがて消えた。', next, null);
+      }},
+    ],
+  },
+  {
+    id: 'lost_child', area: 'forest',
+    emoji: '👦', title: '迷子の子供',
+    text: '森の中で子供が泣いている。\n\n「うわーん、お父さんどこー！」\n\n迷子になってしまったようだ。\n\nどうする？',
+    choices: [
+      { text: '🤝 村まで送り届ける', effect: (next) => {
+          gainBondAll(2);
+          gs.player.exp += 150;
+          openTravelResult('😊', '子供を助けた！',
+            '子供を無事に村まで送り届けた。\n\n「ありがとう、お兄ちゃん！」\n\n仲間たちも嬉しそうだ。\n\n【経験値+150・絆+2 UP！】', next, () => updateStatus());
+      }},
+      { text: '🗺️ 道を教えるだけ', effect: (next) => {
+          gs.player.exp += 60;
+          openTravelResult('👋', '道を教えた',
+            '村への道を丁寧に教えてあげた。\n子供は元気よく走っていった。\n\n【経験値+60】', next, () => updateStatus());
+      }},
+    ],
+  },
+  // ── 雪エリア ──
+  {
+    id: 'blizzard', area: 'snow',
+    emoji: '🌨️', title: '吹雪に巻き込まれた！',
+    text: '突然、猛烈な吹雪が襲いかかってきた！\n\n前も見えない……\nどちらの道を選ぶ？',
+    choices: [
+      { text: '🏃 吹雪を突き進む！', effect: (next) => {
+          const dmg = Math.floor(Math.random() * 40) + 30;
+          gs.player.hp = Math.max(1, gs.player.hp - dmg);
+          openTravelResult('❄️', '吹雪を突破した！',
+            `凍えながらも強引に進んだ！\n体力を大きく消耗した……\n\n【HP -${dmg}（凍傷ダメージ）】`, next, () => updateStatus());
+      }},
+      { text: '🏠 岩陰で嵐が過ぎるのを待つ', effect: (next) => {
+          const dmg = Math.floor(Math.random() * 15) + 5;
+          gs.player.hp = Math.max(1, gs.player.hp - dmg);
+          openTravelResult('🌨️', '嵐が過ぎるのを待った',
+            '岩陰で身を潜めて待った。\n少し体は冷えたが、無事に通過できた。\n\n【HP -${dmg}（小ダメージ）】', next, () => updateStatus());
+      }},
+    ],
+  },
+  {
+    id: 'snow_oasis', area: 'snow',
+    emoji: '🔥', title: '雪山の焚き火',
+    text: 'あたたかい焚き火を見つけた！\n誰かが置いていったようだ。\nまだ火がくすぶっている。\n\nどうする？',
+    choices: [
+      { text: '🔥 しばらく暖を取る', effect: (next) => {
+          gs.player.hp = Math.min(gs.player.maxHp, gs.player.hp + 100);
+          gs.player.mp = Math.min(gs.player.maxMp, gs.player.mp + 50);
+          openTravelResult('🔥', '体が温まった！',
+            '焚き火で体をしっかり温めた。\n\n【HP+100・MP+50 回復！】', next, () => updateStatus());
+      }},
+      { text: '⏩ 先を急ぐ', effect: (next) => {
+          openTravelResult('❄️', '先へ進んだ',
+            '焚き火が恋しかったが、急いで進んだ。', next, null);
+      }},
+    ],
+  },
+  // ── 砂漠エリア ──
+  {
+    id: 'desert_oasis_hidden', area: 'desert',
+    emoji: '💧', title: '神秘のオアシス',
+    text: '砂漠の真ん中に、地図にないオアシスを発見！\n\nキラキラと輝く泉が広がっている……\n\nどうする？',
+    choices: [
+      { text: '💧 水を飲む', effect: (next) => {
+          gs.player.hp = gs.player.maxHp;
+          gs.player.mp = gs.player.maxMp;
+          openTravelResult('💫', '完全回復！',
+            '神秘の水を飲んだ……\n\n体の中から力が漲ってくる！\n\n【HP・MP完全回復！】', next, () => updateStatus());
+      }},
+      { text: '🏺 水筒に入れて持っていく', effect: (next) => {
+          addItem('elixir');
+          openTravelResult('🏺', 'エリクサーを入手！',
+            '水を水筒に入れると、神秘の力で\nエリクサーに変わった！\n\n【エリクサーを入手！】', next, () => updateStatus());
+      }},
+    ],
+  },
+  {
+    id: 'sandstorm', area: 'desert',
+    emoji: '🌪️', title: '砂嵐が来た！',
+    text: '遠くで砂が巻き上がっている……\n巨大な砂嵐が近づいている！\n\nどうする？',
+    choices: [
+      { text: '🏃 全速力で駆け抜ける', effect: (next) => {
+          const dmg = Math.floor(Math.random() * 50) + 20;
+          gs.player.hp = Math.max(1, gs.player.hp - dmg);
+          openTravelResult('🌪️', '砂嵐を突破！',
+            `砂が体に叩きつけられながらも突破した！\n\n【HP -${dmg}（砂嵐ダメージ）】`, next, () => updateStatus());
+      }},
+      { text: '🏕️ その場で待機する', effect: (next) => {
+          openTravelResult('⏳', '砂嵐が過ぎるのを待った',
+            '布で体を包んでしゃがみ込んだ。\n砂嵐が過ぎるまで少し時間がかかったが\n無事に通過できた。\n\n【ダメージなし・HP温存】', next, () => updateStatus());
+      }},
+    ],
+  },
+  // ── 海エリア ──
+  {
+    id: 'driftwood', area: 'sea',
+    emoji: '🌊', title: '漂流物を発見',
+    text: '海岸に何かが打ち上げられている……\n木箱のようだが、波に揺られている。\n\nどうする？',
+    choices: [
+      { text: '🔍 中を確認する', effect: (next) => {
+          const prizes = ['elixir','heroShield','deepSeaOrb','highMpPotion','elixir'];
+          const got = prizes[Math.floor(Math.random() * prizes.length)];
+          addItem(got);
+          openTravelResult('📦', '漂流物の中身！',
+            `箱を開けると、レアなアイテムが入っていた！\n\n【${ITEM_DATA[got]?.name || got}を入手！】`, next, () => updateStatus());
+      }},
+      { text: '🚶 触れずに進む', effect: (next) => {
+          openTravelResult('🌊', 'そのまま進んだ',
+            '後ろ髪を引かれながらも、先を急いだ。', next, null);
+      }},
+    ],
+  },
+  {
+    id: 'pirate_ship', area: 'sea',
+    emoji: '🏴‍☠️', title: '海賊船に遭遇！',
+    text: '大きな黒い船が近づいてくる……！\n\n「止まれ！通行料をもらおうか！」\n\n海賊だ！\n\nどうする？',
+    choices: [
+      { text: '⚔️ 戦って突破する！', effect: (next) => {
+          gs.postBattleScene = next;
+          const pirate = {
+            name: '海賊団の首領', emoji: '🏴‍☠️',
+            hp: 200, maxHp: 200,
+            attack: 38, defense: 12,
+            level: 18, exp: 180, gold: 500,
+            skill: { name: '海賊斬り', damage: 60, chance: 0.3, msg: '⚔️ 海賊斬りが炸裂！' },
+          };
+          startBattle(pirate);
+      }},
+      { text: '💰 通行料300Gを払う', effect: (next) => {
+          if (gs.player.gold >= 300) {
+            gs.player.gold -= 300;
+            openTravelResult('💸', '通行料を払った',
+              '渋々300Gを差し出した……\n\n「ありがとよ、通っていいぜ」\n\n【-300G】', next, () => updateStatus());
+          } else {
+            openTravelResult('😱', 'お金が足りない！',
+              '「金が無いだと？なら腕前を見せてもらおうか！」\n戦闘になってしまった！',
+              next, () => {
+                gs.postBattleScene = next;
+                const pirate = { name: '海賊団の首領', emoji: '🏴‍☠️', hp: 200, maxHp: 200, attack: 38, defense: 12, level: 18, exp: 180, gold: 300 };
+                startBattle(pirate);
+              });
+          }
+      }},
+    ],
+  },
+];
+
+// ============================================================
+//  NPCサブストーリー定義
+// ============================================================
+const NPC_STORIES = {
+
+  // ── 老鍛冶師 ガルム（村） ──
+  garm: {
+    name: '老鍛冶師 ガルム', emoji: '🔨',
+    stages: [
+      {
+        stage: 0,
+        unlock: () => true,
+        text: '……おっ、新顔か。\n俺はガルム。この村で鍛冶屋をやってる。\n\n昔は俺も冒険者だったんだがな……\n膝をやられちまって、今はこうしてる。\n\nお前さんも冒険者か？\n気をつけな——魔物は甘くない。',
+        replies: [
+          { text: '「冒険者です。よろしく」', next: true },
+          { text: '「昔の話を聞かせてください」', reply: '……長い話になるぞ。\nまあ、また来な。少しずつ話してやる。', next: false },
+        ],
+        reward: { items: ['herb','herb'], msg: '薬草を2つもらった！' },
+      },
+      {
+        stage: 1,
+        unlock: () => !!gs.flags.stoneGolemDefeated,
+        text: '石の番人を倒したか！\n……あいつとは昔、俺も戦ったことがある。\n\n仲間3人で挑んで……生き残ったのは俺だけだった。\n\n「お前は本物だな」って言ったあいつの声が\nまだ耳に残ってる。',
+        replies: [
+          { text: '「ガルムさんも強かったんですね」', next: true },
+        ],
+        reward: { items: ['powerRing'], msg: '力の指輪をもらった！' },
+      },
+      {
+        stage: 2,
+        unlock: () => !!gs.flags.sandPharaohDefeated,
+        text: 'ファラオを倒したか……！\nあの呪いは本物だぞ。俺の昔の仲間も、\nあの呪いに蝕まれて……\n\nよく生き残ったな。\n\nお前さんのことは……\n本物の勇者だと思ってる。',
+        replies: [
+          { text: '「仲間のためにも戦い続けます」', next: true },
+        ],
+        reward: { items: ['elixir','elixir'], msg: 'エリクサーを2つもらった！' },
+      },
+      {
+        stage: 3,
+        unlock: () => !!gs.flags.demonKingDefeated,
+        text: '……魔王を倒したか。\n\n俺には……もう叶わなかった夢だ。\nだが、お前が叶えてくれた。\n\nこれを受け取れ。\n俺の最後の作品だ——引退の記念に\n作った剣を、本物の勇者に渡せた。\n\n……悔いはない。',
+        replies: [
+          { text: '「大切にします」', next: false },
+        ],
+        reward: { items: ['heroSword','heroSword'], gold: 2000, msg: '勇者の剣×2と2000Gをもらった！' },
+        final: true,
+      },
+    ],
+  },
+
+  // ── 村の子供 トマ（村） ──
+  toma: {
+    name: '村の子供 トマ', emoji: '👦',
+    stages: [
+      {
+        stage: 0,
+        unlock: () => true,
+        text: 'お兄ちゃん、冒険者なの？\nすっごーい！ かっこいい！\n\nぼく、大きくなったら絶対冒険者になるんだ！\n強い魔物をいっぱい倒すの！',
+        replies: [
+          { text: '「頑張れよ！」', next: true },
+          { text: '「危ないぞ？」', reply: '大丈夫！ ぼく強いもん！\nお兄ちゃんに教えてもらうんだ！', next: true },
+        ],
+        reward: null,
+      },
+      {
+        stage: 1,
+        unlock: () => (gs.battleKillCount || 0) >= 20,
+        text: 'お兄ちゃん！ また来てくれたんだね！\n\nお兄ちゃんが魔物をいっぱい倒してるって\n村のみんなが言ってたよ！\n\nだから村が安全なんだって！\nありがとう！',
+        replies: [
+          { text: '「村を守るのが俺の仕事だ」', next: true },
+        ],
+        reward: { items: ['herb','herb','herb'], msg: '「お母さんが作った薬草だよ！」と薬草を3つもらった！' },
+      },
+      {
+        stage: 2,
+        unlock: () => !!gs.flags.demonKingDefeated,
+        text: '魔王を倒したって本当！？\nすごーい！！\n\nぼく……ずっと心配してたんだ。\nお兄ちゃんが帰ってこなかったらって。\n\nでも……帰ってきてくれた。\nよかった……。\n\nぼく、お兄ちゃんみたいな冒険者になる！\n絶対なる！！',
+        replies: [
+          { text: '「待ってるよ」', next: false },
+        ],
+        reward: { items: ['expCharm'], msg: '「これ、お守り！ 旅の記念に！」と経験値のお守りをもらった！' },
+        final: true,
+      },
+    ],
+  },
+
+  // ── 砂漠の占い師 ラーナ（砂漠） ──
+  larna: {
+    name: '砂漠の占い師 ラーナ', emoji: '🔮',
+    stages: [
+      {
+        stage: 0,
+        unlock: () => true,
+        text: '……来たか。運命に導かれた者よ。\n\n水晶が告げる——\n「炎と氷の間に、あなたの試練がある」\n\n……先を急ぐがいい。\n道は自ら切り開くものだ。',
+        replies: [
+          { text: '「ありがとう」', next: true },
+          { text: '「もっと詳しく教えて」', reply: '……水晶は、それ以上を語らない。\nあとはあなた自身が知るだろう。', next: true },
+        ],
+        reward: null,
+      },
+      {
+        stage: 1,
+        unlock: () => !!gs.flags.iceQueenDefeated,
+        text: '……氷の女王が倒れた。\n予言通りだ。\n\n次に水晶が告げるのは——\n「砂の王が目覚める」\n\nファラオ……あの王の封印が\nもうすぐ解けようとしている。\n\n備えよ、旅人。',
+        replies: [
+          { text: '「必ず倒してみせる」', next: true },
+        ],
+        reward: { items: ['elixir'], msg: '「これを持っていきなさい」とエリクサーをもらった！' },
+      },
+      {
+        stage: 2,
+        unlock: () => !!gs.flags.sandPharaohDefeated,
+        text: '……素晴らしい。\nファラオの封印が再び閉じた。\n\n次は……水晶が海底を映している。\n「深淵の番人が待つ」\n\n……あなたの旅は、まだ終わらない。\n終わりが近いようで、遠い。',
+        replies: [
+          { text: '「全部終わらせてみせる」', next: true },
+        ],
+        reward: { items: ['highMpPotion','highMpPotion','highMpPotion'], msg: '上MPの薬を3つもらった！' },
+      },
+      {
+        stage: 3,
+        unlock: () => !!gs.flags.demonKingDefeated,
+        text: '……水晶が……\n静かになった。\n\n長い長い間、ずっと嵐の中にいた。\nそれが……穏やかになった。\n\nあなたが……世界を救ったのか。\n\n私の占いが、初めて喜びを告げている。\n\n……ありがとう。本物の勇者よ。',
+        replies: [
+          { text: '「ラーナさんのヒントが助けになった」', next: false },
+        ],
+        reward: { items: ['miracleDrug', 'expCharm'], msg: '奇跡の薬と経験値のお守りをもらった！' },
+        final: true,
+      },
+    ],
+  },
+
+  // ── 老船乗り ポセイ（港町） ──
+  posei: {
+    name: '老船乗り ポセイ', emoji: '⚓',
+    stages: [
+      {
+        stage: 0,
+        unlock: () => true,
+        text: 'わしはポセイ。\n50年この海で飯を食ってきた老船乗りだ。\n\nこの海を知り尽くしたわしでも……\n海底神殿には近づかなかった。\n\nなぜかって？\n……戻ってきた者がいないからだ。\nそれだけだよ。',
+        replies: [
+          { text: '「俺は戻ってきますよ」', next: true },
+          { text: '「そんなに危険なんですか」', reply: '……ああ。だが、お前の目は違う。\n勇者の目だ。', next: true },
+        ],
+        reward: null,
+      },
+      {
+        stage: 1,
+        unlock: () => !!gs.flags.leviathanDefeated,
+        text: '大海蛇レヴィアタンを倒したか！！\n\nわしの若い頃のようだ……\nいや、わし以上かもしれん。\n\nあいつには昔、仲間を3人やられた。\n50年間、ずっと悔しかった。\n\nありがとう……若者よ。',
+        replies: [
+          { text: '「仲間の分まで戦いました」', next: true },
+        ],
+        reward: { items: ['elixir','elixir'], msg: 'エリクサーを2つもらった！' },
+      },
+      {
+        stage: 2,
+        unlock: () => !!gs.flags.demonKingDefeated,
+        text: '……世界が平和になったな。\n長い間、海が荒れていた。\n魔王の力で嵐が続いていたんだろう。\n\nそれが……静かになった。\n\nお前のおかげだ。\n\nなら……これをやろう。\n50年間、誰にも渡さなかった地図だ。\n「伝説の宝が眠る島」の場所が書いてある。\n行ってみるか？',
+        replies: [
+          { text: '「ありがたくいただきます！」', next: false },
+        ],
+        reward: { items: ['elixir','elixir','elixir'], gold: 3000, msg: 'エリクサー×3と3000Gをもらった！さらに伝説の島の情報も……！' },
+        final: true,
+      },
+    ],
+  },
+
+  // ── 雪山の隠者 ベルク（雪山） ──
+  berk: {
+    name: '雪山の隠者 ベルク', emoji: '🏔️',
+    stages: [
+      {
+        stage: 0,
+        unlock: () => true,
+        text: '……邪魔者が来たな。\n\nこの山に何の用だ。\n弱い者は引き返せ。\n氷の女王に殺されたいなら話は別だが。',
+        replies: [
+          { text: '「女王を倒しに来た」', next: true },
+          { text: '「あなたは何者ですか？」', reply: '……儂か。\n昔は騎士だった。今は隠者だ。\nそれだけだ。', next: true },
+        ],
+        reward: null,
+      },
+      {
+        stage: 1,
+        unlock: () => !!gs.flags.iceQueenDefeated,
+        text: '……氷の女王を倒したか。\n\n儂が30年かけてもできなかったことを\nお前は成し遂げた。\n\nお前は本物だな。\n\nこれを渡そう。\n雪山の精霊から授かった指輪だ。\n使いこなせるかどうかは、お前次第。',
+        replies: [
+          { text: '「ありがとうございます」', next: true },
+        ],
+        reward: { items: ['frostRing'], msg: '霜の指輪をもらった！' },
+      },
+      {
+        stage: 2,
+        unlock: () => !!gs.flags.demonKingDefeated,
+        text: '……魔王を倒したか。\n\n儂の師匠が言っていた。\n「真の強者は、世界を救う者だ」と。\n\n……お前が、その者だったのか。\n\n儂の全ての宝を持っていけ。\nお前ならふさわしい使い方ができる。',
+        replies: [
+          { text: '「ベルクさんの教えも力になりました」', next: false },
+        ],
+        reward: { items: ['polarArmor','elixir','elixir'], gold: 1500, msg: '極地の鎧・エリクサー×2・1500Gをもらった！' },
+        final: true,
+      },
+    ],
+  },
+};
+
+// NPCに話しかける
+function talkToNpc(npcId) {
+  if (gs.inBattle) return;
+  if (!gs.npcStages) gs.npcStages = {};
+  const npc  = NPC_STORIES[npcId];
+  if (!npc) return;
+
+  const currentStage = gs.npcStages[npcId] || 0;
+  // 現在のステージから最新の解放済みステージを探す
+  let stageData = null;
+  for (let i = npc.stages.length - 1; i >= 0; i--) {
+    const s = npc.stages[i];
+    if (s.stage <= currentStage && s.unlock()) {
+      stageData = s;
+      break;
+    }
+    // 次のステージが解放されているか確認
+    if (s.stage === currentStage + 1 && s.unlock()) {
+      stageData = s;
+      gs.npcStages[npcId] = s.stage;
+      break;
+    }
+  }
+  if (!stageData) stageData = npc.stages[0];
+
+  // すでにfinal済みなら最終メッセージ
+  if (gs.npcStages[npcId + '_done']) {
+    stageData = npc.stages[npc.stages.length - 1];
+    _openNpcTalk(npc, stageData, npcId, true);
+    return;
+  }
+  _openNpcTalk(npc, stageData, npcId, false);
+}
+
+function _openNpcTalk(npc, stageData, npcId, isDone) {
+  document.getElementById('npc-talk-emoji').textContent = npc.emoji;
+  document.getElementById('npc-talk-name').textContent  = npc.name;
+  document.getElementById('npc-talk-stage').textContent =
+    isDone ? '（お礼済み）' : `第${(stageData.stage || 0) + 1}話`;
+  document.getElementById('npc-talk-text').textContent  = stageData.text;
+
+  const btns = document.getElementById('npc-talk-buttons');
+  btns.innerHTML = '';
+
+  if (isDone) {
+    _addNpcCloseBtn(btns, '……またいつでも来い。');
+    return;
+  }
+
+  const choices = stageData.replies || [];
+  choices.forEach(r => {
+    const btn = document.createElement('button');
+    btn.textContent = r.text;
+    btn.onclick = () => {
+      if (r.reply) {
+        // 返答を表示してから報酬・進行
+        document.getElementById('npc-talk-text').textContent = r.reply;
+        btns.innerHTML = '';
+        const next = document.createElement('button');
+        next.textContent = '……';
+        next.onclick = () => _npcRewardAndAdvance(npc, stageData, npcId, r.next);
+        btns.appendChild(next);
+      } else {
+        _npcRewardAndAdvance(npc, stageData, npcId, r.next ?? true);
+      }
+    };
+    btns.appendChild(btn);
+  });
+
+  if (choices.length === 0) {
+    _addNpcCloseBtn(btns, '↩️ 話を聞いた');
+  }
+}
+
+function _npcRewardAndAdvance(npc, stageData, npcId, advance) {
+  // 報酬付与
+  if (stageData.reward) {
+    const r = stageData.reward;
+    if (r.gold)  { gs.player.gold += r.gold; }
+    if (r.items) { r.items.forEach(id => addItem(id)); }
+    updateStatus(); saveGame();
+    if (r.msg) showToast('🎁 ' + r.msg);
+  }
+  // ステージ進行
+  if (advance) {
+    gs.npcStages[npcId] = (gs.npcStages[npcId] || 0) + 1;
+  }
+  if (stageData.final) {
+    gs.npcStages[npcId + '_done'] = true;
+  }
+  saveGame();
+  document.getElementById('npc-talk-overlay').classList.add('hidden');
+}
+
+function _addNpcCloseBtn(btns, label) {
+  const btn = document.createElement('button');
+  btn.className = 'npc-close-btn';
+  btn.textContent = label || '↩️ 閉じる';
+  btn.onclick = () => document.getElementById('npc-talk-overlay').classList.add('hidden');
+  btns.appendChild(btn);
+}
+
+// ============================================================
+//  ミニゲーム：釣り
+// ============================================================
+const FISH_TABLE = [
+  { emoji:'🐟', name:'小魚',       rarity:'普通',   reward:{ gold: 80  }, weight:35 },
+  { emoji:'🐠', name:'熱帯魚',     rarity:'普通',   reward:{ gold: 150 }, weight:25 },
+  { emoji:'🐡', name:'ふぐ',       rarity:'普通',   reward:{ gold: 200, item:'herb' }, weight:15 },
+  { emoji:'🦈', name:'サメ',       rarity:'珍しい', reward:{ gold: 400, item:'highHerb' }, weight:10 },
+  { emoji:'🐙', name:'タコ',       rarity:'珍しい', reward:{ gold: 350, item:'highMpPotion' }, weight:8 },
+  { emoji:'🦑', name:'イカ',       rarity:'珍しい', reward:{ gold: 300, item:'antidote' }, weight:5 },
+  { emoji:'🐬', name:'イルカ',     rarity:'レア',   reward:{ gold: 800, item:'elixir' }, weight:1.5 },
+  { emoji:'🪸', name:'珊瑚の精霊', rarity:'レア',   reward:{ gold: 1000,item:'deepSeaOrb' }, weight:0.4 },
+  { emoji:'🌟', name:'金の魚',     rarity:'伝説',   reward:{ gold: 3000,item:'expCharm' }, weight:0.1 },
+];
+
+let _fishingTimer = null;
+let _fishBiteReady = false;
+
+function openFishingGame() {
+  if (gs.inBattle) return;
+  _fishBiteReady = false;
+  if (_fishingTimer) { clearTimeout(_fishingTimer); _fishingTimer = null; }
+
+  document.getElementById('fishing-fish-display').textContent = '';
+  document.getElementById('fishing-status').innerHTML =
+    '🎣 竿を海に投げよう！<br><span style="font-size:11px;color:var(--text-dim)">タイミングよく引くと大物が釣れる！</span>';
+  _renderFishingButtons('cast');
+  document.getElementById('fishing-overlay').classList.remove('hidden');
+}
+
+function _renderFishingButtons(phase) {
+  const btns = document.getElementById('fishing-buttons');
+  btns.innerHTML = '';
+  if (phase === 'cast') {
+    const b = document.createElement('button');
+    b.className = 'fish-cast-btn'; b.textContent = '🎣 竿を投げる！';
+    b.onclick = _fishingCast;
+    btns.appendChild(b);
+    const c = document.createElement('button');
+    c.className = 'fish-close-btn'; c.textContent = '↩️ やめる';
+    c.onclick = () => { clearTimeout(_fishingTimer); document.getElementById('fishing-overlay').classList.add('hidden'); };
+    btns.appendChild(c);
+  } else if (phase === 'waiting') {
+    const b = document.createElement('button');
+    b.className = 'fish-cast-btn'; b.textContent = '⏳ 待っている…'; b.disabled = true;
+    btns.appendChild(b);
+  } else if (phase === 'bite') {
+    const b = document.createElement('button');
+    b.className = 'fish-pull-btn'; b.textContent = '⚡ 今だ！引く！！';
+    b.onclick = _fishingPull;
+    btns.appendChild(b);
+    _fishingTimer = setTimeout(() => {
+      if (_fishBiteReady) {
+        _fishBiteReady = false;
+        document.getElementById('fishing-fish-display').textContent = '💨';
+        document.getElementById('fishing-status').textContent = '逃げられた……！\nまた挑戦してみよう！';
+        _renderFishingButtons('again');
+      }
+    }, 1800);
+  } else if (phase === 'again') {
+    const b = document.createElement('button');
+    b.className = 'fish-cast-btn'; b.textContent = '🎣 もう一度！';
+    b.onclick = () => { _fishBiteReady = false; _renderFishingButtons('cast'); document.getElementById('fishing-status').innerHTML = '🎣 竿を海に投げよう！<br><span style="font-size:11px;color:var(--text-dim)">タイミングよく引くと大物が釣れる！</span>'; document.getElementById('fishing-fish-display').textContent = ''; };
+    btns.appendChild(b);
+    const c = document.createElement('button');
+    c.className = 'fish-close-btn'; c.textContent = '↩️ 終わりにする';
+    c.onclick = () => document.getElementById('fishing-overlay').classList.add('hidden');
+    btns.appendChild(c);
+  }
+}
+
+function _fishingCast() {
+  _fishBiteReady = false;
+  document.getElementById('fishing-fish-display').textContent = '🌊';
+  const msgs = ['ぽちゃん……', '糸がゆらゆら……', '静かな水面……', 'ん…？何か来た……？'];
+  let i = 0;
+  document.getElementById('fishing-status').textContent = msgs[i];
+  _renderFishingButtons('waiting');
+  const delay = 1500 + Math.random() * 2500;
+  _fishingTimer = setTimeout(() => {
+    _fishBiteReady = true;
+    document.getElementById('fishing-fish-display').textContent = '❗';
+    document.getElementById('fishing-status').textContent = '食いついた！！\n今すぐ引け！！';
+    _renderFishingButtons('bite');
+  }, delay);
+}
+
+function _fishingPull() {
+  if (!_fishBiteReady) return;
+  _fishBiteReady = false;
+  clearTimeout(_fishingTimer);
+  // 魚を抽選
+  const total = FISH_TABLE.reduce((s, f) => s + f.weight, 0);
+  let r = Math.random() * total;
+  const fish = FISH_TABLE.find(f => (r -= f.weight) <= 0) || FISH_TABLE[0];
+  gs.player.gold += fish.reward.gold;
+  if (fish.reward.item) addItem(fish.reward.item);
+  updateStatus(); saveGame();
+  const rarityColor = { '普通':'#aaa', '珍しい':'#5dade2', 'レア':'#f0c040', '伝説':'#ff69b4' }[fish.rarity] || '#aaa';
+  document.getElementById('fishing-fish-display').textContent = fish.emoji;
+  document.getElementById('fishing-status').innerHTML =
+    `<strong style="color:${rarityColor}">${fish.emoji} ${fish.name}（${fish.rarity}）</strong><br>` +
+    `+${fish.reward.gold}G${fish.reward.item ? '・' + (ITEM_DATA[fish.reward.item]?.name || fish.reward.item) + 'を入手！' : ''}`;
+  _renderFishingButtons('again');
+}
+
+// ============================================================
+//  ミニゲーム：砂漠レース
+// ============================================================
+let _raceState = { round: 0, success: 0, obstacle: -1 };
+
+function openDesertRace() {
+  if (gs.inBattle) return;
+  _raceState = { round: 0, success: 0 };
+  _raceNextRound();
+  document.getElementById('race-overlay').classList.remove('hidden');
+}
+
+function _raceNextRound() {
+  const round = ++_raceState.round;
+  if (round > 3) { _raceResult(); return; }
+  _raceState.obstacle = Math.floor(Math.random() * 3); // 0=左 1=中央 2=右
+  document.getElementById('race-round').textContent = `第${round}コーナー / 全3コーナー`;
+  document.getElementById('race-track').textContent = '🏜️　🏜️　🏜️';
+  document.getElementById('race-status').textContent = `砂煙の中——\nどのルートを選ぶ？`;
+  const btns = document.getElementById('race-buttons');
+  btns.innerHTML = '';
+  [['← 左', 0], ['↑ 中央', 1], ['右 →', 2]].forEach(([label, idx]) => {
+    const b = document.createElement('button');
+    b.textContent = label;
+    b.onclick = () => _raceChoose(idx);
+    btns.appendChild(b);
+  });
+}
+
+function _raceChoose(idx) {
+  const obs = _raceState.obstacle;
+  const trackIcons = ['🏜️', '🏜️', '🏜️'];
+  trackIcons[obs] = '🪨';
+  document.getElementById('race-track').textContent = trackIcons.join('　');
+  const btns = document.getElementById('race-buttons');
+  btns.innerHTML = '';
+
+  if (idx !== obs) {
+    _raceState.success++;
+    document.getElementById('race-status').textContent = '✅ うまく回避した！\n砂埃をかけて駆け抜ける！';
+  } else {
+    const dmg = Math.floor(Math.random() * 30) + 20;
+    gs.player.hp = Math.max(1, gs.player.hp - dmg);
+    updateStatus();
+    document.getElementById('race-status').textContent = `💥 岩に激突！\nHP -${dmg}！`;
+  }
+  const next = document.createElement('button');
+  next.className = 'race-full-btn';
+  next.textContent = _raceState.round >= 3 ? '🏁 ゴール！' : '→ 次のコーナーへ';
+  next.onclick = _raceNextRound;
+  btns.appendChild(next);
+}
+
+function _raceResult() {
+  const s = _raceState.success;
+  const prizes = [
+    { gold: 200, item: null,       msg: '残念……0回成功。でもゴールはした！' },
+    { gold: 400, item: 'herb',     msg: '1回成功！まずまずのタイム！' },
+    { gold: 800, item: 'highHerb', msg: '2回成功！なかなかの腕前だ！' },
+    { gold:1500, item: 'elixir',   msg: '完璧！全コーナー回避！！砂漠の王者だ！' },
+  ];
+  const prize = prizes[s] || prizes[0];
+  gs.player.gold += prize.gold;
+  if (prize.item) addItem(prize.item);
+  updateStatus(); saveGame();
+  document.getElementById('race-round').textContent = '🏁 レース結果';
+  document.getElementById('race-track').textContent = `${s}/3 回避成功！`;
+  document.getElementById('race-status').innerHTML =
+    `<strong style="color:var(--gold)">${prize.msg}</strong><br>+${prize.gold}G${prize.item ? '・' + (ITEM_DATA[prize.item]?.name || prize.item) : ''}を獲得！`;
+  const btns = document.getElementById('race-buttons');
+  btns.innerHTML = '';
+  const again = document.createElement('button');
+  again.className = 'race-full-btn'; again.textContent = '🏜️ もう一度レース！';
+  again.onclick = () => { _raceState = { round: 0, success: 0 }; _raceNextRound(); };
+  const close = document.createElement('button');
+  close.className = 'race-full-btn'; close.textContent = '↩️ 終わりにする';
+  close.onclick = () => document.getElementById('race-overlay').classList.add('hidden');
+  btns.appendChild(again); btns.appendChild(close);
+}
+
+// ============================================================
+//  ミニゲーム：闘技場トーナメント
+// ============================================================
+const TOURNAMENT_ROSTER = [
+  { name: '若き剣士 カルロ',    emoji: '⚔️', hp: 220, maxHp: 220, attack: 42, defense: 15, level: 22, exp: 200, gold: 0 },
+  { name: '重装兵士 ドラン',    emoji: '🛡️', hp: 350, maxHp: 350, attack: 35, defense: 25, level: 25, exp: 220, gold: 0 },
+  { name: '速剣士 ライア',      emoji: '🌪️', hp: 200, maxHp: 200, attack: 55, defense: 12, level: 24, exp: 230, gold: 0,
+    skill: { name: '連続斬り', damage: 45, chance: 0.4, msg: '⚡ 連続斬りが炸裂！' } },
+  { name: '老闘士 ブライガ',    emoji: '💪', hp: 400, maxHp: 400, attack: 48, defense: 20, level: 28, exp: 280, gold: 0,
+    skill: { name: '鬼神の一撃', damage: 90, chance: 0.3, msg: '💥 鬼神の一撃！！' } },
+  { name: '魔法剣士 セイラ',    emoji: '✨', hp: 280, maxHp: 280, attack: 50, defense: 18, level: 27, exp: 260, gold: 0,
+    skill: { name: '魔法剣・炎', damage: 70, chance: 0.35, msg: '🔥 魔法剣・炎が炸裂！' } },
+  { name: 'トーナメント覇者 ガルド', emoji: '🏆', hp: 500, maxHp: 500, attack: 65, defense: 28, level: 35, exp: 400, gold: 0,
+    skill: { name: '覇王の裁き', damage: 120, chance: 0.3, msg: '⚡ 覇王の裁き！！' } },
+];
+
+let _tournState = { round: 0, enemies: [], wins: 0 };
+
+function openTournament() {
+  if (gs.inBattle) return;
+  // レベルに合わせて3体選出
+  const scaled = TOURNAMENT_ROSTER.map(e => {
+    const en = JSON.parse(JSON.stringify(e));
+    return scaleEnemyToPlayerLevel(en);
+  });
+  // ランダムに3体
+  const shuffled = scaled.sort(() => Math.random() - 0.5).slice(0, 3);
+  _tournState = { round: 0, enemies: shuffled, wins: 0 };
+  _renderTournament();
+  document.getElementById('tournament-overlay').classList.remove('hidden');
+}
+
+function _renderTournament() {
+  const { round, enemies, wins } = _tournState;
+  const bracket = document.getElementById('tournament-bracket');
+  bracket.innerHTML = enemies.map((e, i) => {
+    let cls = 'tourn-slot empty';
+    if (i < wins) cls = 'tourn-slot done';
+    else if (i === round) cls = 'tourn-slot current';
+    return `<div class="${cls}">${i < wins ? '✅' : i === round ? '⚔️' : '？'} ${i < wins ? e.name : i === round ? e.name : '???'}</div>`;
+  }).join('');
+
+  const btns = document.getElementById('tournament-buttons');
+  btns.innerHTML = '';
+
+  if (round >= 3) {
+    _tournamentVictory();
+    return;
+  }
+  const enemy = enemies[round];
+  document.getElementById('tournament-status').innerHTML =
+    `第${round + 1}戦：<strong style="color:#ffd700">${enemy.emoji} ${enemy.name}</strong><br>` +
+    `HP: ${enemy.maxHp} / ATK: ${enemy.attack}<br>` +
+    (round > 0 ? `<span style="color:#58d68d">前の勝利でHPが30%回復！</span>` : '');
+
+  const fight = document.createElement('button');
+  fight.className = 'tourn-fight-btn';
+  fight.textContent = `⚔️ 第${round + 1}戦 開始！`;
+  fight.onclick = () => {
+    document.getElementById('tournament-overlay').classList.add('hidden');
+    gs.postBattleScene = gs.currentScene;
+    gs._tournamentActive = true;
+    startBattle(enemy);
+  };
+  const quit = document.createElement('button');
+  quit.className = 'tourn-close-btn';
+  quit.textContent = '↩️ 棄権する';
+  quit.onclick = () => document.getElementById('tournament-overlay').classList.add('hidden');
+  btns.appendChild(fight); btns.appendChild(quit);
+}
+
+function _tournamentVictory() {
+  const prizes = [
+    { gold: 1000, items: ['elixir'] },
+    { gold: 2000, items: ['elixir', 'heroCirclet'] },
+    { gold: 3000, items: ['elixir', 'heroShield', 'expCharm'] },
+  ];
+  const prize = prizes[Math.min(_tournState.wins - 1, 2)];
+  gs.player.gold += prize.gold;
+  prize.items.forEach(id => addItem(id));
+  updateStatus(); saveGame();
+  document.getElementById('tournament-status').innerHTML =
+    `<strong style="color:#ffd700">🏆 トーナメント完全制覇！！</strong><br>` +
+    `+${prize.gold}G・${prize.items.map(id => ITEM_DATA[id]?.name || id).join('・')}を獲得！`;
+  const btns = document.getElementById('tournament-buttons');
+  btns.innerHTML = '';
+  const again = document.createElement('button');
+  again.className = 'tourn-fight-btn'; again.textContent = '🏆 再挑戦！';
+  again.onclick = openTournament;
+  const close = document.createElement('button');
+  close.className = 'tourn-close-btn'; close.textContent = '↩️ 終わりにする';
+  close.onclick = () => document.getElementById('tournament-overlay').classList.add('hidden');
+  btns.appendChild(again); btns.appendChild(close);
+}
+
+// ============================================================
+//  仲間会話イベント システム
+// ============================================================
+function checkCompanionTalk(sceneId) {
+  if (!gs.bondLevel) return;
+  if (!gs.companionTalkFlags) gs.companionTalkFlags = {};
+
+  // 参加中の仲間IDリスト
+  const activeIds = [];
+  if (gs.companion?.joined) activeIds.push('aria');
+  const extras = gs.extraCompanions || {};
+  ['gaius','luna','sora','serafina','zephiros'].forEach(id => {
+    if (extras[id]?.joined) activeIds.push(id);
+  });
+  if (activeIds.length === 0) return;
+
+  // 対象イベントを探す
+  const candidates = COMPANION_TALK_EVENTS.filter(ev => {
+    if (!activeIds.includes(ev.companion)) return false;
+    if (ev.once && gs.companionTalkFlags[ev.id]) return false;
+    const bond = gs.bondLevel[ev.companion] || 0;
+    if (bond < (ev.minBond || 0)) return false;
+    if (ev.maxBond !== undefined && bond > ev.maxBond) return false;
+    if (ev.scenes && !ev.scenes.includes(sceneId)) return false;
+    if (!ev.scenes && gs.companionTalkFlags[ev.id]) return false;
+    // シーン指定ありの場合、同じシーンで複数回出ないよう制御
+    const flagKey = ev.scenes ? ev.id + '_' + sceneId : ev.id;
+    if (gs.companionTalkFlags[flagKey]) return false;
+    return true;
+  });
+  if (candidates.length === 0) return;
+
+  // ランダムに1件選んで少し遅延して表示
+  const ev = candidates[Math.floor(Math.random() * candidates.length)];
+  const flagKey = ev.scenes ? ev.id + '_' + sceneId : ev.id;
+  gs.companionTalkFlags[flagKey] = true;
+  if (ev.once) gs.companionTalkFlags[ev.id] = true;
+  saveGame();
+
+  setTimeout(() => openCompanionTalk(ev), 600);
+}
+
+function openCompanionTalk(ev) {
+  document.getElementById('companion-talk-emoji').textContent = ev.emoji;
+  document.getElementById('companion-talk-name').textContent  = ev.name;
+  const bond = gs.bondLevel?.[ev.companion] || 0;
+  document.getElementById('companion-talk-bond').textContent  = '絆Lv ' + bond;
+  document.getElementById('companion-talk-text').textContent  = ev.text;
+
+  const btns = document.getElementById('companion-talk-buttons');
+  btns.innerHTML = '';
+
+  if (ev.choices && ev.choices.length > 0) {
+    ev.choices.forEach(c => {
+      const btn = document.createElement('button');
+      btn.textContent = c.text;
+      btn.onclick = () => {
+        // 絆UP
+        if (c.bond > 0) {
+          if (!gs.bondLevel) gs.bondLevel = {};
+          gs.bondLevel[ev.companion] = Math.min(10, (gs.bondLevel[ev.companion] || 0) + c.bond);
+        }
+        // 報酬
+        if (c.reward) {
+          if (c.reward.hp)    gs.player.hp = Math.min(gs.player.maxHp, gs.player.hp + c.reward.hp);
+          if (c.reward.mp)    gs.player.mp = Math.min(gs.player.maxMp, gs.player.mp + c.reward.mp);
+          if (c.reward.gold)  gs.player.gold += c.reward.gold;
+          if (c.reward.items) c.reward.items.forEach(id => addItem(id));
+        }
+        updateStatus(); saveGame();
+
+        // 返答があれば表示
+        if (c.reply) {
+          document.getElementById('companion-talk-text').textContent = c.reply;
+          btns.innerHTML = '';
+          const closeBtn = document.createElement('button');
+          closeBtn.textContent = '……うん。';
+          closeBtn.style.textAlign = 'center';
+          closeBtn.onclick = () => closeCompanionTalk(c.reward);
+          btns.appendChild(closeBtn);
+        } else {
+          closeCompanionTalk(c.reward);
+        }
+      };
+      btns.appendChild(btn);
+    });
+  } else {
+    const btn = document.createElement('button');
+    btn.textContent = '……うん。';
+    btn.style.textAlign = 'center';
+    btn.onclick = () => closeCompanionTalk(null);
+    btns.appendChild(btn);
+  }
+
+  document.getElementById('companion-talk-overlay').classList.remove('hidden');
+}
+
+function closeCompanionTalk(reward) {
+  document.getElementById('companion-talk-overlay').classList.add('hidden');
+  if (reward) {
+    const parts = [];
+    if (reward.hp)    parts.push(`HP+${reward.hp}`);
+    if (reward.mp)    parts.push(`MP+${reward.mp}`);
+    if (reward.gold)  parts.push(`+${reward.gold}G`);
+    if (reward.items) reward.items.forEach(id => parts.push(ITEM_DATA[id]?.name || id));
+    if (parts.length > 0) showToast('💞 ' + parts.join(' / ') + ' 獲得！');
+  }
+}
+
+// 旅イベントを開く
+function tryTriggerTravelEvent(nextScene, area) {
+  // 20%の確率でイベント発生
+  if (Math.random() > 0.20) { gotoScene(nextScene); return; }
+
+  // エリアに合うイベントをフィルタ
+  const pool = TRAVEL_EVENTS.filter(e => !e.area || e.area === area);
+  // 今回のセッションで出たイベントを除外（重複防止）
+  if (!gs.recentTravelEvents) gs.recentTravelEvents = [];
+  const fresh = pool.filter(e => !gs.recentTravelEvents.includes(e.id));
+  const candidates = fresh.length > 0 ? fresh : pool;
+  const ev = candidates[Math.floor(Math.random() * candidates.length)];
+
+  // 履歴更新（最大5件記憶）
+  gs.recentTravelEvents.push(ev.id);
+  if (gs.recentTravelEvents.length > 5) gs.recentTravelEvents.shift();
+
+  // ポップアップ表示
+  document.getElementById('travel-event-emoji').textContent = ev.emoji;
+  document.getElementById('travel-event-title').textContent = ev.title;
+  document.getElementById('travel-event-text').textContent  = ev.text;
+  const btns = document.getElementById('travel-event-buttons');
+  btns.innerHTML = '';
+  ev.choices.forEach(c => {
+    const btn = document.createElement('button');
+    btn.textContent = c.text;
+    btn.onclick = () => {
+      document.getElementById('travel-event-overlay').classList.add('hidden');
+      c.effect(nextScene);
+    };
+    btns.appendChild(btn);
+  });
+  document.getElementById('travel-event-overlay').classList.remove('hidden');
+}
+
+// 旅イベント結果ポップアップ
+function openTravelResult(emoji, title, text, nextScene, callback) {
+  document.getElementById('travel-event-emoji').textContent = emoji;
+  document.getElementById('travel-event-title').textContent = title;
+  document.getElementById('travel-event-text').textContent  = text;
+  const btns = document.getElementById('travel-event-buttons');
+  btns.innerHTML = '';
+  const btn = document.createElement('button');
+  btn.textContent = '→ 続きへ進む';
+  btn.style.cssText = 'width:100%;text-align:center;';
+  btn.onclick = () => {
+    document.getElementById('travel-event-overlay').classList.add('hidden');
+    if (callback) callback();
+    if (nextScene && !gs.inBattle) gotoScene(nextScene);
+  };
+  btns.appendChild(btn);
+  document.getElementById('travel-event-overlay').classList.remove('hidden');
+}
+
+// 全仲間の絆を少し上げるヘルパー
+function gainBondAll(amount) {
+  if (!gs.companionBond) return;
+  Object.keys(gs.companionBond).forEach(k => {
+    gs.companionBond[k] = Math.min(10, (gs.companionBond[k] || 0) + amount);
+  });
+}
 
 // ============================================================
 //  隠し宝箱・隠し部屋 定義
@@ -1557,6 +2916,8 @@ const SCENES = {
       { text: '🏨 宿屋「英雄の間」で休む（無料）', action: 'inn_free_village', needFlag: 'townDevVillage2' },
       { text: '🗡️ 伝説の武器屋へ', next: 'village_legend_shop', needFlag: 'townDevVillage5' },
       { text: '🐴 厩舎へ行く', next: 'village_stable' },
+      { text: '🔨 老鍛冶師ガルムに話しかける', action: 'npc_garm' },
+      { text: '👦 子供のトマに話しかける', action: 'npc_toma' },
       { text: '🎰 幻想ガチャ屋台', action: 'open_gacha' },
       { text: '🏗️ 村に投資する', next: 'town_invest_village' },
       { text: '⚔️ レベリングスポット一覧', next: 'leveling_hub', needLevel: 10 },
@@ -1767,6 +3128,7 @@ const SCENES = {
       { text: '🗡️ スキル鍛錬所へ', next: 'snow_skill_forge_scene', needFlag: 'townDevSnow3' },
       { text: '🔮 召喚師のテントへ', next: 'snow_summon_tent_scene', needFlag: 'townDevSnow4' },
       { text: '🧊 氷の秘密ダンジョンへ', next: 'snow_ice_dungeon', needFlag: 'townDevSnow5' },
+      { text: '🏔️ 隠者ベルクに話しかける', action: 'npc_berk' },
       { text: '❄️ 氷晶ガチャ屋台', action: 'open_gacha_snow', needFlag: 'ariaJoined' },
       { text: '🏗️ 集落に投資する', next: 'town_invest_snow' },
       { text: '↩️ 雪山の麓に戻る', next: 'snow_entrance' },
@@ -1918,7 +3280,9 @@ const SCENES = {
       { text: '🪨 素材専門店へ', next: 'desert_material_shop_scene', needFlag: 'townDevDesert3' },
       { text: '📚 魔法書店へ', next: 'desert_magic_shop_scene', needFlag: 'townDevDesert4' },
       { text: '🏺 砂漠の秘密ダンジョンへ', next: 'desert_secret_dungeon', needFlag: 'townDevDesert5' },
+      { text: '🔮 占い師ラーナに話しかける', action: 'npc_larna' },
       { text: '🏺 砂漠の秘宝ガチャ', action: 'open_gacha_desert' },
+      { text: '🏜️ 砂漠レースに挑む', action: 'open_desert_race' },
       { text: '🏗️ オアシスに投資する', next: 'town_invest_desert' },
       { text: '↩️ 砂漠の入口へ戻る', next: 'desert_entrance' },
     ]
@@ -1996,6 +3360,8 @@ const SCENES = {
       { text: '🏨 港の宿屋で休む（300G）', action: 'inn_rest_sea' },
       { text: '🏝️ 南海の孤島へ向かう', next: 'south_island_spot', needFlag: 'vehicleShip' },
       { text: '🌊 海底の宝ガチャ', action: 'open_gacha_sea' },
+      { text: '⚓ 老船乗りポセイに話しかける', action: 'npc_posei' },
+      { text: '🎣 釣りをする', action: 'open_fishing' },
       { text: '↩️ 引き返す', next: 'demon_road' },
     ]
   },
@@ -2464,6 +3830,7 @@ const SCENES = {
     choices: [
       { text: '✨ 魔法陣で全回復する', action: 'recover_arena' },
       { text: '🏟️ 闘技場に挑む（5連戦）', action: 'start_leveling_arena' },
+      { text: '🏆 トーナメントに挑む（3連戦・豪華報酬）', action: 'open_tournament' },
       { text: '↩️ スポット一覧へ', next: 'leveling_hub' },
     ]
   },
@@ -2786,6 +4153,7 @@ function createInitialState() {
     seasonBattleCount: 0,
     gacha: { pityCount: 0, totalPulls: 0, history: [] },
     areaGacha: {},
+    recentTravelEvents: [],
   };
 }
 
@@ -2895,7 +4263,25 @@ function getRandomEnemy(area) {
   const pool = AREA_ENEMIES[area] || ['slime'];
   const id = pool[Math.floor(Math.random() * pool.length)];
   const enemy = makeEnemy(id);
-  return scaleEnemyToPlayerLevel(enemy);
+  scaleEnemyToPlayerLevel(enemy);
+
+  // 8%でレア変異種に変換
+  const variant = RARE_VARIANTS[id];
+  if (variant && Math.random() < 0.08) {
+    enemy.name    = variant.name;
+    enemy.emoji   = variant.emoji;
+    enemy.maxHp   = Math.round(enemy.maxHp   * variant.hpMult);
+    enemy.hp      = enemy.maxHp;
+    enemy.attack  = Math.round(enemy.attack  * variant.atkMult);
+    enemy.exp     = Math.round(enemy.exp     * variant.expMult);
+    enemy.gold    = Math.round(enemy.gold    * variant.goldMult);
+    if (enemy.skill?.damage) enemy.skill.damage = Math.round(enemy.skill.damage * variant.atkMult);
+    enemy._isRare    = true;
+    enemy._rareDrop  = variant.drop;
+    enemy._rareMsg   = variant.msg;
+  }
+
+  return enemy;
 }
 
 function scaleEnemyToPlayerLevel(enemy) {
@@ -3025,6 +4411,9 @@ function gotoScene(sceneId) {
 
   // onEnterイベント
   if (scene.onEnter) handleSceneEvent(scene.onEnter);
+
+  // 仲間会話イベント（15%の確率で発生）
+  if (Math.random() < 0.15) checkCompanionTalk(sceneId);
 }
 
 function renderScene(scene) {
@@ -3208,6 +4597,11 @@ function handleChoice(choice) {
       startBattle(enemy);
       return;
     }
+    // 旅のランダムイベント（エンカウントしなかった場合に20%で発生）
+    if (choice.next) {
+      tryTriggerTravelEvent(choice.next, choice.encounterArea);
+      return;
+    }
   }
 
   if (choice.action) {
@@ -3379,6 +4773,18 @@ function executeAction(action, choice = {}) {
     case 'open_gacha_demon':
       openAreaGacha('demon');
       break;
+
+    // ミニゲーム
+    case 'open_fishing':      openFishingGame();   break;
+    case 'open_desert_race':  openDesertRace();    break;
+    case 'open_tournament':   openTournament();    break;
+
+    // NPCサブストーリー
+    case 'npc_garm':  talkToNpc('garm');  break;
+    case 'npc_toma':  talkToNpc('toma');  break;
+    case 'npc_larna': talkToNpc('larna'); break;
+    case 'npc_posei': talkToNpc('posei'); break;
+    case 'npc_berk':  talkToNpc('berk');  break;
 
     case 'inn_free_village':
       gs.player.hp = gs.player.maxHp;
@@ -3878,6 +5284,15 @@ function startBattle(enemy) {
 
   const isBoss = enemy.isBoss ? '⚡ ボス戦！！ ' : '';
   addBattleLog(`${isBoss}${enemy.emoji} ${enemy.name} が現れた！`, 'log-system');
+
+  // レアモンスター出現演出
+  if (enemy._isRare) {
+    addBattleLog('', 'log-system');
+    addBattleLog('✨✨✨ レアモンスター出現！！ ✨✨✨', 'log-system');
+    addBattleLog(enemy._rareMsg || 'レアな変異種だ！', 'log-system');
+    addBattleLog('⬆️ 経験値・ゴールド大幅UP！レアアイテムも確定ドロップ！', 'log-system');
+    setTimeout(() => showToast('✨ レアモンスター出現！！ 倒すとレアアイテム確定！'), 400);
+  }
 
   const isFinalBoss = !!(enemy.isFinalBoss) || enemy._id === 'demonKing' || enemy.name?.includes('魔王ダークロス');
   if (typeof SoundEngine !== 'undefined') SoundEngine.startBattleBGM(enemy.isBoss, isFinalBoss);
@@ -5370,6 +6785,14 @@ function endBattle(victory, escaped = false) {
     if (gainedGold > 0) addBattleLog(`💰 ${gainedGold}G を手に入れた！ ${expStr}${seasonSuffix}`, 'log-system');
     else                addBattleLog(`✨ ${expStr}${seasonSuffix}`, 'log-system');
 
+    // レアモンスター確定ドロップ
+    if (e._isRare && e._rareDrop) {
+      addItem(e._rareDrop);
+      const dropItem = ITEM_DATA[e._rareDrop];
+      addBattleLog(`🌟 レアドロップ！ ${dropItem?.emoji || '✨'}「${dropItem?.name || e._rareDrop}」を入手！`, 'log-system');
+      setTimeout(() => showToast(`🌟 レアドロップ！ 「${dropItem?.name || e._rareDrop}」を入手！`), 500);
+    }
+
     // モンスター図鑑
     if (e._id) recordEnemyKill(e._id);
 
@@ -5452,6 +6875,32 @@ function endBattle(victory, escaped = false) {
     if (gs.godsTowerMode) {
       gs.postBattleScene = null;
       setTimeout(() => handleTowerVictory(gainedExp, gainedGold), 1000);
+      return;
+    }
+
+    // トーナメント勝利処理
+    if (gs._tournamentActive) {
+      gs._tournamentActive = false;
+      _tournState.wins++;
+      _tournState.round++;
+      // 次の試合前にHP30%回復
+      if (_tournState.round < 3) {
+        const heal = Math.floor(gs.player.maxHp * 0.3);
+        gs.player.hp = Math.min(gs.player.maxHp, gs.player.hp + heal);
+        addBattleLog(`💚 次の試合前に体力が回復した！（+${heal}HP）`, 'log-heal');
+        updateStatus();
+      }
+      setTimeout(() => {
+        _renderTournament();
+        document.getElementById('tournament-overlay').classList.remove('hidden');
+      }, 800);
+      gs.postBattleScene = null;
+      setTimeout(() => {
+        document.getElementById('battle-area').classList.add('hidden');
+        document.getElementById('story-text-area').classList.remove('hidden');
+        document.getElementById('choices-area').classList.remove('hidden');
+        renderScene(SCENES[gs.currentScene]);
+      }, 400);
       return;
     }
 
@@ -6859,6 +8308,9 @@ function loadGame() {
     if (!gs.gacha) gs.gacha = { pityCount: 0, totalPulls: 0, history: [] };
     if (!gs.gacha.history) gs.gacha.history = [];
     if (!gs.areaGacha) gs.areaGacha = {};
+    if (!gs.companionTalkFlags) gs.companionTalkFlags = {};
+    if (!gs.recentTravelEvents) gs.recentTravelEvents = [];
+    if (!gs.npcStages) gs.npcStages = {};
     // 既クリアデータにワープ先フラグが欠けている場合の補完
     if (gs.flags.demonKingDefeated) {
       gs.flags.vis_gods_tower    = true;

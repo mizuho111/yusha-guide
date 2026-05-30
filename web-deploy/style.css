@@ -712,6 +712,211 @@ body {
 .inv-empty { font-size: 12px; color: var(--text-dim); font-style: italic; }
 
 /* ========== OVERLAYS ========== */
+/* ── NPCサブストーリー ── */
+#npc-talk-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.82);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 218; animation: fadeIn 0.25s ease;
+}
+#npc-talk-box {
+  width: 90%; max-width: 420px;
+  background: linear-gradient(135deg, #1a1000, #2d1e00);
+  border: 2px solid rgba(220,170,60,0.7);
+  border-radius: 12px; padding: 22px 24px;
+  animation: popIn 0.3s ease;
+  box-shadow: 0 0 28px rgba(220,170,60,0.2);
+}
+#npc-talk-header {
+  display: flex; align-items: center; gap: 10px;
+  border-bottom: 1px solid rgba(220,170,60,0.25);
+  padding-bottom: 10px; margin-bottom: 14px;
+}
+#npc-talk-emoji  { font-size: 30px; }
+#npc-talk-name   { font-size: 15px; font-weight: 700; color: #f0c878; letter-spacing: 1px; }
+#npc-talk-stage  { font-size: 11px; color: rgba(220,170,60,0.55); margin-left: auto; }
+#npc-talk-text {
+  font-size: 13px; line-height: 1.9; color: var(--text-main);
+  white-space: pre-wrap; margin-bottom: 18px;
+  background: rgba(255,255,255,0.03);
+  border-left: 3px solid rgba(220,170,60,0.4);
+  border-radius: 0 6px 6px 0; padding: 12px 14px;
+}
+#npc-talk-buttons { display: flex; flex-direction: column; gap: 8px; }
+#npc-talk-buttons button {
+  font-family: inherit; font-size: 13px; padding: 10px 14px; text-align: left;
+  background: rgba(180,130,30,0.12); color: #f0d890;
+  border: 1px solid rgba(220,170,60,0.3); border-radius: 6px;
+  cursor: pointer; transition: all 0.15s;
+}
+#npc-talk-buttons button:hover {
+  background: rgba(180,130,30,0.28); border-color: rgba(220,170,60,0.7); color: #fff;
+}
+#npc-talk-buttons .npc-close-btn { color: var(--text-dim); background: rgba(255,255,255,0.05); }
+
+/* ── ミニゲーム 共通 ── */
+#fishing-overlay, #race-overlay, #tournament-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.90);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 220; animation: fadeIn 0.25s ease;
+}
+#fishing-box, #race-box, #tournament-box {
+  width: 90%; max-width: 400px;
+  border-radius: 14px; padding: 24px 26px;
+  text-align: center; animation: popIn 0.3s ease;
+}
+
+/* 釣り */
+#fishing-box {
+  background: linear-gradient(135deg, #0a1f2e, #0d3350);
+  border: 2px solid #00bcd4;
+  box-shadow: 0 0 30px rgba(0,188,212,0.25);
+}
+#fishing-title  { font-size:18px; font-weight:700; color:#80dfff; margin-bottom:10px; letter-spacing:2px; }
+#fishing-water  { font-size:13px; color:#4dd0e1; margin:10px 0; letter-spacing:4px; }
+#fishing-status { font-size:14px; color:var(--text-main); min-height:60px; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:6px; line-height:1.8; }
+#fishing-fish-display { font-size:44px; min-height:52px; margin:8px 0; }
+#fishing-buttons { display:flex; flex-direction:column; gap:8px; margin-top:12px; }
+#fishing-buttons button { font-family:inherit; font-size:14px; padding:11px; border-radius:8px; cursor:pointer; transition:all 0.15s; }
+#fishing-buttons .fish-cast-btn { background:linear-gradient(135deg,#0d47a1,#1565c0); color:#80cfff; border:2px solid #1976d2; }
+#fishing-buttons .fish-pull-btn { background:linear-gradient(135deg,#e65100,#f57c00); color:#fff; border:2px solid #ff9800; font-weight:700; animation:glow 0.5s ease-in-out infinite alternate; }
+#fishing-buttons .fish-close-btn { background:rgba(255,255,255,0.08); color:var(--text-dim); border:1px solid rgba(255,255,255,0.15); }
+@keyframes glow { from { box-shadow:0 0 8px #ff9800; } to { box-shadow:0 0 20px #ff9800; } }
+
+/* 砂漠レース */
+#race-box {
+  background: linear-gradient(135deg, #1a1000, #2d1a00);
+  border: 2px solid #ff9800;
+  box-shadow: 0 0 30px rgba(255,152,0,0.25);
+}
+#race-title  { font-size:18px; font-weight:700; color:#ffcc02; margin-bottom:8px; letter-spacing:2px; }
+#race-round  { font-size:12px; color:var(--text-dim); margin-bottom:14px; }
+#race-track  { font-size:28px; letter-spacing:16px; margin:12px 0; min-height:40px; }
+#race-status { font-size:13px; color:var(--text-main); min-height:40px; line-height:1.8; margin-bottom:10px; }
+#race-buttons { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; }
+#race-buttons button { font-family:inherit; font-size:13px; padding:12px 6px; border-radius:8px; cursor:pointer; background:linear-gradient(135deg,#2d1a00,#3d2600); color:#ffcc80; border:1px solid rgba(255,152,0,0.4); transition:all 0.15s; }
+#race-buttons button:hover { background:linear-gradient(135deg,#3d2600,#5d3a00); border-color:#ff9800; }
+#race-buttons .race-full-btn { grid-column:1/-1; font-size:13px; }
+
+/* 闘技場トーナメント */
+#tournament-box {
+  background: linear-gradient(135deg, #1a0a00, #2a1500);
+  border: 2px solid #ffd700;
+  box-shadow: 0 0 30px rgba(255,215,0,0.2);
+}
+#tournament-title   { font-size:18px; font-weight:700; color:#ffd700; margin-bottom:10px; letter-spacing:2px; }
+#tournament-bracket { display:flex; justify-content:center; gap:8px; margin:10px 0; flex-wrap:wrap; }
+.tourn-slot { font-size:12px; padding:6px 10px; border-radius:6px; background:rgba(255,215,0,0.1); border:1px solid rgba(255,215,0,0.3); color:var(--text-dim); min-width:70px; }
+.tourn-slot.done  { background:rgba(39,174,96,0.2); border-color:#27ae60; color:#58d68d; }
+.tourn-slot.current { background:rgba(255,152,0,0.2); border-color:#ff9800; color:#ffcc80; }
+.tourn-slot.empty { opacity:0.4; }
+#tournament-status  { font-size:13px; color:var(--text-main); min-height:40px; line-height:1.8; margin:10px 0; }
+#tournament-buttons { display:flex; flex-direction:column; gap:8px; }
+#tournament-buttons button { font-family:inherit; font-size:14px; padding:11px; border-radius:8px; cursor:pointer; transition:all 0.15s; }
+#tournament-buttons .tourn-fight-btn { background:linear-gradient(135deg,#7d1100,#a81800); color:#ffd700; border:2px solid #c62828; font-weight:700; }
+#tournament-buttons .tourn-close-btn { background:rgba(255,255,255,0.06); color:var(--text-dim); border:1px solid rgba(255,255,255,0.15); }
+
+/* ── 仲間会話イベント ── */
+#companion-talk-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.75);
+  display: flex; align-items: flex-end; justify-content: center;
+  z-index: 215; padding-bottom: 20px;
+  animation: fadeIn 0.25s ease;
+}
+#companion-talk-box {
+  width: 90%; max-width: 420px;
+  background: linear-gradient(135deg, #0e0520, #1a0a38);
+  border: 2px solid rgba(180,120,255,0.6);
+  border-radius: 14px;
+  padding: 18px 20px;
+  animation: slideUp 0.3s ease;
+  box-shadow: 0 0 24px rgba(150,80,255,0.25);
+}
+@keyframes slideUp {
+  from { transform: translateY(40px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+#companion-talk-header {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid rgba(180,120,255,0.25);
+  padding-bottom: 10px;
+}
+#companion-talk-emoji { font-size: 28px; }
+#companion-talk-name  { font-size: 15px; font-weight: 700; color: #d0a0ff; letter-spacing: 1px; }
+#companion-talk-bond  { font-size: 11px; color: rgba(200,160,255,0.6); margin-left: auto; }
+#companion-talk-bubble {
+  background: rgba(255,255,255,0.04);
+  border-left: 3px solid rgba(180,120,255,0.5);
+  border-radius: 0 8px 8px 0;
+  padding: 12px 14px;
+  margin-bottom: 14px;
+}
+#companion-talk-text {
+  font-size: 13px; line-height: 1.85;
+  color: var(--text-main); white-space: pre-wrap;
+}
+#companion-talk-buttons { display: flex; flex-direction: column; gap: 7px; }
+#companion-talk-buttons button {
+  font-family: inherit; font-size: 13px;
+  padding: 9px 16px; text-align: left;
+  background: rgba(120,60,200,0.15);
+  color: #d0b0ff;
+  border: 1px solid rgba(150,80,255,0.35);
+  border-radius: 6px; cursor: pointer; transition: all 0.15s;
+}
+#companion-talk-buttons button:hover {
+  background: rgba(120,60,200,0.35);
+  border-color: rgba(180,120,255,0.7);
+  color: #fff;
+}
+
+/* ── 旅のランダムイベント ── */
+#travel-event-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.88);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 210;
+  animation: fadeIn 0.3s ease;
+}
+#travel-event-box {
+  text-align: center; padding: 28px 36px;
+  background: linear-gradient(135deg, #0d0318, #1a0530);
+  border: 3px solid var(--gold);
+  border-radius: 10px;
+  max-width: 420px; width: 90%;
+  animation: popIn 0.35s ease;
+  box-shadow: 0 0 30px rgba(240,192,64,0.2);
+}
+#travel-event-emoji { font-size: 44px; margin-bottom: 10px; }
+#travel-event-title {
+  font-size: 19px; font-weight: 700;
+  color: var(--gold);
+  text-shadow: 0 0 14px rgba(240,192,64,0.5);
+  margin-bottom: 14px; letter-spacing: 1px;
+}
+#travel-event-text {
+  font-size: 13px; color: var(--text-main);
+  line-height: 1.9; margin-bottom: 20px;
+  white-space: pre-wrap; text-align: left;
+}
+#travel-event-buttons { display: flex; flex-direction: column; gap: 8px; }
+#travel-event-buttons button {
+  font-family: inherit; font-size: 13px;
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #100820, #1e1040);
+  color: var(--text-main); border: 1px solid rgba(240,192,64,0.4);
+  border-radius: 5px; cursor: pointer; transition: all 0.15s;
+  text-align: left;
+}
+#travel-event-buttons button:hover {
+  background: linear-gradient(135deg, #1e1040, #2a1860);
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
 #hidden-treasure-overlay {
   position: fixed; inset: 0;
   background: rgba(0,0,0,0.88);

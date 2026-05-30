@@ -105,6 +105,146 @@ const SoundEngine = (() => {
       ],
     },
 
+    // ── 雪山BGM ──
+    snow: {
+      bpm: 74,
+      tracks: [
+        { type:'triangle', gain:0.22, notes:[
+          [N.B4,2],[N.E5,1],[N.D5,1],[N.B4,1],[N.A4,1],[N.G4,2],
+          [N.A4,1],[N.B4,1],[N.E5,2],[N.D5,1],[N.B4,1],[N.A4,2],
+          [N.G4,2],[N.A4,2],[N.B4,2],[N.E5,2],
+          [N.D5,1],[N.B4,1],[N.A4,1],[N.G4,1],[N.E4,4],
+        ]},
+        { type:'sine', gain:0.18, notes:[
+          [N.E3,4],[N.C3,4],[N.G3,4],[N.D3,4],
+          [N.E3,4],[N.A2,4],[N.G3,4],[N.D3,4],
+        ]},
+        { type:'triangle', gain:0.09, notes:[
+          [N.E4,0.5],[N.G4,0.5],[N.B4,0.5],[N.E5,0.5],[N.B4,0.5],[N.G4,0.5],[N.E4,0.5],[N.G4,0.5],
+          [N.A3,0.5],[N.C4,0.5],[N.E4,0.5],[N.A4,0.5],[N.E4,0.5],[N.C4,0.5],[N.A3,0.5],[N.C4,0.5],
+          [N.G3,0.5],[N.B3,0.5],[N.D4,0.5],[N.G4,0.5],[N.D4,0.5],[N.B3,0.5],[N.G3,0.5],[N.B3,0.5],
+          [N.D3,0.5],[N.A3,0.5],[N.D4,0.5],[N.A3,0.5],[N.D3,0.5],[N.A3,0.5],[N.D4,0.5],[N.A3,0.5],
+          [N.E4,0.5],[N.G4,0.5],[N.B4,0.5],[N.E5,0.5],[N.B4,0.5],[N.G4,0.5],[N.E4,0.5],[N.G4,0.5],
+          [N.A3,0.5],[N.E4,0.5],[N.A4,0.5],[N.E4,0.5],[N.A3,0.5],[N.E4,0.5],[N.A4,0.5],[N.E4,0.5],
+          [N.G3,0.5],[N.D4,0.5],[N.G4,0.5],[N.D4,0.5],[N.G3,0.5],[N.D4,0.5],[N.G4,0.5],[N.D4,0.5],
+          [N.D3,0.5],[N.A3,0.5],[N.D4,0.5],[N.A3,0.5],[N.D3,0.5],[N.A3,0.5],[N.D4,0.5],[N.A3,0.5],
+        ]},
+        { type:'perc', gain:0.07, notes:[
+          [3,1],[0,1],[3,1],[0,1],[3,1],[0,1],[3,1],[0,1],
+          [3,1],[0,1],[3,1],[0,1],[3,1],[0,1],[3,1],[0,1],
+          [3,1],[0,1],[3,1],[0,1],[3,1],[0,1],[3,1],[0,1],
+          [3,1],[0,1],[3,1],[0,1],[3,1],[0,1],[3,1],[0,1],
+        ]},
+      ],
+    },
+
+    // ── 砂漠BGM ──
+    desert: {
+      bpm: 112,
+      tracks: [
+        { type:'sawtooth', gain:0.15, notes:[
+          [N.A4,1],[N.G4,0.5],[N.A4,0.5],[N.C5,1],[N.B4,1],
+          [N.A4,2],[N.E5,2],
+          [N.G4,0.5],[N.A4,0.5],[N.B4,1],[N.C5,1],[N.A4,1],
+          [N.G4,2],[N.E4,2],
+          [N.A4,1],[N.C5,1],[N.B4,0.5],[N.A4,0.5],[N.G4,1],[N.A4,1],
+          [N.E5,2],[N.D5,2],
+          [N.C5,1],[N.B4,1],[N.A4,1],[N.G4,1],
+          [N.A4,4],
+        ]},
+        { type:'sine', gain:0.20, notes:[
+          [N.A2,4],[N.E3,4],[N.F3,4],[N.E3,4],
+          [N.A2,4],[N.D3,4],[N.G3,4],[N.E3,4],
+        ]},
+        { type:'square', gain:0.08, notes:[
+          [N.A3,0.5],[N.R,0.5],[N.E4,0.5],[N.R,0.5],[N.A3,0.5],[N.R,0.5],[N.G3,0.5],[N.R,0.5],
+          [N.A3,0.5],[N.R,0.5],[N.E4,0.5],[N.R,0.5],[N.A3,0.5],[N.R,0.5],[N.E3,0.5],[N.R,0.5],
+          [N.F3,0.5],[N.R,0.5],[N.C4,0.5],[N.R,0.5],[N.F3,0.5],[N.R,0.5],[N.A3,0.5],[N.R,0.5],
+          [N.G3,0.5],[N.R,0.5],[N.D4,0.5],[N.R,0.5],[N.G3,0.5],[N.R,0.5],[N.B3,0.5],[N.R,0.5],
+          [N.A3,0.5],[N.R,0.5],[N.E4,0.5],[N.R,0.5],[N.C4,0.5],[N.R,0.5],[N.A3,0.5],[N.R,0.5],
+          [N.G3,0.5],[N.R,0.5],[N.E4,0.5],[N.R,0.5],[N.D4,0.5],[N.R,0.5],[N.B3,0.5],[N.R,0.5],
+          [N.E3,0.5],[N.R,0.5],[N.A3,0.5],[N.R,0.5],[N.E4,0.5],[N.R,0.5],[N.G4,0.5],[N.R,0.5],
+          [N.A3,0.5],[N.R,0.5],[N.A3,0.5],[N.R,0.5],[N.A3,0.5],[N.R,0.5],[N.A3,0.5],[N.R,0.5],
+        ]},
+        { type:'perc', gain:0.14, notes:[
+          [1,0.5],[3,0.5],[2,0.5],[3,0.5],[1,0.5],[3,0.5],[2,0.5],[3,0.5],
+          [1,0.5],[3,0.5],[2,0.5],[3,0.5],[1,0.5],[3,0.5],[2,0.5],[3,0.5],
+          [1,0.5],[3,0.5],[2,0.5],[3,0.5],[1,0.5],[3,0.5],[2,0.5],[3,0.5],
+          [1,0.5],[3,0.5],[2,0.5],[3,0.5],[1,0.5],[3,0.5],[2,0.5],[3,0.5],
+          [1,0.5],[3,0.5],[2,0.5],[3,0.5],[1,0.5],[3,0.5],[2,0.5],[3,0.5],
+          [1,0.5],[3,0.5],[2,0.5],[3,0.5],[1,0.5],[3,0.5],[2,0.5],[3,0.5],
+          [1,0.5],[3,0.5],[2,0.5],[3,0.5],[1,0.5],[3,0.5],[2,0.5],[3,0.5],
+          [1,0.5],[3,0.5],[2,0.5],[3,0.5],[1,0.5],[3,0.5],[2,0.5],[3,0.5],
+        ]},
+      ],
+    },
+
+    // ── 海BGM ──
+    sea: {
+      bpm: 82,
+      tracks: [
+        { type:'sine', gain:0.22, notes:[
+          [N.G4,2],[N.E4,2],[N.F4,2],[N.G4,2],
+          [N.A4,2],[N.C5,2],[N.B4,2],[N.G4,2],
+          [N.E5,2],[N.D5,2],[N.C5,1],[N.B4,1],[N.A4,2],
+          [N.G4,2],[N.F4,2],[N.E4,4],
+        ]},
+        { type:'sine', gain:0.16, notes:[
+          [N.C3,4],[N.F3,4],[N.G3,4],[N.C3,4],
+          [N.A2,4],[N.F3,4],[N.G3,4],[N.G2,4],
+        ]},
+        { type:'triangle', gain:0.09, notes:[
+          [N.C4,0.5],[N.E4,0.5],[N.G4,0.5],[N.C5,0.5],[N.G4,0.5],[N.E4,0.5],[N.C4,0.5],[N.E4,0.5],
+          [N.F3,0.5],[N.A3,0.5],[N.C4,0.5],[N.F4,0.5],[N.C4,0.5],[N.A3,0.5],[N.F3,0.5],[N.A3,0.5],
+          [N.G3,0.5],[N.B3,0.5],[N.D4,0.5],[N.G4,0.5],[N.D4,0.5],[N.B3,0.5],[N.G3,0.5],[N.B3,0.5],
+          [N.C4,0.5],[N.E4,0.5],[N.G4,0.5],[N.C5,0.5],[N.G4,0.5],[N.E4,0.5],[N.C4,0.5],[N.E4,0.5],
+          [N.A3,0.5],[N.C4,0.5],[N.E4,0.5],[N.A4,0.5],[N.E4,0.5],[N.C4,0.5],[N.A3,0.5],[N.C4,0.5],
+          [N.F3,0.5],[N.A3,0.5],[N.C4,0.5],[N.F4,0.5],[N.C4,0.5],[N.A3,0.5],[N.F3,0.5],[N.A3,0.5],
+          [N.G3,0.5],[N.D4,0.5],[N.G4,0.5],[N.B4,0.5],[N.G4,0.5],[N.D4,0.5],[N.G3,0.5],[N.D4,0.5],
+          [N.C4,0.5],[N.G3,0.5],[N.C4,0.5],[N.E4,0.5],[N.G4,0.5],[N.C5,0.5],[N.G4,0.5],[N.E4,0.5],
+        ]},
+        { type:'perc', gain:0.08, notes:[
+          [1,1],[3,0.5],[0,0.5],[2,1],[3,0.5],[0,0.5],[1,1],[3,0.5],[0,0.5],[2,1],[3,0.5],[0,0.5],
+          [1,1],[3,0.5],[0,0.5],[2,1],[3,0.5],[0,0.5],[1,1],[3,0.5],[0,0.5],[2,1],[3,0.5],[0,0.5],
+          [1,1],[3,0.5],[0,0.5],[2,1],[3,0.5],[0,0.5],[1,1],[3,0.5],[0,0.5],[2,1],[3,0.5],[0,0.5],
+          [1,1],[3,0.5],[0,0.5],[2,1],[3,0.5],[0,0.5],[1,1],[3,0.5],[0,0.5],[2,1],[3,0.5],[0,0.5],
+        ]},
+      ],
+    },
+
+    // ── フィールドBGM（屋外・冒険） ──
+    field: {
+      bpm: 100,
+      tracks: [
+        { type:'triangle', gain:0.22, notes:[
+          [N.D4,1],[N.G4,1],[N.B4,1],[N.D5,1],
+          [N.B4,1],[N.A4,1],[N.G4,2],
+          [N.D5,1],[N.B4,1],[N.A4,1],[N.G4,1],
+          [N.A4,2],[N.D4,2],
+          [N.E4,1],[N.G4,1],[N.A4,1],[N.B4,1],
+          [N.G4,1],[N.F4,1],[N.E4,2],
+          [N.D4,1],[N.E4,1],[N.G4,1],[N.A4,1],
+          [N.G4,4],
+        ]},
+        { type:'sine', gain:0.14, notes:[
+          [N.G3,4],[N.D3,4],[N.C3,4],[N.G3,4],
+          [N.F3,4],[N.G3,4],[N.D3,4],[N.G3,4],
+        ]},
+        { type:'square', gain:0.08, notes:[
+          [N.D4,2],[N.G3,2],[N.D4,2],[N.G3,2],
+          [N.C4,2],[N.G3,2],[N.D4,2],[N.A3,2],
+          [N.B3,2],[N.G3,2],[N.B3,2],[N.C4,2],
+          [N.G3,2],[N.D4,2],[N.G3,4],
+        ]},
+        { type:'perc', gain:0.12, notes:[
+          [1,1],[3,0.5],[2,0.5],[1,0.5],[3,0.5],[2,1],[3,0.5],[0,0.5],
+          [1,1],[3,0.5],[2,0.5],[1,0.5],[3,0.5],[2,1],[3,0.5],[0,0.5],
+          [1,1],[3,0.5],[2,0.5],[1,0.5],[3,0.5],[2,1],[3,0.5],[0,0.5],
+          [1,1],[3,0.5],[2,0.5],[1,0.5],[3,0.5],[2,1],[3,0.5],[0,0.5],
+        ]},
+      ],
+    },
+
     battle: {
       bpm: 148,
       tracks: [
@@ -138,6 +278,16 @@ const SoundEngine = (() => {
           [N.G2,0.5],[N.R,0.5],[N.F2,0.5],[N.R,0.5],
           [N.D2,1],[N.R,1],
         ]},
+        { type:'perc', gain:0.16, notes:[
+          [1,0.5],[3,0.5],[2,0.5],[3,0.5],[1,0.5],[3,0.5],[2,0.5],[3,0.5],
+          [1,0.5],[3,0.5],[2,0.5],[3,0.5],[1,0.5],[3,0.5],[2,0.5],[3,0.5],
+          [1,0.5],[3,0.5],[2,0.5],[3,0.5],[1,0.5],[3,0.5],[2,0.5],[3,0.5],
+          [1,0.5],[3,0.5],[2,0.5],[3,0.5],[1,0.5],[3,0.5],[2,0.5],[3,0.5],
+          [1,0.5],[3,0.5],[2,0.5],[3,0.5],[1,0.5],[3,0.5],[2,0.5],[3,0.5],
+          [1,0.5],[3,0.5],[2,0.5],[3,0.5],[1,0.5],[3,0.5],[2,0.5],[3,0.5],
+          [1,0.5],[3,0.5],[2,0.5],[3,0.5],[1,0.5],[3,0.5],[2,0.5],[3,0.5],
+          [1,0.5],[3,0.5],[2,0.5],[3,0.5],[1,0.5],[3,0.5],[2,0.5],[3,0.5],
+        ]},
       ],
     },
 
@@ -165,6 +315,16 @@ const SoundEngine = (() => {
           [N.E3,2],[N.D3,2],[N.C3,2],[N.B2,2],
           [N.B2,2],[N.C3,2],[N.D3,2],[N.G2,2],
           [N.D3,2],[N.C3,2],[N.B2,2],[N.A2,2],
+        ]},
+        { type:'perc', gain:0.14, notes:[
+          [1,1],[0,0.5],[3,0.5],[2,1],[3,1],
+          [1,1],[0,0.5],[3,0.5],[2,1],[3,1],
+          [1,1],[0,0.5],[3,0.5],[2,1],[3,1],
+          [1,1],[0,0.5],[3,0.5],[2,1],[3,1],
+          [1,0.5],[4,0.5],[3,0.5],[0,0.5],[2,1],[3,1],
+          [1,0.5],[4,0.5],[3,0.5],[0,0.5],[2,1],[3,1],
+          [1,1],[0,0.5],[3,0.5],[2,1],[3,1],
+          [1,1],[0,0.5],[3,0.5],[2,1],[3,1],
         ]},
       ],
     },
@@ -197,6 +357,12 @@ const SoundEngine = (() => {
           [N.F2,1],[N.G2,1],[N.A2,2],
           [N.D3,1],[N.R,0.5],[N.C3,0.5],[N.B2,1],[N.A2,1],
           [N.A2,4],
+        ]},
+        { type:'perc', gain:0.15, notes:[
+          [1,1],[4,1],[3,0.5],[0,0.5],[2,1],[3,1],[0,1],[3,0.5],[0,0.5],
+          [1,1],[4,1],[3,0.5],[0,0.5],[2,1],[3,1],[0,1],[3,0.5],[0,0.5],
+          [1,1],[4,1],[3,0.5],[0,0.5],[2,1],[3,1],[0,1],[3,0.5],[0,0.5],
+          [1,1],[4,1],[3,0.5],[0,0.5],[2,1],[3,1],[0,1],[3,0.5],[0,0.5],
         ]},
       ],
     },
@@ -267,26 +433,51 @@ const SoundEngine = (() => {
   //  Scene → BGM mapping
   // ============================================================
   const SCENE_BGM = {
+    // 村・町
     village:'village', village_inn:'village', village_shop:'village',
     village_smith:'village', village_elder:'village', village_stable:'village',
-    desert_oasis:'village', desert_oasis_heal:'village',
-    snow_village:'village', snow_inn:'village', snow_shop:'village',
-    sea_harbor:'village', sea_return:'village',
-    post_clear_hub:'village', airship_dealer:'village',
-    grasslands_spot:'village', south_island_spot:'village',
-    sky_island_hub:'village', sky_island_spot:'village',
-    leveling_hub:'village',
-    forest:'dungeon', forest_depth:'dungeon',
-    cave:'dungeon', cave_b2:'dungeon', cave_b3:'dungeon',
+    leveling_hub:'village', post_clear_hub:'village', airship_dealer:'village',
+
+    // フィールド（屋外）
+    village_gate:'field', crossroads_snow:'field', crossroads_desert:'field',
+    grasslands_spot:'field', south_island_spot:'field',
+    sky_island_hub:'field', sky_island_spot:'field',
+    forest_entrance:'field', snow_entrance:'field', desert_entrance:'field',
+
+    // 雪山エリア
+    snow_village:'snow', snow_inn:'snow', snow_shop:'snow',
+    snow_pass:'snow', snow_cliff:'snow', snow_cave:'snow',
+    snow_castle_approach:'snow', snow_castle:'snow',
+
+    // 砂漠エリア
+    desert_oasis:'desert', desert_oasis_heal:'desert',
+    desert_start:'desert', desert_ruins:'desert',
+    desert_temple:'desert', desert_town:'desert',
+
+    // 海エリア
+    sea_harbor:'sea', sea_return:'sea',
+    sea_descent:'sea', sea_village:'sea',
+
+    // ダンジョン
+    forest:'dungeon', forest_deep:'dungeon', forest_start:'dungeon',
+    cave:'dungeon', cave_approach:'dungeon', cave_right:'dungeon',
+    cave_left:'dungeon', cave_deep:'dungeon',
     ruins:'dungeon', ruins_b2:'dungeon', ruins_b3:'dungeon',
-    sea:'dungeon',
+    sea_temple:'dungeon', sea_temple_deep:'dungeon',
     underwater_temple:'dungeon', underwater_temple_b2:'dungeon',
     volcano:'dungeon', volcano_b2:'dungeon',
+    void_map:'dungeon', gods_tower_hub:'dungeon',
+
+    // ボスエリア
+    demon_road:'boss', demon_castle_gate:'boss',
+    demon_castle_hall:'boss', demon_castle_throne:'boss',
     demon_castle:'boss', demon_castle_b2:'boss', demon_castle_b3:'boss',
     tower_of_gods:'boss', tower_of_gods_b2:'boss', tower_of_gods_b3:'boss',
-    endless_trial:'boss',
+    endless_trial_hub:'boss', desert_hidden:'boss', desert_arena_expert:'boss',
+
+    // 特殊
     final_boss:'demon_king',
-    ending_scene:'ending',
+    ending_scene:'ending', epilogue:'ending',
   };
 
   // ============================================================
@@ -356,6 +547,33 @@ const SoundEngine = (() => {
     src.stop(start + dur + 0.05);
   }
 
+  // 打楽器ノイズ（BGMバス対応版）
+  // percId: 1=キック, 2=スネア, 3=ハイハット, 4=シンバル
+  function _percOnBus(start, percId, gainVal, bus) {
+    if (!_ctx) return;
+    const PERC = {
+      1: { dur:0.12, filter:85,   ftype:'lowpass',  q:0.8, g:gainVal*1.6 },
+      2: { dur:0.15, filter:500,  ftype:'bandpass', q:1.5, g:gainVal*1.2 },
+      3: { dur:0.04, filter:5000, ftype:'highpass', q:0.6, g:gainVal*0.9 },
+      4: { dur:0.35, filter:7000, ftype:'highpass', q:0.5, g:gainVal*0.6 },
+    };
+    const p = PERC[percId] || PERC[1];
+    const bufLen = Math.ceil(_ctx.sampleRate * (p.dur + 0.05));
+    const buf = _ctx.createBuffer(1, bufLen, _ctx.sampleRate);
+    const data = buf.getChannelData(0);
+    for (let i = 0; i < bufLen; i++) data[i] = Math.random() * 2 - 1;
+    const src = _ctx.createBufferSource();
+    src.buffer = buf;
+    const flt = _ctx.createBiquadFilter();
+    flt.type = p.ftype; flt.frequency.value = p.filter; flt.Q.value = p.q;
+    const g = _ctx.createGain();
+    src.connect(flt); flt.connect(g); g.connect(bus || _masterGain);
+    g.gain.setValueAtTime(p.g, start);
+    g.gain.exponentialRampToValueAtTime(0.001, start + p.dur);
+    src.start(start); src.stop(start + p.dur + 0.05);
+    _bgmNodes.push(src, g);
+  }
+
   // ============================================================
   //  BGM scheduler
   // ============================================================
@@ -377,14 +595,23 @@ const SoundEngine = (() => {
     let maxBeats = 0;
     d.tracks.forEach(track => {
       let t = startTime, beats = 0;
-      track.notes.forEach(([freq, nb]) => {
-        const dur = nb * beat;
-        if (freq > 0) {
-          const pair = _note(freq, t, dur * 0.9, track.type, track.gain, bus);
-          if (pair) { _bgmNodes.push(pair.osc, pair.g); }
-        }
-        t += dur; beats += nb;
-      });
+      if (track.type === 'perc') {
+        // 打楽器トラック: freq値 = 打楽器種別 (1=キック 2=スネア 3=ハイハット 4=シンバル)
+        track.notes.forEach(([percId, nb]) => {
+          const dur = nb * beat;
+          if (percId > 0) _percOnBus(t, percId, track.gain || 0.12, bus);
+          t += dur; beats += nb;
+        });
+      } else {
+        track.notes.forEach(([freq, nb]) => {
+          const dur = nb * beat;
+          if (freq > 0) {
+            const pair = _note(freq, t, dur * 0.9, track.type, track.gain, bus);
+            if (pair) { _bgmNodes.push(pair.osc, pair.g); }
+          }
+          t += dur; beats += nb;
+        });
+      }
       maxBeats = Math.max(maxBeats, beats);
     });
     return maxBeats * beat;
@@ -393,10 +620,21 @@ const SoundEngine = (() => {
   function _startBgmLoop(name) {
     _ensure();
     if (!_ctx) return;
-    const bus = _ctx.createGain();
-    bus.gain.value = 1;
-    bus.connect(_masterGain);
-    _bgmNodes.push(bus);
+
+    // ─── エコー（ディレイ）エフェクト ───
+    const source  = _ctx.createGain();  source.gain.value = 1.0;
+    const dryGain = _ctx.createGain();  dryGain.gain.value = 0.82;
+    const wetGain = _ctx.createGain();  wetGain.gain.value = 0.18;
+    const delay   = _ctx.createDelay(1.0); delay.delayTime.value = 0.30;
+    const fbGain  = _ctx.createGain();  fbGain.gain.value = 0.22;
+
+    source.connect(dryGain); dryGain.connect(_masterGain);
+    source.connect(delay);
+    delay.connect(fbGain); fbGain.connect(delay);   // フィードバックループ
+    delay.connect(wetGain); wetGain.connect(_masterGain);
+
+    const bus = source;
+    _bgmNodes.push(source, dryGain, wetGain, delay, fbGain);
 
     const t0 = _ctx.currentTime + 0.05;
     const dur = _scheduleBgm(name, t0, bus);

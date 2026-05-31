@@ -1927,33 +1927,57 @@ const NPC_STORIES = {
 function talkToNpc(npcId) {
   if (gs.inBattle) return;
   if (!gs.npcStages) gs.npcStages = {};
-  const npc  = NPC_STORIES[npcId];
+  const npc = NPC_STORIES[npcId];
   if (!npc) return;
 
+  // final済みなら最終メッセージ（繰り返し不可）
+  if (gs.npcStages[npcId + '_done']) {
+    _openNpcTalk(npc, npc.stages[npc.stages.length - 1], npcId, true);
+    return;
+  }
+
   const currentStage = gs.npcStages[npcId] || 0;
-  // 現在のステージから最新の解放済みステージを探す
   let stageData = null;
+
   for (let i = npc.stages.length - 1; i >= 0; i--) {
     const s = npc.stages[i];
-    if (s.stage <= currentStage && s.unlock()) {
-      stageData = s;
-      break;
-    }
-    // 次のステージが解放されているか確認
+    // 次のステージが解放済みなら自動進行
     if (s.stage === currentStage + 1 && s.unlock()) {
       stageData = s;
       gs.npcStages[npcId] = s.stage;
       break;
     }
+    // 現在のステージが解放済み
+    if (s.stage === currentStage && s.unlock()) {
+      stageData = s;
+      break;
+    }
   }
-  if (!stageData) stageData = npc.stages[0];
 
-  // すでにfinal済みなら最終メッセージ
-  if (gs.npcStages[npcId + '_done']) {
-    stageData = npc.stages[npc.stages.length - 1];
-    _openNpcTalk(npc, stageData, npcId, true);
+  // 次の解放条件が未達の場合は待機メッセージ
+  if (!stageData) {
+    const WAIT_MSG = {
+      garm:   '……まだ話すことはないな。\nもっと強くなってから来い。',
+      toma:   'お兄ちゃん、また来てくれたんだ！\nでも……今はうまく話せないや。',
+      larna:  '……水晶は今、何も語らない。\nまた来るがいい。',
+      posei:  '……今は話すことはない。またいずれな。',
+      berk:   '……まだだ。お前はまだ十分ではない。帰れ。',
+    };
+    document.getElementById('npc-talk-emoji').textContent = npc.emoji;
+    document.getElementById('npc-talk-name').textContent  = npc.name;
+    document.getElementById('npc-talk-stage').textContent = '（次の話を準備中）';
+    document.getElementById('npc-talk-text').textContent  = WAIT_MSG[npcId] || 'また後で来てくれ。';
+    const btns = document.getElementById('npc-talk-buttons');
+    btns.innerHTML = '';
+    const btn = document.createElement('button');
+    btn.className = 'npc-close-btn';
+    btn.textContent = '……わかった。また来る。';
+    btn.onclick = () => document.getElementById('npc-talk-overlay').classList.add('hidden');
+    btns.appendChild(btn);
+    document.getElementById('npc-talk-overlay').classList.remove('hidden');
     return;
   }
+
   _openNpcTalk(npc, stageData, npcId, false);
 }
 
@@ -3375,8 +3399,9 @@ const SCENES = {
 
   sea_harbor_locked: {
     emoji: '🔒', title: '古い港町', location: '南の港町',
-    text: `廃墟の港町。\n\n船乗りの老人がいるが、話を聞こうとしない。\n\n「......海底神殿に行くには古代の地図が必要だ。\nその地図がないやつに用はない」\n\n地図を探す必要がありそうだ。`,
+    text: `廃墟の港町。\n\n埠頭に一人の老船乗りが座っている。\n話しかけてみるか？`,
     choices: [
+      { text: '⚓ 老船乗りに話しかける', action: 'npc_posei_locked' },
       { text: '↩️ 引き返す', next: 'demon_road' },
     ]
   },
@@ -4785,6 +4810,24 @@ function executeAction(action, choice = {}) {
     case 'npc_larna': talkToNpc('larna'); break;
     case 'npc_posei': talkToNpc('posei'); break;
     case 'npc_berk':  talkToNpc('berk');  break;
+    case 'npc_posei_locked':
+      // 地図なし版：簡易ダイアログ（ステージ進行なし）
+      document.getElementById('npc-talk-emoji').textContent = '⚓';
+      document.getElementById('npc-talk-name').textContent  = '老船乗り ポセイ';
+      document.getElementById('npc-talk-stage').textContent = '？？？';
+      document.getElementById('npc-talk-text').textContent  =
+        '……なんだ、若造か。\n\nわしに用があるなら「古代の地図」を持ってこい。\nその地図なしに海底神殿に行こうとするやつには\n話すことは何もない。\n\n……地図はどこかの洞窟にあると聞いたぞ。';
+      (function() {
+        const btns = document.getElementById('npc-talk-buttons');
+        btns.innerHTML = '';
+        const btn = document.createElement('button');
+        btn.className = 'npc-close-btn';
+        btn.textContent = '（古代の地図を探しに行こう）';
+        btn.onclick = () => document.getElementById('npc-talk-overlay').classList.add('hidden');
+        btns.appendChild(btn);
+        document.getElementById('npc-talk-overlay').classList.remove('hidden');
+      })();
+      break;
 
     case 'inn_free_village':
       gs.player.hp = gs.player.maxHp;

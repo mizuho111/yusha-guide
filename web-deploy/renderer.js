@@ -1302,7 +1302,7 @@ const COMPANION_TALK_EVENTS = [
   },
 
   // ── ソラ ──
-  { id: 'sora_ruins',    companion: 'sora', name: 'ソラ', emoji: '🌙',
+  { id: 'sora_ruins',    companion: 'sola', name: 'ソラ', emoji: '🌙',
     scenes: ['desert_ruins','sea_temple'], minBond: 0,
     text: 'この魔法陣……古代文明のものね！\n解析してみると……\nすごい！ 空間制御の術式が組まれてる！\n\n興奮する！！',
     choices: [
@@ -1310,7 +1310,7 @@ const COMPANION_TALK_EVENTS = [
       { text: '「気をつけて調べてよ」', bond: 1, reply: 'わかってる！ でも気になって止まれない！' },
     ],
   },
-  { id: 'sora_cave',     companion: 'sora', name: 'ソラ', emoji: '🌙',
+  { id: 'sora_cave',     companion: 'sola', name: 'ソラ', emoji: '🌙',
     scenes: ['cave_approach','cave_deep'], minBond: 1,
     text: '洞窟の地質から、魔力の流れが読めるわ。\n\nここは地下水脈と交差してて……\n魔物が集まりやすい地形ね。気をつけて。',
     choices: [
@@ -1318,7 +1318,7 @@ const COMPANION_TALK_EVENTS = [
       { text: '「すごいな」', bond: 1, reply: '当然よ。私を誰だと思ってるの。' },
     ],
   },
-  { id: 'sora_bond3',    companion: 'sora', name: 'ソラ', emoji: '🌙',
+  { id: 'sora_bond3',    companion: 'sola', name: 'ソラ', emoji: '🌙',
     scenes: null, minBond: 3, maxBond: 5, once: true,
     text: 'ルナとはずっと一緒で……\nあなたも大切な人になってきた。\n\n不思議ね。こんな感覚、初めて。',
     choices: [
@@ -1326,7 +1326,7 @@ const COMPANION_TALK_EVENTS = [
       { text: '「ソラも大切な仲間だよ」', bond: 2, reply: '……仲間。うん。それでいい。\n……でも、特別な仲間。', reward: { items: ['magicNecklace'] } },
     ],
   },
-  { id: 'sora_bond5',    companion: 'sora', name: 'ソラ', emoji: '🌙',
+  { id: 'sora_bond5',    companion: 'sola', name: 'ソラ', emoji: '🌙',
     scenes: null, minBond: 5, maxBond: 7, once: true,
     text: '魔法の才能があるなら、教えてあげる。\n\n私が見込んだ人間には、全部教えるわ。\n……あなたは、その一人。',
     choices: [
@@ -1608,7 +1608,7 @@ const TRAVEL_EVENTS = [
           const dmg = Math.floor(Math.random() * 15) + 5;
           gs.player.hp = Math.max(1, gs.player.hp - dmg);
           openTravelResult('🌨️', '嵐が過ぎるのを待った',
-            '岩陰で身を潜めて待った。\n少し体は冷えたが、無事に通過できた。\n\n【HP -${dmg}（小ダメージ）】', next, () => updateStatus());
+            `岩陰で身を潜めて待った。\n少し体は冷えたが、無事に通過できた。\n\n【HP -${dmg}（小ダメージ）】`, next, () => updateStatus());
       }},
     ],
   },
@@ -2095,6 +2095,13 @@ function _renderFishingButtons(phase) {
     const b = document.createElement('button');
     b.className = 'fish-cast-btn'; b.textContent = '⏳ 待っている…'; b.disabled = true;
     btns.appendChild(b);
+    const c = document.createElement('button');
+    c.className = 'fish-close-btn'; c.textContent = '↩️ やめる';
+    c.onclick = () => {
+      clearTimeout(_fishingTimer); _fishingTimer = null; _fishBiteReady = false;
+      document.getElementById('fishing-overlay').classList.add('hidden');
+    };
+    btns.appendChild(c);
   } else if (phase === 'bite') {
     const b = document.createElement('button');
     b.className = 'fish-pull-btn'; b.textContent = '⚡ 今だ！引く！！';
@@ -2124,8 +2131,7 @@ function _fishingCast() {
   _fishBiteReady = false;
   document.getElementById('fishing-fish-display').textContent = '🌊';
   const msgs = ['ぽちゃん……', '糸がゆらゆら……', '静かな水面……', 'ん…？何か来た……？'];
-  let i = 0;
-  document.getElementById('fishing-status').textContent = msgs[i];
+  document.getElementById('fishing-status').textContent = msgs[Math.floor(Math.random() * msgs.length)];
   _renderFishingButtons('waiting');
   const delay = 1500 + Math.random() * 2500;
   _fishingTimer = setTimeout(() => {
@@ -2369,7 +2375,12 @@ function checkCompanionTalk(sceneId) {
   if (ev.once) gs.companionTalkFlags[ev.id] = true;
   saveGame();
 
-  setTimeout(() => openCompanionTalk(ev), 600);
+  setTimeout(() => {
+    // シーン移動済みの場合は発火しない
+    if (!gs.inBattle && (!ev.scenes || gs.currentScene === sceneId || ev.scenes.includes(gs.currentScene))) {
+      openCompanionTalk(ev);
+    }
+  }, 600);
 }
 
 function openCompanionTalk(ev) {
@@ -8354,6 +8365,9 @@ function loadGame() {
     if (!gs.companionTalkFlags) gs.companionTalkFlags = {};
     if (!gs.recentTravelEvents) gs.recentTravelEvents = [];
     if (!gs.npcStages) gs.npcStages = {};
+    // ロード時に戦闘中フラグをリセット（中断セーブ対策）
+    gs._tournamentActive = false;
+    gs.inBattle = false;
     // 既クリアデータにワープ先フラグが欠けている場合の補完
     if (gs.flags.demonKingDefeated) {
       gs.flags.vis_gods_tower    = true;
@@ -8895,7 +8909,7 @@ function updateQuestProgress(type, data) {
       state.progress = (state.progress || 0) + (data.count || 0);
       if (state.progress >= q.count) complete = true;
     } else if (type === 'bond_all' && q.type === 'bond_all') {
-      const comps = ['aria','gaius','luna','sola','serafina','zephiros'];
+      const comps = ['aria','gaius','luna','sola','serafina','zephiros']; // sola = ソラ（正しいID）
       const joined = comps.filter(id => {
         if (id === 'aria') return gs.companion?.joined;
         return gs.companions?.[id]?.joined;

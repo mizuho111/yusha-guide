@@ -712,6 +712,324 @@ body {
 .inv-empty { font-size: 12px; color: var(--text-dim); font-style: italic; }
 
 /* ========== OVERLAYS ========== */
+/* ── 料理パネル ── */
+#cooking-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.88);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 222; animation: fadeIn 0.2s ease;
+}
+#cooking-box {
+  width: 92%; max-width: 420px; max-height: 88vh;
+  background: linear-gradient(135deg, #1a0e00, #2d1a00);
+  border: 2px solid rgba(255,152,0,0.6); border-radius: 12px;
+  display: flex; flex-direction: column;
+  animation: popIn 0.3s ease; box-shadow: 0 0 28px rgba(255,152,0,0.2);
+}
+#cooking-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 16px 10px; border-bottom: 1px solid rgba(255,152,0,0.2);
+  font-size: 16px; font-weight: 700; color: #ff9800; letter-spacing: 1px;
+  flex-shrink: 0;
+}
+#cooking-current-buff {
+  margin: 8px 12px; padding: 8px 12px; border-radius: 7px;
+  font-size: 13px; line-height: 1.6; border: 1px solid;
+  flex-shrink: 0;
+}
+#cooking-list {
+  flex: 1; overflow-y: auto; padding: 4px 12px 12px;
+  -webkit-overflow-scrolling: touch;
+}
+.cook-quick-btn {
+  background: linear-gradient(135deg, #1a0e00, #2d1a00) !important;
+  color: #ff9800 !important; border-color: #6d3a00 !important;
+}
+
+/* ── 転生パネル ── */
+/* ── 世界地図パネル ── */
+#worldmap-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.90);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 235; animation: fadeIn 0.25s ease;
+}
+#worldmap-box {
+  width: 96%; max-width: 460px; max-height: 90vh;
+  background: linear-gradient(135deg, #00101a, #002038);
+  border: 2px solid rgba(64,192,255,0.6); border-radius: 14px;
+  display: flex; flex-direction: column;
+  animation: popIn 0.3s ease; box-shadow: 0 0 40px rgba(32,128,220,0.4);
+}
+#worldmap-header-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 16px 10px; border-bottom: 1px solid rgba(64,192,255,0.25);
+  font-size: 17px; font-weight: 700; color: #40c0ff; letter-spacing: 2px;
+  flex-shrink: 0;
+}
+#worldmap-content {
+  flex: 1; overflow-y: auto; padding: 12px 14px 16px;
+  -webkit-overflow-scrolling: touch;
+}
+.worldmap-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 6px;
+}
+.worldmap-title { font-size: 14px; color: #40c0ff; font-weight: 700; }
+.worldmap-count { font-size: 13px; color: #80d4ff; }
+.worldmap-progress-bar {
+  background: rgba(64,192,255,0.15); border-radius: 6px; height: 8px;
+  margin-bottom: 12px; overflow: hidden; border: 1px solid rgba(64,192,255,0.3);
+}
+.worldmap-progress-fill {
+  height: 100%; background: linear-gradient(90deg, #1080c0, #40c0ff);
+  border-radius: 6px; transition: width 0.5s ease;
+}
+.worldmap-category { margin-bottom: 14px; }
+.worldmap-cat-label {
+  font-size: 12px; color: #a0c8e0; font-weight: 700; margin-bottom: 6px;
+  padding-bottom: 3px; border-bottom: 1px solid rgba(64,192,255,0.2);
+}
+.worldmap-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 6px;
+}
+.worldmap-area {
+  display: flex; flex-direction: column; align-items: center;
+  padding: 8px 6px; border-radius: 8px; border: 1px solid;
+  text-align: center; gap: 2px;
+}
+.worldmap-visited {
+  background: rgba(32,96,64,0.4); border-color: rgba(80,200,100,0.5);
+}
+.worldmap-unvisited {
+  background: rgba(40,40,60,0.5); border-color: rgba(100,100,140,0.3);
+  opacity: 0.65;
+}
+.worldmap-area-emoji { font-size: 20px; }
+.worldmap-area-name {
+  font-size: 10px; color: #c8e0f0; line-height: 1.3;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%;
+}
+.worldmap-visited .worldmap-area-name { color: #d0f0d0; }
+.worldmap-area-status {
+  font-size: 9px; color: #80a0b0;
+}
+.worldmap-visited .worldmap-area-status { color: #60d080; }
+.worldmap-quick-btn {
+  background: linear-gradient(135deg, #001828, #003060) !important;
+  color: #40c0ff !important; border-color: #0060a0 !important;
+}
+
+#rebirth-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.92);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 230; animation: fadeIn 0.25s ease;
+}
+#rebirth-box {
+  width: 92%; max-width: 400px; max-height: 90vh;
+  background: linear-gradient(135deg, #10001e, #200038);
+  border: 2px solid rgba(192,132,252,0.7); border-radius: 14px;
+  display: flex; flex-direction: column;
+  animation: popIn 0.3s ease; box-shadow: 0 0 40px rgba(160,80,220,0.4);
+}
+#rebirth-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 16px 10px; border-bottom: 1px solid rgba(192,132,252,0.25);
+  font-size: 17px; font-weight: 700; color: #c084fc; letter-spacing: 2px;
+  flex-shrink: 0;
+}
+#rebirth-content {
+  flex: 1; overflow-y: auto; padding: 12px 16px 16px;
+  -webkit-overflow-scrolling: touch;
+}
+.rebirth-quick-btn {
+  background: linear-gradient(135deg, #10001e, #200038) !important;
+  color: #c084fc !important; border-color: #4a1060 !important;
+}
+
+/* ── 週替わりチャレンジパネル ── */
+#weekly-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.88);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 220; animation: fadeIn 0.2s ease;
+}
+#weekly-box {
+  width: 92%; max-width: 420px; max-height: 88vh;
+  background: linear-gradient(135deg, #1a1600, #2a2000);
+  border: 2px solid rgba(255,215,0,0.6); border-radius: 12px;
+  display: flex; flex-direction: column;
+  animation: popIn 0.3s ease; box-shadow: 0 0 28px rgba(255,215,0,0.2);
+}
+#weekly-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 16px 10px; border-bottom: 1px solid rgba(255,215,0,0.25);
+  font-size: 16px; font-weight: 700; color: #ffd700; letter-spacing: 1px;
+  flex-shrink: 0;
+}
+#weekly-content {
+  flex: 1; overflow-y: auto; padding: 10px 14px 14px;
+  -webkit-overflow-scrolling: touch;
+}
+.weekly-quick-btn {
+  background: linear-gradient(135deg, #1a1600, #2a2000) !important;
+  color: #ffd700 !important; border-color: #5a4800 !important;
+}
+
+/* ── モンスター召喚パネル ── */
+#summon-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.88);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 230; animation: fadeIn 0.2s ease;
+}
+#summon-box {
+  width: 92%; max-width: 400px; max-height: 85vh;
+  background: linear-gradient(135deg, #1a1000, #2d2000);
+  border: 2px solid rgba(255,180,0,0.6); border-radius: 12px;
+  display: flex; flex-direction: column;
+  animation: popIn 0.3s ease; box-shadow: 0 0 28px rgba(255,180,0,0.25);
+}
+#summon-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 16px 10px; border-bottom: 1px solid rgba(255,180,0,0.25);
+  font-size: 16px; font-weight: 700; color: #f0c040; letter-spacing: 1px;
+  flex-shrink: 0;
+}
+#summon-list {
+  flex: 1; overflow-y: auto; padding: 8px 12px 12px;
+  -webkit-overflow-scrolling: touch;
+}
+.summon-btn {
+  background: linear-gradient(135deg, #1a1000, #2d2000) !important;
+  color: #f0c040 !important; border-color: #6d4000 !important;
+}
+
+/* ── 仲間スキルツリーパネル ── */
+#cskill-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.88);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 220; animation: fadeIn 0.2s ease;
+}
+#cskill-box {
+  width: 92%; max-width: 440px; max-height: 88vh;
+  background: linear-gradient(135deg, #0e1a10, #152018);
+  border: 2px solid rgba(80,220,120,0.5); border-radius: 12px;
+  display: flex; flex-direction: column;
+  animation: popIn 0.3s ease; box-shadow: 0 0 28px rgba(60,200,100,0.2);
+}
+#cskill-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 16px 10px; border-bottom: 1px solid rgba(80,220,120,0.2);
+  font-size: 15px; font-weight: 700; color: #58d68d; letter-spacing: 1px;
+  flex-shrink: 0;
+}
+#cskill-content {
+  flex: 1; overflow-y: auto; padding: 8px 12px 12px;
+  -webkit-overflow-scrolling: touch;
+}
+.cskill-quick-btn {
+  background: linear-gradient(135deg, #0e1a10, #152018) !important;
+  color: #58d68d !important; border-color: #1a4a28 !important;
+}
+
+/* ── スキルツリーパネル ── */
+#skilltree-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.88);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 220; animation: fadeIn 0.2s ease;
+}
+#skilltree-box {
+  width: 92%; max-width: 440px; max-height: 88vh;
+  background: linear-gradient(135deg, #0a0e1a, #101828);
+  border: 2px solid rgba(120,80,240,0.6); border-radius: 12px;
+  display: flex; flex-direction: column;
+  animation: popIn 0.3s ease; box-shadow: 0 0 28px rgba(100,60,200,0.25);
+}
+#skilltree-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 16px 10px; border-bottom: 1px solid rgba(120,80,240,0.25);
+  font-size: 16px; font-weight: 700; color: #a78bfa; letter-spacing: 1px;
+  flex-shrink: 0;
+}
+#skilltree-list {
+  flex: 1; overflow-y: auto; padding: 8px 12px 4px;
+  -webkit-overflow-scrolling: touch;
+}
+#skilltree-footer {
+  padding: 10px 16px 14px; border-top: 1px solid rgba(120,80,240,0.2);
+  display: flex; justify-content: center; flex-shrink: 0;
+}
+.skill-quick-btn {
+  background: linear-gradient(135deg, #0a0e1a, #101828) !important;
+  color: #a78bfa !important; border-color: #3a2560 !important;
+}
+
+/* ── アイテム売却パネル ── */
+#sell-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.88);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 220; animation: fadeIn 0.2s ease;
+}
+#sell-box {
+  width: 92%; max-width: 420px; max-height: 88vh;
+  background: linear-gradient(135deg, #0e1a0a, #1a2c10);
+  border: 2px solid rgba(80,200,60,0.6); border-radius: 12px;
+  display: flex; flex-direction: column;
+  animation: popIn 0.3s ease; box-shadow: 0 0 28px rgba(60,180,40,0.2);
+}
+#sell-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 16px 10px; border-bottom: 1px solid rgba(80,200,60,0.2);
+  flex-shrink: 0;
+}
+#sell-title { font-size: 16px; font-weight: 700; color: #80e060; letter-spacing: 1px; }
+#sell-gold-display { font-size: 13px; color: var(--gold); font-weight: 700; }
+#sell-tabs {
+  display: flex; gap: 4px; padding: 8px 12px 0; flex-shrink: 0;
+}
+.sell-tab {
+  flex: 1; font-family: inherit; font-size: 11px; padding: 6px 4px;
+  background: rgba(255,255,255,0.05); color: var(--text-dim);
+  border: 1px solid rgba(80,200,60,0.2); border-radius: 5px;
+  cursor: pointer; transition: all 0.15s;
+}
+.sell-tab.active { background: rgba(60,160,40,0.25); color: #80e060; border-color: rgba(80,200,60,0.6); }
+#sell-list {
+  flex: 1; overflow-y: auto; padding: 8px 12px;
+  -webkit-overflow-scrolling: touch;
+}
+.sell-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 10px; margin-bottom: 5px;
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(80,200,60,0.15);
+  border-radius: 6px; cursor: pointer; transition: all 0.15s;
+}
+.sell-item:hover { background: rgba(60,160,40,0.12); border-color: rgba(80,200,60,0.4); }
+.sell-item.selected { background: rgba(60,160,40,0.25); border-color: rgba(80,200,60,0.7); }
+.sell-item-emoji { font-size: 20px; flex-shrink: 0; }
+.sell-item-info { flex: 1; min-width: 0; }
+.sell-item-name { font-size: 13px; color: var(--text-main); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sell-item-sub  { font-size: 11px; color: var(--text-dim); margin-top: 2px; }
+.sell-item-count { font-size: 12px; color: var(--text-dim); flex-shrink: 0; }
+.sell-item-price { font-size: 13px; color: var(--gold); font-weight: 700; flex-shrink: 0; min-width: 55px; text-align: right; }
+.sell-item-check { font-size: 16px; flex-shrink: 0; width: 20px; text-align: center; }
+#sell-footer {
+  padding: 10px 14px 14px; border-top: 1px solid rgba(80,200,60,0.2);
+  flex-shrink: 0;
+}
+#sell-total { font-size: 14px; color: var(--gold); font-weight: 700; text-align: center; margin-bottom: 8px; }
+#sell-footer-btns { display: flex; gap: 8px; }
+#sell-all-btn {
+  flex: 1; font-family: inherit; font-size: 14px; padding: 10px;
+  background: linear-gradient(135deg, #0a3010, #1a5020);
+  color: #80e060; border: 2px solid rgba(80,200,60,0.6);
+  border-radius: 7px; cursor: pointer; font-weight: 700; transition: all 0.15s;
+}
+#sell-all-btn:hover { background: linear-gradient(135deg, #1a5020, #2a7030); }
+#sell-all-btn:disabled { opacity: 0.4; cursor: default; }
+#sell-close-btn {
+  font-family: inherit; font-size: 13px; padding: 10px 16px;
+  background: rgba(255,255,255,0.06); color: var(--text-dim);
+  border: 1px solid rgba(255,255,255,0.15); border-radius: 7px; cursor: pointer;
+}
+
 /* ── NPCサブストーリー ── */
 #npc-talk-overlay {
   position: fixed; inset: 0;
@@ -1404,6 +1722,10 @@ body {
 }
 
 /* クイックボタン */
+.choice-btn.sell-quick-btn {
+  background: linear-gradient(135deg, #0a180a, #0e2c0e) !important;
+  color: #80e060 !important; border-color: #2a6020 !important;
+}
 .choice-btn.quest-quick-btn {
   background: linear-gradient(135deg, #12100a, #1e1a0e) !important;
   color: #e0c060 !important; border-color: #604a10 !important;

@@ -196,6 +196,7 @@
               <button id="btn-magic"  class="battle-btn magic-btn"  onclick="battleAction('magic')">🔮<br>スキル</button>
               <button id="btn-item"   class="battle-btn item-btn"   onclick="battleAction('item')">🎒<br>アイテム</button>
               <button id="btn-equip"  class="battle-btn equip-btn"  onclick="battleAction('equip')">🗡️<br>装備</button>
+              <button id="btn-summon" class="battle-btn summon-btn" onclick="battleAction('summon')">✨<br>召喚</button>
               <button id="btn-run"    class="battle-btn run-btn"    onclick="battleAction('run')">💨<br>逃げる</button>
             </div>
             <!-- スキル選択 -->
@@ -414,6 +415,115 @@
     <div id="gameover-text">意識が遠のいていく...</div>
     <button onclick="continueFromVillage()">🏘️ 村から再出発する（HP全回復）</button>
     <button onclick="restartGame()" style="margin-top:8px; background:#333">🔄 最初からプレイする</button>
+  </div>
+</div>
+
+<!-- ========== 料理パネル ========== -->
+<div id="cooking-overlay" class="hidden">
+  <div id="cooking-box">
+    <div id="cooking-header">
+      <span>🍳 料理・食事バフ</span>
+      <button onclick="closeCookingPanel()" style="background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:18px;">✕</button>
+    </div>
+    <div id="cooking-current-buff"></div>
+    <div id="cooking-list"></div>
+  </div>
+</div>
+
+<!-- ========== アイテム売却パネル ========== -->
+<div id="sell-overlay" class="hidden">
+  <div id="sell-box">
+    <div id="sell-header">
+      <span id="sell-title">💰 アイテム売却</span>
+      <span id="sell-gold-display"></span>
+    </div>
+    <div id="sell-tabs">
+      <button class="sell-tab active" data-cat="all">すべて</button>
+      <button class="sell-tab" data-cat="consumable">消耗品</button>
+      <button class="sell-tab" data-cat="material">素材</button>
+      <button class="sell-tab" data-cat="equipment">装備</button>
+    </div>
+    <div id="sell-list"></div>
+    <div id="sell-footer">
+      <div id="sell-total">選択中：0G</div>
+      <div id="sell-footer-btns">
+        <button id="sell-all-btn" onclick="sellSelected()">💰 売る</button>
+        <button id="sell-close-btn" onclick="closeSellPanel()">↩️ 閉じる</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 転生パネル ========== -->
+<!-- ========== 世界地図 ========== -->
+<div id="worldmap-overlay" class="hidden">
+  <div id="worldmap-box">
+    <div id="worldmap-header-bar">
+      <span>🌍 世界地図</span>
+      <button onclick="closeWorldMap()" style="background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:18px;">✕</button>
+    </div>
+    <div id="worldmap-content"></div>
+  </div>
+</div>
+
+<div id="rebirth-overlay" class="hidden">
+  <div id="rebirth-box">
+    <div id="rebirth-header">
+      <span>🌟 転生</span>
+      <button onclick="closeRebirthPanel()" style="background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:18px;">✕</button>
+    </div>
+    <div id="rebirth-content"></div>
+  </div>
+</div>
+
+<!-- ========== 週替わりチャレンジ ========== -->
+<div id="weekly-overlay" class="hidden">
+  <div id="weekly-box">
+    <div id="weekly-header">
+      <span>🏆 週替わりチャレンジ</span>
+      <button onclick="closeWeeklyChallenge()" style="background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:18px;">✕</button>
+    </div>
+    <div id="weekly-content"></div>
+  </div>
+</div>
+
+<!-- ========== モンスター召喚パネル ========== -->
+<div id="summon-overlay" class="hidden">
+  <div id="summon-box">
+    <div id="summon-header">
+      <span>✨ モンスター召喚</span>
+      <button onclick="closeSummonPanel()" style="background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:18px;">✕</button>
+    </div>
+    <p style="font-size:12px;color:#aaa;padding:0 14px 4px;margin:0;">召喚アイテムを使って仲間を呼ぼう！</p>
+    <div id="summon-list"></div>
+  </div>
+</div>
+
+<!-- ========== 仲間スキルツリー ========== -->
+<div id="cskill-overlay" class="hidden">
+  <div id="cskill-box">
+    <div id="cskill-header">
+      <button id="cskill-back-btn" onclick="_cskillView=null;_renderCompanionList();" style="display:none;background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:14px;padding:0 6px 0 0;">◀ 戻る</button>
+      <span id="cskill-header-title">💫 仲間スキルツリー</span>
+      <span id="cskill-sp" style="color:var(--gold);font-size:13px;"></span>
+      <button onclick="closeCompanionSkillPanel()" style="background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:18px;">✕</button>
+    </div>
+    <div id="cskill-content"></div>
+  </div>
+</div>
+
+<!-- ========== スキルツリー ========== -->
+<div id="skilltree-overlay" class="hidden">
+  <div id="skilltree-box">
+    <div id="skilltree-header">
+      <span>🌳 パッシブスキルツリー</span>
+      <span id="skilltree-sp" style="color:var(--gold);font-size:13px;"></span>
+      <button onclick="closeSkillTree()" style="background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:18px;">✕</button>
+    </div>
+    <div id="skilltree-list"></div>
+    <div id="skilltree-footer">
+      <button onclick="resetSkillTree()" style="font-family:inherit;font-size:12px;padding:7px 14px;border-radius:7px;background:rgba(231,76,60,0.15);color:#e74c3c;border:1px solid rgba(231,76,60,0.4);cursor:pointer;">🔄 リセット（10000G）</button>
+    </div>
   </div>
 </div>
 

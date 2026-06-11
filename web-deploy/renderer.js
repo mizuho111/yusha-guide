@@ -2308,6 +2308,7 @@ const WARP_DESTINATIONS = [
   { name: '🌋 火山地帯',          emoji: '🌋', sceneId: 'volcano_zone',        flag: 'vis_volcano' },
   { name: '🌿 秘密の庭園',        emoji: '🌿', sceneId: 'secret_garden',       flag: 'vis_secret_garden' },
   { name: '⛩️ 古代神殿',         emoji: '⛩️', sceneId: 'ancient_shrine',      flag: 'vis_ancient_shrine' },
+  { name: '🏚️ ランダムダンジョン', emoji: '🏚️', sceneId: 'random_dungeon_hub', flag: 'vis_random_dungeon' },
   // 乗り物エリア
   { name: '🌾 大草原',            emoji: '🌾', sceneId: 'grasslands_spot',    flag: 'vis_grasslands' },
   { name: '🏝️ 南海の孤島',        emoji: '🏝️', sceneId: 'south_island_spot',  flag: 'vis_south_island' },
@@ -5205,7 +5206,7 @@ const SCENES = {
   // ── クリア後コンテンツ ──
   post_clear_hub: {
     emoji: '🌟', title: 'クリア後の世界', location: '平和な世界',
-    text: `魔王討伐から時が経った。\n\n世界に平和が戻り、人々は笑顔を取り戻した。\nしかし——アレクはまだ旅を続けている。\n\n世界の至る所に、まだ謎が残されている。\n新たな伝説が、幕を開けようとしていた。\n\n【クリア後コンテンツ一覧】\n🏔️ 神々の塔 ── 10フロアの最強ダンジョン\n🏺 砂漠の隠し部屋 ── 古の魔神バアル\n⬛ 虚無の地 ── 全属性無効の番人ヴォイド\n♾️ 無限の試練 ── どこまで進めるか挑戦！\n🌋 火山地帯 ── 溶岩に棲む火山の王\n🌿 秘密の庭園 ── 伝説の庭園の女神\n⛩️ 古代神殿 ── 守護神ゼノスが眠る聖地`,
+    text: `魔王討伐から時が経った。\n\n世界に平和が戻り、人々は笑顔を取り戻した。\nしかし——アレクはまだ旅を続けている。\n\n世界の至る所に、まだ謎が残されている。\n新たな伝説が、幕を開けようとしていた。\n\n【クリア後コンテンツ一覧】\n🏔️ 神々の塔 ── 10フロアの最強ダンジョン\n🏺 砂漠の隠し部屋 ── 古の魔神バアル\n⬛ 虚無の地 ── 全属性無効の番人ヴォイド\n♾️ 無限の試練 ── どこまで進めるか挑戦！\n🌋 火山地帯 ── 溶岩に棲む火山の王\n🌿 秘密の庭園 ── 伝説の庭園の女神\n⛩️ 古代神殿 ── 守護神ゼノスが眠る聖地\n🏚️ ランダムダンジョン ── 毎回変わる謎のダンジョン`,
     choices: [
       { text: '🏔️ 神々の塔へ向かう',   next: 'gods_tower_hub',    needFlag: 'demonKingDefeated' },
       { text: '🏺 砂漠の隠し部屋へ',   next: 'desert_hidden',     needFlag: 'demonKingDefeated' },
@@ -5213,8 +5214,9 @@ const SCENES = {
       { text: '♾️ 無限の試練へ',        next: 'endless_trial_hub', needFlag: 'demonKingDefeated' },
       { text: '🌋 火山地帯へ',         next: 'volcano_zone',      needFlag: 'demonKingDefeated' },
       { text: '🌿 秘密の庭園へ',       next: 'secret_garden',     needFlag: 'demonKingDefeated' },
-      { text: '⛩️ 古代神殿へ',         next: 'ancient_shrine',    needFlag: 'demonKingDefeated' },
-      { text: '📜 エピローグを見る',    next: 'epilogue',          needFlag: 'demonKingDefeated' },
+      { text: '⛩️ 古代神殿へ',         next: 'ancient_shrine',       needFlag: 'demonKingDefeated' },
+      { text: '🏚️ ランダムダンジョン', next: 'random_dungeon_hub',   needFlag: 'demonKingDefeated' },
+      { text: '📜 エピローグを見る',    next: 'epilogue',             needFlag: 'demonKingDefeated' },
       { text: '🚁 飛行船商人に会う',   next: 'airship_dealer',    needFlag: 'demonKingDefeated' },
       { text: '☁️ 天空の浮遊島へ',     next: 'sky_island_hub',    needFlag: 'vehicleAirship' },
       { text: '🏘️ 村へ戻る',           next: 'village' },
@@ -5297,6 +5299,18 @@ const SCENES = {
       { text: '⚔️ 守護者を倒す（ランダム戦闘）', action: 'fight_shrine_random' },
       { text: '⛩️ ゼノスに挑む！',               action: 'fight_shrine_boss' },
       { text: '↩️ クリア後の世界へ戻る',          next: 'post_clear_hub' },
+    ]
+  },
+
+  random_dungeon_hub: {
+    emoji: '🏚️', title: 'ランダムダンジョン', location: 'ランダムダンジョン入口',
+    text: `闇の中から現れる——「ランダムダンジョン」。\n\nフロアごとにランダムな敵が現れ、\n宝箱・罠・回復の泉などの出来事が待ち受ける。\n最終フロアには強力なボスが現れる！\n\n難易度が高いほど、より良い報酬が手に入る。\n一度入ったら脱出するまで戦い続けよ！\n\n【難易度】\n🟢 易：5フロア ── 初心者向け\n🟡 普：10フロア ── やや難しい\n🔴 難：15フロア ── 上級者向け`,
+    onEnter: 'unlock_random_dungeon',
+    choices: [
+      { text: '🟢 易しいで挑む（5F）',   action: 'start_dungeon_easy' },
+      { text: '🟡 普通で挑む（10F）',     action: 'start_dungeon_normal' },
+      { text: '🔴 難しいで挑む（15F）',   action: 'start_dungeon_hard' },
+      { text: '↩️ クリア後の世界へ戻る', next: 'post_clear_hub' },
     ]
   },
 
@@ -5405,6 +5419,8 @@ function createInitialState() {
     towerProgress: 0,
     endlessTrialMode: null,
     endlessTrialMaxWave: 0,
+    randomDungeon: null,
+    randomDungeonBest: {},
     adminMult: { eHp: 1, eAtk: 1, eDef: 1, exp: 1, gold: 1, shop: 1 },
     townDev: { village: 0, desert: 0, snow: 0 },
     vehicles: { horse: false, ship: false, airship: false },
@@ -8256,6 +8272,150 @@ function handleEndlessVictory(gainedExp, gainedGold) {
   addLevelingBtn('🏳️ 試練を終える', 'back-btn', () => { gs.endlessTrialMode = null; gotoScene('endless_trial_hub'); });
 }
 
+// ============================================================
+// ランダムダンジョン
+// ============================================================
+const RD_ENEMY_POOLS = {
+  early:  ['gladiator', 'championKnight', 'darkKnight'],
+  mid:    ['towerGuard1', 'cursedSoul', 'arenaLegend'],
+  late:   ['towerGuard2', 'towerArchangel', 'towerDemon'],
+  boss:   ['volcanoBoss', 'gardenBoss', 'shrineBoss', 'voidWarden', 'leviathan'],
+};
+const RD_ITEM_REWARDS = {
+  easy:   ['highHerb', 'highMpPotion', 'elixir'],
+  normal: ['elixir', 'phoenixFeather', 'heroCirclet'],
+  hard:   ['heroArmor', 'heroShield', 'volcanoBlade', 'gardenAmulet', 'shrineRobe'],
+};
+const RD_MAX_FLOORS = { easy: 5, normal: 10, hard: 15 };
+
+function startRandomDungeon(difficulty) {
+  gs.randomDungeon = { difficulty, floor: 1, maxFloor: RD_MAX_FLOORS[difficulty] };
+  saveGame();
+  startRandomDungeonFloor();
+}
+
+function startRandomDungeonFloor() {
+  const rd = gs.randomDungeon;
+  const { floor, maxFloor, difficulty } = rd;
+  const isBossFloor = floor === maxFloor;
+
+  let pool, scale;
+  if (isBossFloor) {
+    pool = RD_ENEMY_POOLS.boss;
+    scale = 1 + (floor - 1) * 0.2;
+  } else if (floor <= 3) {
+    pool = RD_ENEMY_POOLS.early;
+    scale = 1 + (floor - 1) * 0.12;
+  } else if (floor <= 8) {
+    pool = RD_ENEMY_POOLS.mid;
+    scale = 1 + (floor - 1) * 0.15;
+  } else {
+    pool = RD_ENEMY_POOLS.late;
+    scale = 1 + (floor - 1) * 0.18;
+  }
+
+  const enemyId = pool[Math.floor(Math.random() * pool.length)];
+  const base = JSON.parse(JSON.stringify(ENEMY_DATA[enemyId]));
+  base._id = enemyId;
+  base.maxHp   = Math.round(base.maxHp   * scale);
+  base.hp      = base.maxHp;
+  base.attack  = Math.round(base.attack  * scale);
+  base.defense = Math.round(base.defense * scale);
+  base.exp     = Math.round(base.exp     * scale * 1.3);
+  base.gold    = Math.round(base.gold    * scale * 1.3);
+  if (base.skill?.damage) base.skill.damage = Math.round(base.skill.damage * scale);
+  if (isBossFloor) {
+    base.isBoss = true;
+    base.name   = `【${floor}Fボス】` + base.name;
+  } else {
+    base.name   = `【${floor}F】` + base.name;
+  }
+  gs.postBattleScene = 'random_dungeon_hub';
+  startBattle(base);
+}
+
+function handleRandomDungeonVictory(gainedExp, gainedGold) {
+  const rd = gs.randomDungeon;
+  const { floor, maxFloor, difficulty } = rd;
+  const isClear = floor === maxFloor;
+
+  // 最高到達フロア更新
+  if (!gs.randomDungeonBest[difficulty] || floor > gs.randomDungeonBest[difficulty]) {
+    gs.randomDungeonBest[difficulty] = floor;
+  }
+
+  if (isClear) {
+    // ダンジョンクリア！
+    const rewPool = RD_ITEM_REWARDS[difficulty];
+    const rewId   = rewPool[Math.floor(Math.random() * rewPool.length)];
+    addItem(rewId);
+    const bonusGold = floor * 2000;
+    gs.player.gold += bonusGold;
+    updateStatus();
+    gs.randomDungeon = null;
+    checkTitles();
+    saveGame();
+
+    const diffLabel = difficulty === 'easy' ? '易' : difficulty === 'normal' ? '普' : '難';
+    let txt = `🎉 ダンジョン完全制覇！（${diffLabel}・${maxFloor}F）\n\n`;
+    txt += ` EXP +${gainedExp}　💰 +${gainedGold}G\n`;
+    txt += `💰 クリアボーナス +${bonusGold}G\n`;
+    txt += `✨ ${ITEM_DATA[rewId].emoji}「${ITEM_DATA[rewId].name}」を入手！\n\n`;
+    txt += `最高到達記録: ${difficulty === 'easy' ? '易' : difficulty === 'normal' ? '普' : '難'} ${gs.randomDungeonBest[difficulty]}F`;
+    showLevelingPanel('🏚️', 'ダンジョン制覇！', txt);
+    addLevelingBtn('🏚️ もう一度挑む', '', () => gotoScene('random_dungeon_hub'));
+    addLevelingBtn('↩️ クリア後の世界へ', 'back-btn', () => gotoScene('post_clear_hub'));
+    return;
+  }
+
+  // フロア突破 → ランダムイベント
+  rd.floor++;
+  const nextFloor = rd.floor;
+  const eventRoll = Math.floor(Math.random() * 4);
+  let eventText = '';
+  let eventGold = 0;
+  let eventHp   = 0;
+
+  if (eventRoll === 0) {
+    // 宝箱
+    const chestPool = ['highHerb', 'highMpPotion', 'elixir', 'antidote', 'phoenixFeather'];
+    const item = chestPool[Math.floor(Math.random() * chestPool.length)];
+    addItem(item);
+    eventText = `📦 宝箱を発見！\n${ITEM_DATA[item].emoji}「${ITEM_DATA[item].name}」を入手！`;
+  } else if (eventRoll === 1) {
+    // 罠
+    const dmg = Math.round(gs.player.maxHp * 0.1);
+    gs.player.hp = Math.max(1, gs.player.hp - dmg);
+    eventText    = `⚠️ 罠にかかった！\nHP -${dmg}`;
+    eventHp = -dmg;
+  } else if (eventRoll === 2) {
+    // 回復の泉
+    const heal = Math.round(gs.player.maxHp * 0.3);
+    gs.player.hp = Math.min(gs.player.maxHp, gs.player.hp + heal);
+    eventText    = `💧 回復の泉を発見！\nHP +${heal}`;
+    eventHp = heal;
+  } else {
+    // 通路（何もなし・ゴールド入手）
+    const g = floor * 300;
+    gs.player.gold += g;
+    eventText  = `🚶 特に何もない通路。\n💰 落ちていたコイン +${g}G`;
+    eventGold  = g;
+  }
+
+  updateStatus();
+  saveGame();
+
+  const diffLabel = difficulty === 'easy' ? '易' : difficulty === 'normal' ? '普' : '難';
+  const isBossNext = nextFloor === maxFloor;
+  let txt = `${floor}F突破！（${diffLabel}・${maxFloor}F中）\n\n`;
+  txt += ` EXP +${gainedExp}　💰 +${gainedGold}G\n\n`;
+  txt += eventText;
+  if (isBossNext) txt += '\n\n⚠️ 次はボスフロア！！';
+  showLevelingPanel('🏚️', `${floor}F クリア！`, txt);
+  addLevelingBtn(`⚔️ ${nextFloor}Fへ進む`, '', () => startRandomDungeonFloor());
+  addLevelingBtn('🏳️ ダンジョンを脱出', 'back-btn', () => { gs.randomDungeon = null; saveGame(); gotoScene('random_dungeon_hub'); });
+}
+
 function endBattle(victory, escaped = false) {
   gs.inBattle = false;
 
@@ -8427,6 +8587,12 @@ function endBattle(victory, escaped = false) {
     if (gs.endlessTrialMode) {
       gs.postBattleScene = null;
       setTimeout(() => handleEndlessVictory(gainedExp, gainedGold), 1000);
+      return;
+    }
+
+    if (gs.randomDungeon) {
+      gs.postBattleScene = null;
+      setTimeout(() => handleRandomDungeonVictory(gainedExp, gainedGold), 1000);
       return;
     }
 
@@ -9563,7 +9729,7 @@ function openWorldMap() {
 
   const categories = [
     { label: '📍 メインストーリーエリア', flags: ['vis_village','vis_forest_entrance','vis_deep_forest','vis_cave_entrance','vis_ancient_ruins','vis_desert_oasis','vis_snow_entrance','vis_sea_harbor','vis_arena','vis_demon_castle'] },
-    { label: '⭐ クリア後エリア',          flags: ['vis_gods_tower','vis_void_map','vis_desert_hidden','vis_endless_trial','vis_volcano','vis_secret_garden','vis_ancient_shrine'] },
+    { label: '⭐ クリア後エリア',          flags: ['vis_gods_tower','vis_void_map','vis_desert_hidden','vis_endless_trial','vis_volcano','vis_secret_garden','vis_ancient_shrine','vis_random_dungeon'] },
     { label: '🚗 乗り物エリア',            flags: ['vis_grasslands','vis_south_island','vis_sky_island'] },
   ];
 
@@ -9748,6 +9914,7 @@ function handleSceneEvent(event) {
         gs.flags.vis_volcano           = true;
         gs.flags.vis_secret_garden     = true;
         gs.flags.vis_ancient_shrine    = true;
+        gs.flags.vis_random_dungeon    = true;
         // クリアフラグを確実に保存
         try { localStorage.setItem('rpg_save', JSON.stringify(gs)); } catch {}
       }
@@ -9762,6 +9929,31 @@ function handleSceneEvent(event) {
       break;
     case 'unlock_ancient_shrine':
       if (!gs.flags.vis_ancient_shrine) { gs.flags.vis_ancient_shrine = true; saveGame(); }
+      break;
+
+    case 'unlock_random_dungeon': {
+      if (!gs.flags.vis_random_dungeon) { gs.flags.vis_random_dungeon = true; saveGame(); }
+      const rdBest = gs.randomDungeonBest || {};
+      const rdLines = [
+        rdBest.easy   ? `🟢 易: 最高 ${rdBest.easy}F到達` : '🟢 易: 未挑戦',
+        rdBest.normal ? `🟡 普: 最高 ${rdBest.normal}F到達` : '🟡 普: 未挑戦',
+        rdBest.hard   ? `🔴 難: 最高 ${rdBest.hard}F到達` : '🔴 難: 未挑戦',
+      ];
+      const rdEl = document.getElementById('story-text');
+      if (rdEl) {
+        rdEl.textContent = `闇の中から現れる——「ランダムダンジョン」。\n\nフロアごとにランダムな敵が現れ、\n宝箱・罠・回復の泉などの出来事が待ち受ける。\n最終フロアには強力なボスが現れる！\n\n難易度が高いほど、より良い報酬が手に入る。\n一度入ったら脱出するまで戦い続けよ！\n\n【難易度】\n🟢 易：5フロア ── 初心者向け\n🟡 普：10フロア ── やや難しい\n🔴 難：15フロア ── 上級者向け\n\n【最高記録】\n${rdLines.join('\n')}`;
+      }
+      break;
+    }
+
+    case 'start_dungeon_easy':
+      startRandomDungeon('easy');
+      break;
+    case 'start_dungeon_normal':
+      startRandomDungeon('normal');
+      break;
+    case 'start_dungeon_hard':
+      startRandomDungeon('hard');
       break;
 
     case 'endless_trial_hub_refresh': {
@@ -10038,6 +10230,8 @@ function loadGame() {
     if (!gs.companionSkills) gs.companionSkills = {};
     if (!('weeklyChallenge' in gs)) gs.weeklyChallenge = null;
     if (!('rebirthCount' in gs)) gs.rebirthCount = 0;
+    if (!('randomDungeon' in gs)) gs.randomDungeon = null;
+    if (!gs.randomDungeonBest) gs.randomDungeonBest = {};
     // ロード時に戦闘中フラグをリセット（中断セーブ対策）
     gs._tournamentActive = false;
     gs.inBattle = false;
@@ -10050,6 +10244,7 @@ function loadGame() {
       gs.flags.vis_volcano           = true;
       gs.flags.vis_secret_garden     = true;
       gs.flags.vis_ancient_shrine    = true;
+      gs.flags.vis_random_dungeon    = true;
     }
     document.getElementById('title-screen').classList.add('hidden');
     document.getElementById('game-screen').classList.remove('hidden');
@@ -11688,7 +11883,7 @@ function _admSetFlag(k, v) {
   if (!gs.flags) gs.flags = {};
   gs.flags[k] = v;
   if (k === 'demonKingDefeated' && v) {
-    gs.flags.vis_gods_tower = gs.flags.vis_void_map = gs.flags.vis_desert_hidden = gs.flags.vis_endless_trial = gs.flags.vis_volcano = gs.flags.vis_secret_garden = gs.flags.vis_ancient_shrine = true;
+    gs.flags.vis_gods_tower = gs.flags.vis_void_map = gs.flags.vis_desert_hidden = gs.flags.vis_endless_trial = gs.flags.vis_volcano = gs.flags.vis_secret_garden = gs.flags.vis_ancient_shrine = gs.flags.vis_random_dungeon = true;
   }
 }
 function _admAddFlag() {

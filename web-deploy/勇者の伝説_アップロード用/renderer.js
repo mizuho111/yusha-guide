@@ -24,6 +24,16 @@ const ITEM_DATA = {
   antidote:     { name: '解毒薬',       emoji: '🧪', desc: '状態異常を全て回復する',   type: 'consumable', effect: 'cure_status',     value: 0,   price: 30   },
   phoenixFeather: { name: 'フェニックスの羽', emoji: '🪶', desc: '戦闘不能の仲間をHP50%で復活（戦闘中）', type: 'consumable', effect: 'revive_companion', value: 0, price: 3000 },
 
+  // 召喚アイテム
+  slimeCrystal:  { name: 'スライムの結晶',   emoji: '🟢', desc: '召喚：スライムがHP20%回復',            type: 'consumable', effect: 'summon', price: 200  },
+  goblinHorn:    { name: 'ゴブリンの角笛',   emoji: '📯', desc: '召喚：ゴブリン2体が連続攻撃',          type: 'consumable', effect: 'summon', price: 400  },
+  summonPhoenix: { name: '召喚・フェニックス', emoji: '🔥', desc: '召喚：次の致命傷を1度無効化',          type: 'consumable', effect: 'summon', price: 1200 },
+  dragonFragment:{ name: 'ドラゴンの欠片',   emoji: '🐉', desc: '召喚：ドラゴンが炎ブレス（MATK×3）',  type: 'consumable', effect: 'summon', price: 800  },
+  spiritCrystal: { name: '精霊の結晶',       emoji: '💎', desc: '召喚：全ステ+30% × 3ターン',          type: 'consumable', effect: 'summon', price: 1500 },
+  demonRemnant:  { name: '魔将の残影',       emoji: '👹', desc: '召喚：敵ATK・DEF-40% × 3ターン',      type: 'consumable', effect: 'summon', price: 2000 },
+  angelFeather:  { name: '天使の羽根',       emoji: '😇', desc: '召喚：HP・MP完全回復',                type: 'consumable', effect: 'summon', price: 3000 },
+  thunderSeal:   { name: '雷神の印章',       emoji: '⚡', desc: '召喚：超雷撃（MATK×5・防御無視）',    type: 'consumable', effect: 'summon', price: 5000 },
+
   // 武器装備品
   oldStaff:     { name: '古い魔法の杖',  emoji: '🪄', desc: '魔法力+10 [装備品]',    type: 'equipment', slot: 'weapon', atk: 0,  matk: 10, price: 0  },
   heroSword:    { name: '勇者の剣',      emoji: '⚔️', desc: '攻撃力+15 [装備品]',    type: 'equipment', slot: 'weapon', atk: 15, matk: 0,  price: 0  },
@@ -102,6 +112,25 @@ const ITEM_DATA = {
   demonGodRing:    { name: '魔神の指輪', emoji: '🔮', desc: '全ステータス+50 [アクセサリー]',           type: 'equipment', slot: 'accessory', atk: 50, def: 50, matk: 50, hp: 50, mp: 50, price: 0 },
   voidArmor:       { name: '虚無の鎧',   emoji: '🌑', desc: 'DEF+80・全ダメージ30%軽減 [体防具]',      type: 'equipment', slot: 'body',      def: 80, dmgReduce: 0.30, price: 0 },
 
+  // ── 未踏エリア報酬 ──
+  volcanoBlade:    { name: '火山の業炎剣', emoji: '🌋', desc: 'ATK+130・炎属性ダメージ+40% [武器]',       type: 'equipment', slot: 'weapon',    atk: 130, elemBonus: { fire: 0.4 }, price: 0 },
+  gardenAmulet:    { name: '庭園の精霊環', emoji: '🌿', desc: 'HP+400・MP+150・MATK+60 [アクセサリー]', type: 'equipment', slot: 'accessory', hp: 400, mp: 150, matk: 60, price: 0 },
+  shrineRobe:      { name: '神殿の聖法衣', emoji: '⛩️', desc: 'DEF+120・MATK+80・全属性耐性+15% [体防具]', type: 'equipment', slot: 'body', def: 120, matk: 80, allElemResist: 0.15, price: 0 },
+
+  // ── 料理食材 ──
+  freshMeat:   { name: '新鮮なお肉',   emoji: '🥩', desc: '新鮮な肉。料理の材料になる',   type: 'material', price: 100 },
+  wildMushroom:{ name: '野生のきのこ', emoji: '🍄', desc: '森のきのこ。料理の材料になる', type: 'material', price: 80  },
+  sweetBerry:  { name: '甘い木の実',   emoji: '🫐', desc: '甘くて美味しい実',           type: 'material', price: 60  },
+  // ── 料理（バフ食）──
+  grassSalad:    { name: '草むらのサラダ',     emoji: '🥗', desc: '3戦：戦闘後HP+5%回復',               type: 'food', price: 0 },
+  heroBreakfast: { name: '勇者の朝ごはん',     emoji: '🍳', desc: '3戦：ATK+15%',                       type: 'food', price: 0 },
+  sageTea:       { name: '賢者のお茶',         emoji: '🍵', desc: '3戦：MATK+20%',                      type: 'food', price: 0 },
+  slimeCooking:  { name: 'プルプル精力料理',   emoji: '🍱', desc: '4戦：ATK+20%・DEF+10%',              type: 'food', price: 0 },
+  wolfSteak:     { name: '猛獣のステーキ',     emoji: '🥩', desc: '5戦：ATK+30%',                       type: 'food', price: 0 },
+  seaStew:       { name: '海のシチュー',        emoji: '🫕', desc: '5戦：MATK+30%・MP+100',              type: 'food', price: 0 },
+  iceSoup:       { name: '氷晶スープ',          emoji: '🍲', desc: '5戦：DEF+20%・被ダメ-10%',           type: 'food', price: 0 },
+  demonFeast:    { name: '魔王のフルコース',    emoji: '🍽️', desc: '8戦：ATK+40%・MATK+40%',             type: 'food', price: 0 },
+  dragonRoast:   { name: '竜肉フルコース',     emoji: '🐉', desc: '10戦：ATK+50%・MATK+30%・DEF+20%',  type: 'food', price: 0 },
   // モンスター素材
   slimeGel:     { name: 'スライムのゼリー', emoji: '🟢', desc: '特殊強化に使える素材', type: 'material', price: 50  },
   wolfFang:     { name: '狼の牙',           emoji: '🦷', desc: '特殊強化に使える素材', type: 'material', price: 80  },
@@ -183,10 +212,10 @@ const ITEM_DATA = {
 };
 
 const SHOP_INVENTORY = {
-  village_shop: ['herb', 'highHerb', 'mpPotion', 'antidote', 'phoenixFeather', 'leatherHelm', 'leatherArmor', 'powerRing'],
-  snow_shop:    ['highHerb', 'mpPotion', 'highMpPotion', 'elixir', 'antidote', 'phoenixFeather', 'ironHelmet', 'chainmail', 'magicNecklace', 'speedBoots', 'guardRing'],
-  desert_shop:  ['highHerb', 'mpPotion', 'highMpPotion', 'elixir', 'antidote', 'phoenixFeather', 'magicHat', 'mageRobe', 'expCharm', 'healRing'],
-  sea_shop:     ['elixir', 'antidote', 'phoenixFeather', 'heroCirclet', 'heroArmor', 'ironCharm', 'heroShield', 'fireRing', 'iceNecklace', 'thunderCharm', 'lightSeal', 'darkEmblem', 'elemShield'],
+  village_shop: ['herb', 'highHerb', 'mpPotion', 'antidote', 'phoenixFeather', 'slimeCrystal', 'goblinHorn', 'leatherHelm', 'leatherArmor', 'powerRing'],
+  snow_shop:    ['highHerb', 'mpPotion', 'highMpPotion', 'elixir', 'antidote', 'phoenixFeather', 'summonPhoenix', 'spiritCrystal', 'ironHelmet', 'chainmail', 'magicNecklace', 'speedBoots', 'guardRing'],
+  desert_shop:  ['highHerb', 'mpPotion', 'highMpPotion', 'elixir', 'antidote', 'phoenixFeather', 'dragonFragment', 'demonRemnant', 'magicHat', 'mageRobe', 'expCharm', 'healRing'],
+  sea_shop:     ['elixir', 'antidote', 'phoenixFeather', 'angelFeather', 'thunderSeal', 'heroCirclet', 'heroArmor', 'ironCharm', 'heroShield', 'fireRing', 'iceNecklace', 'thunderCharm', 'lightSeal', 'darkEmblem', 'elemShield'],
   // 町の発展で解放される追加在庫
   village_shop_ext:    ['highMpPotion', 'elixir', 'magicNecklace', 'speedBoots', 'guardRing'],
   village_legend_shop: ['legSword', 'legStaff', 'legHelm', 'legArmor', 'legRing'],
@@ -196,6 +225,1046 @@ const SHOP_INVENTORY = {
   snow_shop_ext:       ['heroCirclet', 'heroArmor', 'mageRobe', 'magicHat', 'expCharm'],
   snow_summon_shop:    ['summonGem'],
 };
+
+// ============================================================
+//  パッシブスキルツリー
+// ============================================================
+// ============================================================
+//  モンスター召喚システム
+// ============================================================
+const SUMMON_DATA = {
+  slimeCrystal:  { name: 'スライム',      emoji: '🟢', desc: 'HP +20%回復' },
+  goblinHorn:    { name: 'ゴブリン×2',   emoji: '📯', desc: '2連続攻撃（ATK×0.8×2）' },
+  summonPhoenix: { name: 'フェニックス',  emoji: '🔥', desc: '次の致命傷を1度無効化' },
+  dragonFragment:{ name: 'ドラゴン',      emoji: '🐉', desc: '炎ブレス（MATK×3・防御無視）' },
+  spiritCrystal: { name: '精霊',          emoji: '💎', desc: '全ステ+30% × 3ターン' },
+  demonRemnant:  { name: '魔将',          emoji: '👹', desc: '敵ATK・DEF-40% × 3ターン' },
+  angelFeather:  { name: '天使',          emoji: '😇', desc: 'HP・MP完全回復' },
+  thunderSeal:   { name: '雷神',          emoji: '⚡', desc: '超雷撃（MATK×5・防御無視）' },
+};
+
+function openSummonPanel() {
+  if (!gs.inBattle || gs.battleTurn !== 'player') { setBattleButtons(true); return; }
+  _renderSummonPanel();
+  document.getElementById('summon-overlay').classList.remove('hidden');
+}
+
+function closeSummonPanel() {
+  document.getElementById('summon-overlay').classList.add('hidden');
+  if (gs.inBattle) setBattleButtons(true);
+}
+
+function _renderSummonPanel() {
+  const list = document.getElementById('summon-list');
+  list.innerHTML = '';
+  let hasAny = false;
+  Object.entries(SUMMON_DATA).forEach(([id, sd]) => {
+    if (!hasItem(id)) return;
+    hasAny = true;
+    const count = gs.player.items.find(i => i.id === id)?.count || 0;
+    const div = document.createElement('div');
+    div.style.cssText = 'padding:10px 12px;margin-bottom:6px;border-radius:8px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,180,0,0.3);';
+    div.innerHTML =
+      `<div style="display:flex;justify-content:space-between;align-items:center;">` +
+        `<span style="font-size:15px;font-weight:700;color:var(--text-main)">${sd.emoji} ${sd.name}</span>` +
+        `<span style="font-size:11px;color:#aaa;">所持: ${count}個</span>` +
+      `</div>` +
+      `<div style="font-size:12px;color:#80e0ff;margin:3px 0 6px;">✨ ${sd.desc}</div>`;
+    const btn = document.createElement('button');
+    btn.style.cssText = 'width:100%;font-family:inherit;font-size:13px;padding:6px;border-radius:6px;background:rgba(255,180,0,0.15);color:#f0c040;border:1px solid rgba(255,180,0,0.4);cursor:pointer;';
+    btn.textContent = `🌟 ${sd.name}を召喚する`;
+    btn.onclick = () => useSummon(id);
+    div.appendChild(btn);
+    list.appendChild(div);
+  });
+  if (!hasAny) {
+    list.innerHTML = '<p style="text-align:center;color:#888;padding:20px;">召喚アイテムを持っていない</p>';
+  }
+}
+
+function useSummon(id) {
+  if (!hasItem(id)) return;
+  removeItem(id, 1);
+  advanceWeeklyChallenge('summon', 1);
+  closeSummonPanel();
+  const sd = SUMMON_DATA[id];
+  addBattleLog(`✨ ${sd.emoji} ${sd.name}が現れた！`, 'log-system');
+
+  switch (id) {
+    case 'slimeCrystal': {
+      const heal = Math.floor(getEffMaxHp() * 0.2);
+      gs.player.hp = clamp(gs.player.hp + heal, 0, getEffMaxHp());
+      updateStatus();
+      addBattleLog(`🟢 スライムがHPを ${heal} 回復してくれた！`, 'log-heal');
+      break;
+    }
+    case 'goblinHorn': {
+      let totalDmg = 0;
+      for (let i = 0; i < 2; i++) {
+        const dmg = Math.max(1, Math.floor(getAtk() * 0.8));
+        gs.enemy.hp = clamp(gs.enemy.hp - dmg, 0, gs.enemy.maxHp);
+        totalDmg += dmg;
+      }
+      addBattleLog(`📯 ゴブリン×2の連続攻撃！ ${gs.enemy.name}に計 ${totalDmg} ダメージ！`, 'log-player');
+      updateBattleDisplay();
+      if (gs.enemy.hp <= 0) { saveGame(); setTimeout(() => endBattle(true), 600); return; }
+      break;
+    }
+    case 'summonPhoenix': {
+      gs.summonRevive = true;
+      addBattleLog(`🔥 フェニックスの加護！ 次の致命傷を1度無効化！`, 'log-heal');
+      updateStatusDisplay();
+      break;
+    }
+    case 'dragonFragment': {
+      const dmg = Math.floor(getMatk() * 3);
+      gs.enemy.hp = clamp(gs.enemy.hp - dmg, 0, gs.enemy.maxHp);
+      addBattleLog(`🐉 ドラゴンの炎ブレス！ ${gs.enemy.name}に ${dmg} ダメージ！`, 'log-player');
+      updateBattleDisplay();
+      if (gs.enemy.hp <= 0) { saveGame(); setTimeout(() => endBattle(true), 600); return; }
+      break;
+    }
+    case 'spiritCrystal': {
+      gs.summonBuff = { turns: 3, atkMult: 1.3, defMult: 1.3, matkMult: 1.3 };
+      addBattleLog(`💎 精霊のバフ！ 全ステータス+30% × 3ターン！`, 'log-heal');
+      updateStatusDisplay();
+      break;
+    }
+    case 'demonRemnant': {
+      gs.enemySummonDebuff = { turns: 3, atkMult: 0.6, defMult: 0.6 };
+      addBattleLog(`👹 魔将が ${gs.enemy.name} を弱体化！ ATK・DEF-40% × 3ターン！`, 'log-player');
+      updateStatusDisplay();
+      break;
+    }
+    case 'angelFeather': {
+      gs.player.hp = getEffMaxHp();
+      gs.player.mp = getEffMaxMp();
+      updateStatus();
+      addBattleLog(`😇 天使の加護！ HPとMPが完全回復！`, 'log-heal');
+      break;
+    }
+    case 'thunderSeal': {
+      const dmg = Math.floor(getMatk() * 5);
+      gs.enemy.hp = clamp(gs.enemy.hp - dmg, 0, gs.enemy.maxHp);
+      addBattleLog(`⚡ 雷神の超雷撃！ ${gs.enemy.name}に ${dmg} ダメージ！`, 'log-player');
+      updateBattleDisplay();
+      if (gs.enemy.hp <= 0) { saveGame(); setTimeout(() => endBattle(true), 600); return; }
+      break;
+    }
+  }
+  saveGame();
+  afterPlayerTurn(700);
+}
+
+// ============================================================
+//  仲間の個別スキルツリー
+// ============================================================
+const COMPANION_SKILL_DATA = {
+  aria: {
+    name: 'アリア', emoji: '👱‍♀️', color: '#e78bff',
+    skills: [
+      { id:'aria_s1',    name:'絆の守り I',    cost:1, requires:[],                      bonus:{hpMult:1.05},                              desc:'HP+5%' },
+      { id:'aria_s2',    name:'絆の守り II',   cost:2, requires:['aria_s1'],              bonus:{hpMult:1.10},                              desc:'HP+10%' },
+      { id:'aria_heal',  name:'癒しの歌',      cost:2, requires:['aria_s1'],              bonus:{matkMult:1.08},                            desc:'MATK+8%' },
+      { id:'aria_matk',  name:'魔法支援',      cost:2, requires:[],                      bonus:{matkMult:1.10},                            desc:'MATK+10%' },
+      { id:'aria_master',name:'完全なる絆',    cost:4, requires:['aria_s2','aria_matk'],  bonus:{atkMult:1.05,defMult:1.05,matkMult:1.05,expMult:1.15}, desc:'全ステ+5%・EXP+15%' },
+    ],
+  },
+  gaius: {
+    name: 'ガイアス', emoji: '🛡️', color: '#5dade2',
+    skills: [
+      { id:'gaius_s1',    name:'鋼の防壁 I',   cost:1, requires:[],                        bonus:{defMult:1.08},                             desc:'DEF+8%' },
+      { id:'gaius_s2',    name:'鋼の防壁 II',  cost:2, requires:['gaius_s1'],               bonus:{defMult:1.15},                             desc:'DEF+15%' },
+      { id:'gaius_shield',name:'盾の誓い',     cost:2, requires:['gaius_s1'],               bonus:{dmgReduce:0.05},                           desc:'被ダメ-5%' },
+      { id:'gaius_hp',    name:'不動の体躯',   cost:2, requires:[],                        bonus:{hpMult:1.10},                              desc:'HP+10%' },
+      { id:'gaius_master',name:'鋼鉄の騎士',  cost:4, requires:['gaius_s2','gaius_hp'],    bonus:{hpMult:1.15,defMult:1.10,dmgReduce:0.05},  desc:'HP+15%・DEF+10%・被ダメ-5%' },
+    ],
+  },
+  luna: {
+    name: 'ルナ', emoji: '🌙', color: '#f0c040',
+    skills: [
+      { id:'luna_s1',    name:'月の恵み I',    cost:1, requires:[],                      bonus:{expMult:1.10},                             desc:'EXP+10%' },
+      { id:'luna_s2',    name:'月の恵み II',   cost:2, requires:['luna_s1'],              bonus:{expMult:1.15},                             desc:'EXP+15%' },
+      { id:'luna_atk',   name:'星の輝き',      cost:2, requires:[],                      bonus:{atkMult:1.08,matkMult:1.08},               desc:'ATK+8%・MATK+8%' },
+      { id:'luna_gold',  name:'月光の財宝',    cost:2, requires:['luna_s1'],              bonus:{goldMult:1.10},                            desc:'Gold+10%' },
+      { id:'luna_master',name:'月の女神',      cost:4, requires:['luna_s2','luna_atk'],   bonus:{atkMult:1.08,matkMult:1.08,expMult:1.15,goldMult:1.10}, desc:'全攻+8%・EXP+15%・Gold+10%' },
+    ],
+  },
+  sola: {
+    name: 'ソラ', emoji: '⛓️', color: '#58d68d',
+    skills: [
+      { id:'sola_s1',    name:'弱体の心得 I',  cost:1, requires:[],                      bonus:{atkMult:1.05},                             desc:'ATK+5%（弱体応用）' },
+      { id:'sola_s2',    name:'弱体の心得 II', cost:2, requires:['sola_s1'],              bonus:{atkMult:1.08},                             desc:'ATK+8%（弱体強化）' },
+      { id:'sola_gold',  name:'略奪の技',      cost:2, requires:[],                      bonus:{goldMult:1.15},                            desc:'Gold+15%' },
+      { id:'sola_def',   name:'影の鎧',        cost:2, requires:['sola_s1'],              bonus:{defMult:1.08},                             desc:'DEF+8%' },
+      { id:'sola_master',name:'影の使者',      cost:4, requires:['sola_s2','sola_gold'],  bonus:{atkMult:1.10,defMult:1.08,goldMult:1.15},  desc:'ATK+10%・DEF+8%・Gold+15%' },
+    ],
+  },
+  serafina: {
+    name: 'セラフィナ', emoji: '✨', color: '#f8f4e8',
+    skills: [
+      { id:'sera_s1',    name:'聖なる光 I',    cost:1, requires:[],                        bonus:{hpMult:1.05},                              desc:'HP+5%' },
+      { id:'sera_s2',    name:'聖なる光 II',   cost:2, requires:['sera_s1'],               bonus:{hpMult:1.10},                              desc:'HP+10%' },
+      { id:'sera_mp',    name:'神聖魔法',      cost:2, requires:[],                        bonus:{matkMult:1.08},                            desc:'MATK+8%' },
+      { id:'sera_def',   name:'守護の壁',      cost:2, requires:['sera_s1'],               bonus:{defMult:1.08,dmgReduce:0.03},              desc:'DEF+8%・被ダメ-3%' },
+      { id:'sera_master',name:'大天使の加護',  cost:4, requires:['sera_s2','sera_def'],    bonus:{hpMult:1.15,defMult:1.10,dmgReduce:0.05},  desc:'HP+15%・DEF+10%・被ダメ-5%' },
+    ],
+  },
+  zephiros: {
+    name: 'ゼフィロス', emoji: '⚡', color: '#80e0ff',
+    skills: [
+      { id:'zeph_s1',    name:'魔力の覚醒 I',  cost:1, requires:[],                        bonus:{matkMult:1.08},                            desc:'MATK+8%' },
+      { id:'zeph_s2',    name:'魔力の覚醒 II', cost:2, requires:['zeph_s1'],               bonus:{matkMult:1.15},                            desc:'MATK+15%' },
+      { id:'zeph_mp',    name:'魔力拡張',      cost:2, requires:[],                        bonus:{mpMult:1.20},                              desc:'MP+20%' },
+      { id:'zeph_exp',   name:'探求者',        cost:2, requires:['zeph_s1'],               bonus:{expMult:1.10},                             desc:'EXP+10%' },
+      { id:'zeph_master',name:'魔王殺しの剣士',cost:4, requires:['zeph_s2','zeph_exp'],    bonus:{matkMult:1.20,expMult:1.10,goldMult:1.10}, desc:'MATK+20%・EXP+10%・Gold+10%' },
+    ],
+  },
+};
+
+function getCompanionSkillBonus(cid) {
+  const result = { atkMult:1, defMult:1, matkMult:1, hpMult:1, mpMult:1, expMult:1, goldMult:1, dmgReduce:0 };
+  const data = COMPANION_SKILL_DATA[cid];
+  if (!data) return result;
+  data.skills.forEach(sk => {
+    if (!gs.companionSkills?.[cid]?.[sk.id]) return;
+    const b = sk.bonus;
+    if (b.atkMult)   result.atkMult   *= b.atkMult;
+    if (b.defMult)   result.defMult   *= b.defMult;
+    if (b.matkMult)  result.matkMult  *= b.matkMult;
+    if (b.hpMult)    result.hpMult    *= b.hpMult;
+    if (b.mpMult)    result.mpMult    *= b.mpMult;
+    if (b.expMult)   result.expMult   *= b.expMult;
+    if (b.goldMult)  result.goldMult  *= b.goldMult;
+    if (b.dmgReduce) result.dmgReduce += b.dmgReduce;
+  });
+  return result;
+}
+
+function getActiveCompanionBonus() {
+  const result = { atkMult:1, defMult:1, matkMult:1, hpMult:1, mpMult:1, expMult:1, goldMult:1, dmgReduce:0 };
+  const activeCids = [];
+  if (gs.companion?.joined) activeCids.push('aria');
+  Object.entries(gs.companions || {}).forEach(([id, c]) => { if (c?.joined) activeCids.push(id); });
+  activeCids.forEach(cid => {
+    const b = getCompanionSkillBonus(cid);
+    result.atkMult   *= b.atkMult;
+    result.defMult   *= b.defMult;
+    result.matkMult  *= b.matkMult;
+    result.hpMult    *= b.hpMult;
+    result.mpMult    *= b.mpMult;
+    result.expMult   *= b.expMult;
+    result.goldMult  *= b.goldMult;
+    result.dmgReduce += b.dmgReduce;
+  });
+  return result;
+}
+
+function canLearnCompanionSkill(cid, sid) {
+  const data = COMPANION_SKILL_DATA[cid];
+  if (!data) return false;
+  const sk = data.skills.find(s => s.id === sid);
+  if (!sk) return false;
+  if (gs.companionSkills?.[cid]?.[sk.id]) return false;
+  if ((gs.companionSP?.[cid] || 0) < sk.cost) return false;
+  return sk.requires.every(req => gs.companionSkills?.[cid]?.[req]);
+}
+
+function learnCompanionSkill(cid, sid) {
+  if (!canLearnCompanionSkill(cid, sid)) return;
+  const sk = COMPANION_SKILL_DATA[cid].skills.find(s => s.id === sid);
+  if (!gs.companionSkills) gs.companionSkills = {};
+  if (!gs.companionSkills[cid]) gs.companionSkills[cid] = {};
+  gs.companionSkills[cid][sk.id] = true;
+  gs.companionSP[cid] = (gs.companionSP[cid] || 0) - sk.cost;
+  saveGame(); updateStatus();
+  showToast(`✨ ${COMPANION_SKILL_DATA[cid].name}のスキル「${sk.name}」を習得！`);
+  _renderCompanionSkillDetail(cid);
+}
+
+function resetCompanionSkillTree(cid) {
+  const cost = 5000;
+  if (gs.player.gold < cost) { showToast('ゴールドが足りません（5000G必要）'); return; }
+  if (!confirm(`${COMPANION_SKILL_DATA[cid].name}のスキルツリーをリセットしますか？（5000G消費）`)) return;
+  const data = COMPANION_SKILL_DATA[cid];
+  const spent = data.skills.filter(s => gs.companionSkills?.[cid]?.[s.id]).reduce((sum, s) => sum + s.cost, 0);
+  gs.player.gold -= cost;
+  gs.companionSP[cid] = (gs.companionSP[cid] || 0) + spent;
+  gs.companionSkills[cid] = {};
+  saveGame(); updateStatus();
+  showToast(`🔄 ${data.name}のスキルツリーをリセットした！`);
+  _renderCompanionSkillDetail(cid);
+}
+
+let _cskillView = null; // null=一覧, 'aria'etc=詳細
+
+function openCompanionSkillPanel() {
+  if (gs.inBattle) return;
+  _cskillView = null;
+  _renderCompanionList();
+  document.getElementById('cskill-overlay').classList.remove('hidden');
+}
+
+function closeCompanionSkillPanel() {
+  document.getElementById('cskill-overlay').classList.add('hidden');
+}
+
+function _renderCompanionList() {
+  const header = document.getElementById('cskill-header-title');
+  if (header) header.textContent = '💫 仲間スキルツリー';
+  const backBtn = document.getElementById('cskill-back-btn');
+  if (backBtn) backBtn.style.display = 'none';
+
+  const container = document.getElementById('cskill-content');
+  container.innerHTML = '';
+  const companions = [
+    { id: 'aria',     c: gs.companion },
+    { id: 'gaius',    c: gs.companions?.gaius },
+    { id: 'luna',     c: gs.companions?.luna },
+    { id: 'sola',     c: gs.companions?.sola },
+    { id: 'serafina', c: gs.companions?.serafina },
+    { id: 'zephiros', c: gs.companions?.zephiros },
+  ];
+  companions.forEach(({ id, c }) => {
+    if (!c || !c.joined) return;
+    const data = COMPANION_SKILL_DATA[id];
+    if (!data) return;
+    const sp = gs.companionSP?.[id] || 0;
+    const learned = data.skills.filter(s => gs.companionSkills?.[id]?.[s.id]).length;
+    const div = document.createElement('div');
+    div.style.cssText = `padding:12px 14px;margin-bottom:8px;border-radius:9px;background:rgba(255,255,255,0.06);border:1px solid ${data.color}44;cursor:pointer;`;
+    div.innerHTML =
+      `<div style="display:flex;justify-content:space-between;align-items:center;">` +
+        `<span style="font-size:15px;font-weight:700;color:${data.color}">${data.emoji} ${data.name}</span>` +
+        `<span style="font-size:12px;color:${sp > 0 ? '#f0c040' : '#aaa'};">SP: ${sp}　習得: ${learned}/${data.skills.length}</span>` +
+      `</div>`;
+    div.onclick = () => { _cskillView = id; _renderCompanionSkillDetail(id); };
+    container.appendChild(div);
+  });
+  if (!container.innerHTML) {
+    container.innerHTML = '<p style="text-align:center;color:#888;padding:20px;">仲間がいない</p>';
+  }
+}
+
+function _renderCompanionSkillDetail(cid) {
+  const data = COMPANION_SKILL_DATA[cid];
+  if (!data) return;
+  const header = document.getElementById('cskill-header-title');
+  if (header) header.textContent = `${data.emoji} ${data.name}のスキルツリー`;
+  const backBtn = document.getElementById('cskill-back-btn');
+  if (backBtn) backBtn.style.display = '';
+
+  const sp = gs.companionSP?.[cid] || 0;
+  document.getElementById('cskill-sp').textContent = `残りSP: ${sp}`;
+
+  const container = document.getElementById('cskill-content');
+  container.innerHTML = '';
+
+  data.skills.forEach(sk => {
+    const learned   = !!(gs.companionSkills?.[cid]?.[sk.id]);
+    const canLearn  = canLearnCompanionSkill(cid, sk.id);
+    const reqsMet   = sk.requires.every(r => gs.companionSkills?.[cid]?.[r]);
+    const reqsText  = sk.requires.length
+      ? sk.requires.map(r => {
+          const s = data.skills.find(x => x.id === r);
+          return `${gs.companionSkills?.[cid]?.[r] ? '✅' : '🔒'} ${s?.name || r}`;
+        }).join('  ')
+      : '（前提なし）';
+
+    const div = document.createElement('div');
+    div.style.cssText = `padding:9px 11px;margin-bottom:6px;border-radius:7px;` +
+      `background:rgba(255,255,255,${learned?'0.10':canLearn?'0.06':'0.03'});` +
+      `border:1px solid ${learned?data.color+'aa':canLearn?data.color+'55':data.color+'22'};`;
+    div.innerHTML =
+      `<div style="display:flex;justify-content:space-between;align-items:center;">` +
+        `<span style="font-size:14px;font-weight:700;color:${learned?data.color:canLearn?'var(--text-main)':'#888'}">${sk.name}</span>` +
+        `<span style="font-size:12px;color:${learned?'#58d68d':data.color};">${learned?'✅ 習得済み':`${sk.cost}SP`}</span>` +
+      `</div>` +
+      `<div style="font-size:11px;color:#80e0ff;margin:3px 0;">効果: ${sk.desc}</div>` +
+      `<div style="font-size:10px;color:${reqsMet?'#aaa':'#e74c3c'};">前提: ${reqsText}</div>`;
+    if (canLearn) {
+      const btn = document.createElement('button');
+      btn.style.cssText = `margin-top:5px;width:100%;font-family:inherit;font-size:12px;padding:5px;border-radius:5px;background:${data.color}22;color:${data.color};border:1px solid ${data.color}55;cursor:pointer;`;
+      btn.textContent = `✨ 習得する（${sk.cost}SP）`;
+      btn.onclick = () => learnCompanionSkill(cid, sk.id);
+      div.appendChild(btn);
+    }
+    container.appendChild(div);
+  });
+
+  const footer = document.createElement('div');
+  footer.style.cssText = 'margin-top:10px;text-align:center;';
+  const resetBtn = document.createElement('button');
+  resetBtn.style.cssText = 'font-family:inherit;font-size:12px;padding:7px 14px;border-radius:7px;background:rgba(231,76,60,0.15);color:#e74c3c;border:1px solid rgba(231,76,60,0.4);cursor:pointer;';
+  resetBtn.textContent = '🔄 リセット（5000G）';
+  resetBtn.onclick = () => resetCompanionSkillTree(cid);
+  footer.appendChild(resetBtn);
+  container.appendChild(footer);
+}
+
+const SKILL_TREE_DATA = [
+  // ── ⚔️ 戦士系 ──
+  { id:'atk1',   cat:'atk',     emoji:'⚔️', name:'剣の腕前 I',    cost:1, requires:[],
+    bonus:{ atkMult:1.05 },  desc:'ATK+5%' },
+  { id:'atk2',   cat:'atk',     emoji:'⚔️', name:'剣の腕前 II',   cost:2, requires:['atk1'],
+    bonus:{ atkMult:1.10 },  desc:'ATK+10%' },
+  { id:'atk3',   cat:'atk',     emoji:'🗡️', name:'剣の腕前 III',  cost:3, requires:['atk2'],
+    bonus:{ atkMult:1.15 },  desc:'ATK+15%' },
+  { id:'crit',   cat:'atk',     emoji:'💥', name:'致命の一撃',     cost:3, requires:['atk2'],
+    bonus:{ critBonus:0.10 }, desc:'クリティカル率+10%' },
+
+  // ── 🛡️ 守護系 ──
+  { id:'def1',   cat:'def',     emoji:'🛡️', name:'守りの構え I',  cost:1, requires:[],
+    bonus:{ defMult:1.05 },  desc:'DEF+5%' },
+  { id:'def2',   cat:'def',     emoji:'🛡️', name:'守りの構え II', cost:2, requires:['def1'],
+    bonus:{ defMult:1.10 },  desc:'DEF+10%' },
+  { id:'hp1',    cat:'def',     emoji:'❤️', name:'鉄の体力',       cost:2, requires:['def1'],
+    bonus:{ hpMult:1.10 },   desc:'HP最大+10%' },
+  { id:'tough',  cat:'def',     emoji:'🪨', name:'不屈の魂',       cost:3, requires:['def2','hp1'],
+    bonus:{ dmgReduce:0.08 }, desc:'被ダメージ-8%' },
+
+  // ── ✨ 魔法系 ──
+  { id:'matk1',  cat:'matk',    emoji:'✨', name:'魔力の素養 I',  cost:1, requires:[],
+    bonus:{ matkMult:1.05 }, desc:'MATK+5%' },
+  { id:'matk2',  cat:'matk',    emoji:'✨', name:'魔力の素養 II', cost:2, requires:['matk1'],
+    bonus:{ matkMult:1.10 }, desc:'MATK+10%' },
+  { id:'mp1',    cat:'matk',    emoji:'💧', name:'MP拡張術',       cost:2, requires:['matk1'],
+    bonus:{ mpMult:1.20 },   desc:'MP最大+20%' },
+  { id:'spell',  cat:'matk',    emoji:'🔮', name:'魔法増幅',       cost:3, requires:['matk2','mp1'],
+    bonus:{ matkMult:1.15 }, desc:'魔法ダメージ+15%' },
+
+  // ── 🌟 探索系 ──
+  { id:'exp1',   cat:'explore', emoji:'📚', name:'向学の心',       cost:1, requires:[],
+    bonus:{ expMult:1.10 },  desc:'経験値+10%' },
+  { id:'gold1',  cat:'explore', emoji:'💰', name:'交渉術',         cost:1, requires:[],
+    bonus:{ goldMult:1.10 }, desc:'ゴールド+10%' },
+  { id:'luck',   cat:'explore', emoji:'🍀', name:'幸運の星',       cost:2, requires:['exp1','gold1'],
+    bonus:{ expMult:1.10, goldMult:1.10 }, desc:'EXP+10%・Gold+10%' },
+
+  // ── 👑 覚醒系（強力・複合） ──
+  { id:'hero',   cat:'special', emoji:'👑', name:'英雄の覚悟',     cost:5, requires:['atk2','def2'],
+    bonus:{ atkMult:1.10, defMult:1.10 }, desc:'ATK+10%・DEF+10%' },
+  { id:'sage',   cat:'special', emoji:'🌙', name:'賢者の境地',     cost:5, requires:['matk2','mp1'],
+    bonus:{ matkMult:1.15, mpMult:1.15 }, desc:'MATK+15%・MP+15%' },
+  { id:'legend', cat:'special', emoji:'🌟', name:'伝説の勇者',     cost:8, requires:['hero','sage','luck'],
+    bonus:{ atkMult:1.08, defMult:1.08, matkMult:1.08, expMult:1.15, goldMult:1.15 },
+    desc:'全ステ+8%・EXP&Gold+15%' },
+];
+
+// スキルツリーの合計ボーナスを取得
+function getSkillBonus() {
+  const result = { atkMult:1, defMult:1, matkMult:1, hpMult:1, mpMult:1,
+                   expMult:1, goldMult:1, dmgReduce:0, critBonus:0 };
+  (gs.skillTree || {});
+  SKILL_TREE_DATA.forEach(sk => {
+    if (!gs.skillTree?.[sk.id]) return;
+    const b = sk.bonus;
+    if (b.atkMult)    result.atkMult   *= b.atkMult;
+    if (b.defMult)    result.defMult   *= b.defMult;
+    if (b.matkMult)   result.matkMult  *= b.matkMult;
+    if (b.hpMult)     result.hpMult    *= b.hpMult;
+    if (b.mpMult)     result.mpMult    *= b.mpMult;
+    if (b.expMult)    result.expMult   *= b.expMult;
+    if (b.goldMult)   result.goldMult  *= b.goldMult;
+    if (b.dmgReduce)  result.dmgReduce += b.dmgReduce;
+    if (b.critBonus)  result.critBonus += b.critBonus;
+  });
+  return result;
+}
+
+function canLearnSkill(id) {
+  const sk = SKILL_TREE_DATA.find(s => s.id === id);
+  if (!sk) return false;
+  if (gs.skillTree?.[id]) return false; // already learned
+  if ((gs.skillPoints || 0) < sk.cost) return false;
+  return sk.requires.every(req => gs.skillTree?.[req]);
+}
+
+function learnSkill(id) {
+  if (!canLearnSkill(id)) return;
+  const sk = SKILL_TREE_DATA.find(s => s.id === id);
+  if (!gs.skillTree) gs.skillTree = {};
+  gs.skillTree[id] = true;
+  gs.skillPoints = (gs.skillPoints || 0) - sk.cost;
+  saveGame(); updateStatus();
+  showToast(`✨ スキル「${sk.name}」を習得！`);
+  _renderSkillTree();
+}
+
+function resetSkillTree() {
+  const cost = 10000;
+  if (gs.player.gold < cost) { showToast('ゴールドが足りません（10000G必要）'); return; }
+  if (!confirm('スキルツリーをリセットしますか？（10000G消費）')) return;
+  // 使ったSPを全部戻す
+  const spent = SKILL_TREE_DATA.filter(s => gs.skillTree?.[s.id]).reduce((sum, s) => sum + s.cost, 0);
+  gs.player.gold -= cost;
+  gs.skillPoints = (gs.skillPoints || 0) + spent;
+  gs.skillTree = {};
+  saveGame(); updateStatus();
+  showToast('🔄 スキルツリーをリセットした！');
+  _renderSkillTree();
+}
+
+function openSkillTree() {
+  if (gs.inBattle) return;
+  _renderSkillTree();
+  document.getElementById('skilltree-overlay').classList.remove('hidden');
+}
+
+function closeSkillTree() {
+  document.getElementById('skilltree-overlay').classList.add('hidden');
+}
+
+function _renderSkillTree() {
+  const sp = gs.skillPoints || 0;
+  document.getElementById('skilltree-sp').textContent = `残りSP: ${sp}`;
+
+  const cats = [
+    { id: 'atk',     label: '⚔️ 戦士系' },
+    { id: 'def',     label: '🛡️ 守護系' },
+    { id: 'matk',    label: '✨ 魔法系' },
+    { id: 'explore', label: '🌟 探索系' },
+    { id: 'special', label: '👑 覚醒系' },
+  ];
+  const container = document.getElementById('skilltree-list');
+  container.innerHTML = '';
+
+  cats.forEach(cat => {
+    const skills = SKILL_TREE_DATA.filter(s => s.cat === cat.id);
+    const header = document.createElement('div');
+    header.style.cssText = 'font-size:13px;font-weight:700;color:var(--gold);padding:8px 0 4px;border-bottom:1px solid rgba(240,192,64,0.2);margin-bottom:6px;';
+    header.textContent = cat.label;
+    container.appendChild(header);
+
+    skills.forEach(sk => {
+      const learned   = !!(gs.skillTree?.[sk.id]);
+      const canLearn  = canLearnSkill(sk.id);
+      const reqsMet   = sk.requires.every(r => gs.skillTree?.[r]);
+      const reqsText  = sk.requires.length
+        ? sk.requires.map(r => { const s = SKILL_TREE_DATA.find(x => x.id === r); return `${gs.skillTree?.[r] ? '✅' : '🔒'} ${s?.name || r}`; }).join('  ')
+        : '（前提なし）';
+
+      const div = document.createElement('div');
+      div.style.cssText = `padding:8px 10px;margin-bottom:5px;border-radius:7px;` +
+        `background:rgba(255,255,255,${learned?'0.10':canLearn?'0.06':'0.03'});` +
+        `border:1px solid rgba(240,192,64,${learned?'0.7':canLearn?'0.4':'0.15'});`;
+      div.innerHTML =
+        `<div style="display:flex;justify-content:space-between;align-items:center;">` +
+          `<span style="font-size:14px;font-weight:700;color:${learned?'#f0c040':canLearn?'var(--text-main)':'#888'}">${sk.emoji} ${sk.name}</span>` +
+          `<span style="font-size:12px;color:${learned?'#58d68d':'var(--gold)'};">${learned?'✅ 習得済み':`${sk.cost}SP`}</span>` +
+        `</div>` +
+        `<div style="font-size:11px;color:#80e0ff;margin:3px 0;">効果: ${sk.desc}</div>` +
+        `<div style="font-size:10px;color:${reqsMet?'#aaa':'#e74c3c'};">前提: ${reqsText}</div>`;
+
+      if (canLearn) {
+        const btn = document.createElement('button');
+        btn.style.cssText = 'margin-top:5px;width:100%;font-family:inherit;font-size:12px;padding:5px;border-radius:5px;background:rgba(240,192,64,0.15);color:var(--gold);border:1px solid rgba(240,192,64,0.4);cursor:pointer;';
+        btn.textContent = `✨ 習得する（${sk.cost}SP）`;
+        btn.onclick = () => learnSkill(sk.id);
+        div.appendChild(btn);
+      }
+      container.appendChild(div);
+    });
+  });
+}
+
+// ============================================================
+//  料理・食事バフシステム
+// ============================================================
+const COOKING_RECIPES = [
+  {
+    id: 'grassSalad',
+    name: '🥗 草むらのサラダ', difficulty: '★',
+    ingredients: [{ id: 'herb', count: 2 }],
+    result: 'grassSalad',
+    buff: { battles: 3, desc: '戦闘後HP+5%回復',  healPct: 0.05 },
+  },
+  {
+    id: 'heroBreakfast',
+    name: '🍳 勇者の朝ごはん', difficulty: '★★',
+    ingredients: [{ id: 'highHerb', count: 2 }],
+    result: 'heroBreakfast',
+    buff: { battles: 3, desc: 'ATK+15%', atkMult: 1.15 },
+  },
+  {
+    id: 'sageTea',
+    name: '🍵 賢者のお茶', difficulty: '★★',
+    ingredients: [{ id: 'highMpPotion', count: 2 }],
+    result: 'sageTea',
+    buff: { battles: 3, desc: 'MATK+20%', matkMult: 1.20 },
+  },
+  {
+    id: 'slimeCooking',
+    name: '🍱 プルプル精力料理', difficulty: '★★★',
+    ingredients: [{ id: 'slimeGel', count: 2 }, { id: 'highHerb', count: 1 }],
+    result: 'slimeCooking',
+    buff: { battles: 4, desc: 'ATK+20%・DEF+10%', atkMult: 1.20, defMult: 1.10 },
+  },
+  {
+    id: 'wolfSteak',
+    name: '🥩 猛獣のステーキ', difficulty: '★★★',
+    ingredients: [{ id: 'freshMeat', count: 2 }, { id: 'herb', count: 1 }],
+    result: 'wolfSteak',
+    buff: { battles: 5, desc: 'ATK+30%', atkMult: 1.30 },
+  },
+  {
+    id: 'seaStew',
+    name: '🫕 海のシチュー', difficulty: '★★★',
+    ingredients: [{ id: 'deepSeaScale', count: 1 }, { id: 'highMpPotion', count: 2 }],
+    result: 'seaStew',
+    buff: { battles: 5, desc: 'MATK+30%・MP+100', matkMult: 1.30, mpBonus: 100 },
+  },
+  {
+    id: 'iceSoup',
+    name: '🍲 氷晶スープ', difficulty: '★★★',
+    ingredients: [{ id: 'iceCrystal', count: 1 }, { id: 'highHerb', count: 2 }],
+    result: 'iceSoup',
+    buff: { battles: 5, desc: 'DEF+20%・被ダメ-10%', defMult: 1.20, dmgReduce: 0.10 },
+  },
+  {
+    id: 'demonFeast',
+    name: '🍽️ 魔王のフルコース', difficulty: '★★★★',
+    ingredients: [{ id: 'demonHorn', count: 2 }, { id: 'elixir', count: 1 }],
+    result: 'demonFeast',
+    buff: { battles: 8, desc: 'ATK+40%・MATK+40%', atkMult: 1.40, matkMult: 1.40 },
+  },
+  {
+    id: 'dragonRoast',
+    name: '🐉 竜肉フルコース', difficulty: '★★★★★',
+    ingredients: [{ id: 'dragonScale', count: 1 }, { id: 'freshMeat', count: 2 }, { id: 'elixir', count: 1 }],
+    result: 'dragonRoast',
+    buff: { battles: 10, desc: 'ATK+50%・MATK+30%・DEF+20%', atkMult: 1.50, matkMult: 1.30, defMult: 1.20 },
+  },
+];
+
+function openCookingPanel() {
+  if (gs.inBattle) return;
+  if (!gs.foodBuff) gs.foodBuff = null;
+  _renderCookingPanel();
+  document.getElementById('cooking-overlay').classList.remove('hidden');
+}
+
+function closeCookingPanel() {
+  document.getElementById('cooking-overlay').classList.add('hidden');
+}
+
+function _renderCookingPanel() {
+  const list = document.getElementById('cooking-list');
+  list.innerHTML = '';
+
+  // 現在のバフ表示
+  const buffDiv = document.getElementById('cooking-current-buff');
+  if (gs.foodBuff && gs.foodBuff.battlesLeft > 0) {
+    buffDiv.innerHTML = `<strong style="color:#ff9800">${ITEM_DATA[gs.foodBuff.foodId]?.emoji || '🍽️'} ${ITEM_DATA[gs.foodBuff.foodId]?.name || ''}</strong>　残り<strong>${gs.foodBuff.battlesLeft}戦</strong><br><span style="font-size:11px;color:#aaa">${gs.foodBuff.desc}</span>`;
+    buffDiv.style.background = 'rgba(255,152,0,0.12)';
+    buffDiv.style.borderColor = 'rgba(255,152,0,0.4)';
+  } else {
+    buffDiv.innerHTML = '<span style="color:var(--text-dim)">現在：食事バフなし</span>';
+    buffDiv.style.background = 'rgba(255,255,255,0.04)';
+    buffDiv.style.borderColor = 'rgba(255,255,255,0.1)';
+  }
+
+  COOKING_RECIPES.forEach(recipe => {
+    const canCook = recipe.ingredients.every(ing => {
+      const owned = gs.player.items.find(i => i.id === ing.id);
+      return owned && owned.count >= ing.count;
+    });
+
+    const ingText = recipe.ingredients.map(ing => {
+      const item = ITEM_DATA[ing.id];
+      const owned = gs.player.items.find(i => i.id === ing.id);
+      const have = owned ? owned.count : 0;
+      const enough = have >= ing.count;
+      return `<span style="color:${enough ? '#58d68d' : '#e74c3c'}">${item?.emoji || '?'} ${item?.name || ing.id} ×${ing.count}（所持:${have}）</span>`;
+    }).join('　');
+
+    const card = document.createElement('div');
+    card.style.cssText = `padding:10px;margin-bottom:8px;border-radius:7px;background:rgba(255,255,255,${canCook?'0.07':'0.03'});border:1px solid rgba(255,152,0,${canCook?'0.5':'0.15'});`;
+    card.innerHTML = `
+      <div style="font-size:14px;font-weight:700;color:${canCook?'#ff9800':'#888'}">${recipe.name} <span style="font-size:11px;color:#aaa">${recipe.difficulty}</span></div>
+      <div style="font-size:11px;margin:5px 0;">${ingText}</div>
+      <div style="font-size:12px;color:#80e0ff;">⚡ 効果：${recipe.buff.desc}（${recipe.buff.battles}戦持続）</div>
+    `;
+    if (canCook) {
+      const btn = document.createElement('button');
+      btn.style.cssText = 'margin-top:6px;width:100%;font-family:inherit;font-size:13px;padding:7px;border-radius:5px;background:linear-gradient(135deg,#3d1f00,#6d3a00);color:#ff9800;border:1px solid rgba(255,152,0,0.5);cursor:pointer;';
+      btn.textContent = '🍳 料理する！';
+      btn.onclick = () => _cookRecipe(recipe);
+      card.appendChild(btn);
+    }
+    list.appendChild(card);
+  });
+}
+
+function _cookRecipe(recipe) {
+  // 食材消費
+  recipe.ingredients.forEach(ing => removeItem(ing.id, ing.count));
+  // バフをセット
+  gs.foodBuff = {
+    foodId: recipe.result,
+    desc: recipe.buff.desc,
+    battlesLeft: recipe.buff.battles,
+    atkMult:    recipe.buff.atkMult    || 1,
+    matkMult:   recipe.buff.matkMult   || 1,
+    defMult:    recipe.buff.defMult    || 1,
+    dmgReduce:  recipe.buff.dmgReduce  || 0,
+    healPct:    recipe.buff.healPct    || 0,
+    mpBonus:    recipe.buff.mpBonus    || 0,
+  };
+  advanceWeeklyChallenge('cook', 1);
+  saveGame(); updateStatus();
+  const item = ITEM_DATA[recipe.result];
+  showToast(`🍳 ${item?.name} を作った！${recipe.buff.battles}戦間バフ発動！`);
+  _renderCookingPanel();
+}
+
+// ============================================================
+//  装備セットボーナス定義
+// ============================================================
+// ============================================================
+//  転生システム
+// ============================================================
+function getRebirthBonus() {
+  const n = Math.min(gs.rebirthCount || 0, 10);
+  if (n === 0) return { atkMult:1, defMult:1, matkMult:1, hpMult:1, mpMult:1, expMult:1, goldMult:1 };
+  return {
+    atkMult:  1 + n * 0.05,
+    defMult:  1 + n * 0.05,
+    matkMult: 1 + n * 0.05,
+    hpMult:   1 + n * 0.05,
+    mpMult:   1 + n * 0.05,
+    expMult:  1 + n * 0.10,
+    goldMult: 1 + n * 0.05,
+  };
+}
+
+function canRebirth() {
+  return !!(gs.flags.demonKingDefeated) && gs.player.level >= 50;
+}
+
+function openRebirthPanel() {
+  if (!canRebirth()) {
+    showToast('転生には「魔王討伐」かつ「Lv50以上」が必要です');
+    return;
+  }
+  _renderRebirthPanel();
+  document.getElementById('rebirth-overlay').classList.remove('hidden');
+}
+
+function closeRebirthPanel() {
+  document.getElementById('rebirth-overlay').classList.add('hidden');
+}
+
+function _renderRebirthPanel() {
+  const n    = (gs.rebirthCount || 0) + 1;
+  const mult = Math.min(n, 10);
+  const spRefund = SKILL_TREE_DATA.filter(s => gs.skillTree?.[s.id]).reduce((sum, s) => sum + s.cost, 0);
+  const startGold = (n * 1000).toLocaleString();
+  const container = document.getElementById('rebirth-content');
+  container.innerHTML = '';
+
+  const info = document.createElement('div');
+  info.innerHTML =
+    `<div style="text-align:center;padding:8px 0 14px;">` +
+      `<div style="font-size:30px;">🌟</div>` +
+      `<div style="font-size:17px;font-weight:700;color:#c084fc;margin:4px 0 2px;">転生 第${n}回</div>` +
+      `<div style="font-size:11px;color:#aaa;">魂を解放して、より強く生まれ変わる</div>` +
+    `</div>` +
+    `<div style="font-size:12px;line-height:1.9;margin-bottom:10px;">` +
+      `<span style="color:#58d68d;font-weight:700;">✅ 引き継ぐ：</span><span style="color:#ccc;">称号・仲間・絆・図鑑・スキルツリーSP全返還（+${spRefund}SP）・ストーリー進行</span>` +
+    `</div>` +
+    `<div style="font-size:12px;line-height:1.9;margin-bottom:12px;">` +
+      `<span style="color:#e74c3c;font-weight:700;">❌ リセット：</span><span style="color:#ccc;">レベル・装備・アイテム・Gold→${startGold}G</span>` +
+    `</div>` +
+    `<div style="background:rgba(192,132,252,0.12);border:1px solid rgba(192,132,252,0.35);border-radius:8px;padding:10px;margin-bottom:14px;">` +
+      `<div style="font-size:12px;font-weight:700;color:#c084fc;margin-bottom:4px;">🌟 永続転生ボーナス（${n}転生後）</div>` +
+      `<div style="font-size:12px;color:#e2c4ff;line-height:1.8;">` +
+        `全ステ+${mult * 5}%　EXP+${mult * 10}%　Gold+${mult * 5}%` +
+        `<span style="font-size:10px;color:#aaa;display:block;">最大10転生まで上昇（+50%/+100%/+50%）</span>` +
+      `</div>` +
+    `</div>`;
+  container.appendChild(info);
+
+  const btn = document.createElement('button');
+  btn.style.cssText = 'width:100%;font-family:inherit;font-size:15px;font-weight:700;padding:12px;border-radius:8px;background:linear-gradient(135deg,#4a1060,#7c3090);color:#e2c4ff;border:1px solid #a060d0;cursor:pointer;letter-spacing:1px;';
+  btn.textContent = '🌟 転生する';
+  btn.onclick = confirmRebirth;
+  container.appendChild(btn);
+}
+
+function confirmRebirth() {
+  if (!canRebirth()) return;
+  if (!confirm(`転生 第${(gs.rebirthCount||0)+1}回 を実行しますか？\nレベル・装備・アイテムがリセットされます。`)) return;
+  closeRebirthPanel();
+
+  const newCount = (gs.rebirthCount || 0) + 1;
+  const spRefund = SKILL_TREE_DATA.filter(s => gs.skillTree?.[s.id]).reduce((sum, s) => sum + s.cost, 0);
+
+  // 引き継ぎデータ
+  const keep = {
+    flags:             gs.flags,
+    titles:            { ...(gs.titles || {}), t_reborn: { obtained: true } },
+    monsterBook:       gs.monsterBook || {},
+    bondLevel:         gs.bondLevel   || {},
+    bondExp:           gs.bondExp     || {},
+    companion:         gs.companion,
+    companions:        gs.companions,
+    companionSkills:   gs.companionSkills  || {},
+    companionSP:       gs.companionSP      || {},
+    quests:            gs.quests           || {},
+    townDev:           gs.townDev          || {},
+    vehicles:          gs.vehicles         || {},
+    gacha:             gs.gacha            || {},
+    areaGacha:         gs.areaGacha        || {},
+    discoveredRecipes: gs.discoveredRecipes|| {},
+    season:            gs.season           || 'spring',
+    seasonBattleCount: gs.seasonBattleCount|| 0,
+    adminMult:         gs.adminMult,
+    weeklyChallenge:   gs.weeklyChallenge,
+  };
+
+  const newGs         = createInitialState();
+  Object.assign(newGs, keep);
+  newGs.rebirthCount  = newCount;
+  newGs.player.gold   = 1000 * newCount;
+  newGs.player.items  = [{ id:'herb', count:3 }, { id:'dragonFragment', count:1 }];
+  newGs.skillPoints   = spRefund + newCount * 2; // SP全返還 + ボーナス
+
+  // 仲間HPフル回復
+  if (newGs.companion) {
+    newGs.companion.hp = newGs.companion.maxHp;
+    if (newGs.companion.mp !== undefined) newGs.companion.mp = newGs.companion.maxMp || 0;
+  }
+  Object.values(newGs.companions || {}).forEach(c => {
+    if (c) { c.hp = c.maxHp; if (c.mp !== undefined) c.mp = c.maxMp || 0; }
+  });
+
+  gs = newGs;
+  saveGame();
+  gotoScene('village');
+  updateStatus();
+  setTimeout(() => showToast(`🌟 転生${newCount}回目！ 永続ボーナス: 全ステ+${Math.min(newCount,10)*5}%・EXP+${Math.min(newCount,10)*10}%`), 400);
+}
+
+// ============================================================
+//  週替わりチャレンジ
+// ============================================================
+const WEEKLY_CHALLENGE_POOL = [
+  { type:'battles', name:'⚔️ 戦士の試練',   descT:'敵を{n}体倒す',        targets:[10,15,20,30] },
+  { type:'magic',   name:'🔮 魔法使いの道',  descT:'スキルを{n}回使う',     targets:[8,12,15]     },
+  { type:'items',   name:'🎒 道具師の心得',  descT:'アイテムを{n}個使う',   targets:[5,8,12]      },
+  { type:'gold',    name:'💰 商人の欲望',    descT:'{n}Gを稼ぐ',            targets:[1000,2000,3000] },
+  { type:'crits',   name:'💥 一撃必殺',      descT:'クリティカル{n}回',     targets:[5,8,12]      },
+  { type:'cook',    name:'🍳 料理人の誇り',  descT:'料理を{n}回作る',       targets:[2,3,5]       },
+  { type:'summon',  name:'✨ 召喚士の修行',  descT:'召喚を{n}回使う',       targets:[2,3,5]       },
+  { type:'sell',    name:'💱 売却の達人',    descT:'アイテムを{n}種売る',   targets:[3,5,8]       },
+];
+
+const WEEKLY_REWARDS = [
+  { count:1, exp:300,  gold:300,  sp:0, label:'★ 1個達成' },
+  { count:2, exp:800,  gold:800,  sp:1, label:'★★ 2個達成' },
+  { count:3, exp:3000, gold:3000, sp:3, label:'★★★ 全制覇' },
+];
+
+function getCurrentWeekNum() {
+  return Math.floor(Date.now() / (7 * 24 * 60 * 60 * 1000));
+}
+
+function _weekSeedRand(seed) {
+  let s = seed >>> 0;
+  return () => {
+    s = Math.imul(s ^ (s >>> 15), s | 1);
+    s ^= s + Math.imul(s ^ (s >>> 7), s | 61);
+    return ((s ^ (s >>> 14)) >>> 0) / 0x100000000;
+  };
+}
+
+function initWeeklyChallenge() {
+  const weekNum = getCurrentWeekNum();
+  if (gs.weeklyChallenge?.weekNum === weekNum) return;
+  const rand = _weekSeedRand(weekNum * 31337 + 13);
+  const pool = [...WEEKLY_CHALLENGE_POOL];
+  const selected = [];
+  for (let i = 0; i < 3 && pool.length > 0; i++) {
+    const idx = Math.floor(rand() * pool.length);
+    const ch  = pool.splice(idx, 1)[0];
+    const ti  = Math.floor(rand() * ch.targets.length);
+    selected.push({ type:ch.type, name:ch.name, descT:ch.descT, target:ch.targets[ti], current:0, completed:false });
+  }
+  gs.weeklyChallenge = { weekNum, challenges: selected, claimed: [false, false, false] };
+  saveGame();
+}
+
+function advanceWeeklyChallenge(type, amount = 1) {
+  initWeeklyChallenge();
+  if (!gs.weeklyChallenge) return;
+  let newlyDone = 0;
+  gs.weeklyChallenge.challenges.forEach(ch => {
+    if (ch.type === type && !ch.completed) {
+      ch.current = Math.min(ch.target, ch.current + amount);
+      if (ch.current >= ch.target) { ch.completed = true; newlyDone++; }
+    }
+  });
+  if (newlyDone > 0) {
+    const done = gs.weeklyChallenge.challenges.filter(c => c.completed).length;
+    showToast(`🏆 チャレンジ達成！（${done}/3完了）`);
+  }
+}
+
+function openWeeklyChallenge() {
+  initWeeklyChallenge();
+  _renderWeeklyChallenge();
+  document.getElementById('weekly-overlay').classList.remove('hidden');
+}
+
+function closeWeeklyChallenge() {
+  document.getElementById('weekly-overlay').classList.add('hidden');
+}
+
+function claimWeeklyReward(tier) {
+  const wc = gs.weeklyChallenge;
+  if (!wc || wc.claimed[tier]) return;
+  const completedCount = wc.challenges.filter(c => c.completed).length;
+  const needed = tier + 1;
+  if (completedCount < needed) { showToast('まだ達成できていません'); return; }
+  const r = WEEKLY_REWARDS[tier];
+  wc.claimed[tier] = true;
+  gs.player.exp  += r.exp;
+  gs.player.gold += r.gold;
+  if (r.sp > 0) gs.skillPoints = (gs.skillPoints || 0) + r.sp;
+  saveGame(); updateStatus();
+  checkLevelUp();
+  showToast(`🎁 報酬受取！ EXP+${r.exp}　Gold+${r.gold}${r.sp > 0 ? `　SP+${r.sp}` : ''}`);
+  _renderWeeklyChallenge();
+}
+
+function _renderWeeklyChallenge() {
+  const wc = gs.weeklyChallenge;
+  if (!wc) return;
+  const container = document.getElementById('weekly-content');
+  container.innerHTML = '';
+
+  // 週番号 / リセット日時
+  const resetMs = (wc.weekNum + 1) * 7 * 24 * 60 * 60 * 1000;
+  const diffMs  = resetMs - Date.now();
+  const days    = Math.floor(diffMs / 86400000);
+  const hours   = Math.floor((diffMs % 86400000) / 3600000);
+  const weekInfo = document.createElement('p');
+  weekInfo.style.cssText = 'font-size:11px;color:#aaa;text-align:center;margin:0 0 10px;';
+  weekInfo.textContent   = `第${wc.weekNum}週　リセットまで: ${days}日${hours}時間`;
+  container.appendChild(weekInfo);
+
+  // チャレンジリスト
+  wc.challenges.forEach((ch, i) => {
+    const pct  = Math.min(100, Math.floor(ch.current / ch.target * 100));
+    const desc = ch.descT.replace('{n}', ch.target);
+    const div  = document.createElement('div');
+    div.style.cssText = `padding:10px 12px;margin-bottom:8px;border-radius:8px;background:rgba(255,255,255,${ch.completed?'0.10':'0.05'});border:1px solid rgba(255,215,0,${ch.completed?'0.7':'0.25'});`;
+    div.innerHTML =
+      `<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">` +
+        `<span style="font-size:13px;font-weight:700;color:${ch.completed?'#f0c040':'var(--text-main)'}">${ch.name}</span>` +
+        `<span style="font-size:12px;color:#aaa;">${ch.current}/${ch.target}</span>` +
+      `</div>` +
+      `<div style="font-size:11px;color:#ccc;margin-bottom:5px;">${desc}</div>` +
+      `<div style="background:rgba(0,0,0,0.3);border-radius:4px;height:6px;overflow:hidden;">` +
+        `<div style="width:${pct}%;height:100%;background:${ch.completed?'#f0c040':'#5dade2'};border-radius:4px;transition:width 0.3s;"></div>` +
+      `</div>`;
+    container.appendChild(div);
+  });
+
+  // 報酬エリア
+  const completedCount = wc.challenges.filter(c => c.completed).length;
+  const rewardTitle = document.createElement('p');
+  rewardTitle.style.cssText = 'font-size:12px;font-weight:700;color:var(--gold);margin:12px 0 6px;';
+  rewardTitle.textContent = '🎁 報酬';
+  container.appendChild(rewardTitle);
+
+  WEEKLY_REWARDS.forEach((r, i) => {
+    const unlocked = completedCount >= r.count;
+    const claimed  = wc.claimed[i];
+    const btn = document.createElement('button');
+    btn.style.cssText = `width:100%;font-family:inherit;font-size:12px;padding:8px;border-radius:7px;margin-bottom:5px;cursor:${unlocked&&!claimed?'pointer':'default'};` +
+      `background:rgba(255,215,0,${claimed?'0.05':unlocked?'0.15':'0.03'});` +
+      `color:${claimed?'#555':unlocked?'#f0c040':'#666'};` +
+      `border:1px solid rgba(255,215,0,${claimed?'0.1':unlocked?'0.5':'0.15'});`;
+    const rewardText = `EXP+${r.exp}　Gold+${r.gold}${r.sp > 0 ? `　SP+${r.sp}` : ''}`;
+    btn.textContent = claimed ? `${r.label}　✅ 受取済み` : `${r.label}　${rewardText}`;
+    btn.disabled = !unlocked || claimed;
+    btn.onclick  = () => claimWeeklyReward(i);
+    container.appendChild(btn);
+  });
+}
+
+const EQUIP_SETS = [
+  {
+    id: 'hero_set', name: '⚔️ 勇者セット', color: '#5dade2',
+    items: ['heroSword', 'heroCirclet', 'heroArmor', 'heroShield'],
+    bonuses: [
+      { count: 2, desc: 'ATK+20・DEF+20',             bonus: { atk: 20, def: 20 } },
+      { count: 3, desc: 'ATK+40・DEF+40・HP+200',      bonus: { atk: 40, def: 40, hp: 200 } },
+      { count: 4, desc: '全ステ+60・HP+400・毎ターンHP微回復', bonus: { atk: 60, def: 60, matk: 60, hp: 400, regenPct: 0.03 } },
+    ],
+  },
+  {
+    id: 'divine_set', name: '✨ 神器セット', color: '#f0c040',
+    items: ['godDragonSword', 'divineArmor', 'godDragonShield', 'divineRing'],
+    bonuses: [
+      { count: 2, desc: '全ダメージ軽減+5%',             bonus: { dmgReduce: 0.05 } },
+      { count: 3, desc: 'ATK+100・全ダメージ軽減+10%',   bonus: { atk: 100, dmgReduce: 0.10 } },
+      { count: 4, desc: '全ステ+150・全ダメ軽減15%・HP+500', bonus: { atk: 150, def: 150, matk: 150, hp: 500, dmgReduce: 0.15 } },
+    ],
+  },
+  {
+    id: 'demon_set', name: '👿 魔将セット', color: '#e74c3c',
+    items: ['demonSword', 'demonArmor', 'cursedRing'],
+    bonuses: [
+      { count: 2, desc: 'ATK+40・HP+150',              bonus: { atk: 40, hp: 150 } },
+      { count: 3, desc: 'ATK+100・HP+400・全属性+20%', bonus: { atk: 100, hp: 400, allElemBonus: 0.20 } },
+    ],
+  },
+  {
+    id: 'blizzard_set', name: '❄️ 氷晶セット', color: '#74b9ff',
+    items: ['blizzardBlade', 'polarArmor', 'frostRing'],
+    bonuses: [
+      { count: 2, desc: 'ATK+30・氷属性+20%',          bonus: { atk: 30 } },
+      { count: 3, desc: 'ATK+70・DEF+50・氷属性+50%',  bonus: { atk: 70, def: 50 } },
+    ],
+  },
+  {
+    id: 'sea_set', name: '🌊 海底セット', color: '#00b894',
+    items: ['tidalSword', 'coralArmor', 'deepSeaOrb'],
+    bonuses: [
+      { count: 2, desc: 'MATK+40・MP+80',              bonus: { matk: 40, mp: 80 } },
+      { count: 3, desc: 'ATK+50・MATK+90・MP+200',     bonus: { atk: 50, matk: 90, mp: 200 } },
+    ],
+  },
+  {
+    id: 'void_set', name: '⬛ 虚無セット', color: '#6c5ce7',
+    items: ['voidArmor', 'demonGodRing', 'demonSword'],
+    bonuses: [
+      { count: 2, desc: '被ダメージ-15%・ATK+50',       bonus: { atk: 50, dmgReduce: 0.15 } },
+      { count: 3, desc: '被ダメージ-25%・全ステ+80',     bonus: { atk: 80, def: 80, matk: 80, dmgReduce: 0.25 } },
+    ],
+  },
+];
+
+// 現在装備中のセットボーナスを集計
+function getActiveSetBonuses() {
+  const equipped = new Set(EQUIP_SLOTS.map(s => gs.player.equipment[s]).filter(Boolean));
+  const result = { atk: 0, def: 0, matk: 0, hp: 0, mp: 0, dmgReduce: 0, regenPct: 0, allElemBonus: 0 };
+  EQUIP_SETS.forEach(set => {
+    const count = set.items.filter(id => equipped.has(id)).length;
+    if (count < 2) return;
+    // 該当する最大のボーナス段階を適用
+    const applicable = set.bonuses.filter(b => b.count <= count);
+    applicable.forEach(b => {
+      Object.entries(b.bonus).forEach(([k, v]) => {
+        result[k] = (result[k] || 0) + v;
+      });
+    });
+  });
+  return result;
+}
 
 // ============================================================
 //  町の発展データ
@@ -765,6 +1834,100 @@ const ENEMY_DATA = {
     phase2Threshold: 375000,
     phase2: { name: '虚無の番人【深淵解放】', emoji: '🕳️', attackBonus: 300 },
   },
+
+  // ── 未踏エリア 火山地帯 ──
+  magmaSlime: {
+    name: 'マグマスライム', emoji: '🔴',
+    hp: 18000, maxHp: 18000, attack: 600, defense: 120,
+    exp: 8000, gold: 600,
+    weak: ['ice'], resist: ['fire'],
+  },
+  fireSpirit: {
+    name: '炎の精霊', emoji: '🔥',
+    hp: 22000, maxHp: 22000, attack: 700, defense: 100,
+    exp: 10000, gold: 800,
+    weak: ['ice'], resist: ['fire', 'thunder'],
+    skill: { name: '炎舞', chance: 0.25, damage: 900, msg: '炎の精霊が炎の渦を巻き起こした！' },
+  },
+  lavaDrake: {
+    name: '溶岩竜', emoji: '🐲',
+    hp: 35000, maxHp: 35000, attack: 900, defense: 180,
+    exp: 20000, gold: 2000,
+    weak: ['ice'], resist: ['fire'],
+    skill: { name: '溶岩ブレス', chance: 0.30, damage: 1100, msg: '溶岩の炎が降り注いだ！' },
+  },
+  volcanoBoss: {
+    name: '火山の王エルブレイズ', emoji: '🌋',
+    hp: 600000, maxHp: 600000, attack: 1650, defense: 300,
+    exp: 600000, gold: 60000, isBoss: true, level: 180,
+    skill: { name: '大噴火', chance: 0.35, damage: 1900, msg: '巨大な噴火が全てを飲み込んだ！！' },
+    weak: ['ice'], resist: ['fire', 'thunder', 'wind'],
+    phase2Threshold: 300000,
+    phase2: { name: '火山の王【完全覚醒】', emoji: '💥', attackBonus: 250 },
+  },
+
+  // ── 未踏エリア 秘密の庭園 ──
+  poisonFlower: {
+    name: '毒花妖精', emoji: '🌸',
+    hp: 15000, maxHp: 15000, attack: 550, defense: 80,
+    exp: 7000, gold: 500,
+    weak: ['fire'], resist: ['wind'],
+    skill: { name: '毒粉', chance: 0.30, damage: 600, msg: '毒の花粉が舞い散った！' },
+  },
+  spiritButterfly: {
+    name: '精霊蝶', emoji: '🦋',
+    hp: 20000, maxHp: 20000, attack: 630, defense: 90,
+    exp: 9000, gold: 700,
+    weak: ['thunder'], resist: ['wind', 'light'],
+    skill: { name: '鱗粉の嵐', chance: 0.25, damage: 800, msg: '神秘の鱗粉が舞い乱れた！' },
+  },
+  ancientTree: {
+    name: '古木の精霊王', emoji: '🌳',
+    hp: 30000, maxHp: 30000, attack: 800, defense: 150,
+    exp: 18000, gold: 1800,
+    weak: ['fire'], resist: ['water', 'wind'],
+    skill: { name: '大地の怒り', chance: 0.30, damage: 1000, msg: '大地のエネルギーが爆発した！' },
+  },
+  gardenBoss: {
+    name: '庭園の女神フローラ', emoji: '🌺',
+    hp: 550000, maxHp: 550000, attack: 1500, defense: 280,
+    exp: 550000, gold: 55000, isBoss: true, level: 170,
+    skill: { name: '百花繚乱', chance: 0.35, damage: 1800, msg: '無数の花びらが嵐のように襲いかかった！！' },
+    weak: ['fire'], resist: ['wind', 'light', 'dark'],
+    phase2Threshold: 275000,
+    phase2: { name: '庭園の女神【花神解放】', emoji: '🌹', attackBonus: 220 },
+  },
+
+  // ── 未踏エリア 古代神殿 ──
+  stoneGuardian: {
+    name: '石像の守護者', emoji: '🗿',
+    hp: 25000, maxHp: 25000, attack: 750, defense: 200,
+    exp: 11000, gold: 900,
+    weak: ['thunder'], resist: ['fire', 'ice'],
+  },
+  ancientPriest: {
+    name: '古代の祭司', emoji: '🏺',
+    hp: 18000, maxHp: 18000, attack: 680, defense: 110,
+    exp: 9500, gold: 750,
+    weak: ['dark'], resist: ['light'],
+    skill: { name: '神聖魔法陣', chance: 0.30, damage: 950, msg: '古代の魔法陣が輝き炸裂した！' },
+  },
+  mysticEye: {
+    name: '神の眼', emoji: '👁️',
+    hp: 28000, maxHp: 28000, attack: 820, defense: 140,
+    exp: 15000, gold: 1500,
+    weak: ['dark'], resist: ['light', 'thunder'],
+    skill: { name: '天眼の視線', chance: 0.25, damage: 1100, msg: '神の眼が放つ光線が炸裂した！' },
+  },
+  shrineBoss: {
+    name: '古代神殿の守護神ゼノス', emoji: '⛩️',
+    hp: 700000, maxHp: 700000, attack: 1750, defense: 350,
+    exp: 700000, gold: 70000, isBoss: true, level: 190,
+    skill: { name: '神罰の雷光', chance: 0.35, damage: 2000, msg: '天地を貫く神罰の雷が炸裂した！！！' },
+    weak: ['dark'], resist: ['light', 'fire', 'ice', 'thunder'],
+    phase2Threshold: 350000,
+    phase2: { name: '守護神ゼノス【神域解放】', emoji: '⚡', attackBonus: 280 },
+  },
 };
 
 const AREA_ENEMIES = {
@@ -777,6 +1940,49 @@ const AREA_ENEMIES = {
   grasslands:   ['grasslandBoar', 'windWolf', 'gryphonJr'],
   south_island: ['corsairPirate', 'tropicalSerpent', 'giantCrab'],
   sky:          ['windDrake', 'cloudGiant', 'skyPhoenix'],
+  volcano:      ['magmaSlime', 'fireSpirit', 'lavaDrake'],
+  secret_garden:['poisonFlower', 'spiritButterfly', 'ancientTree'],
+  ancient_shrine:['stoneGuardian', 'ancientPriest', 'mysticEye'],
+};
+
+// ============================================================
+//  レアモンスター（変異種）定義
+// ============================================================
+const RARE_VARIANTS = {
+  // 森
+  slime:         { name: '✨ 黄金スライム',     emoji: '💛', hpMult: 2.0, atkMult: 1.5, expMult: 4, goldMult: 6, drop: 'expCharm',    msg: '黄金に輝くスライムが現れた！レアな素材を持っているぞ！' },
+  goblin:        { name: '👑 ゴブリン王',        emoji: '👑', hpMult: 2.2, atkMult: 1.8, expMult: 4, goldMult: 5, drop: 'powerRing',   msg: '王冠を被った特大ゴブリンが現れた！強力だが、報酬も格別だ！' },
+  forestWolf:    { name: '⭐ 白銀の狼',          emoji: '🌟', hpMult: 1.8, atkMult: 1.6, expMult: 3, goldMult: 4, drop: 'speedBoots',  msg: '神秘的な白銀色の狼が現れた！伝説の存在だ！' },
+  poisonFrog:    { name: '💜 古代毒蛙',          emoji: '🔮', hpMult: 1.8, atkMult: 1.5, expMult: 3, goldMult: 4, drop: 'highMpPotion',msg: '紫に輝く古代の毒蛙が現れた！' },
+  // 洞窟
+  bat:           { name: '🔴 魔界コウモリ',      emoji: '❤️', hpMult: 1.8, atkMult: 1.5, expMult: 3, goldMult: 4, drop: 'highMpPotion',msg: '血赤の翼を持つ魔界のコウモリが現れた！' },
+  skeleton:      { name: '⬛ 黒鉄スケルトン',    emoji: '🖤', hpMult: 2.0, atkMult: 1.7, expMult: 4, goldMult: 5, drop: 'guardRing',   msg: '漆黒の鎧を纏ったスケルトンが現れた！硬い！' },
+  troll:         { name: '🔩 鋼鉄トロル',        emoji: '⚙️', hpMult: 2.5, atkMult: 1.8, expMult: 5, goldMult: 6, drop: 'heroCirclet', msg: '鋼鉄のような皮膚を持つ巨大トロルが現れた！' },
+  poisonSlime:   { name: '☠️ 死毒スライム',      emoji: '💀', hpMult: 2.0, atkMult: 1.6, expMult: 4, goldMult: 4, drop: 'antidote',    msg: '真っ黒な死毒スライムが現れた！毒が非常に強い！' },
+  // 雪山
+  snowWolf:      { name: '❄️ 白金雪狼',          emoji: '💙', hpMult: 1.8, atkMult: 1.6, expMult: 3, goldMult: 4, drop: 'frostRing',   msg: '白金色に輝く伝説の雪狼が現れた！' },
+  iceGolem:      { name: '💎 結晶の巨人',         emoji: '💠', hpMult: 2.5, atkMult: 1.7, expMult: 4, goldMult: 5, drop: 'elixir',      msg: '水晶でできたような巨大ゴーレムが現れた！鉄壁だ！' },
+  yeti:          { name: '🏔️ 雪山の覇王ヤティ',  emoji: '🏔️', hpMult: 2.5, atkMult: 2.0, expMult: 5, goldMult: 6, drop: 'elixir',      msg: '雪山を支配する覇王ヤティが現れた！全力で挑め！' },
+  snowFairy:     { name: '🌸 氷晶の女王',         emoji: '💎', hpMult: 2.0, atkMult: 1.6, expMult: 4, goldMult: 5, drop: 'highMpPotion',msg: '水晶のような翅を持つ女王妖精が現れた！' },
+  // 砂漠
+  sandScorpion:  { name: '🏆 黄金サソリ',         emoji: '🌟', hpMult: 2.0, atkMult: 1.7, expMult: 4, goldMult: 6, drop: 'expCharm',    msg: '黄金に輝く古代のサソリが現れた！伝説の存在だ！' },
+  mummy:         { name: '👑 黒帝ミイラ',          emoji: '🖤', hpMult: 2.0, atkMult: 1.7, expMult: 4, goldMult: 5, drop: 'pharaohAmulet',msg: 'ファラオの護衛だった最強のミイラが現れた！' },
+  desertBandit:  { name: '💀 砂漠の死王',          emoji: '💀', hpMult: 2.2, atkMult: 1.8, expMult: 4, goldMult: 6, drop: 'heroArmor',   msg: '砂漠を支配した最強の盗賊王が現れた！' },
+  fireElemental: { name: '🌋 溶岩の精霊王',        emoji: '🌋', hpMult: 2.5, atkMult: 2.0, expMult: 5, goldMult: 5, drop: 'elixir',      msg: '大地から噴出した溶岩の精霊王が現れた！' },
+  // 海
+  seaSerpent:    { name: '🌊 深淵の古龍',          emoji: '💚', hpMult: 2.5, atkMult: 1.8, expMult: 5, goldMult: 6, drop: 'deepSeaOrb',  msg: '深海に眠っていた古代の龍が現れた！海底最強！' },
+  deepAngler:    { name: '💫 深海の王',             emoji: '🔵', hpMult: 2.0, atkMult: 1.7, expMult: 4, goldMult: 5, drop: 'heroShield',  msg: '巨大な光るアンコウの王が現れた！' },
+  krakenArm:     { name: '👑 覇王クラーケン',       emoji: '🟣', hpMult: 3.0, atkMult: 2.0, expMult: 5, goldMult: 6, drop: 'coralArmor',  msg: '伝説のクラーケン本体の腕が現れた！これは危険だ！' },
+  darkMermaid:   { name: '🌸 深海の女王',           emoji: '💜', hpMult: 2.0, atkMult: 1.6, expMult: 4, goldMult: 5, drop: 'lightSeal',   msg: '深海を統べる伝説の人魚女王が現れた！' },
+  // 魔王城
+  demon:         { name: '💀 大魔将デーモン',       emoji: '💀', hpMult: 2.5, atkMult: 2.0, expMult: 5, goldMult: 6, drop: 'cursedRing',  msg: '魔王軍の将軍クラスの大魔将が現れた！全力で戦え！' },
+  nightmare:     { name: '🌑 漆黒の悪夢',           emoji: '🌑', hpMult: 2.0, atkMult: 1.8, expMult: 4, goldMult: 5, drop: 'elixir',      msg: '漆黒のオーラを纏う悪夢の化身が現れた！' },
+  darkKnight:    { name: '⚔️ 魔王親衛隊長',         emoji: '🗡️', hpMult: 2.5, atkMult: 2.0, expMult: 5, goldMult: 6, drop: 'heroArmor',   msg: '魔王直属の最精鋭、親衛隊長が現れた！倒せるか！？' },
+  cursedSoul:    { name: '👻 怨霊の王',              emoji: '👻', hpMult: 2.0, atkMult: 1.8, expMult: 4, goldMult: 5, drop: 'elixir',      msg: '無数の魂が集まった怨霊の王が現れた！' },
+  // 草原
+  grasslandBoar: { name: '💪 鋼の大猪',             emoji: '🔥', hpMult: 2.0, atkMult: 1.7, expMult: 4, goldMult: 5, drop: 'powerRing',   msg: '鋼鉄の毛皮を持つ伝説の大猪が現れた！' },
+  windWolf:      { name: '🌪️ 嵐を呼ぶ狼',           emoji: '💨', hpMult: 2.0, atkMult: 1.7, expMult: 4, goldMult: 5, drop: 'speedBoots',  msg: '嵐を呼ぶ伝説の狼が現れた！すばやい！' },
+  gryphonJr:     { name: '🦅 黄金グリフォン',        emoji: '🌟', hpMult: 2.5, atkMult: 1.9, expMult: 5, goldMult: 6, drop: 'heroCirclet', msg: '黄金に輝く伝説のグリフォンが現れた！' },
 };
 
 // ============================================================
@@ -1098,6 +2304,11 @@ const WARP_DESTINATIONS = [
   { name: '★ 虚無の地',           emoji: '⬛', sceneId: 'void_map',            flag: 'vis_void_map' },
   { name: '★ 砂漠の隠し部屋',    emoji: '🏺', sceneId: 'desert_hidden',      flag: 'vis_desert_hidden' },
   { name: '★ 無限の試練',        emoji: '♾️', sceneId: 'endless_trial_hub',  flag: 'vis_endless_trial' },
+  // 未踏エリア（クリア後解放）
+  { name: '🌋 火山地帯',          emoji: '🌋', sceneId: 'volcano_zone',        flag: 'vis_volcano' },
+  { name: '🌿 秘密の庭園',        emoji: '🌿', sceneId: 'secret_garden',       flag: 'vis_secret_garden' },
+  { name: '⛩️ 古代神殿',         emoji: '⛩️', sceneId: 'ancient_shrine',      flag: 'vis_ancient_shrine' },
+  { name: '🏚️ ランダムダンジョン', emoji: '🏚️', sceneId: 'random_dungeon_hub', flag: 'vis_random_dungeon' },
   // 乗り物エリア
   { name: '🌾 大草原',            emoji: '🌾', sceneId: 'grasslands_spot',    flag: 'vis_grasslands' },
   { name: '🏝️ 南海の孤島',        emoji: '🏝️', sceneId: 'south_island_spot',  flag: 'vis_south_island' },
@@ -1117,6 +2328,1363 @@ const GODS_TOWER_FLOORS = [
   { floor: 9,  name: '9F 頂上への扉',  emoji: '⛅', enemy: 'towerAncient',   recoveryGold: 2000 },
   { floor: 10, name: '10F 神龍の間',   emoji: '🌟', enemy: 'godDragon',      isBossFloor: true },
 ];
+
+// ============================================================
+//  仲間会話イベント定義
+// ============================================================
+const COMPANION_TALK_EVENTS = [
+  // ── アリア ──
+  { id: 'aria_forest',   companion: 'aria', name: 'アリア', emoji: '👱‍♀️',
+    scenes: ['forest_entrance','forest_start'], minBond: 0,
+    text: 'この森……なんか落ち着く。\n木の香りって、好きなんだよね。\n\n……ゆっくり歩こ？',
+    choices: [
+      { text: '「いいね、ゆっくり歩こう」', bond: 1, reply: 'えへ……ありがと。\nそういうとこ、好きだよ。' },
+      { text: '「先を急がないと」', bond: 0, reply: 'そうだよね、ごめん。行こ！' },
+    ],
+  },
+  { id: 'aria_cave',     companion: 'aria', name: 'アリア', emoji: '👱‍♀️',
+    scenes: ['cave_approach','cave_entrance'], minBond: 0,
+    text: '暗いところ、少し苦手……\n\nでも！ 怖くないから！\nそ、そこにいてくれると助かるかも……',
+    choices: [
+      { text: '「そばにいるよ」', bond: 2, reply: '…………っ。\nありがと。大丈夫、進める！', reward: { hp: 30 } },
+      { text: '「頼りにしてるよ」', bond: 1, reply: 'うん！ 任せて！' },
+    ],
+  },
+  { id: 'aria_snow',     companion: 'aria', name: 'アリア', emoji: '👱‍♀️',
+    scenes: ['snow_village','snow_entrance'], minBond: 1,
+    text: '雪！ 好きなんだよね〜！\n子供のころ、雪だるまよく作ってた。\n\nあとで一緒に作る？なんて……冗談だよ！',
+    choices: [
+      { text: '「作ろうよ！」', bond: 2, reply: 'え……本当に！？\nやった！ 絶対作ろうね！！', reward: { mp: 30 } },
+      { text: '「戦いが終わったらね」', bond: 1, reply: 'うん、約束だよ。絶対だからね！' },
+    ],
+  },
+  { id: 'aria_desert',   companion: 'aria', name: 'アリア', emoji: '👱‍♀️',
+    scenes: ['desert_start','desert_entrance'], minBond: 1,
+    text: '砂漠か……暑い！\nあと、砂が靴の中に入ってくる……\n\n水の管理は徹底しなきゃ。隙を見せちゃダメだね。',
+    choices: [
+      { text: '「しっかりしてるね」', bond: 1, reply: '当然！ サポートは得意なんだから！' },
+      { text: '「喉、渇いてる？」', bond: 2, reply: 'ちょっとだけ……気にしてくれてたの？\nありがと……嬉しい。', reward: { hp: 50 } },
+    ],
+  },
+  { id: 'aria_sea',      companion: 'aria', name: 'アリア', emoji: '👱‍♀️',
+    scenes: ['sea_harbor','sea_entrance'], minBond: 2,
+    text: '海！ 初めて見た！\n\nすごい……こんなに広いんだ。\n……なんか、自分が小さく見えてくる。',
+    choices: [
+      { text: '「でも君は頼もしいよ」', bond: 2, reply: '……もう、急に何言ってるの。\nでも……ありがとう。嬉しいな。', reward: { mp: 50 } },
+      { text: '「綺麗だね」', bond: 1, reply: 'うん……本当に綺麗！' },
+    ],
+  },
+  { id: 'aria_bond3',    companion: 'aria', name: 'アリア', emoji: '👱‍♀️',
+    scenes: null, minBond: 3, maxBond: 4, once: true,
+    text: 'ねえ……少し聞いてもいい？\n\nどうしてこんな危ない旅を続けてるの？\n怖くないの……？',
+    choices: [
+      { text: '「怖いけど、守りたいものがある」', bond: 2, reply: '……そっか。\nじゃあ私も、あなたを守る。それだけ。', reward: { gold: 0, items: ['highHerb','highHerb'] } },
+      { text: '「一緒にいてくれるから怖くない」', bond: 3, reply: '…………っ。\nもう、そういうこと言わないでよ。\n…………でも、ありがと。', reward: { items: ['elixir'] } },
+    ],
+  },
+  { id: 'aria_bond5',    companion: 'aria', name: 'アリア', emoji: '👱‍♀️',
+    scenes: null, minBond: 5, maxBond: 7, once: true,
+    text: 'あなたのそばにいると……\n不思議と安心する。\n\n変かな……こんなこと言うの。',
+    choices: [
+      { text: '「変じゃないよ」', bond: 2, reply: 'よかった……。\nずっと一緒に旅しよ。ね？', reward: { items: ['expCharm'] } },
+      { text: '「俺もそう思ってる」', bond: 3, reply: '……っ！\n……バカ。でも……嬉しい。', reward: { items: ['miracleDrug'] } },
+    ],
+  },
+  { id: 'aria_castle',   companion: 'aria', name: 'アリア', emoji: '👱‍♀️',
+    scenes: ['demon_castle_gate','demon_castle_hall'], minBond: 2,
+    text: 'いよいよ、か。\n\n怖い……正直に言えば。\nでも、あなたがいるなら——負けない。\n\n絶対に。',
+    choices: [
+      { text: '「一緒に行こう」', bond: 2, reply: 'うん……！ 行こう！！', reward: { hp: 100, mp: 50 } },
+    ],
+  },
+
+  // ── ガイアス ──
+  { id: 'gaius_village', companion: 'gaius', name: 'ガイアス', emoji: '⚔️',
+    scenes: ['village','village_inn'], minBond: 0,
+    text: '……ここの飯は旨そうだ。\n腹が減ってた。\n\nお前は？ 食えるうちに食っておけ。\n戦場では後悔するぞ。',
+    choices: [
+      { text: '「一緒に食べよう」', bond: 1, reply: '……ああ。そうするか。', reward: { hp: 60 } },
+      { text: '「先に行くよ」', bond: 0, reply: '……そうか。まあ待ってる。' },
+    ],
+  },
+  { id: 'gaius_cave',    companion: 'gaius', name: 'ガイアス', emoji: '⚔️',
+    scenes: ['cave_deep','cave_right'], minBond: 1,
+    text: '……こういう場所は囲まれると厄介だ。\n死角が多い。\n\n俺が前に出る。お前は後ろを頼む。',
+    choices: [
+      { text: '「頼りになるな」', bond: 1, reply: '……当たり前だ。俺の役目だ。' },
+      { text: '「一緒に前に出よう」', bond: 2, reply: '……はん。そういうやつだな、お前は。\n……嫌いじゃない。', reward: { hp: 50 } },
+    ],
+  },
+  { id: 'gaius_snow',    companion: 'gaius', name: 'ガイアス', emoji: '⚔️',
+    scenes: ['snow_pass','snow_village'], minBond: 1,
+    text: 'こういう寒さには慣れてる。\n昔の訓練で、真冬に山を越えたことがある。\n\nあの頃より、今の方が……\nずっとましだ。',
+    choices: [
+      { text: '「昔のこと、聞かせてくれ」', bond: 2, reply: '……長い話になるが、いいか。\nまあ……今度じっくり話してやる。', reward: { mp: 40 } },
+      { text: '「強いんだな」', bond: 1, reply: '……当然だ。' },
+    ],
+  },
+  { id: 'gaius_bond3',   companion: 'gaius', name: 'ガイアス', emoji: '⚔️',
+    scenes: null, minBond: 3, maxBond: 5, once: true,
+    text: '……なぜ俺についてくるんだ。\n\n俺は面倒なやつだ。\n自覚はある。\nそれでも……お前は離れない。',
+    choices: [
+      { text: '「信頼してるから」', bond: 2, reply: '……っ。\n……そうか。\n……なら、答えてやる義理がある。\n俺もお前を……信頼している。', reward: { items: ['heroShield'] } },
+      { text: '「仲間だから当然だ」', bond: 2, reply: '……はん。\n仲間、か。\n……悪くない言葉だ。', reward: { items: ['highMpPotion','highMpPotion'] } },
+    ],
+  },
+  { id: 'gaius_bond5',   companion: 'gaius', name: 'ガイアス', emoji: '⚔️',
+    scenes: null, minBond: 5, maxBond: 7, once: true,
+    text: 'こんなに誰かのために戦ったのは……\n初めてだ。\n\nお前のことは守る。\n……それだけだ。',
+    choices: [
+      { text: '「ありがとう、ガイアス」', bond: 2, reply: '……礼には及ばん。\n俺がそうしたいから、そうするだけだ。', reward: { items: ['heroArmor'] } },
+    ],
+  },
+
+  // ── ルナ ──
+  { id: 'luna_forest',   companion: 'luna', name: 'ルナ', emoji: '🎵',
+    scenes: ['forest_deep','forest_entrance'], minBond: 0,
+    text: 'この森……詩にしたい！\n木漏れ日が踊って、鳥の声が楽器みたい♪\n\n歩きながら作詞してもいい？',
+    choices: [
+      { text: '「どうぞ！ 聴かせてよ」', bond: 2, reply: '♪〜やさしい光が導く道〜♪\n\nどう？ いい感じでしょ！', reward: { mp: 40 } },
+      { text: '「うるさくしないでね」', bond: 0, reply: 'もう……わかったわよ。鼻歌だけにする。' },
+    ],
+  },
+  { id: 'luna_sea',      companion: 'luna', name: 'ルナ', emoji: '🎵',
+    scenes: ['sea_harbor','sea_village'], minBond: 1,
+    text: '海！ 波の音が音楽みたい！\n\nここで歌ったら気持ちよさそう……\n♪ 歌っていい？',
+    choices: [
+      { text: '「ぜひ！」', bond: 2, reply: '♪〜潮風よ、運べ——願いを遠くへ〜♪\n\nえへへ、ありがとう！', reward: { hp: 60, mp: 30 } },
+      { text: '「あとでね」', bond: 1, reply: 'うーん……わかった！ でも絶対あとでね！' },
+    ],
+  },
+  { id: 'luna_bond3',    companion: 'luna', name: 'ルナ', emoji: '🎵',
+    scenes: null, minBond: 3, maxBond: 5, once: true,
+    text: '私の歌……好き？\n\n正直に教えてほしいな。\nお世辞はいらないから。',
+    choices: [
+      { text: '「大好きだよ」', bond: 3, reply: '……本当に？\nよかった……嬉しい！！\n絶対もっとうまくなるね！', reward: { items: ['highMpPotion','highMpPotion','highMpPotion'] } },
+      { text: '「みんなを元気にしてくれる」', bond: 2, reply: 'そっか……。それが一番嬉しいな。\n歌い続けるね！', reward: { items: ['highMpPotion','highMpPotion'] } },
+    ],
+  },
+  { id: 'luna_bond5',    companion: 'luna', name: 'ルナ', emoji: '🎵',
+    scenes: null, minBond: 5, maxBond: 7, once: true,
+    text: 'この冒険の全部を……\n歌にして、永遠に残したい。\n\nあなたの物語を。\n世界中の人に聴いてもらうの。',
+    choices: [
+      { text: '「楽しみにしてる」', bond: 2, reply: 'うん！ 絶対素敵な歌にするよ！\n……一緒に最後まで旅しようね。', reward: { items: ['expCharm'] } },
+    ],
+  },
+
+  // ── ソラ ──
+  { id: 'sora_ruins',    companion: 'sola', name: 'ソラ', emoji: '🌙',
+    scenes: ['desert_ruins','sea_temple'], minBond: 0,
+    text: 'この魔法陣……古代文明のものね！\n解析してみると……\nすごい！ 空間制御の術式が組まれてる！\n\n興奮する！！',
+    choices: [
+      { text: '「詳しいんだね」', bond: 1, reply: '当然よ！ 魔法なら任せて！\nこの陣の核はここで——', reward: { mp: 50 } },
+      { text: '「気をつけて調べてよ」', bond: 1, reply: 'わかってる！ でも気になって止まれない！' },
+    ],
+  },
+  { id: 'sora_cave',     companion: 'sola', name: 'ソラ', emoji: '🌙',
+    scenes: ['cave_approach','cave_deep'], minBond: 1,
+    text: '洞窟の地質から、魔力の流れが読めるわ。\n\nここは地下水脈と交差してて……\n魔物が集まりやすい地形ね。気をつけて。',
+    choices: [
+      { text: '「助かる情報だね」', bond: 2, reply: 'ふふ、役に立てて嬉しい。\nルナはいつも褒めてくれないから……', reward: { mp: 40 } },
+      { text: '「すごいな」', bond: 1, reply: '当然よ。私を誰だと思ってるの。' },
+    ],
+  },
+  { id: 'sora_bond3',    companion: 'sola', name: 'ソラ', emoji: '🌙',
+    scenes: null, minBond: 3, maxBond: 5, once: true,
+    text: 'ルナとはずっと一緒で……\nあなたも大切な人になってきた。\n\n不思議ね。こんな感覚、初めて。',
+    choices: [
+      { text: '「俺もそう思ってる」', bond: 2, reply: '……そう。\nじゃあ……もっと一緒に研究しましょ。', reward: { items: ['highMpPotion','highMpPotion','highMpPotion'] } },
+      { text: '「ソラも大切な仲間だよ」', bond: 2, reply: '……仲間。うん。それでいい。\n……でも、特別な仲間。', reward: { items: ['magicNecklace'] } },
+    ],
+  },
+  { id: 'sora_bond5',    companion: 'sola', name: 'ソラ', emoji: '🌙',
+    scenes: null, minBond: 5, maxBond: 7, once: true,
+    text: '魔法の才能があるなら、教えてあげる。\n\n私が見込んだ人間には、全部教えるわ。\n……あなたは、その一人。',
+    choices: [
+      { text: '「ぜひ教えてくれ」', bond: 2, reply: '決まり！ 特訓するわよ！\nついてこられるかしら……楽しみ。', reward: { items: ['elixir','elixir'] } },
+    ],
+  },
+
+  // ── セラフィナ ──
+  { id: 'sera_village',  companion: 'serafina', name: 'セラフィナ', emoji: '✨',
+    scenes: ['village','village_inn'], minBond: 0,
+    text: 'この村の人たち、みんな笑顔ね。\n\n……守らなきゃって思う。\nそのために、私はここにいる。',
+    choices: [
+      { text: '「一緒に守ろう」', bond: 2, reply: 'うん……ありがとう。\nあなたと一緒なら、きっと大丈夫ね。', reward: { hp: 50 } },
+      { text: '「頼もしいね」', bond: 1, reply: 'ふふ……そうでしょう。' },
+    ],
+  },
+  { id: 'sera_snow',     companion: 'serafina', name: 'セラフィナ', emoji: '✨',
+    scenes: ['snow_village','snow_entrance'], minBond: 1,
+    text: '寒い地域の人って、心が温かい人が多いのよ。\n\n厳しい環境が、人を助け合わせるのかしら。\n……素敵ね。',
+    choices: [
+      { text: '「セラフィナも温かいよ」', bond: 2, reply: '……もう、急に何言うの。\nでも……嬉しいわ。ありがとう。', reward: { mp: 50 } },
+      { text: '「そうだね」', bond: 1, reply: 'ふふ。こういう場所、好きよ。' },
+    ],
+  },
+  { id: 'sera_bond3',    companion: 'serafina', name: 'セラフィナ', emoji: '✨',
+    scenes: null, minBond: 3, maxBond: 5, once: true,
+    text: '神様は……きっとあなたを導いている。\n\n私もそう信じてる。\nだからこそ、そばで支えたいの。',
+    choices: [
+      { text: '「君がいると心強い」', bond: 2, reply: '……神様の御心のままに。\nそして……私自身の意志でも、ここにいる。', reward: { items: ['elixir','highMpPotion'] } },
+    ],
+  },
+  { id: 'sera_bond5',    companion: 'serafina', name: 'セラフィナ', emoji: '✨',
+    scenes: null, minBond: 5, maxBond: 7, once: true,
+    text: 'あなたを癒すことが……\n今の私の一番の使命。\n\n神様への奉仕と同じくらい、大切なことよ。\nずっとそばにいる。約束する。',
+    choices: [
+      { text: '「ありがとう、セラフィナ」', bond: 2, reply: 'ふふ……どういたしまして。\n行きましょう、一緒に。', reward: { items: ['miracleDrug'] } },
+    ],
+  },
+
+  // ── ゼフィロス ──
+  { id: 'zeph_ruins',    companion: 'zephiros', name: 'ゼフィロス', emoji: '🔮',
+    scenes: ['desert_ruins','sea_temple'], minBond: 0,
+    text: 'この遺跡……3000年前の文明の痕跡だ。\n\n学術的に非常に価値が高い。\nここで研究できるなら、数年かけてもいい。',
+    choices: [
+      { text: '「旅が終わったら研究しよう」', bond: 2, reply: '……約束するか？\nなら、いいだろう。それまで生き残る。', reward: { mp: 60 } },
+      { text: '「今は急がないと」', bond: 1, reply: 'わかっている。……惜しいが。' },
+    ],
+  },
+  { id: 'zeph_cave',     companion: 'zephiros', name: 'ゼフィロス', emoji: '🔮',
+    scenes: ['cave_deep','cave_approach'], minBond: 1,
+    text: '洞窟の生態系は独特だ。\n\n魔物も……光を嫌い、独自の進化を遂げている。\n観察する価値がある。',
+    choices: [
+      { text: '「戦いながら観察するの？」', bond: 2, reply: 'もちろん。戦闘と研究は両立できる。\n……君も同時にこなしているだろう？', reward: { mp: 50 } },
+      { text: '「すごい集中力だね」', bond: 1, reply: '賢者として当然のことだ。' },
+    ],
+  },
+  { id: 'zeph_bond3',    companion: 'zephiros', name: 'ゼフィロス', emoji: '🔮',
+    scenes: null, minBond: 3, maxBond: 5, once: true,
+    text: '……君は面白い存在だ。\n\n観察する価値がある——\nこれは褒め言葉だ。\n悪く取るな。',
+    choices: [
+      { text: '「光栄だよ」', bond: 2, reply: 'そうか。では引き続き……\n期待に応えてくれ。', reward: { items: ['magicNecklace','elixir'] } },
+      { text: '「観察されてたの？」', bond: 1, reply: 'ずっとな。\n……嫌か？\nなら、やめる。', reward: { items: ['highMpPotion','highMpPotion'] } },
+    ],
+  },
+  { id: 'zeph_bond5',    companion: 'zephiros', name: 'ゼフィロス', emoji: '🔮',
+    scenes: null, minBond: 5, maxBond: 7, once: true,
+    text: '長い研究生活で……\n弟子を持ったことはなかった。\n\n君が……初めてかもしれない。\n正式に、師弟の契りを結ぶか？',
+    choices: [
+      { text: '「ぜひ！ よろしく頼む」', bond: 2, reply: '……ならば教えよう。\n全ての知識を。', reward: { items: ['elixir','elixir','expCharm'] } },
+    ],
+  },
+];
+
+// ============================================================
+//  旅のランダムイベント定義
+// ============================================================
+const TRAVEL_EVENTS = [
+  // ── 全エリア共通 ──
+  {
+    id: 'traveler_collapsed', area: null,
+    emoji: '🧍', title: '倒れた旅人',
+    text: '道の脇に旅人が倒れている……\n息はあるようだが、かなり衰弱しているようだ。\n\nどうする？',
+    choices: [
+      { text: '💊 薬草を使って助ける', effect: (next) => {
+          if (hasItem('herb')) {
+            removeItem('herb', 1);
+            gs.flags.helpedTraveler = (gs.flags.helpedTraveler || 0) + 1;
+            openTravelResult('🌟', '旅人を助けた！',
+              '旅人は意識を取り戻し、お礼に情報をくれた。\n\n「先の道に宝箱があるぞ……」\n\n【経験値 +80・絆が少し上がった】',
+              next, () => { gs.player.exp += 80; gainBondAll(1); updateStatus(); });
+          } else {
+            openTravelResult('😓', '薬草がない……',
+              '薬草を持っていなかった。\nせめて安全な場所へ運んでおいた。\n\n【経験値 +20】', next, () => { gs.player.exp += 20; });
+          }
+      }},
+      { text: '🚶 急いでいるので通り過ぎる', effect: (next) => {
+          openTravelResult('😶', '通り過ぎた',
+            'なんとなく後ろめたい気持ちが残る……\n\n先を急いだ。', next, null);
+      }},
+    ],
+  },
+  {
+    id: 'mysterious_merchant', area: null,
+    emoji: '🎪', title: '怪しい行商人',
+    text: '道端に風変わりな荷車を引いた行商人が立っている。\n\n「よっ、旅人。いいものを売ってるぞ？\n　ちょっと訳アリだが……」\n\nどうする？',
+    choices: [
+      { text: '💰 500Gで買う', effect: (next) => {
+          if (gs.player.gold >= 500) {
+            gs.player.gold -= 500;
+            const prizes = ['elixir','highHerb','highMpPotion','guardRing','powerRing','expCharm'];
+            const got = prizes[Math.floor(Math.random() * prizes.length)];
+            addItem(got);
+            openTravelResult('🎁', '購入した！',
+              `行商人から${ITEM_DATA[got]?.name || got}を受け取った！\n\n【${ITEM_DATA[got]?.name || got}を入手・-500G】`, next, () => updateStatus());
+          } else {
+            openTravelResult('💸', 'ゴールドが足りない……',
+              'お金が足りなかった。\n行商人は肩をすくめて去っていった。', next, null);
+          }
+      }},
+      { text: '🤔 断って立ち去る', effect: (next) => {
+          openTravelResult('👋', '断った',
+            '「そうかい、残念だね」\n行商人は去っていった。', next, null);
+      }},
+    ],
+  },
+  {
+    id: 'old_wallet', area: null,
+    emoji: '👝', title: '落ちている財布',
+    text: '道に古びた財布が落ちている。\n中を見ると金貨が入っているようだ。\n\nどうする？',
+    choices: [
+      { text: '💰 拾って使う', effect: (next) => {
+          const gold = Math.floor(Math.random() * 300) + 100;
+          gs.player.gold += gold;
+          openTravelResult('💰', '財布を拾った！',
+            `中に金貨が入っていた！\n\n【+${gold}G 獲得！】`, next, () => updateStatus());
+      }},
+      { text: '🔍 持ち主を探す', effect: (next) => {
+          gs.player.exp += 150;
+          openTravelResult('✨', '良いことをした！',
+            '近くの村で持ち主を見つけた！\n\n「ありがとう！これでよかったら……」\n\n【経験値 +150・善行を積んだ】', next, () => updateStatus());
+      }},
+    ],
+  },
+  {
+    id: 'mysterious_pot', area: null,
+    emoji: '🏺', title: '不思議な壺',
+    text: '道端に古い壺が置かれている。\n何かが入っているようだが……\n封印の紐がかかっている。\n\nどうする？',
+    choices: [
+      { text: '🔓 壺を開ける', effect: (next) => {
+          const roll = Math.random();
+          if (roll < 0.5) {
+            addItem('highHerb'); addItem('highHerb');
+            openTravelResult('🌿', '回復薬が入っていた！',
+              '壺の中から上薬草が2つ出てきた！\n\n【上薬草×2を入手！】', next, () => updateStatus());
+          } else if (roll < 0.8) {
+            const gold = Math.floor(Math.random() * 500) + 200;
+            gs.player.gold += gold;
+            openTravelResult('💰', 'お金が入っていた！',
+              `壺の中から金貨が出てきた！\n\n【+${gold}G 獲得！】`, next, () => updateStatus());
+          } else {
+            const dmg = Math.floor(Math.random() * 30) + 20;
+            gs.player.hp = Math.max(1, gs.player.hp - dmg);
+            openTravelResult('💥', 'トラップだった！',
+              `壺の中から毒ガスが噴き出した！\n\n【HP -${dmg}（罠ダメージ）】`, next, () => updateStatus());
+          }
+      }},
+      { text: '🚶 放置して進む', effect: (next) => {
+          openTravelResult('🤷', 'そのまま進んだ',
+            '壺には触れずに先へ進んだ。', next, null);
+      }},
+    ],
+  },
+  {
+    id: 'old_man_traveler', area: null,
+    emoji: '👴', title: '旅の老人',
+    text: '杖をついた老人が木陰で休んでいる。\n\n「ふむ、若い旅人よ。\n　少し話しかけてはくれないか？」\n\nどうする？',
+    choices: [
+      { text: '🗣️ 話を聞く', effect: (next) => {
+          const gifts = ['elixir','expCharm','highMpPotion','miracleDrug'];
+          const got = gifts[Math.floor(Math.random() * gifts.length)];
+          addItem(got);
+          openTravelResult('🎁', '老人から贈り物！',
+            `老人は長い旅の話を聞かせてくれた。\n最後に「これを持っていきなさい」と言って\nアイテムをくれた。\n\n【${ITEM_DATA[got]?.name || got}を入手！】`, next, () => updateStatus());
+      }},
+      { text: '⏩ 急いでいるので断る', effect: (next) => {
+          openTravelResult('🚶', '先を急いだ',
+            '老人は寂しそうに微笑んだ……\n\n後ろめたい気持ちが残る。', next, null);
+      }},
+    ],
+  },
+  {
+    id: 'shooting_star', area: null,
+    emoji: '🌟', title: '流れ星',
+    text: '空を見上げると、大きな流れ星が流れた！\n\nかつて聞いた言葉を思い出す——\n「流れ星に願えば、夢が叶う」\n\nどうする？',
+    choices: [
+      { text: '✨ 願いを唱える', effect: (next) => {
+          if (Math.random() < 0.6) {
+            gs.player.mp = gs.player.maxMp;
+            openTravelResult('💫', '願いが叶った！',
+              '温かい光に包まれた……\n\n【MPが全回復した！】', next, () => updateStatus());
+          } else {
+            gs.player.hp = Math.min(gs.player.maxHp, gs.player.hp + 100);
+            openTravelResult('🌟', '星の加護を受けた！',
+              '淡い光が体を癒してくれた……\n\n【HP +100回復！】', next, () => updateStatus());
+          }
+      }},
+      { text: '🙄 気にせず進む', effect: (next) => {
+          openTravelResult('💭', '通り過ぎた',
+            '…綺麗だったな、と思いながら進んだ。', next, null);
+      }},
+    ],
+  },
+  {
+    id: 'performers', area: null,
+    emoji: '🎭', title: '旅芸人の一座',
+    text: '陽気な音楽が聞こえてくる……\n旅芸人の一座が広場で演奏していた！\n\n「どうぞどうぞ、見ていってください！」\n\nどうする？',
+    choices: [
+      { text: '🎵 しばらく見物する', effect: (next) => {
+          gs.player.mp = Math.min(gs.player.maxMp, gs.player.mp + 60);
+          gs.player.hp = Math.min(gs.player.maxHp, gs.player.hp + 40);
+          openTravelResult('🎶', '気分が晴れた！',
+            '楽しい演奏に心が軽くなった！\n\n【HP+40・MP+60 回復！】', next, () => updateStatus());
+      }},
+      { text: '⏩ 先を急ぐ', effect: (next) => {
+          openTravelResult('🎵', '遠くから聴こえた',
+            '遠ざかりながら音楽を聴いた。\n少し心が和んだ気がする。', next, null);
+      }},
+    ],
+  },
+  // ── 森エリア ──
+  {
+    id: 'forest_spirit_call', area: 'forest',
+    emoji: '🧚', title: '精霊の呼び声',
+    text: '木々の間から不思議な光が揺らめいている。\n\n「……こちらへ……」\n\n精霊の声が聞こえる気がした。\n\nどうする？',
+    choices: [
+      { text: '✨ 光に従って進む', effect: (next) => {
+          gs.player.exp += 200;
+          addItem('highHerb'); addItem('highMpPotion');
+          openTravelResult('🧚', '精霊の祝福！',
+            '光の先に小さな泉があった。\n精霊が微笑みかけてくれた……\n\n【経験値+200・上薬草・上MPの薬を入手！】', next, () => updateStatus());
+      }},
+      { text: '🚶 無視して進む', effect: (next) => {
+          openTravelResult('🌲', 'そのまま進んだ',
+            '気になったが、先を急いだ。\n光はやがて消えた。', next, null);
+      }},
+    ],
+  },
+  {
+    id: 'lost_child', area: 'forest',
+    emoji: '👦', title: '迷子の子供',
+    text: '森の中で子供が泣いている。\n\n「うわーん、お父さんどこー！」\n\n迷子になってしまったようだ。\n\nどうする？',
+    choices: [
+      { text: '🤝 村まで送り届ける', effect: (next) => {
+          gainBondAll(2);
+          gs.player.exp += 150;
+          openTravelResult('😊', '子供を助けた！',
+            '子供を無事に村まで送り届けた。\n\n「ありがとう、お兄ちゃん！」\n\n仲間たちも嬉しそうだ。\n\n【経験値+150・絆+2 UP！】', next, () => updateStatus());
+      }},
+      { text: '🗺️ 道を教えるだけ', effect: (next) => {
+          gs.player.exp += 60;
+          openTravelResult('👋', '道を教えた',
+            '村への道を丁寧に教えてあげた。\n子供は元気よく走っていった。\n\n【経験値+60】', next, () => updateStatus());
+      }},
+    ],
+  },
+  // ── 雪エリア ──
+  {
+    id: 'blizzard', area: 'snow',
+    emoji: '🌨️', title: '吹雪に巻き込まれた！',
+    text: '突然、猛烈な吹雪が襲いかかってきた！\n\n前も見えない……\nどちらの道を選ぶ？',
+    choices: [
+      { text: '🏃 吹雪を突き進む！', effect: (next) => {
+          const dmg = Math.floor(Math.random() * 40) + 30;
+          gs.player.hp = Math.max(1, gs.player.hp - dmg);
+          openTravelResult('❄️', '吹雪を突破した！',
+            `凍えながらも強引に進んだ！\n体力を大きく消耗した……\n\n【HP -${dmg}（凍傷ダメージ）】`, next, () => updateStatus());
+      }},
+      { text: '🏠 岩陰で嵐が過ぎるのを待つ', effect: (next) => {
+          const dmg = Math.floor(Math.random() * 15) + 5;
+          gs.player.hp = Math.max(1, gs.player.hp - dmg);
+          openTravelResult('🌨️', '嵐が過ぎるのを待った',
+            `岩陰で身を潜めて待った。\n少し体は冷えたが、無事に通過できた。\n\n【HP -${dmg}（小ダメージ）】`, next, () => updateStatus());
+      }},
+    ],
+  },
+  {
+    id: 'snow_oasis', area: 'snow',
+    emoji: '🔥', title: '雪山の焚き火',
+    text: 'あたたかい焚き火を見つけた！\n誰かが置いていったようだ。\nまだ火がくすぶっている。\n\nどうする？',
+    choices: [
+      { text: '🔥 しばらく暖を取る', effect: (next) => {
+          gs.player.hp = Math.min(gs.player.maxHp, gs.player.hp + 100);
+          gs.player.mp = Math.min(gs.player.maxMp, gs.player.mp + 50);
+          openTravelResult('🔥', '体が温まった！',
+            '焚き火で体をしっかり温めた。\n\n【HP+100・MP+50 回復！】', next, () => updateStatus());
+      }},
+      { text: '⏩ 先を急ぐ', effect: (next) => {
+          openTravelResult('❄️', '先へ進んだ',
+            '焚き火が恋しかったが、急いで進んだ。', next, null);
+      }},
+    ],
+  },
+  // ── 砂漠エリア ──
+  {
+    id: 'desert_oasis_hidden', area: 'desert',
+    emoji: '💧', title: '神秘のオアシス',
+    text: '砂漠の真ん中に、地図にないオアシスを発見！\n\nキラキラと輝く泉が広がっている……\n\nどうする？',
+    choices: [
+      { text: '💧 水を飲む', effect: (next) => {
+          gs.player.hp = gs.player.maxHp;
+          gs.player.mp = gs.player.maxMp;
+          openTravelResult('💫', '完全回復！',
+            '神秘の水を飲んだ……\n\n体の中から力が漲ってくる！\n\n【HP・MP完全回復！】', next, () => updateStatus());
+      }},
+      { text: '🏺 水筒に入れて持っていく', effect: (next) => {
+          addItem('elixir');
+          openTravelResult('🏺', 'エリクサーを入手！',
+            '水を水筒に入れると、神秘の力で\nエリクサーに変わった！\n\n【エリクサーを入手！】', next, () => updateStatus());
+      }},
+    ],
+  },
+  {
+    id: 'sandstorm', area: 'desert',
+    emoji: '🌪️', title: '砂嵐が来た！',
+    text: '遠くで砂が巻き上がっている……\n巨大な砂嵐が近づいている！\n\nどうする？',
+    choices: [
+      { text: '🏃 全速力で駆け抜ける', effect: (next) => {
+          const dmg = Math.floor(Math.random() * 50) + 20;
+          gs.player.hp = Math.max(1, gs.player.hp - dmg);
+          openTravelResult('🌪️', '砂嵐を突破！',
+            `砂が体に叩きつけられながらも突破した！\n\n【HP -${dmg}（砂嵐ダメージ）】`, next, () => updateStatus());
+      }},
+      { text: '🏕️ その場で待機する', effect: (next) => {
+          openTravelResult('⏳', '砂嵐が過ぎるのを待った',
+            '布で体を包んでしゃがみ込んだ。\n砂嵐が過ぎるまで少し時間がかかったが\n無事に通過できた。\n\n【ダメージなし・HP温存】', next, () => updateStatus());
+      }},
+    ],
+  },
+  // ── 海エリア ──
+  {
+    id: 'driftwood', area: 'sea',
+    emoji: '🌊', title: '漂流物を発見',
+    text: '海岸に何かが打ち上げられている……\n木箱のようだが、波に揺られている。\n\nどうする？',
+    choices: [
+      { text: '🔍 中を確認する', effect: (next) => {
+          const prizes = ['elixir','heroShield','deepSeaOrb','highMpPotion','elixir'];
+          const got = prizes[Math.floor(Math.random() * prizes.length)];
+          addItem(got);
+          openTravelResult('📦', '漂流物の中身！',
+            `箱を開けると、レアなアイテムが入っていた！\n\n【${ITEM_DATA[got]?.name || got}を入手！】`, next, () => updateStatus());
+      }},
+      { text: '🚶 触れずに進む', effect: (next) => {
+          openTravelResult('🌊', 'そのまま進んだ',
+            '後ろ髪を引かれながらも、先を急いだ。', next, null);
+      }},
+    ],
+  },
+  {
+    id: 'pirate_ship', area: 'sea',
+    emoji: '🏴‍☠️', title: '海賊船に遭遇！',
+    text: '大きな黒い船が近づいてくる……！\n\n「止まれ！通行料をもらおうか！」\n\n海賊だ！\n\nどうする？',
+    choices: [
+      { text: '⚔️ 戦って突破する！', effect: (next) => {
+          gs.postBattleScene = next;
+          const pirate = {
+            name: '海賊団の首領', emoji: '🏴‍☠️',
+            hp: 200, maxHp: 200,
+            attack: 38, defense: 12,
+            level: 18, exp: 180, gold: 500,
+            skill: { name: '海賊斬り', damage: 60, chance: 0.3, msg: '⚔️ 海賊斬りが炸裂！' },
+          };
+          startBattle(pirate);
+      }},
+      { text: '💰 通行料300Gを払う', effect: (next) => {
+          if (gs.player.gold >= 300) {
+            gs.player.gold -= 300;
+            openTravelResult('💸', '通行料を払った',
+              '渋々300Gを差し出した……\n\n「ありがとよ、通っていいぜ」\n\n【-300G】', next, () => updateStatus());
+          } else {
+            openTravelResult('😱', 'お金が足りない！',
+              '「金が無いだと？なら腕前を見せてもらおうか！」\n戦闘になってしまった！',
+              next, () => {
+                gs.postBattleScene = next;
+                const pirate = { name: '海賊団の首領', emoji: '🏴‍☠️', hp: 200, maxHp: 200, attack: 38, defense: 12, level: 18, exp: 180, gold: 300 };
+                startBattle(pirate);
+              });
+          }
+      }},
+    ],
+  },
+];
+
+// ============================================================
+//  NPCサブストーリー定義
+// ============================================================
+const NPC_STORIES = {
+
+  // ── 老鍛冶師 ガルム（村） ──
+  garm: {
+    name: '老鍛冶師 ガルム', emoji: '🔨',
+    stages: [
+      {
+        stage: 0,
+        unlock: () => true,
+        text: '……おっ、新顔か。\n俺はガルム。この村で鍛冶屋をやってる。\n\n昔は俺も冒険者だったんだがな……\n膝をやられちまって、今はこうしてる。\n\nお前さんも冒険者か？\n気をつけな——魔物は甘くない。',
+        replies: [
+          { text: '「冒険者です。よろしく」', next: true },
+          { text: '「昔の話を聞かせてください」', reply: '……長い話になるぞ。\nまあ、また来な。少しずつ話してやる。', next: false },
+        ],
+        reward: { items: ['herb','herb'], msg: '薬草を2つもらった！' },
+      },
+      {
+        stage: 1,
+        unlock: () => !!gs.flags.stoneGolemDefeated,
+        text: '石の番人を倒したか！\n……あいつとは昔、俺も戦ったことがある。\n\n仲間3人で挑んで……生き残ったのは俺だけだった。\n\n「お前は本物だな」って言ったあいつの声が\nまだ耳に残ってる。',
+        replies: [
+          { text: '「ガルムさんも強かったんですね」', next: true },
+        ],
+        reward: { items: ['powerRing'], msg: '力の指輪をもらった！' },
+      },
+      {
+        stage: 2,
+        unlock: () => !!gs.flags.sandPharaohDefeated,
+        text: 'ファラオを倒したか……！\nあの呪いは本物だぞ。俺の昔の仲間も、\nあの呪いに蝕まれて……\n\nよく生き残ったな。\n\nお前さんのことは……\n本物の勇者だと思ってる。',
+        replies: [
+          { text: '「仲間のためにも戦い続けます」', next: true },
+        ],
+        reward: { items: ['elixir','elixir'], msg: 'エリクサーを2つもらった！' },
+      },
+      {
+        stage: 3,
+        unlock: () => !!gs.flags.demonKingDefeated,
+        text: '……魔王を倒したか。\n\n俺には……もう叶わなかった夢だ。\nだが、お前が叶えてくれた。\n\nこれを受け取れ。\n俺の最後の作品だ——引退の記念に\n作った剣を、本物の勇者に渡せた。\n\n……悔いはない。',
+        replies: [
+          { text: '「大切にします」', next: false },
+        ],
+        reward: { items: ['heroSword','heroSword'], gold: 2000, msg: '勇者の剣×2と2000Gをもらった！' },
+        final: true,
+      },
+    ],
+  },
+
+  // ── 村の子供 トマ（村） ──
+  toma: {
+    name: '村の子供 トマ', emoji: '👦',
+    stages: [
+      {
+        stage: 0,
+        unlock: () => true,
+        text: 'お兄ちゃん、冒険者なの？\nすっごーい！ かっこいい！\n\nぼく、大きくなったら絶対冒険者になるんだ！\n強い魔物をいっぱい倒すの！',
+        replies: [
+          { text: '「頑張れよ！」', next: true },
+          { text: '「危ないぞ？」', reply: '大丈夫！ ぼく強いもん！\nお兄ちゃんに教えてもらうんだ！', next: true },
+        ],
+        reward: null,
+      },
+      {
+        stage: 1,
+        unlock: () => (gs.battleKillCount || 0) >= 20,
+        text: 'お兄ちゃん！ また来てくれたんだね！\n\nお兄ちゃんが魔物をいっぱい倒してるって\n村のみんなが言ってたよ！\n\nだから村が安全なんだって！\nありがとう！',
+        replies: [
+          { text: '「村を守るのが俺の仕事だ」', next: true },
+        ],
+        reward: { items: ['herb','herb','herb'], msg: '「お母さんが作った薬草だよ！」と薬草を3つもらった！' },
+      },
+      {
+        stage: 2,
+        unlock: () => !!gs.flags.demonKingDefeated,
+        text: '魔王を倒したって本当！？\nすごーい！！\n\nぼく……ずっと心配してたんだ。\nお兄ちゃんが帰ってこなかったらって。\n\nでも……帰ってきてくれた。\nよかった……。\n\nぼく、お兄ちゃんみたいな冒険者になる！\n絶対なる！！',
+        replies: [
+          { text: '「待ってるよ」', next: false },
+        ],
+        reward: { items: ['expCharm'], msg: '「これ、お守り！ 旅の記念に！」と経験値のお守りをもらった！' },
+        final: true,
+      },
+    ],
+  },
+
+  // ── 砂漠の占い師 ラーナ（砂漠） ──
+  larna: {
+    name: '砂漠の占い師 ラーナ', emoji: '🔮',
+    stages: [
+      {
+        stage: 0,
+        unlock: () => true,
+        text: '……来たか。運命に導かれた者よ。\n\n水晶が告げる——\n「炎と氷の間に、あなたの試練がある」\n\n……先を急ぐがいい。\n道は自ら切り開くものだ。',
+        replies: [
+          { text: '「ありがとう」', next: true },
+          { text: '「もっと詳しく教えて」', reply: '……水晶は、それ以上を語らない。\nあとはあなた自身が知るだろう。', next: true },
+        ],
+        reward: null,
+      },
+      {
+        stage: 1,
+        unlock: () => !!gs.flags.iceQueenDefeated,
+        text: '……氷の女王が倒れた。\n予言通りだ。\n\n次に水晶が告げるのは——\n「砂の王が目覚める」\n\nファラオ……あの王の封印が\nもうすぐ解けようとしている。\n\n備えよ、旅人。',
+        replies: [
+          { text: '「必ず倒してみせる」', next: true },
+        ],
+        reward: { items: ['elixir'], msg: '「これを持っていきなさい」とエリクサーをもらった！' },
+      },
+      {
+        stage: 2,
+        unlock: () => !!gs.flags.sandPharaohDefeated,
+        text: '……素晴らしい。\nファラオの封印が再び閉じた。\n\n次は……水晶が海底を映している。\n「深淵の番人が待つ」\n\n……あなたの旅は、まだ終わらない。\n終わりが近いようで、遠い。',
+        replies: [
+          { text: '「全部終わらせてみせる」', next: true },
+        ],
+        reward: { items: ['highMpPotion','highMpPotion','highMpPotion'], msg: '上MPの薬を3つもらった！' },
+      },
+      {
+        stage: 3,
+        unlock: () => !!gs.flags.demonKingDefeated,
+        text: '……水晶が……\n静かになった。\n\n長い長い間、ずっと嵐の中にいた。\nそれが……穏やかになった。\n\nあなたが……世界を救ったのか。\n\n私の占いが、初めて喜びを告げている。\n\n……ありがとう。本物の勇者よ。',
+        replies: [
+          { text: '「ラーナさんのヒントが助けになった」', next: false },
+        ],
+        reward: { items: ['miracleDrug', 'expCharm'], msg: '奇跡の薬と経験値のお守りをもらった！' },
+        final: true,
+      },
+    ],
+  },
+
+  // ── 老船乗り ポセイ（港町） ──
+  posei: {
+    name: '老船乗り ポセイ', emoji: '⚓',
+    stages: [
+      {
+        stage: 0,
+        unlock: () => true,
+        text: 'わしはポセイ。\n50年この海で飯を食ってきた老船乗りだ。\n\nこの海を知り尽くしたわしでも……\n海底神殿には近づかなかった。\n\nなぜかって？\n……戻ってきた者がいないからだ。\nそれだけだよ。',
+        replies: [
+          { text: '「俺は戻ってきますよ」', next: true },
+          { text: '「そんなに危険なんですか」', reply: '……ああ。だが、お前の目は違う。\n勇者の目だ。', next: true },
+        ],
+        reward: null,
+      },
+      {
+        stage: 1,
+        unlock: () => !!gs.flags.leviathanDefeated,
+        text: '大海蛇レヴィアタンを倒したか！！\n\nわしの若い頃のようだ……\nいや、わし以上かもしれん。\n\nあいつには昔、仲間を3人やられた。\n50年間、ずっと悔しかった。\n\nありがとう……若者よ。',
+        replies: [
+          { text: '「仲間の分まで戦いました」', next: true },
+        ],
+        reward: { items: ['elixir','elixir'], msg: 'エリクサーを2つもらった！' },
+      },
+      {
+        stage: 2,
+        unlock: () => !!gs.flags.demonKingDefeated,
+        text: '……世界が平和になったな。\n長い間、海が荒れていた。\n魔王の力で嵐が続いていたんだろう。\n\nそれが……静かになった。\n\nお前のおかげだ。\n\nなら……これをやろう。\n50年間、誰にも渡さなかった地図だ。\n「伝説の宝が眠る島」の場所が書いてある。\n行ってみるか？',
+        replies: [
+          { text: '「ありがたくいただきます！」', next: false },
+        ],
+        reward: { items: ['elixir','elixir','elixir'], gold: 3000, msg: 'エリクサー×3と3000Gをもらった！さらに伝説の島の情報も……！' },
+        final: true,
+      },
+    ],
+  },
+
+  // ── 雪山の隠者 ベルク（雪山） ──
+  berk: {
+    name: '雪山の隠者 ベルク', emoji: '🏔️',
+    stages: [
+      {
+        stage: 0,
+        unlock: () => true,
+        text: '……邪魔者が来たな。\n\nこの山に何の用だ。\n弱い者は引き返せ。\n氷の女王に殺されたいなら話は別だが。',
+        replies: [
+          { text: '「女王を倒しに来た」', next: true },
+          { text: '「あなたは何者ですか？」', reply: '……儂か。\n昔は騎士だった。今は隠者だ。\nそれだけだ。', next: true },
+        ],
+        reward: null,
+      },
+      {
+        stage: 1,
+        unlock: () => !!gs.flags.iceQueenDefeated,
+        text: '……氷の女王を倒したか。\n\n儂が30年かけてもできなかったことを\nお前は成し遂げた。\n\nお前は本物だな。\n\nこれを渡そう。\n雪山の精霊から授かった指輪だ。\n使いこなせるかどうかは、お前次第。',
+        replies: [
+          { text: '「ありがとうございます」', next: true },
+        ],
+        reward: { items: ['frostRing'], msg: '霜の指輪をもらった！' },
+      },
+      {
+        stage: 2,
+        unlock: () => !!gs.flags.demonKingDefeated,
+        text: '……魔王を倒したか。\n\n儂の師匠が言っていた。\n「真の強者は、世界を救う者だ」と。\n\n……お前が、その者だったのか。\n\n儂の全ての宝を持っていけ。\nお前ならふさわしい使い方ができる。',
+        replies: [
+          { text: '「ベルクさんの教えも力になりました」', next: false },
+        ],
+        reward: { items: ['polarArmor','elixir','elixir'], gold: 1500, msg: '極地の鎧・エリクサー×2・1500Gをもらった！' },
+        final: true,
+      },
+    ],
+  },
+};
+
+// NPCに話しかける
+function talkToNpc(npcId) {
+  if (gs.inBattle) return;
+  if (!gs.npcStages) gs.npcStages = {};
+  const npc = NPC_STORIES[npcId];
+  if (!npc) return;
+
+  // final済みなら最終メッセージ（繰り返し不可）
+  if (gs.npcStages[npcId + '_done']) {
+    _openNpcTalk(npc, npc.stages[npc.stages.length - 1], npcId, true);
+    return;
+  }
+
+  const currentStage = gs.npcStages[npcId] || 0;
+  let stageData = null;
+
+  for (let i = npc.stages.length - 1; i >= 0; i--) {
+    const s = npc.stages[i];
+    // 次のステージが解放済みなら自動進行
+    if (s.stage === currentStage + 1 && s.unlock()) {
+      stageData = s;
+      gs.npcStages[npcId] = s.stage;
+      break;
+    }
+    // 現在のステージが解放済み
+    if (s.stage === currentStage && s.unlock()) {
+      stageData = s;
+      break;
+    }
+  }
+
+  // 次の解放条件が未達の場合は待機メッセージ
+  if (!stageData) {
+    const WAIT_MSG = {
+      garm:   '……まだ話すことはないな。\nもっと強くなってから来い。',
+      toma:   'お兄ちゃん、また来てくれたんだ！\nでも……今はうまく話せないや。',
+      larna:  '……水晶は今、何も語らない。\nまた来るがいい。',
+      posei:  '……今は話すことはない。またいずれな。',
+      berk:   '……まだだ。お前はまだ十分ではない。帰れ。',
+    };
+    document.getElementById('npc-talk-emoji').textContent = npc.emoji;
+    document.getElementById('npc-talk-name').textContent  = npc.name;
+    document.getElementById('npc-talk-stage').textContent = '（次の話を準備中）';
+    document.getElementById('npc-talk-text').textContent  = WAIT_MSG[npcId] || 'また後で来てくれ。';
+    const btns = document.getElementById('npc-talk-buttons');
+    btns.innerHTML = '';
+    const btn = document.createElement('button');
+    btn.className = 'npc-close-btn';
+    btn.textContent = '……わかった。また来る。';
+    btn.onclick = () => document.getElementById('npc-talk-overlay').classList.add('hidden');
+    btns.appendChild(btn);
+    document.getElementById('npc-talk-overlay').classList.remove('hidden');
+    return;
+  }
+
+  _openNpcTalk(npc, stageData, npcId, false);
+}
+
+function _openNpcTalk(npc, stageData, npcId, isDone) {
+  document.getElementById('npc-talk-emoji').textContent = npc.emoji;
+  document.getElementById('npc-talk-name').textContent  = npc.name;
+  document.getElementById('npc-talk-stage').textContent =
+    isDone ? '（お礼済み）' : `第${(stageData.stage || 0) + 1}話`;
+  document.getElementById('npc-talk-text').textContent  = stageData.text;
+
+  const btns = document.getElementById('npc-talk-buttons');
+  btns.innerHTML = '';
+
+  if (isDone) {
+    _addNpcCloseBtn(btns, '……またいつでも来い。');
+    document.getElementById('npc-talk-overlay').classList.remove('hidden');
+    return;
+  }
+
+  const choices = stageData.replies || [];
+  choices.forEach(r => {
+    const btn = document.createElement('button');
+    btn.textContent = r.text;
+    btn.onclick = () => {
+      if (r.reply) {
+        // 返答を表示してから報酬・進行
+        document.getElementById('npc-talk-text').textContent = r.reply;
+        btns.innerHTML = '';
+        const next = document.createElement('button');
+        next.textContent = '……';
+        next.onclick = () => _npcRewardAndAdvance(npc, stageData, npcId, r.next);
+        btns.appendChild(next);
+      } else {
+        _npcRewardAndAdvance(npc, stageData, npcId, r.next ?? true);
+      }
+    };
+    btns.appendChild(btn);
+  });
+
+  if (choices.length === 0) {
+    _addNpcCloseBtn(btns, '↩️ 話を聞いた');
+  }
+
+  document.getElementById('npc-talk-overlay').classList.remove('hidden');
+}
+
+function _npcRewardAndAdvance(npc, stageData, npcId, advance) {
+  // 報酬付与
+  if (stageData.reward) {
+    const r = stageData.reward;
+    if (r.gold)  { gs.player.gold += r.gold; }
+    if (r.items) { r.items.forEach(id => addItem(id)); }
+    updateStatus(); saveGame();
+    if (r.msg) showToast('🎁 ' + r.msg);
+  }
+  // ステージ進行
+  if (advance) {
+    gs.npcStages[npcId] = (gs.npcStages[npcId] || 0) + 1;
+  }
+  if (stageData.final) {
+    gs.npcStages[npcId + '_done'] = true;
+  }
+  saveGame();
+  document.getElementById('npc-talk-overlay').classList.add('hidden');
+}
+
+function _addNpcCloseBtn(btns, label) {
+  const btn = document.createElement('button');
+  btn.className = 'npc-close-btn';
+  btn.textContent = label || '↩️ 閉じる';
+  btn.onclick = () => document.getElementById('npc-talk-overlay').classList.add('hidden');
+  btns.appendChild(btn);
+}
+
+// ============================================================
+//  ミニゲーム：釣り
+// ============================================================
+const FISH_TABLE = [
+  { emoji:'🐟', name:'小魚',       rarity:'普通',   reward:{ gold: 80  }, weight:35 },
+  { emoji:'🐠', name:'熱帯魚',     rarity:'普通',   reward:{ gold: 150 }, weight:25 },
+  { emoji:'🐡', name:'ふぐ',       rarity:'普通',   reward:{ gold: 200, item:'herb' }, weight:15 },
+  { emoji:'🦈', name:'サメ',       rarity:'珍しい', reward:{ gold: 400, item:'highHerb' }, weight:10 },
+  { emoji:'🐙', name:'タコ',       rarity:'珍しい', reward:{ gold: 350, item:'highMpPotion' }, weight:8 },
+  { emoji:'🦑', name:'イカ',       rarity:'珍しい', reward:{ gold: 300, item:'antidote' }, weight:5 },
+  { emoji:'🐬', name:'イルカ',     rarity:'レア',   reward:{ gold: 800, item:'elixir' }, weight:1.5 },
+  { emoji:'🪸', name:'珊瑚の精霊', rarity:'レア',   reward:{ gold: 1000,item:'deepSeaOrb' }, weight:0.4 },
+  { emoji:'🌟', name:'金の魚',     rarity:'伝説',   reward:{ gold: 3000,item:'expCharm' }, weight:0.1 },
+];
+
+let _fishingTimer = null;
+let _fishBiteReady = false;
+
+function openFishingGame() {
+  if (gs.inBattle) return;
+  _fishBiteReady = false;
+  if (_fishingTimer) { clearTimeout(_fishingTimer); _fishingTimer = null; }
+
+  document.getElementById('fishing-fish-display').textContent = '';
+  document.getElementById('fishing-status').innerHTML =
+    '🎣 竿を海に投げよう！<br><span style="font-size:11px;color:var(--text-dim)">タイミングよく引くと大物が釣れる！</span>';
+  _renderFishingButtons('cast');
+  document.getElementById('fishing-overlay').classList.remove('hidden');
+}
+
+function _renderFishingButtons(phase) {
+  const btns = document.getElementById('fishing-buttons');
+  btns.innerHTML = '';
+  if (phase === 'cast') {
+    const b = document.createElement('button');
+    b.className = 'fish-cast-btn'; b.textContent = '🎣 竿を投げる！';
+    b.onclick = _fishingCast;
+    btns.appendChild(b);
+    const c = document.createElement('button');
+    c.className = 'fish-close-btn'; c.textContent = '↩️ やめる';
+    c.onclick = () => { clearTimeout(_fishingTimer); document.getElementById('fishing-overlay').classList.add('hidden'); };
+    btns.appendChild(c);
+  } else if (phase === 'waiting') {
+    const b = document.createElement('button');
+    b.className = 'fish-cast-btn'; b.textContent = '⏳ 待っている…'; b.disabled = true;
+    btns.appendChild(b);
+    const c = document.createElement('button');
+    c.className = 'fish-close-btn'; c.textContent = '↩️ やめる';
+    c.onclick = () => {
+      clearTimeout(_fishingTimer); _fishingTimer = null; _fishBiteReady = false;
+      document.getElementById('fishing-overlay').classList.add('hidden');
+    };
+    btns.appendChild(c);
+  } else if (phase === 'bite') {
+    const b = document.createElement('button');
+    b.className = 'fish-pull-btn'; b.textContent = '⚡ 今だ！引く！！';
+    b.onclick = _fishingPull;
+    btns.appendChild(b);
+    _fishingTimer = setTimeout(() => {
+      if (_fishBiteReady) {
+        _fishBiteReady = false;
+        document.getElementById('fishing-fish-display').textContent = '💨';
+        document.getElementById('fishing-status').textContent = '逃げられた……！\nまた挑戦してみよう！';
+        _renderFishingButtons('again');
+      }
+    }, 1800);
+  } else if (phase === 'again') {
+    const b = document.createElement('button');
+    b.className = 'fish-cast-btn'; b.textContent = '🎣 もう一度！';
+    b.onclick = () => { _fishBiteReady = false; _renderFishingButtons('cast'); document.getElementById('fishing-status').innerHTML = '🎣 竿を海に投げよう！<br><span style="font-size:11px;color:var(--text-dim)">タイミングよく引くと大物が釣れる！</span>'; document.getElementById('fishing-fish-display').textContent = ''; };
+    btns.appendChild(b);
+    const c = document.createElement('button');
+    c.className = 'fish-close-btn'; c.textContent = '↩️ 終わりにする';
+    c.onclick = () => document.getElementById('fishing-overlay').classList.add('hidden');
+    btns.appendChild(c);
+  }
+}
+
+function _fishingCast() {
+  _fishBiteReady = false;
+  document.getElementById('fishing-fish-display').textContent = '🌊';
+  const msgs = ['ぽちゃん……', '糸がゆらゆら……', '静かな水面……', 'ん…？何か来た……？'];
+  document.getElementById('fishing-status').textContent = msgs[Math.floor(Math.random() * msgs.length)];
+  _renderFishingButtons('waiting');
+  const delay = 1500 + Math.random() * 2500;
+  _fishingTimer = setTimeout(() => {
+    _fishBiteReady = true;
+    document.getElementById('fishing-fish-display').textContent = '❗';
+    document.getElementById('fishing-status').textContent = '食いついた！！\n今すぐ引け！！';
+    _renderFishingButtons('bite');
+  }, delay);
+}
+
+function _fishingPull() {
+  if (!_fishBiteReady) return;
+  _fishBiteReady = false;
+  clearTimeout(_fishingTimer);
+  // 魚を抽選
+  const total = FISH_TABLE.reduce((s, f) => s + f.weight, 0);
+  let r = Math.random() * total;
+  const fish = FISH_TABLE.find(f => (r -= f.weight) <= 0) || FISH_TABLE[0];
+  gs.player.gold += fish.reward.gold;
+  if (fish.reward.item) addItem(fish.reward.item);
+  updateStatus(); saveGame();
+  const rarityColor = { '普通':'#aaa', '珍しい':'#5dade2', 'レア':'#f0c040', '伝説':'#ff69b4' }[fish.rarity] || '#aaa';
+  document.getElementById('fishing-fish-display').textContent = fish.emoji;
+  document.getElementById('fishing-status').innerHTML =
+    `<strong style="color:${rarityColor}">${fish.emoji} ${fish.name}（${fish.rarity}）</strong><br>` +
+    `+${fish.reward.gold}G${fish.reward.item ? '・' + (ITEM_DATA[fish.reward.item]?.name || fish.reward.item) + 'を入手！' : ''}`;
+  _renderFishingButtons('again');
+}
+
+// ============================================================
+//  ミニゲーム：砂漠レース
+// ============================================================
+let _raceState = { round: 0, success: 0, obstacle: -1 };
+
+function openDesertRace() {
+  if (gs.inBattle) return;
+  _raceState = { round: 0, success: 0 };
+  _raceNextRound();
+  document.getElementById('race-overlay').classList.remove('hidden');
+}
+
+function _raceNextRound() {
+  const round = ++_raceState.round;
+  if (round > 3) { _raceResult(); return; }
+  _raceState.obstacle = Math.floor(Math.random() * 3); // 0=左 1=中央 2=右
+  document.getElementById('race-round').textContent = `第${round}コーナー / 全3コーナー`;
+  document.getElementById('race-track').textContent = '🏜️　🏜️　🏜️';
+  document.getElementById('race-status').textContent = `砂煙の中——\nどのルートを選ぶ？`;
+  const btns = document.getElementById('race-buttons');
+  btns.innerHTML = '';
+  [['← 左', 0], ['↑ 中央', 1], ['右 →', 2]].forEach(([label, idx]) => {
+    const b = document.createElement('button');
+    b.textContent = label;
+    b.onclick = () => _raceChoose(idx);
+    btns.appendChild(b);
+  });
+}
+
+function _raceChoose(idx) {
+  const obs = _raceState.obstacle;
+  const trackIcons = ['🏜️', '🏜️', '🏜️'];
+  trackIcons[obs] = '🪨';
+  document.getElementById('race-track').textContent = trackIcons.join('　');
+  const btns = document.getElementById('race-buttons');
+  btns.innerHTML = '';
+
+  if (idx !== obs) {
+    _raceState.success++;
+    document.getElementById('race-status').textContent = '✅ うまく回避した！\n砂埃をかけて駆け抜ける！';
+  } else {
+    const dmg = Math.floor(Math.random() * 30) + 20;
+    gs.player.hp = Math.max(1, gs.player.hp - dmg);
+    updateStatus();
+    document.getElementById('race-status').textContent = `💥 岩に激突！\nHP -${dmg}！`;
+  }
+  const next = document.createElement('button');
+  next.className = 'race-full-btn';
+  next.textContent = _raceState.round >= 3 ? '🏁 ゴール！' : '→ 次のコーナーへ';
+  next.onclick = _raceNextRound;
+  btns.appendChild(next);
+}
+
+function _raceResult() {
+  const s = _raceState.success;
+  const prizes = [
+    { gold: 200, item: null,       msg: '残念……0回成功。でもゴールはした！' },
+    { gold: 400, item: 'herb',     msg: '1回成功！まずまずのタイム！' },
+    { gold: 800, item: 'highHerb', msg: '2回成功！なかなかの腕前だ！' },
+    { gold:1500, item: 'elixir',   msg: '完璧！全コーナー回避！！砂漠の王者だ！' },
+  ];
+  const prize = prizes[s] || prizes[0];
+  gs.player.gold += prize.gold;
+  if (prize.item) addItem(prize.item);
+  updateStatus(); saveGame();
+  document.getElementById('race-round').textContent = '🏁 レース結果';
+  document.getElementById('race-track').textContent = `${s}/3 回避成功！`;
+  document.getElementById('race-status').innerHTML =
+    `<strong style="color:var(--gold)">${prize.msg}</strong><br>+${prize.gold}G${prize.item ? '・' + (ITEM_DATA[prize.item]?.name || prize.item) : ''}を獲得！`;
+  const btns = document.getElementById('race-buttons');
+  btns.innerHTML = '';
+  const again = document.createElement('button');
+  again.className = 'race-full-btn'; again.textContent = '🏜️ もう一度レース！';
+  again.onclick = () => { _raceState = { round: 0, success: 0 }; _raceNextRound(); };
+  const close = document.createElement('button');
+  close.className = 'race-full-btn'; close.textContent = '↩️ 終わりにする';
+  close.onclick = () => document.getElementById('race-overlay').classList.add('hidden');
+  btns.appendChild(again); btns.appendChild(close);
+}
+
+// ============================================================
+//  ミニゲーム：闘技場トーナメント
+// ============================================================
+const TOURNAMENT_ROSTER = [
+  { name: '若き剣士 カルロ',    emoji: '⚔️', hp: 220, maxHp: 220, attack: 42, defense: 15, level: 22, exp: 200, gold: 0 },
+  { name: '重装兵士 ドラン',    emoji: '🛡️', hp: 350, maxHp: 350, attack: 35, defense: 25, level: 25, exp: 220, gold: 0 },
+  { name: '速剣士 ライア',      emoji: '🌪️', hp: 200, maxHp: 200, attack: 55, defense: 12, level: 24, exp: 230, gold: 0,
+    skill: { name: '連続斬り', damage: 45, chance: 0.4, msg: '⚡ 連続斬りが炸裂！' } },
+  { name: '老闘士 ブライガ',    emoji: '💪', hp: 400, maxHp: 400, attack: 48, defense: 20, level: 28, exp: 280, gold: 0,
+    skill: { name: '鬼神の一撃', damage: 90, chance: 0.3, msg: '💥 鬼神の一撃！！' } },
+  { name: '魔法剣士 セイラ',    emoji: '✨', hp: 280, maxHp: 280, attack: 50, defense: 18, level: 27, exp: 260, gold: 0,
+    skill: { name: '魔法剣・炎', damage: 70, chance: 0.35, msg: '🔥 魔法剣・炎が炸裂！' } },
+  { name: 'トーナメント覇者 ガルド', emoji: '🏆', hp: 500, maxHp: 500, attack: 65, defense: 28, level: 35, exp: 400, gold: 0,
+    skill: { name: '覇王の裁き', damage: 120, chance: 0.3, msg: '⚡ 覇王の裁き！！' } },
+];
+
+let _tournState = { round: 0, enemies: [], wins: 0 };
+
+function openTournament() {
+  if (gs.inBattle) return;
+  // レベルに合わせて3体選出
+  const scaled = TOURNAMENT_ROSTER.map(e => {
+    const en = JSON.parse(JSON.stringify(e));
+    return scaleEnemyToPlayerLevel(en);
+  });
+  // ランダムに3体
+  const shuffled = scaled.sort(() => Math.random() - 0.5).slice(0, 3);
+  _tournState = { round: 0, enemies: shuffled, wins: 0 };
+  _renderTournament();
+  document.getElementById('tournament-overlay').classList.remove('hidden');
+}
+
+function _renderTournament() {
+  const { round, enemies, wins } = _tournState;
+  const bracket = document.getElementById('tournament-bracket');
+  bracket.innerHTML = enemies.map((e, i) => {
+    let cls = 'tourn-slot empty';
+    if (i < wins) cls = 'tourn-slot done';
+    else if (i === round) cls = 'tourn-slot current';
+    return `<div class="${cls}">${i < wins ? '✅' : i === round ? '⚔️' : '？'} ${i < wins ? e.name : i === round ? e.name : '???'}</div>`;
+  }).join('');
+
+  const btns = document.getElementById('tournament-buttons');
+  btns.innerHTML = '';
+
+  if (round >= 3) {
+    _tournamentVictory();
+    return;
+  }
+  const enemy = enemies[round];
+  document.getElementById('tournament-status').innerHTML =
+    `第${round + 1}戦：<strong style="color:#ffd700">${enemy.emoji} ${enemy.name}</strong><br>` +
+    `HP: ${enemy.maxHp} / ATK: ${enemy.attack}<br>` +
+    (round > 0 ? `<span style="color:#58d68d">前の勝利でHPが30%回復！</span>` : '');
+
+  const fight = document.createElement('button');
+  fight.className = 'tourn-fight-btn';
+  fight.textContent = `⚔️ 第${round + 1}戦 開始！`;
+  fight.onclick = () => {
+    document.getElementById('tournament-overlay').classList.add('hidden');
+    gs.postBattleScene = gs.currentScene;
+    gs._tournamentActive = true;
+    startBattle(enemy);
+  };
+  const quit = document.createElement('button');
+  quit.className = 'tourn-close-btn';
+  quit.textContent = '↩️ 棄権する';
+  quit.onclick = () => document.getElementById('tournament-overlay').classList.add('hidden');
+  btns.appendChild(fight); btns.appendChild(quit);
+}
+
+function _tournamentVictory() {
+  const prizes = [
+    { gold: 1000, items: ['elixir'] },
+    { gold: 2000, items: ['elixir', 'heroCirclet'] },
+    { gold: 3000, items: ['elixir', 'heroShield', 'expCharm'] },
+  ];
+  const prize = prizes[Math.min(_tournState.wins - 1, 2)];
+  gs.player.gold += prize.gold;
+  prize.items.forEach(id => addItem(id));
+  updateStatus(); saveGame();
+  document.getElementById('tournament-status').innerHTML =
+    `<strong style="color:#ffd700">🏆 トーナメント完全制覇！！</strong><br>` +
+    `+${prize.gold}G・${prize.items.map(id => ITEM_DATA[id]?.name || id).join('・')}を獲得！`;
+  const btns = document.getElementById('tournament-buttons');
+  btns.innerHTML = '';
+  const again = document.createElement('button');
+  again.className = 'tourn-fight-btn'; again.textContent = '🏆 再挑戦！';
+  again.onclick = openTournament;
+  const close = document.createElement('button');
+  close.className = 'tourn-close-btn'; close.textContent = '↩️ 終わりにする';
+  close.onclick = () => document.getElementById('tournament-overlay').classList.add('hidden');
+  btns.appendChild(again); btns.appendChild(close);
+}
+
+// ============================================================
+//  仲間会話イベント システム
+// ============================================================
+function checkCompanionTalk(sceneId) {
+  if (!gs.bondLevel) return;
+  if (!gs.companionTalkFlags) gs.companionTalkFlags = {};
+
+  // 参加中の仲間IDリスト
+  const activeIds = [];
+  if (gs.companion?.joined) activeIds.push('aria');
+  const extras = gs.extraCompanions || {};
+  ['gaius','luna','sora','serafina','zephiros'].forEach(id => {
+    if (extras[id]?.joined) activeIds.push(id);
+  });
+  if (activeIds.length === 0) return;
+
+  // 対象イベントを探す
+  const candidates = COMPANION_TALK_EVENTS.filter(ev => {
+    if (!activeIds.includes(ev.companion)) return false;
+    if (ev.once && gs.companionTalkFlags[ev.id]) return false;
+    const bond = gs.bondLevel[ev.companion] || 0;
+    if (bond < (ev.minBond || 0)) return false;
+    if (ev.maxBond !== undefined && bond > ev.maxBond) return false;
+    if (ev.scenes && !ev.scenes.includes(sceneId)) return false;
+    if (!ev.scenes && gs.companionTalkFlags[ev.id]) return false;
+    // シーン指定ありの場合、同じシーンで複数回出ないよう制御
+    const flagKey = ev.scenes ? ev.id + '_' + sceneId : ev.id;
+    if (gs.companionTalkFlags[flagKey]) return false;
+    return true;
+  });
+  if (candidates.length === 0) return;
+
+  // ランダムに1件選んで少し遅延して表示
+  const ev = candidates[Math.floor(Math.random() * candidates.length)];
+  const flagKey = ev.scenes ? ev.id + '_' + sceneId : ev.id;
+  gs.companionTalkFlags[flagKey] = true;
+  if (ev.once) gs.companionTalkFlags[ev.id] = true;
+  saveGame();
+
+  setTimeout(() => {
+    // シーン移動済みの場合は発火しない
+    if (!gs.inBattle && (!ev.scenes || gs.currentScene === sceneId || ev.scenes.includes(gs.currentScene))) {
+      openCompanionTalk(ev);
+    }
+  }, 600);
+}
+
+function openCompanionTalk(ev) {
+  document.getElementById('companion-talk-emoji').textContent = ev.emoji;
+  document.getElementById('companion-talk-name').textContent  = ev.name;
+  const bond = gs.bondLevel?.[ev.companion] || 0;
+  document.getElementById('companion-talk-bond').textContent  = '絆Lv ' + bond;
+  document.getElementById('companion-talk-text').textContent  = ev.text;
+
+  const btns = document.getElementById('companion-talk-buttons');
+  btns.innerHTML = '';
+
+  if (ev.choices && ev.choices.length > 0) {
+    ev.choices.forEach(c => {
+      const btn = document.createElement('button');
+      btn.textContent = c.text;
+      btn.onclick = () => {
+        // 絆UP
+        if (c.bond > 0) {
+          if (!gs.bondLevel) gs.bondLevel = {};
+          gs.bondLevel[ev.companion] = Math.min(10, (gs.bondLevel[ev.companion] || 0) + c.bond);
+        }
+        // 報酬
+        if (c.reward) {
+          if (c.reward.hp)    gs.player.hp = Math.min(gs.player.maxHp, gs.player.hp + c.reward.hp);
+          if (c.reward.mp)    gs.player.mp = Math.min(gs.player.maxMp, gs.player.mp + c.reward.mp);
+          if (c.reward.gold)  gs.player.gold += c.reward.gold;
+          if (c.reward.items) c.reward.items.forEach(id => addItem(id));
+        }
+        updateStatus(); saveGame();
+
+        // 返答があれば表示
+        if (c.reply) {
+          document.getElementById('companion-talk-text').textContent = c.reply;
+          btns.innerHTML = '';
+          const closeBtn = document.createElement('button');
+          closeBtn.textContent = '……うん。';
+          closeBtn.style.textAlign = 'center';
+          closeBtn.onclick = () => closeCompanionTalk(c.reward);
+          btns.appendChild(closeBtn);
+        } else {
+          closeCompanionTalk(c.reward);
+        }
+      };
+      btns.appendChild(btn);
+    });
+  } else {
+    const btn = document.createElement('button');
+    btn.textContent = '……うん。';
+    btn.style.textAlign = 'center';
+    btn.onclick = () => closeCompanionTalk(null);
+    btns.appendChild(btn);
+  }
+
+  document.getElementById('companion-talk-overlay').classList.remove('hidden');
+}
+
+function closeCompanionTalk(reward) {
+  document.getElementById('companion-talk-overlay').classList.add('hidden');
+  if (reward) {
+    const parts = [];
+    if (reward.hp)    parts.push(`HP+${reward.hp}`);
+    if (reward.mp)    parts.push(`MP+${reward.mp}`);
+    if (reward.gold)  parts.push(`+${reward.gold}G`);
+    if (reward.items) reward.items.forEach(id => parts.push(ITEM_DATA[id]?.name || id));
+    if (parts.length > 0) showToast('💞 ' + parts.join(' / ') + ' 獲得！');
+  }
+}
+
+// 旅イベントを開く
+function tryTriggerTravelEvent(nextScene, area) {
+  // 20%の確率でイベント発生
+  if (Math.random() > 0.20) { gotoScene(nextScene); return; }
+
+  // エリアに合うイベントをフィルタ
+  const pool = TRAVEL_EVENTS.filter(e => !e.area || e.area === area);
+  // 今回のセッションで出たイベントを除外（重複防止）
+  if (!gs.recentTravelEvents) gs.recentTravelEvents = [];
+  const fresh = pool.filter(e => !gs.recentTravelEvents.includes(e.id));
+  const candidates = fresh.length > 0 ? fresh : pool;
+  const ev = candidates[Math.floor(Math.random() * candidates.length)];
+
+  // 履歴更新（最大5件記憶）
+  gs.recentTravelEvents.push(ev.id);
+  if (gs.recentTravelEvents.length > 5) gs.recentTravelEvents.shift();
+
+  // ポップアップ表示
+  document.getElementById('travel-event-emoji').textContent = ev.emoji;
+  document.getElementById('travel-event-title').textContent = ev.title;
+  document.getElementById('travel-event-text').textContent  = ev.text;
+  const btns = document.getElementById('travel-event-buttons');
+  btns.innerHTML = '';
+  ev.choices.forEach(c => {
+    const btn = document.createElement('button');
+    btn.textContent = c.text;
+    btn.onclick = () => {
+      document.getElementById('travel-event-overlay').classList.add('hidden');
+      c.effect(nextScene);
+    };
+    btns.appendChild(btn);
+  });
+  document.getElementById('travel-event-overlay').classList.remove('hidden');
+}
+
+// 旅イベント結果ポップアップ
+function openTravelResult(emoji, title, text, nextScene, callback) {
+  document.getElementById('travel-event-emoji').textContent = emoji;
+  document.getElementById('travel-event-title').textContent = title;
+  document.getElementById('travel-event-text').textContent  = text;
+  const btns = document.getElementById('travel-event-buttons');
+  btns.innerHTML = '';
+  const btn = document.createElement('button');
+  btn.textContent = '→ 続きへ進む';
+  btn.style.cssText = 'width:100%;text-align:center;';
+  btn.onclick = () => {
+    document.getElementById('travel-event-overlay').classList.add('hidden');
+    if (callback) callback();
+    if (nextScene && !gs.inBattle) gotoScene(nextScene);
+  };
+  btns.appendChild(btn);
+  document.getElementById('travel-event-overlay').classList.remove('hidden');
+}
+
+// 全仲間の絆を少し上げるヘルパー
+function gainBondAll(amount) {
+  if (!gs.companionBond) return;
+  Object.keys(gs.companionBond).forEach(k => {
+    gs.companionBond[k] = Math.min(10, (gs.companionBond[k] || 0) + amount);
+  });
+}
 
 // ============================================================
 //  隠し宝箱・隠し部屋 定義
@@ -1237,99 +3805,106 @@ const TITLE_DATA = [
     id: 't_slime_hunter', name: 'スライム狩人', emoji: '🟢',
     desc: 'スライムを100体倒した',
     check: () => (gs.monsterBook?.slime?.kills || 0) >= 100,
-    bonus: { gold: 5000, atk: 5 },
-    bonusDesc: '💰5000G、⚔️ATK+5',
+    bonus: { gold: 5000, atk: 5 }, bonusDesc: '💰5000G、⚔️ATK+5',
+    activeBonus: { goldMult: 1.15 }, activeBonusDesc: '💰ゴールド獲得+15%',
   },
   {
     id: 't_veteran', name: '百戦錬磨', emoji: '⚔️',
     desc: '戦闘回数が100回を超えた',
     check: () => (gs.totalBattles || 0) >= 100,
-    bonus: { gold: 3000, def: 5 },
-    bonusDesc: '💰3000G、🛡️DEF+5',
+    bonus: { gold: 3000, def: 5 }, bonusDesc: '💰3000G、🛡️DEF+5',
+    activeBonus: { atkMult: 1.10 }, activeBonusDesc: '⚔️ATKダメージ+10%',
   },
   {
     id: 't_demon_slayer', name: '魔王の天敵', emoji: '👿',
     desc: '魔王ダークロスを倒した',
     check: () => !!(gs.monsterBook?.demonKing?.kills),
-    bonus: { gold: 10000, atk: 20, def: 10, matk: 20 },
-    bonusDesc: '💰10000G、ATK+20、DEF+10、MATK+20',
+    bonus: { gold: 10000, atk: 20, def: 10, matk: 20 }, bonusDesc: '💰10000G、ATK+20、DEF+10、MATK+20',
+    activeBonus: { atkMult: 1.20, matkMult: 1.20 }, activeBonusDesc: '⚔️全攻撃ダメージ+20%',
   },
   {
     id: 't_guardian', name: '守護者', emoji: '🛡️',
     desc: 'ガイアスとの絆レベルが10になった',
     check: () => getBondLevel('gaius') >= 10,
-    bonus: { gold: 5000, def: 15 },
-    bonusDesc: '💰5000G、🛡️DEF+15',
+    bonus: { gold: 5000, def: 15 }, bonusDesc: '💰5000G、🛡️DEF+15',
+    activeBonus: { dmgReduce: 0.15 }, activeBonusDesc: '🛡️被ダメージ-15%',
   },
   {
     id: 't_millionaire', name: '大富豪', emoji: '💰',
     desc: '所持金が100000Gを超えた',
     check: () => (gs.player?.gold || 0) >= 100000,
-    bonus: { gold: 0, matk: 8 },
-    bonusDesc: '✨MATK+8',
+    bonus: { gold: 0, matk: 8 }, bonusDesc: '✨MATK+8',
+    activeBonus: { goldMult: 1.25 }, activeBonusDesc: '💰ゴールド獲得+25%',
   },
   {
     id: 't_grand_mage', name: '魔法使いの極み', emoji: '✨',
     desc: '全ての魔法・スキルを1度以上使用した',
     check: () => ['magic','guard','ironwall','palpunte','meteor','timestop','reflect','drain','teleport','ultima','berserk','confuse','bigbang'].every(s => gs.usedSkills?.[s]),
-    bonus: { gold: 5000, matk: 15 },
-    bonusDesc: '💰5000G、✨MATK+15',
+    bonus: { gold: 5000, matk: 15 }, bonusDesc: '💰5000G、✨MATK+15',
+    activeBonus: { matkMult: 1.20 }, activeBonusDesc: '✨魔法ダメージ+20%',
   },
   {
     id: 't_collector', name: 'コレクター', emoji: '📖',
     desc: 'モンスター図鑑を全て埋めた',
     check: () => Object.keys(ENEMY_DATA).every(id => (gs.monsterBook?.[id]?.kills || 0) > 0),
-    bonus: { gold: 8000, atk: 10, def: 10, matk: 10 },
-    bonusDesc: '💰8000G、全ステータス+10',
+    bonus: { gold: 8000, atk: 10, def: 10, matk: 10 }, bonusDesc: '💰8000G、全ステータス+10',
+    activeBonus: { expMult: 1.20 }, activeBonusDesc: '✨経験値獲得+20%',
   },
   {
     id: 't_invincible', name: '無敵の勇者', emoji: '👑',
     desc: 'レベル99に到達した',
     check: () => (gs.player?.level || 0) >= 99,
-    bonus: { gold: 10000, atk: 30, def: 30, matk: 30 },
-    bonusDesc: '💰10000G、全ステータス+30',
+    bonus: { gold: 10000, atk: 30, def: 30, matk: 30 }, bonusDesc: '💰10000G、全ステータス+30',
+    activeBonus: { hpMult: 1.20 }, activeBonusDesc: '❤️HP最大値+20%',
   },
   {
     id: 't_explorer', name: '探索家', emoji: '🗺️',
     desc: '全エリアを訪れた',
     check: () => WARP_DESTINATIONS.every(d => gs.flags?.[d.flag]),
-    bonus: { gold: 5000, atk: 5, def: 5, matk: 5 },
-    bonusDesc: '💰5000G、全ステータス+5',
+    bonus: { gold: 5000, atk: 5, def: 5, matk: 5 }, bonusDesc: '💰5000G、全ステータス+5',
+    activeBonus: { encounterReduce: 0.30 }, activeBonusDesc: '🗺️エンカウント率-30%',
   },
   {
     id: 't_smith', name: '鍛冶の達人', emoji: '⚒️',
     desc: '装備を+10まで強化した',
     check: () => Object.values(gs.player?.enhancements || {}).some(v => v >= 10),
-    bonus: { gold: 3000, atk: 8, def: 8, matk: 8 },
-    bonusDesc: '💰3000G、全ステータス+8',
+    bonus: { gold: 3000, atk: 8, def: 8, matk: 8 }, bonusDesc: '💰3000G、全ステータス+8',
+    activeBonus: { defMult: 1.10 }, activeBonusDesc: '🛡️防御力+10%',
   },
   {
     id: 't_god_dragon_slayer', name: '神龍討伐者', emoji: '🐉',
     desc: '神龍ゴッドドラゴンを倒した',
     check: () => !!(gs.monsterBook?.godDragon?.kills),
-    bonus: { gold: 50000, atk: 50, def: 30, matk: 50 },
-    bonusDesc: '💰50000G、ATK+50、DEF+30、MATK+50',
+    bonus: { gold: 50000, atk: 50, def: 30, matk: 50 }, bonusDesc: '💰50000G、ATK+50、DEF+30、MATK+50',
+    activeBonus: { atkMult: 1.15, matkMult: 1.15 }, activeBonusDesc: '🐉ATK&MATK+15%',
   },
   {
     id: 't_complete_conquest', name: '完全制覇', emoji: '👑',
     desc: '隠しボス3体（神龍・バアル・ヴォイド）を全員倒した',
     check: () => !!(gs.monsterBook?.godDragon?.kills) && !!(gs.monsterBook?.ancientBaal?.kills) && !!(gs.monsterBook?.voidWarden?.kills),
-    bonus: { gold: 100000, atk: 100, def: 100, matk: 100 },
-    bonusDesc: '💰100000G、全ステータス+100',
+    bonus: { gold: 100000, atk: 100, def: 100, matk: 100 }, bonusDesc: '💰100000G、全ステータス+100',
+    activeBonus: { atkMult: 1.30, matkMult: 1.30 }, activeBonusDesc: '👑全攻撃ダメージ+30%',
   },
   {
     id: 't_endless_warrior', name: '無限の戦士', emoji: '♾️',
     desc: '無限の試練で50波を突破した',
     check: () => (gs.endlessTrialMaxWave || 0) >= 50,
-    bonus: { gold: 30000, atk: 30, def: 30, matk: 30 },
-    bonusDesc: '💰30000G、全ステータス+30',
+    bonus: { gold: 30000, atk: 30, def: 30, matk: 30 }, bonusDesc: '💰30000G、全ステータス+30',
+    activeBonus: { expMult: 1.30 }, activeBonusDesc: '✨経験値獲得+30%',
   },
   {
     id: 't_true_hero', name: '真の勇者', emoji: '🌟',
     desc: '全ての称号を取得した',
-    check: () => TITLE_DATA.filter(t => t.id !== 't_true_hero').every(t => !!(gs.titles?.[t.id]?.obtained)),
-    bonus: { gold: 99999, atk: 50, def: 50, matk: 50, hp: 200 },
-    bonusDesc: '💰99999G、全ステータス+50、HP+200',
+    check: () => TITLE_DATA.filter(t => t.id !== 't_true_hero' && t.id !== 't_reborn').every(t => !!(gs.titles?.[t.id]?.obtained)),
+    bonus: { gold: 99999, atk: 50, def: 50, matk: 50, hp: 200 }, bonusDesc: '💰99999G、全ステータス+50、HP+200',
+    activeBonus: { atkMult: 1.10, matkMult: 1.10, defMult: 1.10, expMult: 1.10, goldMult: 1.10 }, activeBonusDesc: '🌟全能力+10%',
+  },
+  {
+    id: 't_reborn', name: '転生者', emoji: '🌟',
+    desc: '転生を1回以上経験した',
+    check: () => (gs.rebirthCount || 0) >= 1,
+    bonus: { gold: 10000, atk: 20, def: 20, matk: 20, hp: 300 }, bonusDesc: '💰10000G、全ステ+20、HP+300',
+    activeBonus: { atkMult: 1.10, defMult: 1.10, matkMult: 1.10, expMult: 1.20, goldMult: 1.10 }, activeBonusDesc: '🌟全ステ+10%・EXP+20%',
   },
 ];
 
@@ -1351,6 +3926,8 @@ const MATERIAL_DROPS = {
   slime:        { material: 'slimeGel',     rate: 0.35 },
   poisonSlime:  { material: 'slimeGel',     rate: 0.35 },
   poisonFrog:   { material: 'slimeGel',     rate: 0.2  },
+  grasslandBoar:{ material: 'freshMeat',    rate: 0.45 },
+  windWolf:     { material: 'freshMeat',    rate: 0.35 },
   forestWolf:   { material: 'wolfFang',     rate: 0.35 },
   snowWolf:     { material: 'wolfFang',     rate: 0.35 },
   goblin:       { material: 'wolfFang',     rate: 0.15 },
@@ -1373,6 +3950,10 @@ const MATERIAL_DROPS = {
   cursedSoul:   { material: 'demonHorn',    rate: 0.2  },
   demonLord:    { material: 'demonHorn',    rate: 1.0  },
   demonKing:    { material: 'demonHorn',    rate: 1.0  },
+  // 食材ドロップ
+  goblin:       { material: 'wildMushroom', rate: 0.30 },
+  bat:          { material: 'wildMushroom', rate: 0.25 },
+  slime:        { material: 'sweetBerry',   rate: 0.20 },
 };
 
 // ============================================================
@@ -1557,6 +4138,8 @@ const SCENES = {
       { text: '🏨 宿屋「英雄の間」で休む（無料）', action: 'inn_free_village', needFlag: 'townDevVillage2' },
       { text: '🗡️ 伝説の武器屋へ', next: 'village_legend_shop', needFlag: 'townDevVillage5' },
       { text: '🐴 厩舎へ行く', next: 'village_stable' },
+      { text: '🔨 老鍛冶師ガルムに話しかける', action: 'npc_garm' },
+      { text: '👦 子供のトマに話しかける', action: 'npc_toma' },
       { text: '🎰 幻想ガチャ屋台', action: 'open_gacha' },
       { text: '🏗️ 村に投資する', next: 'town_invest_village' },
       { text: '⚔️ レベリングスポット一覧', next: 'leveling_hub', needLevel: 10 },
@@ -1767,6 +4350,7 @@ const SCENES = {
       { text: '🗡️ スキル鍛錬所へ', next: 'snow_skill_forge_scene', needFlag: 'townDevSnow3' },
       { text: '🔮 召喚師のテントへ', next: 'snow_summon_tent_scene', needFlag: 'townDevSnow4' },
       { text: '🧊 氷の秘密ダンジョンへ', next: 'snow_ice_dungeon', needFlag: 'townDevSnow5' },
+      { text: '🏔️ 隠者ベルクに話しかける', action: 'npc_berk' },
       { text: '❄️ 氷晶ガチャ屋台', action: 'open_gacha_snow', needFlag: 'ariaJoined' },
       { text: '🏗️ 集落に投資する', next: 'town_invest_snow' },
       { text: '↩️ 雪山の麓に戻る', next: 'snow_entrance' },
@@ -1918,7 +4502,9 @@ const SCENES = {
       { text: '🪨 素材専門店へ', next: 'desert_material_shop_scene', needFlag: 'townDevDesert3' },
       { text: '📚 魔法書店へ', next: 'desert_magic_shop_scene', needFlag: 'townDevDesert4' },
       { text: '🏺 砂漠の秘密ダンジョンへ', next: 'desert_secret_dungeon', needFlag: 'townDevDesert5' },
+      { text: '🔮 占い師ラーナに話しかける', action: 'npc_larna' },
       { text: '🏺 砂漠の秘宝ガチャ', action: 'open_gacha_desert' },
+      { text: '🏜️ 砂漠レースに挑む', action: 'open_desert_race' },
       { text: '🏗️ オアシスに投資する', next: 'town_invest_desert' },
       { text: '↩️ 砂漠の入口へ戻る', next: 'desert_entrance' },
     ]
@@ -1996,6 +4582,8 @@ const SCENES = {
       { text: '🏨 港の宿屋で休む（300G）', action: 'inn_rest_sea' },
       { text: '🏝️ 南海の孤島へ向かう', next: 'south_island_spot', needFlag: 'vehicleShip' },
       { text: '🌊 海底の宝ガチャ', action: 'open_gacha_sea' },
+      { text: '⚓ 老船乗りポセイに話しかける', action: 'npc_posei' },
+      { text: '🎣 釣りをする', action: 'open_fishing' },
       { text: '↩️ 引き返す', next: 'demon_road' },
     ]
   },
@@ -2009,8 +4597,9 @@ const SCENES = {
 
   sea_harbor_locked: {
     emoji: '🔒', title: '古い港町', location: '南の港町',
-    text: `廃墟の港町。\n\n船乗りの老人がいるが、話を聞こうとしない。\n\n「......海底神殿に行くには古代の地図が必要だ。\nその地図がないやつに用はない」\n\n地図を探す必要がありそうだ。`,
+    text: `廃墟の港町。\n\n埠頭に一人の老船乗りが座っている。\n話しかけてみるか？`,
     choices: [
+      { text: '⚓ 老船乗りに話しかける', action: 'npc_posei_locked' },
       { text: '↩️ 引き返す', next: 'demon_road' },
     ]
   },
@@ -2464,6 +5053,7 @@ const SCENES = {
     choices: [
       { text: '✨ 魔法陣で全回復する', action: 'recover_arena' },
       { text: '🏟️ 闘技場に挑む（5連戦）', action: 'start_leveling_arena' },
+      { text: '🏆 トーナメントに挑む（3連戦・豪華報酬）', action: 'open_tournament' },
       { text: '↩️ スポット一覧へ', next: 'leveling_hub' },
     ]
   },
@@ -2616,16 +5206,20 @@ const SCENES = {
   // ── クリア後コンテンツ ──
   post_clear_hub: {
     emoji: '🌟', title: 'クリア後の世界', location: '平和な世界',
-    text: `魔王討伐から時が経った。\n\n世界に平和が戻り、人々は笑顔を取り戻した。\nしかし——アレクはまだ旅を続けている。\n\n世界の至る所に、まだ謎が残されている。\n新たな伝説が、幕を開けようとしていた。\n\n【クリア後コンテンツ一覧】\n🏔️ 神々の塔 ── 10フロアの最強ダンジョン\n🏺 砂漠の隠し部屋 ── 古の魔神バアル\n⬛ 虚無の地 ── 全属性無効の番人ヴォイド\n♾️ 無限の試練 ── どこまで進めるか挑戦！`,
+    text: `魔王討伐から時が経った。\n\n世界に平和が戻り、人々は笑顔を取り戻した。\nしかし——アレクはまだ旅を続けている。\n\n世界の至る所に、まだ謎が残されている。\n新たな伝説が、幕を開けようとしていた。\n\n【クリア後コンテンツ一覧】\n🏔️ 神々の塔 ── 10フロアの最強ダンジョン\n🏺 砂漠の隠し部屋 ── 古の魔神バアル\n⬛ 虚無の地 ── 全属性無効の番人ヴォイド\n♾️ 無限の試練 ── どこまで進めるか挑戦！\n🌋 火山地帯 ── 溶岩に棲む火山の王\n🌿 秘密の庭園 ── 伝説の庭園の女神\n⛩️ 古代神殿 ── 守護神ゼノスが眠る聖地\n🏚️ ランダムダンジョン ── 毎回変わる謎のダンジョン`,
     choices: [
-      { text: '🏔️ 神々の塔へ向かう', next: 'gods_tower_hub', needFlag: 'demonKingDefeated' },
-      { text: '🏺 砂漠の隠し部屋へ', next: 'desert_hidden',  needFlag: 'demonKingDefeated' },
-      { text: '⬛ 虚無の地へ',       next: 'void_map',       needFlag: 'demonKingDefeated' },
-      { text: '♾️ 無限の試練へ',      next: 'endless_trial_hub', needFlag: 'demonKingDefeated' },
-      { text: '📜 エピローグを見る',  next: 'epilogue',       needFlag: 'demonKingDefeated' },
-      { text: '🚁 飛行船商人に会う', next: 'airship_dealer', needFlag: 'demonKingDefeated' },
-      { text: '☁️ 天空の浮遊島へ',   next: 'sky_island_hub', needFlag: 'vehicleAirship' },
-      { text: '🏘️ 村へ戻る',         next: 'village' },
+      { text: '🏔️ 神々の塔へ向かう',   next: 'gods_tower_hub',    needFlag: 'demonKingDefeated' },
+      { text: '🏺 砂漠の隠し部屋へ',   next: 'desert_hidden',     needFlag: 'demonKingDefeated' },
+      { text: '⬛ 虚無の地へ',         next: 'void_map',          needFlag: 'demonKingDefeated' },
+      { text: '♾️ 無限の試練へ',        next: 'endless_trial_hub', needFlag: 'demonKingDefeated' },
+      { text: '🌋 火山地帯へ',         next: 'volcano_zone',      needFlag: 'demonKingDefeated' },
+      { text: '🌿 秘密の庭園へ',       next: 'secret_garden',     needFlag: 'demonKingDefeated' },
+      { text: '⛩️ 古代神殿へ',         next: 'ancient_shrine',       needFlag: 'demonKingDefeated' },
+      { text: '🏚️ ランダムダンジョン', next: 'random_dungeon_hub',   needFlag: 'demonKingDefeated' },
+      { text: '📜 エピローグを見る',    next: 'epilogue',             needFlag: 'demonKingDefeated' },
+      { text: '🚁 飛行船商人に会う',   next: 'airship_dealer',    needFlag: 'demonKingDefeated' },
+      { text: '☁️ 天空の浮遊島へ',     next: 'sky_island_hub',    needFlag: 'vehicleAirship' },
+      { text: '🏘️ 村へ戻る',           next: 'village' },
     ]
   },
 
@@ -2671,6 +5265,52 @@ const SCENES = {
     text: `長い冒険が、終わった。\n\n【アリア】\n魔王討伐後、アリアは王国へ戻り剣の訓練所を開いた。\n「アレクに教わったことを、次の世代に伝えたい」\n今日も若き剣士たちが彼女の元で学んでいる。\n\n【ガイアス】\nガイアスは故郷の国境警備隊長となった。\n「俺たちが守ったこの平和を、絶対に守り続ける」\n鋼の意志は変わらず、英雄として語られる。\n\n【ルナ】\nルナは各地を旅する吟遊詩人となった。\n「この冒険の物語を、世界中に伝えるの」\n彼女の詩は人々に平和と希望をもたらしている。\n\n【ソラ】\nソラはルナと共に旅を続けている。\n「二人で一緒に、世界を見て回ろう」\n双子の星は今日も輝き続けている。\n\n【セラフィナ】\nセラフィナは聖女として王都の神殿に仕えている。\n「みんなの健康を守ることが私の使命」\n彼女の癒しの力は今も多くの人を救っている。\n\n【ゼフィロス】\nゼフィロスは魔法学校を創設した。\n「若い才能を育て、次の世代の賢者を生み出す」\n彼の教えは次の時代の礎となっていく。\n\n【アレク】\nそして、アレク。\n彼は今日も世界のどこかを旅している。\n平和を守るために、新たな冒険へ——\n\n「俺の冒険は、まだ終わっていない」\n\n────────────────────────\n🌟 真の勇者の伝説は、こうして続いていく。`,
     choices: [
       { text: '→ 冒険を続ける', next: 'post_clear_hub' },
+    ]
+  },
+
+  // ── 未踏エリア ──
+  volcano_zone: {
+    emoji: '🌋', title: '火山地帯', location: '火山地帯',
+    text: `轟音と共に噴き上がるマグマ——「火山地帯」。\n\n灼熱の大地には、炎を糧に生きる魔物たちが棲む。\n奥深くには、この地を支配する「火山の王エルブレイズ」が眠るという。\n\n警告: 炎属性攻撃が通じにくい！\n氷属性スキルが特に有効だ。\n\n勝利すれば「火山の業炎剣」が手に入る！`,
+    onEnter: 'unlock_volcano',
+    choices: [
+      { text: '⚔️ 魔物を狩る（ランダム戦闘）', action: 'fight_volcano_random' },
+      { text: '🌋 エルブレイズに挑む！',        action: 'fight_volcano_boss' },
+      { text: '↩️ クリア後の世界へ戻る',        next: 'post_clear_hub' },
+    ]
+  },
+
+  secret_garden: {
+    emoji: '🌿', title: '秘密の庭園', location: '秘密の庭園',
+    text: `花と緑に包まれた——「秘密の庭園」。\n\n幻想的な美しさの奥に、強力な精霊たちが潜んでいる。\n庭園の奥地には伝説の女神「フローラ」が宿るという。\n\n警告: 毒・睡眠状態に注意！\n炎属性スキルが特に有効だ。\n\n勝利すれば「庭園の精霊環」が手に入る！`,
+    onEnter: 'unlock_secret_garden',
+    choices: [
+      { text: '⚔️ 精霊と戦う（ランダム戦闘）', action: 'fight_garden_random' },
+      { text: '🌺 フローラに挑む！',            action: 'fight_garden_boss' },
+      { text: '↩️ クリア後の世界へ戻る',        next: 'post_clear_hub' },
+    ]
+  },
+
+  ancient_shrine: {
+    emoji: '⛩️', title: '古代神殿', location: '古代神殿',
+    text: `古代の神を祀る——「古代神殿」。\n\n神聖な気が漲る境内には、神の守護者たちが番をしている。\n最深部には守護神「ゼノス」が眠り、侵入者を拒む。\n\n警告: 光属性攻撃が効きにくい！\n闇属性スキルが特に有効だ。\n\n勝利すれば「神殿の聖法衣」が手に入る！`,
+    onEnter: 'unlock_ancient_shrine',
+    choices: [
+      { text: '⚔️ 守護者を倒す（ランダム戦闘）', action: 'fight_shrine_random' },
+      { text: '⛩️ ゼノスに挑む！',               action: 'fight_shrine_boss' },
+      { text: '↩️ クリア後の世界へ戻る',          next: 'post_clear_hub' },
+    ]
+  },
+
+  random_dungeon_hub: {
+    emoji: '🏚️', title: 'ランダムダンジョン', location: 'ランダムダンジョン入口',
+    text: `闇の中から現れる——「ランダムダンジョン」。\n\nフロアごとにランダムな敵が現れ、\n宝箱・罠・回復の泉などの出来事が待ち受ける。\n最終フロアには強力なボスが現れる！\n\n難易度が高いほど、より良い報酬が手に入る。\n一度入ったら脱出するまで戦い続けよ！\n\n【難易度】\n🟢 易：5フロア ── 初心者向け\n🟡 普：10フロア ── やや難しい\n🔴 難：15フロア ── 上級者向け`,
+    onEnter: 'unlock_random_dungeon',
+    choices: [
+      { text: '🟢 易しいで挑む（5F）',   action: 'start_dungeon_easy' },
+      { text: '🟡 普通で挑む（10F）',     action: 'start_dungeon_normal' },
+      { text: '🔴 難しいで挑む（15F）',   action: 'start_dungeon_hard' },
+      { text: '↩️ クリア後の世界へ戻る', next: 'post_clear_hub' },
     ]
   },
 
@@ -2779,6 +5419,8 @@ function createInitialState() {
     towerProgress: 0,
     endlessTrialMode: null,
     endlessTrialMaxWave: 0,
+    randomDungeon: null,
+    randomDungeonBest: {},
     adminMult: { eHp: 1, eAtk: 1, eDef: 1, exp: 1, gold: 1, shop: 1 },
     townDev: { village: 0, desert: 0, snow: 0 },
     vehicles: { horse: false, ship: false, airship: false },
@@ -2786,6 +5428,16 @@ function createInitialState() {
     seasonBattleCount: 0,
     gacha: { pityCount: 0, totalPulls: 0, history: [] },
     areaGacha: {},
+    recentTravelEvents: [],
+    skillPoints: 0,
+    skillTree: {},
+    summonRevive: false,
+    summonBuff: null,
+    enemySummonDebuff: null,
+    companionSP: {},
+    companionSkills: {},
+    weeklyChallenge: null,
+    rebirthCount: 0,
   };
 }
 
@@ -2825,26 +5477,58 @@ function getEnchantBonus(stat) {
 
 function getSeasonData() { return SEASON_DATA[gs.season || 'spring'] || SEASON_DATA.spring; }
 
+// セットボーナスを含めた実効最大HP/MP（表示・回復上限に使用）
+function getEffMaxHp() {
+  const sb = getActiveSetBonuses();
+  const tb = getTitleBonus();
+  const sk = getSkillBonus();
+  const cb = getActiveCompanionBonus();
+  const rb = getRebirthBonus();
+  const base = gs.player.maxHp + (sb.hp || 0);
+  return Math.floor(base * (tb.hpMult || 1) * (sk.hpMult || 1) * cb.hpMult * rb.hpMult);
+}
+function getEffMaxMp() {
+  const sb = getActiveSetBonuses();
+  const sk = getSkillBonus();
+  const cb = getActiveCompanionBonus();
+  const rb = getRebirthBonus();
+  return Math.floor((gs.player.maxMp + (sb.mp || 0)) * (sk.mpMult || 1) * cb.mpMult * rb.mpMult);
+}
+
+// 装備中称号のアクティブボーナスを取得
+function getTitleBonus() {
+  if (!gs.equippedTitle) return {};
+  return TITLE_DATA.find(t => t.id === gs.equippedTitle)?.activeBonus || {};
+}
+
+function getFoodBuff() { return (gs.foodBuff?.battlesLeft > 0) ? gs.foodBuff : {}; }
+
 function getAtk()  {
-  const base = gs.player.baseAtk  + getEquipBonus(gs.player, 'atk') + getEnchantBonus('atk');
+  const sb = getActiveSetBonuses();
+  const base = gs.player.baseAtk  + getEquipBonus(gs.player, 'atk') + getEnchantBonus('atk') + (sb.atk || 0);
   const luna = gs.buffs?.lunaStarGuardTurns > 0 ? Math.floor(base * 1.5) : base;
   const berserk = gs.berserkTurns > 0 ? Math.floor(luna * 2) : luna;
   const combo = gs.comboAtkBuff > 0 ? Math.floor(berserk * 1.5) : berserk;
   const stat  = gs.comboStatBuff > 0 ? Math.floor(combo * 1.2) : combo;
-  return Math.floor(stat * getFormationMult('atk') * getBondStatMult('atk') * getSeasonData().atkMult);
+  const cb = getActiveCompanionBonus(); const rb = getRebirthBonus();
+  return Math.floor(stat * getFormationMult('atk') * getBondStatMult('atk') * getSeasonData().atkMult * (getTitleBonus().atkMult || 1) * (getFoodBuff().atkMult || 1) * (getSkillBonus().atkMult || 1) * (gs.summonBuff?.atkMult || 1) * cb.atkMult * rb.atkMult);
 }
 function getDef()  {
-  const base = gs.player.baseDef  + getEquipBonus(gs.player, 'def') + getEnchantBonus('def');
+  const sb = getActiveSetBonuses();
+  const base = gs.player.baseDef  + getEquipBonus(gs.player, 'def') + getEnchantBonus('def') + (sb.def || 0);
   const luna = gs.buffs?.lunaMoonBuffTurns > 0 ? Math.floor(base * 1.3) : base;
   const berserk = gs.berserkTurns > 0 ? Math.max(1, Math.floor(luna * 0.5)) : luna;
   const stat  = gs.comboStatBuff > 0 ? Math.floor(berserk * 1.2) : berserk;
-  return Math.floor(stat * getFormationMult('def') * getBondStatMult('def') * getSeasonData().defMult);
+  const cb = getActiveCompanionBonus(); const rb = getRebirthBonus();
+  return Math.floor(stat * getFormationMult('def') * getBondStatMult('def') * getSeasonData().defMult * (getTitleBonus().defMult || 1) * (getFoodBuff().defMult || 1) * (getSkillBonus().defMult || 1) * (gs.summonBuff?.defMult || 1) * cb.defMult * rb.defMult);
 }
 function getMatk() {
-  const base = gs.player.baseMatk + getEquipBonus(gs.player, 'matk') + getEnchantBonus('matk');
+  const sb = getActiveSetBonuses();
+  const base = gs.player.baseMatk + getEquipBonus(gs.player, 'matk') + getEnchantBonus('matk') + (sb.matk || 0);
   const luna = gs.buffs?.lunaStarGuardTurns > 0 ? Math.floor(base * 1.5) : base;
   const stat  = gs.comboStatBuff > 0 ? Math.floor(luna * 1.2) : luna;
-  return Math.floor(stat * getFormationMult('matk') * getBondStatMult('matk') * getSeasonData().matkMult);
+  const cb = getActiveCompanionBonus(); const rb = getRebirthBonus();
+  return Math.floor(stat * getFormationMult('matk') * getBondStatMult('matk') * getSeasonData().matkMult * (getTitleBonus().matkMult || 1) * (getFoodBuff().matkMult || 1) * (getSkillBonus().matkMult || 1) * (gs.summonBuff?.matkMult || 1) * cb.matkMult * rb.matkMult);
 }
 
 function getCompanionById(id) {
@@ -2895,7 +5579,25 @@ function getRandomEnemy(area) {
   const pool = AREA_ENEMIES[area] || ['slime'];
   const id = pool[Math.floor(Math.random() * pool.length)];
   const enemy = makeEnemy(id);
-  return scaleEnemyToPlayerLevel(enemy);
+  scaleEnemyToPlayerLevel(enemy);
+
+  // 8%でレア変異種に変換
+  const variant = RARE_VARIANTS[id];
+  if (variant && Math.random() < 0.08) {
+    enemy.name    = variant.name;
+    enemy.emoji   = variant.emoji;
+    enemy.maxHp   = Math.round(enemy.maxHp   * variant.hpMult);
+    enemy.hp      = enemy.maxHp;
+    enemy.attack  = Math.round(enemy.attack  * variant.atkMult);
+    enemy.exp     = Math.round(enemy.exp     * variant.expMult);
+    enemy.gold    = Math.round(enemy.gold    * variant.goldMult);
+    if (enemy.skill?.damage) enemy.skill.damage = Math.round(enemy.skill.damage * variant.atkMult);
+    enemy._isRare    = true;
+    enemy._rareDrop  = variant.drop;
+    enemy._rareMsg   = variant.msg;
+  }
+
+  return enemy;
 }
 
 function scaleEnemyToPlayerLevel(enemy) {
@@ -2926,13 +5628,15 @@ function updateStatus() {
   updateSeasonDisplay();
   const p = gs.player;
   const isMaxLv = p.level >= 999;
-  document.getElementById('player-level-display').textContent = isMaxLv ? 'Lv. 999 MAX' : `Lv. ${p.level}`;
-  document.getElementById('hp-text').textContent  = `${fmtNum(p.hp)}/${fmtNum(p.maxHp)}`;
-  document.getElementById('mp-text').textContent  = `${fmtNum(p.mp)}/${fmtNum(p.maxMp)}`;
+  const rebirthStars = '⭐'.repeat(Math.min(gs.rebirthCount || 0, 5)) + ((gs.rebirthCount || 0) > 5 ? `×${gs.rebirthCount}` : '');
+  document.getElementById('player-level-display').textContent = (isMaxLv ? 'Lv. 999 MAX' : `Lv. ${p.level}`) + (rebirthStars ? ` ${rebirthStars}` : '');
+  const effMaxHp = getEffMaxHp(), effMaxMp = getEffMaxMp();
+  document.getElementById('hp-text').textContent  = `${fmtNum(p.hp)}/${fmtNum(effMaxHp)}`;
+  document.getElementById('mp-text').textContent  = `${fmtNum(p.mp)}/${fmtNum(effMaxMp)}`;
   document.getElementById('exp-text').textContent = isMaxLv ? 'MAX' : `${fmtNum(p.exp)}/${fmtNum(EXP_TABLE[p.level])}`;
 
-  document.getElementById('hp-bar').style.width  = `${clamp(p.hp / p.maxHp * 100, 0, 100)}%`;
-  document.getElementById('mp-bar').style.width  = `${clamp(p.mp / p.maxMp * 100, 0, 100)}%`;
+  document.getElementById('hp-bar').style.width  = `${clamp(p.hp / effMaxHp * 100, 0, 100)}%`;
+  document.getElementById('mp-bar').style.width  = `${clamp(p.mp / effMaxMp * 100, 0, 100)}%`;
   const expPct = isMaxLv ? 100 : (p.exp / EXP_TABLE[p.level] * 100);
   document.getElementById('exp-bar').style.width = `${clamp(expPct, 0, 100)}%`;
 
@@ -3025,6 +5729,9 @@ function gotoScene(sceneId) {
 
   // onEnterイベント
   if (scene.onEnter) handleSceneEvent(scene.onEnter);
+
+  // 仲間会話イベント（15%の確率で発生）
+  if (Math.random() < 0.15) checkCompanionTalk(sceneId);
 }
 
 function renderScene(scene) {
@@ -3096,6 +5803,71 @@ function renderChoices(choices) {
     warpBtn.onclick = openWarpScreen;
     area.appendChild(warpBtn);
   }
+
+  // 料理ボタン
+  const cookBtn = document.createElement('button');
+  cookBtn.className = 'choice-btn cook-quick-btn';
+  const fb = gs.foodBuff?.battlesLeft > 0;
+  cookBtn.textContent = fb ? `🍳 料理（バフ残${gs.foodBuff.battlesLeft}戦）` : '🍳 料理する';
+  cookBtn.onclick = openCookingPanel;
+  area.appendChild(cookBtn);
+
+  // アイテム売却ボタン
+  const sellBtn = document.createElement('button');
+  sellBtn.className = 'choice-btn sell-quick-btn';
+  const sellableCount = gs.player.items.filter(i => !isUnsellable(i.id)).length;
+  sellBtn.textContent = `💰 アイテム売却${sellableCount > 0 ? `（${sellableCount}種）` : ''}`;
+  sellBtn.onclick = openSellPanel;
+  area.appendChild(sellBtn);
+
+  // スキルツリーボタン
+  const skillBtn = document.createElement('button');
+  skillBtn.className = 'choice-btn skill-quick-btn';
+  const sp = gs.skillPoints || 0;
+  skillBtn.textContent = `🌳 スキルツリー${sp > 0 ? `（SP: ${sp}）` : ''}`;
+  skillBtn.onclick = openSkillTree;
+  area.appendChild(skillBtn);
+
+  // 仲間スキルツリーボタン（仲間がいる場合）
+  const hasAnyComp = (gs.companion?.joined) || Object.values(gs.companions || {}).some(c => c?.joined);
+  if (hasAnyComp) {
+    const cskillBtn = document.createElement('button');
+    cskillBtn.className = 'choice-btn cskill-quick-btn';
+    const totalCSP = Object.values(gs.companionSP || {}).reduce((s, v) => s + v, 0);
+    cskillBtn.textContent = `💫 仲間スキル${totalCSP > 0 ? `（SP計${totalCSP}）` : ''}`;
+    cskillBtn.onclick = openCompanionSkillPanel;
+    area.appendChild(cskillBtn);
+  }
+
+  // 転生ボタン（条件を満たした場合のみ）
+  if (canRebirth()) {
+    const rebirthBtn = document.createElement('button');
+    rebirthBtn.className = 'choice-btn rebirth-quick-btn';
+    const rc = gs.rebirthCount || 0;
+    rebirthBtn.textContent = `🌟 転生する${rc > 0 ? `（${rc}回目済み）` : ''}`;
+    rebirthBtn.onclick = openRebirthPanel;
+    area.appendChild(rebirthBtn);
+  }
+
+  // 世界地図ボタン
+  const worldMapBtn = document.createElement('button');
+  worldMapBtn.className = 'choice-btn worldmap-quick-btn';
+  const totalAreas = WARP_DESTINATIONS.length;
+  const visitedAreas = WARP_DESTINATIONS.filter(d => !!gs.flags[d.flag]).length;
+  worldMapBtn.textContent = `🌍 世界地図（${visitedAreas}/${totalAreas}）`;
+  worldMapBtn.onclick = openWorldMap;
+  area.appendChild(worldMapBtn);
+
+  // 週替わりチャレンジボタン
+  initWeeklyChallenge();
+  const weekBtn = document.createElement('button');
+  weekBtn.className = 'choice-btn weekly-quick-btn';
+  const wc = gs.weeklyChallenge;
+  const wcDone = wc ? wc.challenges.filter(c => c.completed).length : 0;
+  const wcUnclaimed = wc ? wc.claimed.filter((cl, i) => !cl && wcDone > i).length : 0;
+  weekBtn.textContent = `🏆 週替わりチャレンジ${wcUnclaimed > 0 ? ` 🎁×${wcUnclaimed}` : `（${wcDone}/3）`}`;
+  weekBtn.onclick = openWeeklyChallenge;
+  area.appendChild(weekBtn);
 
   // クエスト掲示板ボタン
   const questBtn = document.createElement('button');
@@ -3202,10 +5974,18 @@ function handleChoice(choice) {
     if (v.airship) rate *= 0.3;
     else if (v.ship && choice.encounterArea === 'sea') rate *= 0.6;
     else if (v.horse && ['forest','cave','desert','snow','grasslands'].includes(choice.encounterArea)) rate *= 0.5;
+    // 探索家称号のエンカウント率軽減
+    const titleEncReduce = getTitleBonus().encounterReduce || 0;
+    if (titleEncReduce > 0) rate *= (1 - titleEncReduce);
     if (Math.random() < rate) {
       gs.postBattleScene = choice.next;
       const enemy = getRandomEnemy(choice.encounterArea);
       startBattle(enemy);
+      return;
+    }
+    // 旅のランダムイベント（エンカウントしなかった場合に20%で発生）
+    if (choice.next) {
+      tryTriggerTravelEvent(choice.next, choice.encounterArea);
       return;
     }
   }
@@ -3311,6 +6091,55 @@ function executeAction(action, choice = {}) {
       startBattle(makeEnemy('voidWarden'));
       break;
 
+    // ── 未踏エリア ──
+    case 'fight_volcano_random': {
+      gs.postBattleScene = 'volcano_zone';
+      const volcEnemies = AREA_ENEMIES.volcano;
+      startBattle(makeEnemy(volcEnemies[Math.floor(Math.random() * volcEnemies.length)]));
+      break;
+    }
+    case 'fight_volcano_boss':
+      gs.postBattleScene = 'volcano_zone';
+      gs.hiddenEnemyPending = {
+        flag: 'volcanoBossDefeated',
+        reward: { items: ['volcanoBlade'] },
+        rewardText: '「火山の業炎剣」を手に入れた！\n（ATK+130・炎属性ダメージ+40% 武器）',
+      };
+      startBattle(makeEnemy('volcanoBoss'));
+      break;
+
+    case 'fight_garden_random': {
+      gs.postBattleScene = 'secret_garden';
+      const gardEnemies = AREA_ENEMIES.secret_garden;
+      startBattle(makeEnemy(gardEnemies[Math.floor(Math.random() * gardEnemies.length)]));
+      break;
+    }
+    case 'fight_garden_boss':
+      gs.postBattleScene = 'secret_garden';
+      gs.hiddenEnemyPending = {
+        flag: 'gardenBossDefeated',
+        reward: { items: ['gardenAmulet'] },
+        rewardText: '「庭園の精霊環」を手に入れた！\n（HP+400・MP+150・MATK+60 アクセサリー）',
+      };
+      startBattle(makeEnemy('gardenBoss'));
+      break;
+
+    case 'fight_shrine_random': {
+      gs.postBattleScene = 'ancient_shrine';
+      const shrEnemies = AREA_ENEMIES.ancient_shrine;
+      startBattle(makeEnemy(shrEnemies[Math.floor(Math.random() * shrEnemies.length)]));
+      break;
+    }
+    case 'fight_shrine_boss':
+      gs.postBattleScene = 'ancient_shrine';
+      gs.hiddenEnemyPending = {
+        flag: 'shrineBossDefeated',
+        reward: { items: ['shrineRobe'] },
+        rewardText: '「神殿の聖法衣」を手に入れた！\n（DEF+120・MATK+80・全属性耐性+15% 体防具）',
+      };
+      startBattle(makeEnemy('shrineBoss'));
+      break;
+
     case 'start_endless_trial':
       startEndlessTrial();
       break;
@@ -3378,6 +6207,36 @@ function executeAction(action, choice = {}) {
       break;
     case 'open_gacha_demon':
       openAreaGacha('demon');
+      break;
+
+    // ミニゲーム
+    case 'open_fishing':      openFishingGame();   break;
+    case 'open_desert_race':  openDesertRace();    break;
+    case 'open_tournament':   openTournament();    break;
+
+    // NPCサブストーリー
+    case 'npc_garm':  talkToNpc('garm');  break;
+    case 'npc_toma':  talkToNpc('toma');  break;
+    case 'npc_larna': talkToNpc('larna'); break;
+    case 'npc_posei': talkToNpc('posei'); break;
+    case 'npc_berk':  talkToNpc('berk');  break;
+    case 'npc_posei_locked':
+      // 地図なし版：簡易ダイアログ（ステージ進行なし）
+      document.getElementById('npc-talk-emoji').textContent = '⚓';
+      document.getElementById('npc-talk-name').textContent  = '老船乗り ポセイ';
+      document.getElementById('npc-talk-stage').textContent = '？？？';
+      document.getElementById('npc-talk-text').textContent  =
+        '……なんだ、若造か。\n\nわしに用があるなら「古代の地図」を持ってこい。\nその地図なしに海底神殿に行こうとするやつには\n話すことは何もない。\n\n……地図はどこかの洞窟にあると聞いたぞ。';
+      (function() {
+        const btns = document.getElementById('npc-talk-buttons');
+        btns.innerHTML = '';
+        const btn = document.createElement('button');
+        btn.className = 'npc-close-btn';
+        btn.textContent = '（古代の地図を探しに行こう）';
+        btn.onclick = () => document.getElementById('npc-talk-overlay').classList.add('hidden');
+        btns.appendChild(btn);
+        document.getElementById('npc-talk-overlay').classList.remove('hidden');
+      })();
       break;
 
     case 'inn_free_village':
@@ -3683,6 +6542,7 @@ function useItemInBattle(id) {
   const d = ITEM_DATA[id];
   if (!d || !hasItem(id)) return;
   const p = gs.player;
+  advanceWeeklyChallenge('items', 1);
 
   document.getElementById('item-select').classList.add('hidden');
   document.getElementById('battle-buttons').classList.remove('hidden');
@@ -3846,6 +6706,9 @@ function startBattle(enemy) {
   gs.comboSanctuary = 0;
   gs.comboStatBuff = 0;
   gs.comboUsedThisBattle = false;
+  gs.summonRevive = false;
+  gs.summonBuff = null;
+  gs.enemySummonDebuff = null;
   // 仲間のスキルCDリセット
   if (gs.companion) gs.companion.shinkenCooldown = 0;
   Object.values(gs.companions || {}).forEach(c => { if (c) c.skillCooldowns = {}; });
@@ -3879,6 +6742,15 @@ function startBattle(enemy) {
   const isBoss = enemy.isBoss ? '⚡ ボス戦！！ ' : '';
   addBattleLog(`${isBoss}${enemy.emoji} ${enemy.name} が現れた！`, 'log-system');
 
+  // レアモンスター出現演出
+  if (enemy._isRare) {
+    addBattleLog('', 'log-system');
+    addBattleLog('✨✨✨ レアモンスター出現！！ ✨✨✨', 'log-system');
+    addBattleLog(enemy._rareMsg || 'レアな変異種だ！', 'log-system');
+    addBattleLog('⬆️ 経験値・ゴールド大幅UP！レアアイテムも確定ドロップ！', 'log-system');
+    setTimeout(() => showToast('✨ レアモンスター出現！！ 倒すとレアアイテム確定！'), 400);
+  }
+
   const isFinalBoss = !!(enemy.isFinalBoss) || enemy._id === 'demonKing' || enemy.name?.includes('魔王ダークロス');
   if (typeof SoundEngine !== 'undefined') SoundEngine.startBattleBGM(enemy.isBoss, isFinalBoss);
 
@@ -3902,8 +6774,9 @@ function updateBattleDisplay() {
 }
 
 function setBattleButtons(enabled) {
-  ['btn-attack', 'btn-magic', 'btn-item', 'btn-equip', 'btn-run'].forEach(id => {
-    document.getElementById(id).disabled = !enabled;
+  ['btn-attack', 'btn-magic', 'btn-item', 'btn-equip', 'btn-run', 'btn-summon'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.disabled = !enabled;
   });
 }
 
@@ -3934,6 +6807,7 @@ function battleAction(type) {
   else if (type === 'magic') playerMagic();
   else if (type === 'item')  playerOpenItemMenu();
   else if (type === 'equip') playerOpenBattleEquipMenu();
+  else if (type === 'summon') openSummonPanel();
   else if (type === 'run')   playerRun();
 }
 
@@ -3962,6 +6836,7 @@ function playerAttack() {
   const { dmg, crit } = calcDamage(atkVal, gs.enemy.defense);
   gs.enemy.hp = clamp(gs.enemy.hp - dmg, 0, gs.enemy.maxHp);
   const critTxt = (crit || extraCrit) ? '【会心の一撃！】 ' : '';
+  if (crit || extraCrit) advanceWeeklyChallenge('crits', 1);
   addBattleLog(`⚔️ 攻撃した！ ${critTxt}${gs.enemy.name}に ${dmg} ダメージ！`, 'log-player');
   if (typeof SoundEngine !== 'undefined') SoundEngine.playSFX('attack');
   triggerBattleEffect('slash');
@@ -4026,6 +6901,7 @@ function playerOpenSkillMenu() {
       document.getElementById('battle-buttons').classList.remove('hidden');
       if (!gs.usedSkills) gs.usedSkills = {};
       gs.usedSkills[sk.id] = true;
+      advanceWeeklyChallenge('magic', 1);
       if      (sk.id === 'magic')      playerMagicAttack();
       else if (sk.id === 'guard')      playerGuardSkill();
       else if (sk.id === 'ironwall')   playerIronWallSkill();
@@ -4303,6 +7179,14 @@ function applyPlayerDmgDefenses(dmg, isSkill) {
     const id = gs.player.equipment[s];
     if (id && ITEM_DATA[id]?.dmgReduce) dmg = Math.max(1, Math.ceil(dmg * (1 - ITEM_DATA[id].dmgReduce)));
   });
+  // 装備中称号・セットボーナス・スキルの被ダメージ軽減
+  const titleDmgReduce = getTitleBonus().dmgReduce || 0;
+  const setDmgReduce   = getActiveSetBonuses().dmgReduce || 0;
+  const foodDmgReduce  = getFoodBuff().dmgReduce || 0;
+  const skillDmgReduce    = getSkillBonus().dmgReduce || 0;
+  const companionDmgReduce = getActiveCompanionBonus().dmgReduce || 0;
+  const totalReduce = Math.min(0.80, titleDmgReduce + setDmgReduce + foodDmgReduce + skillDmgReduce + companionDmgReduce); // 最大80%軽減
+  if (totalReduce > 0) dmg = Math.max(1, Math.ceil(dmg * (1 - totalReduce)));
   if (gs.ironWallTurns > 0) dmg = Math.max(1, Math.ceil(dmg * 0.5));
   if (gs.partyShieldActive) dmg = Math.max(1, Math.ceil(dmg * 0.65));
   if (gs.comboSanctuary > 0) dmg = Math.max(1, Math.ceil(dmg * 0.5));
@@ -4451,6 +7335,27 @@ function tickPlayerBuffs() {
     });
   }
 
+  // 召喚バフのターン経過
+  if (gs.summonBuff?.turns > 0) {
+    gs.summonBuff.turns--;
+    if (gs.summonBuff.turns <= 0) {
+      gs.summonBuff = null;
+      addBattleLog('💎 精霊のバフ効果が切れた。', 'log-system');
+    } else {
+      addBattleLog(`💎 精霊バフ 残り${gs.summonBuff.turns}ターン`, 'log-system');
+    }
+  }
+  // 召喚デバフのターン経過
+  if (gs.enemySummonDebuff?.turns > 0) {
+    gs.enemySummonDebuff.turns--;
+    if (gs.enemySummonDebuff.turns <= 0) {
+      gs.enemySummonDebuff = null;
+      addBattleLog('👹 魔将の弱体化効果が切れた。', 'log-system');
+    } else {
+      addBattleLog(`👹 弱体化 残り${gs.enemySummonDebuff.turns}ターン`, 'log-system');
+    }
+  }
+
   updateStatusDisplay();
   updateStatus();
   updateAllCompanionsBattleStatus();
@@ -4571,6 +7476,31 @@ function cancelBattleEquip() {
 
 function renderEquipList(containerEl, inBattle) {
   containerEl.innerHTML = '';
+
+  // セットボーナス表示
+  if (!inBattle) {
+    const setBonusDiv = document.createElement('div');
+    setBonusDiv.style.cssText = 'margin-bottom:10px;';
+    let hasBonusHtml = '';
+    EQUIP_SETS.forEach(set => {
+      const equipped = new Set(EQUIP_SLOTS.map(s => gs.player.equipment[s]).filter(Boolean));
+      const count = set.items.filter(id => equipped.has(id)).length;
+      if (count === 0) return;
+      const maxBonus = set.bonuses.filter(b => b.count <= count).pop();
+      const style = `font-size:12px;padding:5px 8px;margin-bottom:4px;border-radius:5px;background:rgba(255,255,255,0.05);border:1px solid ${set.color}40;`;
+      hasBonusHtml +=
+        `<div style="${style}"><span style="color:${set.color}">${set.name} (${count}/${set.items.length}件)</span>` +
+        (maxBonus ? `<br><span style="font-size:11px;color:#aaa">✅ ${maxBonus.desc}</span>` : '') + '</div>';
+    });
+    setBonusDiv.innerHTML = hasBonusHtml ||
+      '<div style="font-size:11px;color:#888;text-align:center;padding:6px">セットボーナス未発動（同じセットを2件以上装備しよう）</div>';
+    const header = document.createElement('div');
+    header.style.cssText = 'font-size:12px;font-weight:bold;color:var(--gold);margin-bottom:5px;';
+    header.textContent = '🛡️ セットボーナス';
+    containerEl.appendChild(header);
+    containerEl.appendChild(setBonusDiv);
+  }
+
   renderEquipSection(containerEl, gs.player, 'player', inBattle);
   const allComps = [
     ['aria', gs.companion, '👱‍♀️ アリア'],
@@ -4740,6 +7670,12 @@ function dealDamageToTarget(targetId, rawDmg) {
   if (targetId === 'player') {
     const dmg = applyPlayerDmgDefenses(rawDmg, false);
     gs.player.hp = clamp(gs.player.hp - dmg, 0, gs.player.maxHp);
+    // フェニックス蘇生加護
+    if (gs.player.hp <= 0 && gs.summonRevive) {
+      gs.summonRevive = false;
+      gs.player.hp = Math.floor(getEffMaxHp() * 0.3);
+      addBattleLog('🔥 フェニックスの加護が発動！ 致命傷を無効化してHP30%で復活！', 'log-heal');
+    }
     updateStatus();
     if (typeof SoundEngine !== 'undefined') SoundEngine.playSFX('damage');
     flashPlayerHit();
@@ -5336,6 +8272,150 @@ function handleEndlessVictory(gainedExp, gainedGold) {
   addLevelingBtn('🏳️ 試練を終える', 'back-btn', () => { gs.endlessTrialMode = null; gotoScene('endless_trial_hub'); });
 }
 
+// ============================================================
+// ランダムダンジョン
+// ============================================================
+const RD_ENEMY_POOLS = {
+  early:  ['gladiator', 'championKnight', 'darkKnight'],
+  mid:    ['towerGuard1', 'cursedSoul', 'arenaLegend'],
+  late:   ['towerGuard2', 'towerArchangel', 'towerDemon'],
+  boss:   ['volcanoBoss', 'gardenBoss', 'shrineBoss', 'voidWarden', 'leviathan'],
+};
+const RD_ITEM_REWARDS = {
+  easy:   ['highHerb', 'highMpPotion', 'elixir'],
+  normal: ['elixir', 'phoenixFeather', 'heroCirclet'],
+  hard:   ['heroArmor', 'heroShield', 'volcanoBlade', 'gardenAmulet', 'shrineRobe'],
+};
+const RD_MAX_FLOORS = { easy: 5, normal: 10, hard: 15 };
+
+function startRandomDungeon(difficulty) {
+  gs.randomDungeon = { difficulty, floor: 1, maxFloor: RD_MAX_FLOORS[difficulty] };
+  saveGame();
+  startRandomDungeonFloor();
+}
+
+function startRandomDungeonFloor() {
+  const rd = gs.randomDungeon;
+  const { floor, maxFloor, difficulty } = rd;
+  const isBossFloor = floor === maxFloor;
+
+  let pool, scale;
+  if (isBossFloor) {
+    pool = RD_ENEMY_POOLS.boss;
+    scale = 1 + (floor - 1) * 0.2;
+  } else if (floor <= 3) {
+    pool = RD_ENEMY_POOLS.early;
+    scale = 1 + (floor - 1) * 0.12;
+  } else if (floor <= 8) {
+    pool = RD_ENEMY_POOLS.mid;
+    scale = 1 + (floor - 1) * 0.15;
+  } else {
+    pool = RD_ENEMY_POOLS.late;
+    scale = 1 + (floor - 1) * 0.18;
+  }
+
+  const enemyId = pool[Math.floor(Math.random() * pool.length)];
+  const base = JSON.parse(JSON.stringify(ENEMY_DATA[enemyId]));
+  base._id = enemyId;
+  base.maxHp   = Math.round(base.maxHp   * scale);
+  base.hp      = base.maxHp;
+  base.attack  = Math.round(base.attack  * scale);
+  base.defense = Math.round(base.defense * scale);
+  base.exp     = Math.round(base.exp     * scale * 1.3);
+  base.gold    = Math.round(base.gold    * scale * 1.3);
+  if (base.skill?.damage) base.skill.damage = Math.round(base.skill.damage * scale);
+  if (isBossFloor) {
+    base.isBoss = true;
+    base.name   = `【${floor}Fボス】` + base.name;
+  } else {
+    base.name   = `【${floor}F】` + base.name;
+  }
+  gs.postBattleScene = 'random_dungeon_hub';
+  startBattle(base);
+}
+
+function handleRandomDungeonVictory(gainedExp, gainedGold) {
+  const rd = gs.randomDungeon;
+  const { floor, maxFloor, difficulty } = rd;
+  const isClear = floor === maxFloor;
+
+  // 最高到達フロア更新
+  if (!gs.randomDungeonBest[difficulty] || floor > gs.randomDungeonBest[difficulty]) {
+    gs.randomDungeonBest[difficulty] = floor;
+  }
+
+  if (isClear) {
+    // ダンジョンクリア！
+    const rewPool = RD_ITEM_REWARDS[difficulty];
+    const rewId   = rewPool[Math.floor(Math.random() * rewPool.length)];
+    addItem(rewId);
+    const bonusGold = floor * 2000;
+    gs.player.gold += bonusGold;
+    updateStatus();
+    gs.randomDungeon = null;
+    checkTitles();
+    saveGame();
+
+    const diffLabel = difficulty === 'easy' ? '易' : difficulty === 'normal' ? '普' : '難';
+    let txt = `🎉 ダンジョン完全制覇！（${diffLabel}・${maxFloor}F）\n\n`;
+    txt += ` EXP +${gainedExp}　💰 +${gainedGold}G\n`;
+    txt += `💰 クリアボーナス +${bonusGold}G\n`;
+    txt += `✨ ${ITEM_DATA[rewId].emoji}「${ITEM_DATA[rewId].name}」を入手！\n\n`;
+    txt += `最高到達記録: ${difficulty === 'easy' ? '易' : difficulty === 'normal' ? '普' : '難'} ${gs.randomDungeonBest[difficulty]}F`;
+    showLevelingPanel('🏚️', 'ダンジョン制覇！', txt);
+    addLevelingBtn('🏚️ もう一度挑む', '', () => gotoScene('random_dungeon_hub'));
+    addLevelingBtn('↩️ クリア後の世界へ', 'back-btn', () => gotoScene('post_clear_hub'));
+    return;
+  }
+
+  // フロア突破 → ランダムイベント
+  rd.floor++;
+  const nextFloor = rd.floor;
+  const eventRoll = Math.floor(Math.random() * 4);
+  let eventText = '';
+  let eventGold = 0;
+  let eventHp   = 0;
+
+  if (eventRoll === 0) {
+    // 宝箱
+    const chestPool = ['highHerb', 'highMpPotion', 'elixir', 'antidote', 'phoenixFeather'];
+    const item = chestPool[Math.floor(Math.random() * chestPool.length)];
+    addItem(item);
+    eventText = `📦 宝箱を発見！\n${ITEM_DATA[item].emoji}「${ITEM_DATA[item].name}」を入手！`;
+  } else if (eventRoll === 1) {
+    // 罠
+    const dmg = Math.round(gs.player.maxHp * 0.1);
+    gs.player.hp = Math.max(1, gs.player.hp - dmg);
+    eventText    = `⚠️ 罠にかかった！\nHP -${dmg}`;
+    eventHp = -dmg;
+  } else if (eventRoll === 2) {
+    // 回復の泉
+    const heal = Math.round(gs.player.maxHp * 0.3);
+    gs.player.hp = Math.min(gs.player.maxHp, gs.player.hp + heal);
+    eventText    = `💧 回復の泉を発見！\nHP +${heal}`;
+    eventHp = heal;
+  } else {
+    // 通路（何もなし・ゴールド入手）
+    const g = floor * 300;
+    gs.player.gold += g;
+    eventText  = `🚶 特に何もない通路。\n💰 落ちていたコイン +${g}G`;
+    eventGold  = g;
+  }
+
+  updateStatus();
+  saveGame();
+
+  const diffLabel = difficulty === 'easy' ? '易' : difficulty === 'normal' ? '普' : '難';
+  const isBossNext = nextFloor === maxFloor;
+  let txt = `${floor}F突破！（${diffLabel}・${maxFloor}F中）\n\n`;
+  txt += ` EXP +${gainedExp}　💰 +${gainedGold}G\n\n`;
+  txt += eventText;
+  if (isBossNext) txt += '\n\n⚠️ 次はボスフロア！！';
+  showLevelingPanel('🏚️', `${floor}F クリア！`, txt);
+  addLevelingBtn(`⚔️ ${nextFloor}Fへ進む`, '', () => startRandomDungeonFloor());
+  addLevelingBtn('🏳️ ダンジョンを脱出', 'back-btn', () => { gs.randomDungeon = null; saveGame(); gotoScene('random_dungeon_hub'); });
+}
+
 function endBattle(victory, escaped = false) {
   gs.inBattle = false;
 
@@ -5358,10 +8438,16 @@ function endBattle(victory, escaped = false) {
       return m * (id && ITEM_DATA[id]?.expBonus ? ITEM_DATA[id].expBonus : 1);
     }, 1);
     const seasonD = getSeasonData();
-    const gainedExp  = Math.floor(e.exp * expMult * (gs.adminMult?.exp || 1) * (seasonD.expMult || 1));
-    const gainedGold = Math.floor(e.gold * (gs.adminMult?.gold || 1) * (seasonD.goldMult || 1));
+    const tb = getTitleBonus();
+    const skb = getSkillBonus();
+    const cpb = getActiveCompanionBonus();
+    const reb = getRebirthBonus();
+    const gainedExp  = Math.floor(e.exp * expMult * (gs.adminMult?.exp || 1) * (seasonD.expMult || 1) * (tb.expMult || 1) * (skb.expMult || 1) * cpb.expMult * reb.expMult);
+    const gainedGold = Math.floor(e.gold * (gs.adminMult?.gold || 1) * (seasonD.goldMult || 1) * (tb.goldMult || 1) * (skb.goldMult || 1) * cpb.goldMult * reb.goldMult);
     gs.player.exp  += gainedExp;
     gs.player.gold += gainedGold;
+    advanceWeeklyChallenge('battles', 1);
+    if (gainedGold > 0) advanceWeeklyChallenge('gold', gainedGold);
 
     addBattleLog(`🎉 ${e.name} を倒した！`, 'log-system');
     if (typeof SoundEngine !== 'undefined') SoundEngine.playVictory();
@@ -5369,6 +8455,14 @@ function endBattle(victory, escaped = false) {
     const seasonSuffix = seasonD.expMult > 1 ? `（${getSeasonData().emoji}×${seasonD.expMult}）` : '';
     if (gainedGold > 0) addBattleLog(`💰 ${gainedGold}G を手に入れた！ ${expStr}${seasonSuffix}`, 'log-system');
     else                addBattleLog(`✨ ${expStr}${seasonSuffix}`, 'log-system');
+
+    // レアモンスター確定ドロップ
+    if (e._isRare && e._rareDrop) {
+      addItem(e._rareDrop);
+      const dropItem = ITEM_DATA[e._rareDrop];
+      addBattleLog(`🌟 レアドロップ！ ${dropItem?.emoji || '✨'}「${dropItem?.name || e._rareDrop}」を入手！`, 'log-system');
+      setTimeout(() => showToast(`🌟 レアドロップ！ 「${dropItem?.name || e._rareDrop}」を入手！`), 500);
+    }
 
     // モンスター図鑑
     if (e._id) recordEnemyKill(e._id);
@@ -5397,6 +8491,15 @@ function endBattle(victory, escaped = false) {
 
     // 戦闘回数・称号チェック
     gs.totalBattles = (gs.totalBattles || 0) + 1;
+    // 食事バフのカウントダウン
+    if (gs.foodBuff?.battlesLeft > 0) {
+      gs.foodBuff.battlesLeft--;
+      if (gs.foodBuff.battlesLeft <= 0) {
+        const foodName = ITEM_DATA[gs.foodBuff.foodId]?.name || '料理バフ';
+        showToast(`🍽️ 「${foodName}」の効果が切れた！`);
+        gs.foodBuff = null;
+      }
+    }
     checkTitles();
 
     // healRing 戦闘後回復
@@ -5455,9 +8558,41 @@ function endBattle(victory, escaped = false) {
       return;
     }
 
+    // トーナメント勝利処理
+    if (gs._tournamentActive) {
+      gs._tournamentActive = false;
+      _tournState.wins++;
+      _tournState.round++;
+      // 次の試合前にHP30%回復
+      if (_tournState.round < 3) {
+        const heal = Math.floor(gs.player.maxHp * 0.3);
+        gs.player.hp = Math.min(gs.player.maxHp, gs.player.hp + heal);
+        addBattleLog(`💚 次の試合前に体力が回復した！（+${heal}HP）`, 'log-heal');
+        updateStatus();
+      }
+      setTimeout(() => {
+        _renderTournament();
+        document.getElementById('tournament-overlay').classList.remove('hidden');
+      }, 800);
+      gs.postBattleScene = null;
+      setTimeout(() => {
+        document.getElementById('battle-area').classList.add('hidden');
+        document.getElementById('story-text-area').classList.remove('hidden');
+        document.getElementById('choices-area').classList.remove('hidden');
+        renderScene(SCENES[gs.currentScene]);
+      }, 400);
+      return;
+    }
+
     if (gs.endlessTrialMode) {
       gs.postBattleScene = null;
       setTimeout(() => handleEndlessVictory(gainedExp, gainedGold), 1000);
+      return;
+    }
+
+    if (gs.randomDungeon) {
+      gs.postBattleScene = null;
+      setTimeout(() => handleRandomDungeonVictory(gainedExp, gainedGold), 1000);
       return;
     }
 
@@ -5764,7 +8899,9 @@ function getEnemyEffectiveDef() {
 }
 function getEnemyEffectiveAtk() {
   const base = gs.enemy?.attack || 0;
-  return gs.buffs?.solaDebuffTurns > 0 ? Math.floor(base * 0.6) : base;
+  let atk = gs.buffs?.solaDebuffTurns > 0 ? Math.floor(base * 0.6) : base;
+  if (gs.enemySummonDebuff?.turns > 0) atk = Math.floor(atk * gs.enemySummonDebuff.atkMult);
+  return atk;
 }
 
 // ガイアス
@@ -6308,11 +9445,14 @@ function applyLevelUpChoice(type, oldLv) {
   p.hp = p.maxHp;
   p.mp = p.maxMp;
 
+  gs.skillPoints = (gs.skillPoints || 0) + 1;
+
   document.getElementById('levelup-details').innerHTML =
     `Lv. ${oldLv} → <strong style="color:#f0c040">Lv. ${p.level}</strong><br><br>` +
     `${c.label} を選択！<br>` +
     `❤️ 最大HP +${c.hp}　💙 最大MP +${c.mp}<br>` +
     `⚔️ 攻撃力 +${c.atk}　🛡️ 防御力 +${c.def}　✨ 魔法力 +${c.matk}<br><br>` +
+    `<span style="color:#a78bfa">🌳 スキルポイント +1（合計: ${gs.skillPoints}SP）</span><br>` +
     `<span style="color:#60e060">レベルアップ！HPとMPが全回復した！</span>`;
   document.getElementById('levelup-choices').innerHTML = '';
   document.getElementById('levelup-continue-btn').style.display = '';
@@ -6347,6 +9487,136 @@ const ARIA_WARP_ARRIVE = [
   '「さあ、行こう！」',
   '「ここって覚えてる？」',
 ];
+
+// ============================================================
+//  アイテム売却システム
+// ============================================================
+
+// 売却価格を計算（buy priceの40% or 最低10G）
+function getSellPrice(itemId) {
+  const item = ITEM_DATA[itemId];
+  if (!item) return 0;
+  if (item.price <= 0) {
+    // 無価格アイテム（クエスト報酬など）は素材・消耗品のみ最低値で売却可
+    if (item.type === 'material')   return 20;
+    if (item.type === 'consumable') return 15;
+    if (item.type === 'equipment')  return 50;
+    return 0;  // key等は売れない
+  }
+  return Math.max(10, Math.floor(item.price * 0.4));
+}
+
+// 売れないアイテムか判定
+function isUnsellable(itemId) {
+  const item = ITEM_DATA[itemId];
+  if (!item) return true;
+  if (item.type === 'key') return true;  // 鍵系は売れない
+  if (getSellPrice(itemId) === 0) return true;
+  return false;
+}
+
+let _sellSelected = new Set();
+let _sellCurrentCat = 'all';
+
+function openSellPanel() {
+  if (gs.inBattle) return;
+  _sellSelected.clear();
+  _sellCurrentCat = 'all';
+  _renderSellList();
+  // タブイベント設定
+  document.querySelectorAll('.sell-tab').forEach(tab => {
+    tab.onclick = () => {
+      document.querySelectorAll('.sell-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      _sellCurrentCat = tab.dataset.cat;
+      _sellSelected.clear();
+      _renderSellList();
+    };
+  });
+  document.getElementById('sell-gold-display').textContent = `所持金: ${gs.player.gold.toLocaleString()}G`;
+  document.getElementById('sell-overlay').classList.remove('hidden');
+}
+
+function _renderSellList() {
+  const list = document.getElementById('sell-list');
+  list.innerHTML = '';
+  let totalSelected = 0;
+
+  const items = gs.player.items.filter(i => {
+    if (isUnsellable(i.id)) return false;
+    const item = ITEM_DATA[i.id];
+    if (!item) return false;
+    if (_sellCurrentCat === 'all') return true;
+    return item.type === _sellCurrentCat;
+  });
+
+  if (items.length === 0) {
+    list.innerHTML = '<div style="text-align:center;color:var(--text-dim);padding:24px;font-size:13px">売れるアイテムがありません</div>';
+    document.getElementById('sell-total').textContent = '売れるアイテムなし';
+    document.getElementById('sell-all-btn').disabled = true;
+    return;
+  }
+
+  items.forEach(i => {
+    const item = ITEM_DATA[i.id];
+    const price = getSellPrice(i.id);
+    const isChecked = _sellSelected.has(i.id);
+    if (isChecked) totalSelected += price * i.count;
+
+    const div = document.createElement('div');
+    div.className = 'sell-item' + (isChecked ? ' selected' : '');
+    div.innerHTML =
+      `<span class="sell-item-check">${isChecked ? '✅' : '⬜'}</span>` +
+      `<span class="sell-item-emoji">${item.emoji || '📦'}</span>` +
+      `<span class="sell-item-info">` +
+        `<div class="sell-item-name">${item.name}</div>` +
+        `<div class="sell-item-sub">${item.type === 'equipment' ? '装備品' : item.type === 'material' ? '素材' : '消耗品'}</div>` +
+      `</span>` +
+      `<span class="sell-item-count">×${i.count}</span>` +
+      `<span class="sell-item-price">${price.toLocaleString()}G/個</span>`;
+    div.onclick = () => {
+      if (_sellSelected.has(i.id)) _sellSelected.delete(i.id);
+      else _sellSelected.add(i.id);
+      _renderSellList();
+    };
+    list.appendChild(div);
+  });
+
+  const btn = document.getElementById('sell-all-btn');
+  if (totalSelected > 0) {
+    document.getElementById('sell-total').textContent = `売却合計: ${totalSelected.toLocaleString()}G`;
+    btn.textContent = `💰 ${totalSelected.toLocaleString()}G で売る`;
+    btn.disabled = false;
+  } else {
+    document.getElementById('sell-total').textContent = 'アイテムを選択してください';
+    btn.textContent = '💰 売る';
+    btn.disabled = true;
+  }
+}
+
+function sellSelected() {
+  if (_sellSelected.size === 0) return;
+  let totalGold = 0;
+  _sellSelected.forEach(id => {
+    const item = gs.player.items.find(i => i.id === id);
+    if (!item) return;
+    const price = getSellPrice(id);
+    totalGold += price * item.count;
+    gs.player.items = gs.player.items.filter(i => i.id !== id);
+  });
+  gs.player.gold += totalGold;
+  advanceWeeklyChallenge('sell', _sellSelected.size);
+  updateStatus(); saveGame();
+  _sellSelected.clear();
+  showToast(`💰 ${totalGold.toLocaleString()}G を受け取った！`);
+  document.getElementById('sell-gold-display').textContent = `所持金: ${gs.player.gold.toLocaleString()}G`;
+  _renderSellList();
+}
+
+function closeSellPanel() {
+  document.getElementById('sell-overlay').classList.add('hidden');
+  _sellSelected.clear();
+}
 
 // ============================================================
 //  隠し宝箱・隠し部屋 システム
@@ -6449,6 +9719,54 @@ function openWarpScreen() {
 function closeWarpScreen() {
   document.getElementById('warp-area').classList.add('hidden');
   document.getElementById('choices-area').classList.remove('hidden');
+}
+
+// ── 世界地図 ──
+function openWorldMap() {
+  if (gs.inBattle) return;
+  const ov = document.getElementById('worldmap-overlay');
+  ov.classList.remove('hidden');
+
+  const categories = [
+    { label: '📍 メインストーリーエリア', flags: ['vis_village','vis_forest_entrance','vis_deep_forest','vis_cave_entrance','vis_ancient_ruins','vis_desert_oasis','vis_snow_entrance','vis_sea_harbor','vis_arena','vis_demon_castle'] },
+    { label: '⭐ クリア後エリア',          flags: ['vis_gods_tower','vis_void_map','vis_desert_hidden','vis_endless_trial','vis_volcano','vis_secret_garden','vis_ancient_shrine','vis_random_dungeon'] },
+    { label: '🚗 乗り物エリア',            flags: ['vis_grasslands','vis_south_island','vis_sky_island'] },
+  ];
+
+  const total = WARP_DESTINATIONS.length;
+  const visited = WARP_DESTINATIONS.filter(d => !!gs.flags[d.flag]).length;
+
+  const destMap = {};
+  WARP_DESTINATIONS.forEach(d => { destMap[d.flag] = d; });
+
+  let html = `<div class="worldmap-header">
+    <span class="worldmap-title">🌍 世界地図</span>
+    <span class="worldmap-count">踏破 ${visited}/${total} エリア</span>
+  </div>`;
+
+  const pct = Math.round((visited / total) * 100);
+  html += `<div class="worldmap-progress-bar"><div class="worldmap-progress-fill" style="width:${pct}%"></div></div>`;
+
+  categories.forEach(cat => {
+    html += `<div class="worldmap-category"><div class="worldmap-cat-label">${cat.label}</div><div class="worldmap-grid">`;
+    cat.flags.forEach(flag => {
+      const dest = destMap[flag];
+      if (!dest) return;
+      const isVisited = !!gs.flags[flag];
+      html += `<div class="worldmap-area ${isVisited ? 'worldmap-visited' : 'worldmap-unvisited'}">
+        <span class="worldmap-area-emoji">${dest.emoji}</span>
+        <span class="worldmap-area-name">${dest.name}</span>
+        <span class="worldmap-area-status">${isVisited ? '✅ 踏破' : '❓ 未踏'}</span>
+      </div>`;
+    });
+    html += `</div></div>`;
+  });
+
+  document.getElementById('worldmap-content').innerHTML = html;
+}
+
+function closeWorldMap() {
+  document.getElementById('worldmap-overlay').classList.add('hidden');
 }
 
 function executeWarp(dest) {
@@ -6588,15 +9906,54 @@ function handleSceneEvent(event) {
     // 海底神殿イベント
     case 'route_ending':
       if (!gs.flags.demonKingDefeated) {
-        gs.flags.demonKingDefeated = true;
-        gs.flags.vis_gods_tower    = true;
-        gs.flags.vis_void_map      = true;
-        gs.flags.vis_desert_hidden = true;
-        gs.flags.vis_endless_trial = true;
+        gs.flags.demonKingDefeated     = true;
+        gs.flags.vis_gods_tower        = true;
+        gs.flags.vis_void_map          = true;
+        gs.flags.vis_desert_hidden     = true;
+        gs.flags.vis_endless_trial     = true;
+        gs.flags.vis_volcano           = true;
+        gs.flags.vis_secret_garden     = true;
+        gs.flags.vis_ancient_shrine    = true;
+        gs.flags.vis_random_dungeon    = true;
         // クリアフラグを確実に保存
         try { localStorage.setItem('rpg_save', JSON.stringify(gs)); } catch {}
       }
       gotoScene(getEndingScene());
+      break;
+
+    case 'unlock_volcano':
+      if (!gs.flags.vis_volcano) { gs.flags.vis_volcano = true; saveGame(); }
+      break;
+    case 'unlock_secret_garden':
+      if (!gs.flags.vis_secret_garden) { gs.flags.vis_secret_garden = true; saveGame(); }
+      break;
+    case 'unlock_ancient_shrine':
+      if (!gs.flags.vis_ancient_shrine) { gs.flags.vis_ancient_shrine = true; saveGame(); }
+      break;
+
+    case 'unlock_random_dungeon': {
+      if (!gs.flags.vis_random_dungeon) { gs.flags.vis_random_dungeon = true; saveGame(); }
+      const rdBest = gs.randomDungeonBest || {};
+      const rdLines = [
+        rdBest.easy   ? `🟢 易: 最高 ${rdBest.easy}F到達` : '🟢 易: 未挑戦',
+        rdBest.normal ? `🟡 普: 最高 ${rdBest.normal}F到達` : '🟡 普: 未挑戦',
+        rdBest.hard   ? `🔴 難: 最高 ${rdBest.hard}F到達` : '🔴 難: 未挑戦',
+      ];
+      const rdEl = document.getElementById('story-text');
+      if (rdEl) {
+        rdEl.textContent = `闇の中から現れる——「ランダムダンジョン」。\n\nフロアごとにランダムな敵が現れ、\n宝箱・罠・回復の泉などの出来事が待ち受ける。\n最終フロアには強力なボスが現れる！\n\n難易度が高いほど、より良い報酬が手に入る。\n一度入ったら脱出するまで戦い続けよ！\n\n【難易度】\n🟢 易：5フロア ── 初心者向け\n🟡 普：10フロア ── やや難しい\n🔴 難：15フロア ── 上級者向け\n\n【最高記録】\n${rdLines.join('\n')}`;
+      }
+      break;
+    }
+
+    case 'start_dungeon_easy':
+      startRandomDungeon('easy');
+      break;
+    case 'start_dungeon_normal':
+      startRandomDungeon('normal');
+      break;
+    case 'start_dungeon_hard':
+      startRandomDungeon('hard');
       break;
 
     case 'endless_trial_hub_refresh': {
@@ -6859,12 +10216,35 @@ function loadGame() {
     if (!gs.gacha) gs.gacha = { pityCount: 0, totalPulls: 0, history: [] };
     if (!gs.gacha.history) gs.gacha.history = [];
     if (!gs.areaGacha) gs.areaGacha = {};
+    if (!gs.companionTalkFlags) gs.companionTalkFlags = {};
+    if (!gs.recentTravelEvents) gs.recentTravelEvents = [];
+    if (!gs.npcStages) gs.npcStages = {};
+    if (!('equippedTitle' in gs)) gs.equippedTitle = null;
+    if (!('foodBuff' in gs)) gs.foodBuff = null;
+    if (!('skillPoints' in gs)) gs.skillPoints = 0;
+    if (!gs.skillTree) gs.skillTree = {};
+    if (!('summonRevive' in gs)) gs.summonRevive = false;
+    if (!gs.summonBuff) gs.summonBuff = null;
+    if (!gs.enemySummonDebuff) gs.enemySummonDebuff = null;
+    if (!gs.companionSP) gs.companionSP = {};
+    if (!gs.companionSkills) gs.companionSkills = {};
+    if (!('weeklyChallenge' in gs)) gs.weeklyChallenge = null;
+    if (!('rebirthCount' in gs)) gs.rebirthCount = 0;
+    if (!('randomDungeon' in gs)) gs.randomDungeon = null;
+    if (!gs.randomDungeonBest) gs.randomDungeonBest = {};
+    // ロード時に戦闘中フラグをリセット（中断セーブ対策）
+    gs._tournamentActive = false;
+    gs.inBattle = false;
     // 既クリアデータにワープ先フラグが欠けている場合の補完
     if (gs.flags.demonKingDefeated) {
-      gs.flags.vis_gods_tower    = true;
-      gs.flags.vis_void_map      = true;
-      gs.flags.vis_desert_hidden = true;
-      gs.flags.vis_endless_trial = true;
+      gs.flags.vis_gods_tower        = true;
+      gs.flags.vis_void_map          = true;
+      gs.flags.vis_desert_hidden     = true;
+      gs.flags.vis_endless_trial     = true;
+      gs.flags.vis_volcano           = true;
+      gs.flags.vis_secret_garden     = true;
+      gs.flags.vis_ancient_shrine    = true;
+      gs.flags.vis_random_dungeon    = true;
     }
     document.getElementById('title-screen').classList.add('hidden');
     document.getElementById('game-screen').classList.remove('hidden');
@@ -7278,23 +10658,50 @@ function renderTitleList() {
   const listEl = document.getElementById('title-list-content');
   listEl.innerHTML = '';
   const obtained = TITLE_DATA.filter(t => gs.titles?.[t.id]?.obtained).length;
+
+  // 現在装備中の称号表示
+  const equippedT = gs.equippedTitle ? TITLE_DATA.find(t => t.id === gs.equippedTitle) : null;
+  const equippedDiv = document.createElement('div');
+  equippedDiv.style.cssText = 'text-align:center;padding:8px;margin-bottom:8px;background:rgba(240,192,64,0.1);border:1px solid rgba(240,192,64,0.3);border-radius:6px;font-size:12px;';
+  equippedDiv.innerHTML = equippedT
+    ? `<strong style="color:var(--gold)">✨ 装備中：${equippedT.emoji} ${equippedT.name}</strong><br><span style="color:var(--text-dim)">${equippedT.activeBonusDesc}</span>`
+    : '<span style="color:var(--text-dim)">称号未装備（称号を選んで「装備する」を押そう）</span>';
+  listEl.appendChild(equippedDiv);
+
   const summary = document.createElement('div');
   summary.className = 'title-summary';
   summary.textContent = `獲得: ${obtained} / ${TITLE_DATA.length}`;
   listEl.appendChild(summary);
+
   TITLE_DATA.forEach(t => {
     const has = !!(gs.titles?.[t.id]?.obtained);
+    const isEquipped = gs.equippedTitle === t.id;
     const row = document.createElement('div');
-    row.className = `title-row ${has ? 'title-obtained' : 'title-locked'}`;
+    row.className = `title-row ${has ? 'title-obtained' : 'title-locked'}${isEquipped ? ' title-equipped' : ''}`;
     row.innerHTML = `
       <div class="title-row-hdr">
         <span class="title-emoji">${has ? t.emoji : '🔒'}</span>
         <span class="title-name">${has ? t.name : '???'}</span>
-        ${has ? '<span class="title-got-badge">✅取得済み</span>' : ''}
+        ${isEquipped ? '<span class="title-got-badge" style="background:rgba(240,192,64,0.3);color:var(--gold)">⚔️装備中</span>' : has ? '<span class="title-got-badge">✅取得済み</span>' : ''}
       </div>
       <div class="title-desc">${has ? t.desc : '条件を達成すると解放されます'}</div>
-      ${has ? `<div class="title-bonus">🎁 ${t.bonusDesc}</div>` : ''}
+      ${has ? `<div class="title-bonus">🎁 取得ボーナス：${t.bonusDesc}</div>` : ''}
+      ${has && t.activeBonus ? `<div class="title-bonus" style="color:#80e0ff">⚔️ 装備効果：${t.activeBonusDesc}</div>` : ''}
     `;
+    if (has && t.activeBonus) {
+      const btn = document.createElement('button');
+      btn.style.cssText = 'margin-top:6px;width:100%;font-family:inherit;font-size:12px;padding:6px;border-radius:5px;cursor:pointer;transition:all 0.15s;';
+      if (isEquipped) {
+        btn.textContent = '🔓 装備を外す';
+        btn.style.cssText += 'background:rgba(200,80,80,0.2);color:#f08080;border:1px solid rgba(200,80,80,0.4);';
+        btn.onclick = () => { gs.equippedTitle = null; saveGame(); renderTitleList(); updateStatus(); showToast('称号の装備を外した'); };
+      } else {
+        btn.textContent = '⚔️ 装備する';
+        btn.style.cssText += 'background:rgba(240,192,64,0.15);color:var(--gold);border:1px solid rgba(240,192,64,0.4);';
+        btn.onclick = () => { gs.equippedTitle = t.id; saveGame(); renderTitleList(); updateStatus(); showToast(`✨ 称号「${t.name}」を装備した！`); };
+      }
+      row.appendChild(btn);
+    }
     listEl.appendChild(row);
   });
 }
@@ -7355,7 +10762,10 @@ function gainBondExp(amount) {
       gs.bondLevel[cid] = newLv;
       const comp = cid === 'aria' ? gs.companion : gs.companions?.[cid];
       const cname = comp?.name || cid;
-      showToast(`💞 ${cname}との絆Lv${newLv}「${BOND_LEVELS[newLv].name}」！`);
+      // 絆レベルアップで仲間SP+2
+      if (!gs.companionSP) gs.companionSP = {};
+      gs.companionSP[cid] = (gs.companionSP[cid] || 0) + 2;
+      showToast(`💞 ${cname}との絆Lv${newLv}「${BOND_LEVELS[newLv].name}」！　仲間SP+2！`);
     }
   });
 }
@@ -7400,7 +10810,7 @@ function updateQuestProgress(type, data) {
       state.progress = (state.progress || 0) + (data.count || 0);
       if (state.progress >= q.count) complete = true;
     } else if (type === 'bond_all' && q.type === 'bond_all') {
-      const comps = ['aria','gaius','luna','sola','serafina','zephiros'];
+      const comps = ['aria','gaius','luna','sola','serafina','zephiros']; // sola = ソラ（正しいID）
       const joined = comps.filter(id => {
         if (id === 'aria') return gs.companion?.joined;
         return gs.companions?.[id]?.joined;
@@ -8473,7 +11883,7 @@ function _admSetFlag(k, v) {
   if (!gs.flags) gs.flags = {};
   gs.flags[k] = v;
   if (k === 'demonKingDefeated' && v) {
-    gs.flags.vis_gods_tower = gs.flags.vis_void_map = gs.flags.vis_desert_hidden = gs.flags.vis_endless_trial = true;
+    gs.flags.vis_gods_tower = gs.flags.vis_void_map = gs.flags.vis_desert_hidden = gs.flags.vis_endless_trial = gs.flags.vis_volcano = gs.flags.vis_secret_garden = gs.flags.vis_ancient_shrine = gs.flags.vis_random_dungeon = true;
   }
 }
 function _admAddFlag() {

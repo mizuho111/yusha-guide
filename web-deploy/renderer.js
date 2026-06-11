@@ -3163,6 +3163,7 @@ function _openNpcTalk(npc, stageData, npcId, isDone) {
 
   if (isDone) {
     _addNpcCloseBtn(btns, '……またいつでも来い。');
+    document.getElementById('npc-talk-overlay').classList.remove('hidden');
     return;
   }
 
@@ -3189,6 +3190,8 @@ function _openNpcTalk(npc, stageData, npcId, isDone) {
   if (choices.length === 0) {
     _addNpcCloseBtn(btns, '↩️ 話を聞いた');
   }
+
+  document.getElementById('npc-talk-overlay').classList.remove('hidden');
 }
 
 function _npcRewardAndAdvance(npc, stageData, npcId, advance) {

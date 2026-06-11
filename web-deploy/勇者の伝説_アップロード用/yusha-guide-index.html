@@ -550,6 +550,7 @@
     <li><a href="#weekly">週チャレ</a></li>
     <li><a href="#rebirth">転生</a></li>
     <li><a href="#worldmap">世界地図</a></li>
+    <li><a href="#dungeon">ランダムダンジョン</a></li>
   </ul>
 </nav>
 
@@ -564,7 +565,16 @@
           <div class="news-header-title">最新アップデート情報</div>
           <div style="font-size:11px;color:var(--text-dim);letter-spacing:2px">UPDATE NEWS</div>
         </div>
-        <div class="news-header-sub">Ver 3.2 系列</div>
+        <div class="news-header-sub">Ver 3.3 系列</div>
+      </div>
+
+      <div class="news-item">
+        <div class="news-date">2026-06-11</div>
+        <div class="news-tag new">NEW</div>
+        <div class="news-body">
+          <strong>🏚️ ランダムダンジョン追加！</strong>
+          <span class="sub">毎回構成が変わる謎のダンジョン！難易度3段階（易5F・普10F・難15F）。フロア間に宝箱・罠・回復の泉などのランダムイベント、最終フロアに強力なボス。難易度別に豪華報酬あり！</span>
+        </div>
       </div>
 
       <div class="news-item">
@@ -2262,7 +2272,7 @@
       エリアは3カテゴリで整理され、踏破率がプログレスバーで表示される。</p>
     </div>
     <div class="card">
-      <div class="card-title">📍 全エリア一覧（計20エリア）</div>
+      <div class="card-title">📍 全エリア一覧（計21エリア）</div>
       <div class="table-wrap">
         <table>
           <tr><th>エリア</th><th>解放条件</th><th>主な敵</th></tr>
@@ -2282,13 +2292,64 @@
           <tr><td style="color:#ff6060">🌋 火山地帯</td><td style="color:#ff6060">魔王撃破後 NEW！</td><td style="color:#ff6060">マグマスライム・炎の精霊・エルブレイズ</td></tr>
           <tr><td style="color:#60d080">🌿 秘密の庭園</td><td style="color:#60d080">魔王撃破後 NEW！</td><td style="color:#60d080">毒花妖精・精霊蝶・フローラ</td></tr>
           <tr><td style="color:#a0c0ff">⛩️ 古代神殿</td><td style="color:#a0c0ff">魔王撃破後 NEW！</td><td style="color:#a0c0ff">石像の守護者・古代祭司・ゼノス</td></tr>
+          <tr><td style="color:#ffcc44">🏚️ ランダムダンジョン</td><td style="color:#ffcc44">魔王撃破後 NEW！</td><td style="color:#ffcc44">毎回ランダム（最終フロアはボス）</td></tr>
           <tr><td>🌾 大草原</td><td>馬を購入後</td><td>草原の猪・風の狼</td></tr>
           <tr><td>🏝️ 南海の孤島</td><td>船を購入後</td><td>海賊・海蛇</td></tr>
           <tr><td>☁️ 天空の浮遊島</td><td>飛行船購入後</td><td>風竜・雲の巨人</td></tr>
         </table>
       </div>
     </div>
-    <div class="tip">🌍 世界地図ボタンで踏破率をいつでも確認！全20エリア制覇を目指そう。</div>
+    <div class="tip">🌍 世界地図ボタンで踏破率をいつでも確認！全21エリア制覇を目指そう。</div>
+  </section>
+
+  <section id="dungeon">
+    <div class="section-header">
+      <div class="section-icon">🏚️</div>
+      <div>
+        <div class="section-title">ランダムダンジョン</div>
+        <div class="section-title-jp">RANDOM DUNGEON</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">🏚️ 概要</div>
+      <p>毎回フロア構成・出現敵が変わる謎のダンジョン。魔王撃破後に「クリア後の世界」から挑戦できる。<br>
+      難易度を選んで入ったら、最終フロアのボスを倒すまで脱出せず戦い続けよ！</p>
+    </div>
+    <div class="card">
+      <div class="card-title">⚔️ 難易度・フロア数</div>
+      <div class="table-wrap">
+        <table>
+          <tr><th>難易度</th><th>フロア数</th><th>おすすめ目安</th><th>クリア報酬</th></tr>
+          <tr><td>🟢 易</td><td>5F</td><td>Lv50〜</td><td>消耗品（ハイハーブ・エリクサーなど）</td></tr>
+          <tr><td>🟡 普</td><td>10F</td><td>Lv150〜</td><td>レアアイテム（フェニックスの羽・英雄の冠など）</td></tr>
+          <tr><td>🔴 難</td><td>15F</td><td>Lv300〜</td><td>最強装備（火山の業炎剣・神殿の聖法衣など）</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">🎲 フロア間ランダムイベント</div>
+      <p>各フロアをクリアすると、次のフロアへ進む前にランダムイベントが発生する。</p>
+      <div class="table-wrap">
+        <table>
+          <tr><th>イベント</th><th>効果</th></tr>
+          <tr><td>📦 宝箱</td><td>ランダムアイテム1個入手</td></tr>
+          <tr><td>⚠️ 罠</td><td>最大HP×10% のダメージ（HP1以下にはならない）</td></tr>
+          <tr><td>💧 回復の泉</td><td>最大HP×30% 回復</td></tr>
+          <tr><td>🚶 通路</td><td>落ちているコインを拾う（フロア数×300G）</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">👹 ボスフロア</div>
+      <p>最終フロア（易5F・普10F・難15F）には強力なランダムボスが出現する。<br>
+      火山ボス・庭園ボス・神殿ボス・ヴォイド・レヴィアタンなど各地の強敵がスケーリングして登場。</p>
+    </div>
+    <div class="card">
+      <div class="card-title">📊 最高記録</div>
+      <p>ダンジョン入口（ランダムダンジョンのシーン画面）に各難易度の最高到達フロアが表示される。<br>
+      全難易度クリアを目指そう！</p>
+    </div>
+    <div class="tip">💡 脱出ボタンで途中終了もできるが報酬なし。回復の泉を引いたらラッキー！</div>
   </section>
 
 </main>
